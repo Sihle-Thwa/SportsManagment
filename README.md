@@ -50,32 +50,32 @@ A comprehensive web application designed to streamline sports team and player ma
 git clone https://github.com/[YourUsername]/sports-management-app.git
 cd sports-management-app
 ```
-###📡 Core Modules
-##Authentication
+### 📡 Core Modules
+## Authentication
 
--Secure user registration
--Role-based login
--JWT token management
+- Secure user registration
+- Role-based login
+- JWT token management
 
-##Team Management
+## Team Management
 
--Create and manage teams
--Assign coaches and players
--Track team performance
+- Create and manage teams
+- Assign coaches and players
+- Track team performance
 
-##Player Tracking
+## Player Tracking
 
--Add player profiles
--Monitor participation
--Manage team assignments
+- Add player profiles
+- Monitor participation
+- Manage team assignments
 
 ### 🔒 Security Features
 
--JWT-based authentication
--Role-based access control
--Secure API endpoints
--Data encryption
--CORS protection
+- JWT-based authentication
+- Role-based access control
+- Secure API endpoints
+- Data encryption
+- CORS protection
 
 ### 🤝 Contributing
 ## Development Workflow
