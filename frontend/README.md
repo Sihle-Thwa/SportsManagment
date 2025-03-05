@@ -40,15 +40,4 @@ A modern, responsive web application for sports team and player management, buil
 git clone https://github.com/[YourUsername]/sports-management-frontend.git
 cd sports-management-frontend
 ```
-src/
-├── components/           # Reusable UI Components
-│   ├── common/           # Common components
-│   ├── layout/           # Layout components
-│   └── features/         # Feature-specific components
-├── pages/                # Page components
-├── hooks/                # Custom React hooks
-├── services/             # API call services
-├── stores/               # State management stores
-├── utils/                # Utility functions
-├── routes/               # Application routing
-└── assets/               # Static assets
+
