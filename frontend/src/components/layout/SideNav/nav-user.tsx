@@ -25,11 +25,11 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
-export function NavUser() {
+export function NavUser( ) {
   const { isMobile } = useSidebar();
 
   return (
-    <SidebarMenu>
+    <SidebarMenu >
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
