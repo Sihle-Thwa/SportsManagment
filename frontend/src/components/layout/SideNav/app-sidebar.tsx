@@ -12,7 +12,7 @@ import { NavUser } from "./nav-user";
 import { NavSecondary } from "./nav-secondary";
 import { NavMain } from "./nav-main";
 
-export function AppSideBar() {
+function AppSideBar ()  {
   return (
     <Sidebar collapsible="icon" className="w-65">
       <SidebarHeader>
@@ -42,3 +42,4 @@ export function AppSideBar() {
     </Sidebar>
   );
 }
+export default AppSideBar;
