@@ -1,8 +1,29 @@
-import Dashboard from '@/pages/Dashboard/Dashboard';
+import { lazy, Suspense } from 'react';
 import { createBrowserRouter, Navigate } from 'react-router';
 
-//import { lazy } from 'react';
+// Lazy load MainLayout
+const MainLayout = lazy(() => import('@/components/layout/MainLayout'));
 
+// Other imports remain the same
+import Planner from '@/pages/Calendar/Planner';
+import Dashboard from '@/pages/Dashboard/Dashboard';
+import Facilities from '@/pages/Facilities/Facilities';
+import Members from '@/pages/Members/Members';
+import Players from '@/pages/Players/Players';
+import Profile from '@/pages/Profile/Profile';
+import Report from '@/pages/Reports/Report';
+import Teams from '@/pages/Teams/Teams';
+
+// Icons
+import {
+  LayoutDashboard,
+  User,
+  Users,
+  Handshake,
+  LandPlot,
+  Calendar,
+  ClipboardList,
+} from "lucide-react";
 
 // Define route configuration
 export const routes = [
@@ -11,75 +32,79 @@ export const routes = [
       path: '/dashboard',
       title: 'Dashboard',
       element: <Dashboard />,
-      icon: 'LayoutDashboard',
+      icon: <LayoutDashboard />,
     },
     {
       id: 'profile',
       path: '/profile',
       title: 'Profile',
       element: <Profile />,
-      icon: 'Users',
+      icon: <User />,
     },
     {
       id: 'members',
       path: '/members',
       title: 'Members',
       element: <Members />,
-      icon: 'BarChart2',
+      icon: <Users />,
     },
     {
       id: 'teams',
       path: '/teams',
       title: 'Teams',
       element: <Teams />,
-      icon: 'Settings',
+      icon: <Handshake />,
     },
     {
         id: 'facilities',
         path: '/facilities',
         title: 'Facilities',
         element: <Facilities />,
-        icon: '',
-      },
-      {
-        id: 'Players',
+        icon: <LandPlot />,
+    },
+    {
+        id: 'players',
         path: '/players',
         title: 'Players',
         element: <Players />,
-        icon: 'Settings',
-      },
-      {
-        id: 'calendar',
-        path: '/calendar',
-        title: 'Calendar',
-        element: <Calendar />,
-        icon: 'Calendar',
-      },
-      {
+        icon: <Users />,
+    },
+    {
+        id: 'planner',
+        path: '/planner',
+        title: 'Planner',
+        element: <Planner />,
+        icon: <Calendar />,
+    },
+    {
         id: 'reports',
         path: '/reports',
         title: 'Reports',
         element: <Report />,
-        icon: '',
-      },
-  ];
-  
-  // Create the router configuration
-  const router = createBrowserRouter([
+        icon: <ClipboardList />,
+    },
+];
+
+// Create the router configuration
+const router = createBrowserRouter([
     {
       path: '/',
-      element: <MainLayout />,
+      element: (
+        <Suspense fallback={<div>Loading...</div>}>
+          <MainLayout />
+        </Suspense>
+      ),
       children: [
         {
           index: true,
           element: <Navigate to="/dashboard" replace />,
         },
-        ...routes.map(route => ({
-          path: route.path,
-          element: route.element,
+        ...routes.map(item => ({
+          path: item.path,
+          element: item.element,
         })),
       ],
     },
-  ]);
-  
-  export default router;
+]);
+
+export default router;

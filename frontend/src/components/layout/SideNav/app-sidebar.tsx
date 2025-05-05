@@ -1,45 +1,38 @@
 import {
-  Sidebar,
   SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
+  SidebarGroup,
+  SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { ArrowUpCircleIcon } from "lucide-react";
-import { NavUser } from "./nav-user";
-import { NavSecondary } from "./nav-secondary";
 import { NavMain } from "./nav-main";
+import { NavSecondary } from "./nav-secondary";
+import { NavUser } from "./nav-user";
+import { useState } from "react";
 
-function AppSideBar ()  {
+interface AppSideBarProps {
+  isOpen: boolean;
+  onClose: () => void;
+  currentPath: string;
+}
+
+export function AppSideBar({ isOpen, onClose, currentPath }: AppSideBarProps) {
+  const [activeRoute, setActiveRoute] = useState(currentPath);
+
   return (
-    <Sidebar collapsible="icon" className="w-65">
-      <SidebarHeader>
+    <SidebarContent
+      className={`fixed top-0 left-0 h-full bg-white shadow-lg w-64 transition-transform ${
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      }`}
+    >
+      <SidebarGroup>
+        <SidebarGroupLabel>Application</SidebarGroupLabel>
         <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
-            >
-              <a href="#">
-                <ArrowUpCircleIcon className="h-5 w-5" />
-                <span className="text-base font-semibold">U-Organise</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
+          <NavMain activeRoute={activeRoute} setActiveRoute={setActiveRoute} />
+          <NavSecondary />
         </SidebarMenu>
-      </SidebarHeader>
-      <SidebarContent>
-        <NavMain />
-        <NavSecondary />
-        <SidebarFooter
-          style={{ position: "absolute", bottom: 0, left: 0, right: 0 }}
-        >
-          <NavUser />
-        </SidebarFooter>
-      </SidebarContent>
-    </Sidebar>
+      </SidebarGroup>
+      <NavUser />
+    </SidebarContent>
   );
 }
 export default AppSideBar;

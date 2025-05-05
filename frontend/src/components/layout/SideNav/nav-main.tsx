@@ -1,86 +1,31 @@
-import {
-  
-  LayoutDashboard,
-  User,
-  Users,
-  Handshake,
-  LandPlot,
-  Calendar,
-  ClipboardList,
-} from "lucide-react";
+import { SidebarMenuItem, SidebarMenuButton } from '@/components/ui/sidebar';
+import { NavLink } from 'react-router-dom';
+import { routes } from '@/routes';
 
-import {
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
 
-// Menu-Items
-const items = [
- 
-  {
-    title: "Dashboard",
-    url: "#",
-    icon: LayoutDashboard,
-  },
-  {
-    title: "Profile",
-    url: "#",
-    icon: User,
-  },
-  {
-    title: "Members",
-    url: "#",
-    icon: Users,
-  },
-  {
-    title: "Teams",
-    url: "#",
-    icon: Handshake,
-  },
-  {
-    title: "Facilities",
-    url: "#",
-    icon: LandPlot,
-  },
-  {
-    title: "Players",
-    url: "#",
-    icon: Users,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Report",
-    url: "#",
-    icon: ClipboardList,
-  },
-];
+interface NavMainProps {
+  activeRoute: string;
+  setActiveRoute: (path: string) => void;
+}
 
-export function NavMain() {
+export function NavMain({ activeRoute, setActiveRoute }: NavMainProps) {
   return (
-    <SidebarGroup>
-      <SidebarGroupLabel>Application</SidebarGroupLabel>
-      <SidebarGroupContent>
-        <SidebarMenu>
-          {items.map((item) => (
-            <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton asChild>
-                <a href={item.url}>
-                  <item.icon />
-                  <span>{item.title}</span>
-                </a>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          ))}
-        </SidebarMenu>
-      </SidebarGroupContent>
-    </SidebarGroup>
+    <>
+      {routes.map((route) => (
+        <SidebarMenuItem key={route.id}>
+          <SidebarMenuButton asChild>
+            <NavLink
+              to={route.path}
+              className={({ isActive }) => 
+                `flex items-center gap-3 px-4 py-2 rounded-lg ${isActive || activeRoute === route.path ? 'bg-primary text-white' : 'text-muted-foreground hover:bg-gray-100'}`}
+              onClick={() => setActiveRoute(route.path)}
+            >
+              {route.icon}
+              <span>{route.title}</span>
+            </NavLink>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      ))}
+    </>
   );
 }
