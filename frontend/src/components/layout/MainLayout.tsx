@@ -1,36 +1,30 @@
-import { useState } from 'react';
-import AppSideBar from '@/components/layout/SideNav/app-sidebar';
-import AppTopBar from '@/components/layout/TopNav/app-topbar';
-import { Outlet } from 'react-router-dom'; // Import Outlet for nested routing
-import { SidebarProvider } from '../ui/sidebar';
+import {} from "react";
+import AppSideBar from "@/components/layout/SideNav/app-sidebar";
+import AppTopBar from "@/components/layout/TopNav/app-topbar";
+import { Outlet } from "react-router-dom"; // Import Outlet for nested routing
+import { SidebarProvider, SidebarInset } from "../ui/sidebar";
 
 export function MainLayout() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // State to manage sidebar visibility
-
-    
-  
   return (
-    <SidebarProvider> 
-    <div className="min-h-screen bg-gray-100 flex">
-      {/* Sidebar */}
-      <AppSideBar 
-        isOpen={isSidebarOpen} 
-        onClose={() => setIsSidebarOpen(false)} 
-        currentPath={window.location.pathname} // Pass the current path to highlight active links
-      />
+    <SidebarProvider>
+      <SidebarInset>
+        <div className="min-h-screen bg-gray-100 flex">
+          {/* Sidebar */}
+          <AppSideBar currentPath={window.location.pathname} />
+          {/* Main Content Area */}
+          <div className={`flex-1 transition-all duration-300 `}>
+            {/* Top Navigation */}
 
-      {/* Main Content Area */}
-      <div className={`flex-1 transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-0'}`}>
-        {/* Top Navigation */}
-        <AppTopBar />
+            <AppTopBar />
 
-        {/* Content Area */}
-        <main className="p-8">
-          <Outlet /> {/* This will render the matched child route */}
-        </main>
-      </div>
-    </div>
+            {/* Content Area */}
+            <main className="p-7">
+              <Outlet /> {/* This will render the matched child route */}
+            </main>
+          </div>
+        </div>
+      </SidebarInset>
     </SidebarProvider>
   );
 }
-  export default MainLayout;
+export default MainLayout;
