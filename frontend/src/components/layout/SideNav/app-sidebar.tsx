@@ -1,10 +1,10 @@
 import {
+  Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarGroupLabel,
   SidebarHeader,
-  SidebarMenu,
-
+  SidebarRail,
 } from "@/components/ui/sidebar";
 import { NavMain } from "./nav-main";
 import { NavSecondary } from "./nav-secondary";
@@ -19,25 +19,21 @@ export function AppSideBar({ currentPath }: AppSideBarProps) {
   const [activeRoute, setActiveRoute] = useState(currentPath);
 
   return (
-    <SidebarContent className="flex flex-col max-w-60 min-w-6 bg-white border-r border-gray-200 h-screen ">
-      <SidebarHeader>
-        <SidebarGroupLabel>
-          U-Organise
-        </SidebarGroupLabel>
-        
-      </SidebarHeader>
-      <SidebarMenu>
+    <Sidebar collapsible="icon">
+      <SidebarHeader>U-Organise</SidebarHeader>
+      <SidebarContent>
         <NavMain activeRoute={activeRoute} setActiveRoute={setActiveRoute} />
-      </SidebarMenu>
-      <SidebarGroupLabel>Settings</SidebarGroupLabel>
-      <SidebarMenu>
+
+        <SidebarGroupLabel>Settings</SidebarGroupLabel>
+
         <NavSecondary />
-      </SidebarMenu>
+      </SidebarContent>
 
       <SidebarFooter style={{ marginTop: "auto" }}>
         <NavUser />
       </SidebarFooter>
-    </SidebarContent>
+      <SidebarRail />
+    </Sidebar>
   );
 }
 export default AppSideBar;
