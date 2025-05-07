@@ -10,10 +10,10 @@ export function MainLayout() {
       <AppSideBar currentPath={window.location.pathname} />
       <SidebarInset>
         {/* Main Content Area */}
-        <div className={`flex flex-col`}>
+        <div className={`flex flex-col h-screen bg-gray-50`}>
           {<AppTopBar />}
 
-          <main className="p-7">
+          <main className="p-4 flex-1 overflow-y-auto">
             <Outlet /> {/* This will render the matched child route */}
           </main>
         </div>
