@@ -4,12 +4,14 @@ import {
   SidebarFooter,
   SidebarGroupLabel,
   SidebarHeader,
+  SidebarMenuButton,
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { NavMain } from "./nav-main";
 import { NavSecondary } from "./nav-secondary";
 import { NavUser } from "./nav-user";
 import { useState } from "react";
+import { House } from "lucide-react";
 
 interface AppSideBarProps {
   currentPath: string;
@@ -20,7 +22,18 @@ export function AppSideBar({ currentPath }: AppSideBarProps) {
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarHeader>U-Organise</SidebarHeader>
+      <SidebarHeader>
+        <SidebarMenuButton size="lg"
+              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
+        <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+          <House className="h-4 w-4" />
+        </div>
+        <div className="grid flex-1 text-left text-sm leading-tight">
+          <span className="truncate font-semibold">U-Organise</span>
+        </div>
+        </SidebarMenuButton>
+        
+      </SidebarHeader>
       <SidebarContent>
         <NavMain activeRoute={activeRoute} setActiveRoute={setActiveRoute} />
 
@@ -28,8 +41,8 @@ export function AppSideBar({ currentPath }: AppSideBarProps) {
 
         <NavSecondary />
       </SidebarContent>
-
-      <SidebarFooter style={{ marginTop: "auto" }}>
+      <SidebarFooter className="mt-auto">
+        {/* Fix Icon to display center when sidenav bar is 'closed' */}
         <NavUser />
       </SidebarFooter>
       <SidebarRail />
