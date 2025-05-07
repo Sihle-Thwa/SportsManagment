@@ -1,4 +1,4 @@
-import { SidebarMenuItem, SidebarMenuButton } from '@/components/ui/sidebar';
+import { SidebarMenuItem, SidebarMenuButton, SidebarMenu } from '@/components/ui/sidebar';
 import { NavLink } from 'react-router-dom';
 import { routes } from '@/routes';
 
@@ -10,7 +10,7 @@ interface NavMainProps {
 
 export function NavMain({ activeRoute, setActiveRoute }: NavMainProps) {
   return (
-    <>
+    <SidebarMenu>
       {routes.map((route) => (
         <SidebarMenuItem key={route.id}>
           <SidebarMenuButton asChild>
@@ -26,6 +26,6 @@ export function NavMain({ activeRoute, setActiveRoute }: NavMainProps) {
           </SidebarMenuButton>
         </SidebarMenuItem>
       ))}
-    </>
+    </SidebarMenu>
   );
 }

@@ -1,4 +1,4 @@
-import { SidebarMenuItem, SidebarMenuButton, SidebarGroup, SidebarGroupLabel } from '@/components/ui/sidebar';
+import { SidebarMenuItem, SidebarMenuButton, SidebarMenu } from '@/components/ui/sidebar';
 import { HandHelping, Settings } from 'lucide-react';
 
 const items = [
@@ -16,8 +16,7 @@ const items = [
 
 export function NavSecondary() {
   return (
-    <SidebarGroup>
-      <SidebarGroupLabel>Settings</SidebarGroupLabel>
+    <SidebarMenu>
       {items.map((item) => (
         <SidebarMenuItem key={item.title}>
           <SidebarMenuButton asChild>
@@ -28,6 +27,6 @@ export function NavSecondary() {
           </SidebarMenuButton>
         </SidebarMenuItem>
       ))}
-    </SidebarGroup>
+    </SidebarMenu>
   );
 }
