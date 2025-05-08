@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {  Users } from "lucide-react";
+import { Users } from "lucide-react";
 import { CardGreeting } from "@/components/common/Card/CardGreeting";
 import { CardStat } from "@/components/common/Card/CardStat";
 import { statsdata } from "@/routes/statsdata";
@@ -15,21 +15,8 @@ import { statsdata } from "@/routes/statsdata";
 const Dashboard: React.FC = () => {
   return (
     <div className="space-y-3">
-    
-      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+      
 
-        { /* Stat Cards */}
-        {statsdata.map((stat, index) => (
-          <CardStat
-            key={index}
-            title={stat.title}
-            value={stat.value}
-            icon={stat.icon}
-          />
-        ))}
-        </div>
-
-       
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
         <div className="col-span-4">
           <CardGreeting />
@@ -60,6 +47,17 @@ const Dashboard: React.FC = () => {
             </div>
           </CardContent>
         </Card>
+      </div>
+      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+        {/* Stat Cards */}
+        {statsdata.map((stat, index) => (
+          <CardStat
+            key={index}
+            title={stat.title}
+            value={stat.value}
+            icon={stat.icon}
+          />
+        ))}
       </div>
     </div>
   );

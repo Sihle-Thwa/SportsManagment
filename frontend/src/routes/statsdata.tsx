@@ -9,16 +9,16 @@ export const statsdata = [
     {
     title: "Total Facilities",
     value: "8",
-    icon: <LandPlot className="h-4 w-4" />,
+    icon: <LandPlot className="h-full w-full" />,
     },
     {
     title: "Total Staff",
     value: "40",
-    icon: <Users className="h-4 w-4" />,
+    icon: <Users className="h-full w-full" />,
     },
     {
     title: "Total Teams",
     value: "12",
-    icon: <Handshake className="h-4 w-4" />,
+    icon: <Handshake className="h-full w-full" />,
 },
 ];
