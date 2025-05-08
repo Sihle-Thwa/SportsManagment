@@ -1,0 +1,24 @@
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import React from "react";
+
+export const CardStat: React.FC<{
+  title: string;
+  value: string;
+  icon: React.ReactNode;
+  className?: string;
+}> = ({ title, value, icon }) => (
+  <div className="flex flex-col">
+    <Card className="items-start p-3">
+      <CardContent className="grid p-3 md:grid-cols-2 w-max">
+        <div className="flex p-3 items-center h-16 w-16 rounded-full bg-primary/10 text-primary">
+          {icon}
+        </div>
+
+        <div className="flex flex-col items-start p-3 md:p-3">
+          <div className="text-2xl font-bold">{value}</div>
+          <CardTitle className="text-sm font-normal">{title}</CardTitle>
+        </div>
+      </CardContent>
+    </Card>
+  </div>
+);
