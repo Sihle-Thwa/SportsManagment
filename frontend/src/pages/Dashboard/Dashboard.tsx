@@ -7,6 +7,7 @@ import {
   DollarSign, 
   Users 
 } from 'lucide-react';
+import { CardGreeting } from '@/components/common/Card/CardGreeting';
 
 const StatCard: React.FC<{
   title: string;
@@ -60,19 +61,10 @@ const Dashboard: React.FC = () => {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="col-span-4">
-          <CardHeader>
-            <CardTitle>Overview</CardTitle>
-            <CardDescription>
-              Recent performance metrics for the application
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="h-[300px] flex items-center justify-center text-gray-400">
-              Chart would go here
-            </div>
-          </CardContent>
-        </Card>
+        <div className='col-span-4'>
+        <CardGreeting/>
+        </div>
+        
         
         <Card className="col-span-3">
           <CardHeader>
