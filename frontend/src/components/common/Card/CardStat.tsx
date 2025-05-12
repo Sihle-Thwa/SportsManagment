@@ -7,7 +7,7 @@ export const CardStat: React.FC<{
   icon: React.ReactNode;
   className?: string;
 }> = ({ title, value, icon }) => (
-  <div className="flex flex-col">
+  <div className="flex flex-col w-72">
     <Card className="items-start p-3">
       <CardContent className="grid p-3 md:grid-cols-2 w-max">
         <div className="flex p-3 items-center h-16 w-16 rounded-full bg-primary/10 text-primary">

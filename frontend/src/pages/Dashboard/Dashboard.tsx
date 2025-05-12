@@ -8,7 +8,7 @@ import { CardCalendar } from "@/components/common/Card/CardCalendar";
 const Dashboard: React.FC = () => {
   return (
     <div className="space-y-3">
-      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-8">
+      <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-8">
         <div className="col-span-2 lg:col-span-4">
           <CardGreeting />
         </div>
@@ -18,7 +18,7 @@ const Dashboard: React.FC = () => {
 
         
       </div>
-      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
         {/* Stat Cards */}
         {statsdata.map((stat, index) => (
           <CardStat
