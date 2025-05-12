@@ -9,7 +9,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className="space-y-3">
       <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-8">
-        <div className="col-span-2 lg:col-span-6">
+        <div className="col-span-2 lg:col-span-4">
           <CardGreeting />
         </div>
         <div className="col-span-2">

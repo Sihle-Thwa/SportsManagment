@@ -10,7 +10,7 @@ import greetingCardImg from "@/assets/images/standing-dashboard-image.svg";
 
 export function CardGreeting() {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 ">
       <Card className=" overflow-hidden">
         <CardContent className="grid p-0 md:grid-cols-2">
           <div className="p-6 md:p-6">
