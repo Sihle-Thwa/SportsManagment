@@ -3,7 +3,7 @@ import { MoreHorizontal, CheckCircle } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 const MessageDashboard = ({ messages = [] }) => {
   const [selectedConversation, setSelectedConversation] = useState<number | null>(null);
