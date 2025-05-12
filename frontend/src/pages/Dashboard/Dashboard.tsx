@@ -4,6 +4,7 @@ import { CardGreeting } from "@/components/common/Card/CardGreeting";
 import { CardStat } from "@/components/common/Card/CardStat";
 import { statsdata } from "@/routes/statsdata";
 import { CardCalendar } from "@/components/common/Card/CardCalendar";
+import MessageDashboard from "@/components/dashboard/MessageDashboard";
 
 const Dashboard: React.FC = () => {
   return (
@@ -15,8 +16,6 @@ const Dashboard: React.FC = () => {
         <div className="col-span-2">
           <CardCalendar />
         </div>
-
-        
       </div>
       <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
         {/* Stat Cards */}
@@ -28,6 +27,11 @@ const Dashboard: React.FC = () => {
             icon={stat.icon}
           />
         ))}
+      </div>
+      <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-8">
+        <div className="col-span-2 lg:col-span-4">
+        <MessageDashboard />
+        </div>
       </div>
     </div>
   );
