@@ -9,17 +9,17 @@ import NoticeBoard from "@/components/dashboard/NoticeBoard";
 
 const Dashboard: React.FC = () => {
   return (
-    <div className="space-y-3">
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-10">
+    <div className="space-y-6">
+      <div className="grid gap-6 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-12">
         <div className="col-span-1 lg:col-span-6">
           <CardGreeting />
         </div>
-        <div className="col-span-1 lg:col-span-4">
+        <div className="col-span-1 lg:col-span-3">
           <NoticeBoard />
         </div>
 
       </div>
-      <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
+      <div className="flex gap-6 flex-wrap">
         {/* Stat Cards */}
         {statsdata.map((stat, index) => (
           <CardStat

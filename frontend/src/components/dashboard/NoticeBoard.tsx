@@ -31,7 +31,7 @@ const NoticeBoard = ({ notices = [] }) => {
   };
 
   return (
-    <div className="flex flex-col w-160 h-full max-w-160 py-3 px-6 border rounded-lg overflow-hidden bg-white shadow-sm">
+    <div className="flex flex-col w-160 h-80 max-w-160 py-3 px-6 border rounded-lg overflow-hidden bg-white shadow-sm">
       <div className="flex items-center justify-between p-3 border-b">
         <h2 className="text-xl font-bold text-slate-800">Notice Board</h2>
         <Button variant={"outline"} className="p-2 border-0 hover:bg-slate-100">
@@ -39,7 +39,7 @@ const NoticeBoard = ({ notices = [] }) => {
         </Button>
       </div>
 
-      <ScrollArea className="h-90">
+      <ScrollArea className="flex h-40">
         {noticeData.map((notice) => (
           <Card
             key={notice.id}
@@ -56,7 +56,7 @@ const NoticeBoard = ({ notices = [] }) => {
               </div>
             </div>
 
-            <p className="mt-1 text-base text-slate-700">{notice.content}</p>
+            <p className="text-base text-slate-700">{notice.content}</p>
 
           </Card>
         ))}
