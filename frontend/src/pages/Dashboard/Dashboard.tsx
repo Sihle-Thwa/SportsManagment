@@ -15,7 +15,7 @@ const Dashboard: React.FC = () => {
           <CardGreeting />
         </div>
         <div className="col-span-1 lg:col-span-4">
-          <CardCalendar />
+          <NoticeBoard />
         </div>
 
       </div>
@@ -35,7 +35,7 @@ const Dashboard: React.FC = () => {
           <MessageDashboard />
         </div>
         <div className="col-span-1 md:grid-cols-2 lg:col-span-3">
-          <NoticeBoard />
+          <CardCalendar />
         </div>
         <div className="col-span-1 md:grid-cols-2 lg:col-span-3">
 
