@@ -19,7 +19,7 @@ const MessageDashboard = ({ messages = [] }) => {
         online: true
       },
       message: "Looks good!",
-      timestamp: "Just now",
+      timestamp: "now",
       read: false
     },
     {
@@ -31,7 +31,7 @@ const MessageDashboard = ({ messages = [] }) => {
         online: true
       },
       message: "Thanks so much, happy with that.",
-      timestamp: "2 mins ago",
+      timestamp: "2 m ago",
       read: true
     },
     {
@@ -43,21 +43,45 @@ const MessageDashboard = ({ messages = [] }) => {
         online: false
       },
       message: "",
-      timestamp: "2 mins ago",
+      timestamp: "2 m ago",
+      read: false
+    },
+    {
+      id: 4,
+      sender: {
+        name: "Demi Wikinson",
+        username: "@demi",
+        avatar: "/api/placeholder/100/100",
+        online: false
+      },
+      message: "",
+      timestamp: "2 m ago",
+      read: false
+    },
+    {
+      id: 5,
+      sender: {
+        name: "Demi Wikinson",
+        username: "@demi",
+        avatar: "/api/placeholder/100/100",
+        online: false
+      },
+      message: "",
+      timestamp: "2 m ago",
       read: false
     }
   ];
 
   return (
-    <div className="flex flex-col w-full max-w-md border rounded-lg overflow-hidden bg-white shadow-sm">
-      <div className="flex items-center justify-between p-4 border-b">
-        <h2 className="text-2xl font-bold text-slate-800">Messages</h2>
-        <Button className="p-2 rounded-full hover:bg-slate-100">
+    <div className="flex flex-col w-80 h-80 max-w-80 py-3 px-6 border rounded-lg overflow-hidden bg-white shadow-sm">
+      <div className="flex items-center justify-between p-3 border-b">
+        <h2 className="text-xl font-bold text-slate-800">Messages</h2>
+        <Button variant={"outline"} className="p-2 border-0 hover:bg-slate-100">
           <MoreHorizontal size={24} className="text-slate-600" />
         </Button>
       </div>
 
-      <ScrollArea className="h-96">
+      <ScrollArea className="h-90">
         {messageData.map((msg) => (
           <div 
             key={msg.id}
@@ -80,11 +104,10 @@ const MessageDashboard = ({ messages = [] }) => {
             </div>
 
             <div className="flex-1 min-w-0">
-              <div className="flex items-center justify-between mb-1">
+              <div className="flex items-start justify-around mb-1">
                 <h3 className="text-lg font-medium text-slate-800">{msg.sender.name}</h3>
                 <span className="text-sm text-slate-500">{msg.timestamp}</span>
               </div>
-              <p className="text-sm text-slate-600 truncate">{msg.sender.username}</p>
               <p className="mt-1 text-slate-700">{msg.message}</p>
             </div>
 

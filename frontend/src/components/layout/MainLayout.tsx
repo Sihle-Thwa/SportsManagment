@@ -13,7 +13,7 @@ export function MainLayout() {
         <div className={`flex flex-col h-screen bg-gray-50`}>
           {<AppTopBar />}
 
-          <main className="p-4 flex-1 overflow-y-auto">
+          <main className="p-6 flex-1 overflow-y-auto">
             <Outlet /> {/* This will render the matched child route */}
           </main>
         </div>

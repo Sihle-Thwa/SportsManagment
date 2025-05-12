@@ -5,17 +5,19 @@ import { CardStat } from "@/components/common/Card/CardStat";
 import { statsdata } from "@/routes/statsdata";
 import { CardCalendar } from "@/components/common/Card/CardCalendar";
 import MessageDashboard from "@/components/dashboard/MessageDashboard";
+import NoticeBoard from "@/components/dashboard/NoticeBoard";
 
 const Dashboard: React.FC = () => {
   return (
     <div className="space-y-3">
-      <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-8">
-        <div className="col-span-2 lg:col-span-4">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-10">
+        <div className="col-span-1 lg:col-span-6">
           <CardGreeting />
         </div>
-        <div className="col-span-2">
+        <div className="col-span-1 lg:col-span-4">
           <CardCalendar />
         </div>
+
       </div>
       <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
         {/* Stat Cards */}
@@ -28,9 +30,15 @@ const Dashboard: React.FC = () => {
           />
         ))}
       </div>
-      <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-8">
-        <div className="col-span-2 lg:col-span-4">
-        <MessageDashboard />
+      <div className="grid gap-2 md:grid-cols-6 lg:grid-cols-9">
+        <div className="col-span-1 md:grid-cols-2 lg:col-span-3">
+          <MessageDashboard />
+        </div>
+        <div className="col-span-1 md:grid-cols-2 lg:col-span-3">
+          <NoticeBoard />
+        </div>
+        <div className="col-span-1 md:grid-cols-2 lg:col-span-3">
+
         </div>
       </div>
     </div>
