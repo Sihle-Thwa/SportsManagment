@@ -1,7 +1,7 @@
 // src/pages/Dashboard.tsx
 import React from "react";
 import { CardGreeting } from "../../components/dashboard/CardGreeting";
-import { CardStat } from "@/components/common/Card/CardStat";
+import { CardStat } from "@/components/dashboard/CardStat";
 import { statsdata } from "@/routes/statsdata";
 import { CardCalendar } from "@/components/common/Card/CardCalendar";
 import MessageDashboard from "@/components/dashboard/MessageDashboard";
