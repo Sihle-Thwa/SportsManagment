@@ -48,7 +48,7 @@ const NoticeBoard = ({ notices = [] }) => {
                 }`}
               onClick={() => setSelectedNotice(notice.id)}
             >
-              <CardContent className="grid items-center ">
+              <CardContent className="grid items-center">
                 <div className=" grid self-auto justify-start ">
                   {renderIcon()}
                 </div>
