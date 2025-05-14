@@ -71,7 +71,7 @@ const MessageDashboard = ({ messages = [] }) => {
           <MoreHorizontal size={24} className="text-slate-600" />
         </Button>
       </CardHeader>
-      <ScrollArea className="flex h-68 w-full overflow-y-auto">
+      <ScrollArea className="flex h-56 w-full overflow-y-auto">
         <CardContent className="flex flex-col items-start justify-center mb-2">
           {messageData.map((msg) => (
             <div
