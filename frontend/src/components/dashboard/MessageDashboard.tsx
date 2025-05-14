@@ -76,7 +76,7 @@ const MessageDashboard = ({ messages = [] }) => {
           {messageData.map((msg) => (
             <div
               key={msg.id}
-              className={`flex items-start gap-3 self-stretch p-3  mb-2 border-b hover:bg-slate-50 cursor-pointer" ${selectedConversation === msg.id ? "bg-slate-50" : ""
+              className={`flex items-start gap-3 self-stretch p-3 mb-2 border-b hover:bg-slate-50 cursor-pointer" ${selectedConversation === msg.id ? "bg-slate-50" : ""
                 }`}
               onClick={() => setSelectedConversation(msg.id)}
             >

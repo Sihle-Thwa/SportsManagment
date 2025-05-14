@@ -6,6 +6,7 @@ import { statsdata } from "@/routes/statsdata";
 import { CardCalendar } from "@/components/dashboard/CardCalendar";
 import MessageDashboard from "@/components/dashboard/MessageDashboard";
 import NoticeBoard from "@/components/dashboard/NoticeBoard";
+import PlayerSummaryDashboard from "@/components/dashboard/PlayerSummaryDashboard";
 
 const Dashboard: React.FC = () => {
   return (
@@ -38,7 +39,7 @@ const Dashboard: React.FC = () => {
           <CardCalendar />
         </div>
         <div className="col-span-1 md:grid-cols-2 lg:col-span-3">
-
+          <PlayerSummaryDashboard />
         </div>
       </div>
     </div>
