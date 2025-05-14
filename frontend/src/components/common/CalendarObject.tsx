@@ -10,7 +10,7 @@ return (
     mode="single"
     selected={date}
     onSelect={setDate}        
-    className="w-fit"
+    className="w-72 h-fit flex-shrink-0"
   />
 )
 
