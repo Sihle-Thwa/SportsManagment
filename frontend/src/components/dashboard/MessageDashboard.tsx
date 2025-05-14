@@ -67,7 +67,7 @@ const MessageDashboard = ({ messages = [] }) => {
     <Card className="flex flex-col w-full h-fit py-3 px-6 border rounded-lg overflow-hidden bg-white shadow-sm">
       <CardHeader className="flex items-center justify-between p-3 border-b">
         <CardTitle className="text-xl font-bold text-slate-800">Messages</CardTitle>
-        <Button variant={"outline"} className="p-2 border-0 hover:bg-slate-100">
+        <Button variant={"ghost"} className="p-2 border-0 hover:bg-slate-100">
           <MoreHorizontal size={24} className="text-slate-600" />
         </Button>
       </CardHeader>

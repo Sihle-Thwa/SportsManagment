@@ -34,7 +34,7 @@ const NoticeBoard = ({ notices = [] }) => {
     <div className="flex flex-col w-fit h-fit py-3 px-6 border rounded-lg overflow-hidden bg-white shadow-sm">
       <div className="flex items-center justify-between p-3 border-b">
         <h2 className="text-xl font-bold text-slate-800">Notice Board</h2>
-        <Button variant={"outline"} className="p-2 border-0 hover:bg-slate-100">
+        <Button variant={"ghost"} className="p-2 border-0 hover:bg-slate-100">
           <MoreHorizontal size={24} className="text-slate-600" />
         </Button>
       </div>

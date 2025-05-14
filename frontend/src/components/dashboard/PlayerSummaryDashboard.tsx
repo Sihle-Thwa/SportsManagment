@@ -10,8 +10,8 @@ const PlayerSummaryDashboard = () => {
   const girlsPercentage = Math.round((girlsCount / totalPlayers) * 100);
 
   return (
-    <Card className="flex flex-col w-full max-w-lg shadow-sm rounded-xl overflow-hidden bg-white">
-      <CardHeader className="flex flex-row items-center justify-between p-4 pb-0">
+    <Card className="flex flex-col w-full max-w-lg shadow-sm rounded-lg overflow-hidden bg-white">
+      <CardHeader className="flex flex-row items-start justify-between p-3 pb-0">
         <CardTitle className="text-xl font-semibold text-slate-800">
           Players Summary
         </CardTitle>
