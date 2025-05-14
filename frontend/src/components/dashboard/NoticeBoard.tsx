@@ -44,11 +44,11 @@ const NoticeBoard = ({ notices = [] }) => {
           {noticeData.map((notice) => (
             <Card
               key={notice.id}
-              className={`grid items-start justify-center p-3 mb-3 border-b hover:bg-slate-50 cursor-pointer" ${selectedNotice === notice.id ? "bg-slate-50" : ""
+              className={`grid items-start justify-center mb-3 border-b hover:bg-slate-50 cursor-pointer" ${selectedNotice === notice.id ? "bg-slate-50" : ""
                 }`}
               onClick={() => setSelectedNotice(notice.id)}
             >
-              <CardContent className="grid items-center mb-0">
+              <CardContent className="grid items-center ">
                 <div className=" grid self-auto justify-start ">
                   {renderIcon()}
                 </div>
@@ -56,7 +56,7 @@ const NoticeBoard = ({ notices = [] }) => {
                   <h3 className="text-xl font-medium text-slate-800">{notice.title}</h3>
                 </div>
 
-                <div className="grid items-start justify-start">
+                <div className="grid items-start justify-start mb-2">
                   <p className="text-base text-slate-700">{notice.content}</p>
                 </div>
 
