@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MoreHorizontal, Bell, Plus, Pencil, X } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Card } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
 const NoticeBoard = ({ notices = [] }) => {
@@ -40,50 +40,54 @@ const NoticeBoard = ({ notices = [] }) => {
       </div>
 
       <ScrollArea className="flex h-40 p-3 ">
-        <div className="flex items-center justify-center mb-2">
+        <div className="flex flex-col items-center justify-center mb-2">
           {noticeData.map((notice) => (
             <Card
               key={notice.id}
-              className={`flex items-start justify-center p-3 border-b hover:bg-slate-50 cursor-pointer" ${selectedNotice === notice.id ? "bg-slate-50" : ""
+              className={`grid items-start justify-center p-3 mb-3 border-b hover:bg-slate-50 cursor-pointer" ${selectedNotice === notice.id ? "bg-slate-50" : ""
                 }`}
               onClick={() => setSelectedNotice(notice.id)}
             >
-              <div className="flex items-start mb-0">
-                <div className="flex mr-3">
+              <CardContent className="grid items-center mb-0">
+                <div className=" grid self-auto justify-start ">
                   {renderIcon()}
                 </div>
-                <div className="flex items-center justify-start">
+                <div className="grid items-start justify-start mb-2">
                   <h3 className="text-xl font-medium text-slate-800">{notice.title}</h3>
                 </div>
-                
-              </div>
-              <p className="flex items-center  text-base text-slate-700">{notice.content}</p>
-           </Card>
+
+                <div className="grid items-start justify-start">
+                  <p className="text-base text-slate-700">{notice.content}</p>
+                </div>
+
+              </CardContent>
+
+            </Card>
           ))}
         </div>
       </ScrollArea>
 
-      <div className="flex justify-center gap-4 p-4 border-t bg-white">
+      <div className="flex flex-wrap h-full justify-center items-center shrink-0 gap-3 p-3 border-t bg-white">
         <Button
           variant="outline"
           size="icon"
-          className="w-12 h-12 bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
+          className="w-9 h-9 bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
         >
-          <Plus size={24} />
+          <Plus size={36} />
         </Button>
         <Button
           variant="outline"
           size="icon"
-          className="w-12 h-12 bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
+          className="w-9 h-9 bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
         >
-          <Pencil size={24} />
+          <Pencil size={36} />
         </Button>
         <Button
           variant="outline"
           size="icon"
-          className="w-12 h-12 bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
+          className="w-9 h-9 bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
         >
-          <X size={24} />
+          <X size={36} />
         </Button>
       </div>
     </div>
