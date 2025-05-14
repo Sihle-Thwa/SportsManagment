@@ -31,7 +31,7 @@ const NoticeBoard = ({ notices = [] }) => {
   };
 
   return (
-    <div className="flex flex-col w-160 h-80 max-w-160 py-3 px-6 border rounded-lg overflow-hidden bg-white shadow-sm">
+    <div className="flex flex-col w-fit h-fit py-3 px-6 border rounded-lg overflow-hidden bg-white shadow-sm">
       <div className="flex items-center justify-between p-3 border-b">
         <h2 className="text-xl font-bold text-slate-800">Notice Board</h2>
         <Button variant={"outline"} className="p-2 border-0 hover:bg-slate-100">
@@ -39,27 +39,28 @@ const NoticeBoard = ({ notices = [] }) => {
         </Button>
       </div>
 
-      <ScrollArea className="flex h-40">
-        {noticeData.map((notice) => (
-          <Card
-            key={notice.id}
-            className={`flex items-start p-3 border-b hover:bg-slate-50 cursor-pointer" ${selectedNotice === notice.id ? "bg-slate-50" : ""
-              }`}
-            onClick={() => setSelectedNotice(notice.id)}
-          >
-            <div className="flex items-start">
-              <div className="flex mr-3">
-                {renderIcon()}
+      <ScrollArea className="flex h-40 p-3 ">
+        <div className="flex items-center justify-center mb-2">
+          {noticeData.map((notice) => (
+            <Card
+              key={notice.id}
+              className={`flex items-start justify-center p-3 border-b hover:bg-slate-50 cursor-pointer" ${selectedNotice === notice.id ? "bg-slate-50" : ""
+                }`}
+              onClick={() => setSelectedNotice(notice.id)}
+            >
+              <div className="flex items-start mb-0">
+                <div className="flex mr-3">
+                  {renderIcon()}
+                </div>
+                <div className="flex items-center justify-start">
+                  <h3 className="text-xl font-medium text-slate-800">{notice.title}</h3>
+                </div>
+                
               </div>
-              <div className="flex items-start justify-around mb-1">
-                <h3 className="text-xl font-medium text-slate-800">{notice.title}</h3>
-              </div>
-            </div>
-
-            <p className="text-base text-slate-700">{notice.content}</p>
-
-          </Card>
-        ))}
+              <p className="flex items-center  text-base text-slate-700">{notice.content}</p>
+           </Card>
+          ))}
+        </div>
       </ScrollArea>
 
       <div className="flex justify-center gap-4 p-4 border-t bg-white">
