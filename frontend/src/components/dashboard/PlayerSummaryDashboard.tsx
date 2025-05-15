@@ -11,16 +11,16 @@ const PlayerSummaryDashboard = () => {
 
   return (
     <Card className="flex flex-col w-full max-w-lg shadow-sm rounded-lg overflow-hidden bg-white">
-      <CardHeader className="flex flex-row items-start justify-between p-3 pb-0">
+      <CardHeader className="flex flex-row items-start justify-between p-3">
         <CardTitle className="text-xl font-semibold text-slate-800">
           Players Summary
         </CardTitle>
-        <Button variant="ghost" size="icon" className="h-8 w-8">
-          <MoreHorizontal className="h-5 w-5 text-slate-600" />
+        <Button variant="ghost" className=" hover:bg-slate-100">
+          <MoreHorizontal className="h-6 w-6 text-slate-600" />
         </Button>
       </CardHeader>
-      <CardContent className="p-4">
-        <div className="flex justify-center gap-8 mb-6">
+      <CardContent className="p-3">
+        <div className="flex flex-row items-start gap-3 p-3">
           {/* Boys Donut Chart */}
           <div className="flex flex-col items-center">
             <div className="relative flex items-center justify-center h-24 w-24">
