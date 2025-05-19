@@ -11,7 +11,7 @@ export const CardStat: React.FC<{
   <div className="flex flex-col w-72 md:w-96 lg:w-1/4 ">
     <Card className="flex items-start p-3">
       <CardContent className="flex p-3 md:grid-cols-2 w-max">
-        <div className="flex p-3 items-center h-16 w-16 rounded-full bg-primary/10 text-primary">
+        <div className="flex p-3 items-center h-16 w-16 rounded-full bg-bg-amber-300 text-amber-500">
           {icon}
         </div>
 
