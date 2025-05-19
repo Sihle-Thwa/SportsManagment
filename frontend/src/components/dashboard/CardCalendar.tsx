@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 
 export function CardCalendar() {
   return (
-    <Card className="flex flex-col py-3 px-6 w-full h-full items-center justify-items-center gap-2 flex-shrink-0">
+    <Card className="flex flex-col py-3 px-6 w-full h-full items-center justify-items-center gap-2 shrink-0">
       <CardContent className="">
         <CalendarObject />
       </CardContent>
