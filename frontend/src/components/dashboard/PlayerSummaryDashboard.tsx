@@ -1,5 +1,5 @@
-import { MoreHorizontal } from "lucide-react"
-import { Button } from "../ui/button"
+import { MoreHorizontal, Plus } from "lucide-react"
+import { Button } from "../common/Button"
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
 
 const PlayerSummaryDashboard = () => {
@@ -103,12 +103,12 @@ const PlayerSummaryDashboard = () => {
         </div>
 
         {/* Add New Player Button */}
-        <Button 
-          className="w-full bg-blue-900 hover:bg-blue-800 text-white py-2 rounded-md flex items-center justify-center"
-        >
-          <svg className="h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M12 5v14m-7-7h14" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+        <Button className="w-full mt-4"
+        size="md"
+          variant="primary"
+          withIcon ={true}
+          iconPosition="left"
+          icon = {<Plus />}>
           Add New Player
         </Button>
       </CardContent>
