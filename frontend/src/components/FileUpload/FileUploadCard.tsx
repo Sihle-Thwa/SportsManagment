@@ -105,15 +105,15 @@ export const FileUploadCard = ({
   return (
     <Card className={cn("w-full max-w-md mx-auto", className)}>
       <CardHeader className="text-center">
-        <div className="mx-auto bg-gray-100 rounded-full p-4 mb-2">
-          <Upload className="h-6 w-6 text-gray-600" />
+        <div className="mx-auto bg-gray-100 rounded-full p-3 mb-2">
+          <Upload className="h-32 w-32 text-gray-600" />
         </div>
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>
         {selectedFile ? (
-          <div className="space-y-4">
+          <div className="space-y-3">
             {preview && (
               <div className="relative w-full h-48 rounded-md overflow-hidden">
                 <img
@@ -173,7 +173,7 @@ export const FileUploadCard = ({
           <div className="mt-3 text-red-500 text-sm">{error}</div>
         )}
         
-        <div className="mt-4 flex justify-end">
+        <div className="mt-4 flex justify-center">
           {!selectedFile ? (
             <Button
               variant="default"
