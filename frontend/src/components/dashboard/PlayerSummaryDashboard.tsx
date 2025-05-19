@@ -103,12 +103,13 @@ const PlayerSummaryDashboard = () => {
         </div>
 
         {/* Add New Player Button */}
-        <Button className="w-full mt-4"
+        <Button className="bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
         size="md"
           variant="primary"
           withIcon ={true}
           iconPosition="left"
-          icon = {<Plus />}>
+          icon = {<Plus />}
+          fullWidth={true}>
           Add New Player
         </Button>
       </CardContent>

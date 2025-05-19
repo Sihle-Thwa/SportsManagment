@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MoreHorizontal, Bell, Plus, Pencil, X } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Button } from "../common/Button";
 
 const NoticeBoard = ({ notices = [] }) => {
   const [selectedNotice, setSelectedNotice] = useState<number | null>(null);
@@ -69,23 +69,26 @@ const NoticeBoard = ({ notices = [] }) => {
 
       <div className="flex flex-wrap h-full justify-center items-center shrink-0 gap-3 p-3 border-t bg-white">
         <Button
-          variant="outline"
-          size="icon"
-          className="w-9 h-9 bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
+          variant="primary"
+          size="md"
+          className=" bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
+
         >
           <Plus size={36} />
         </Button>
         <Button
-          variant="outline"
-          size="icon"
-          className="w-9 h-9 bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
+          variant="primary"
+          size="md"
+          className="bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
+
         >
           <Pencil size={36} />
         </Button>
-        <Button
-          variant="outline"
-          size="icon"
-          className="w-9 h-9 bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
+       <Button
+          variant="primary"
+          size="md"
+          className="bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
+
         >
           <X size={36} />
         </Button>

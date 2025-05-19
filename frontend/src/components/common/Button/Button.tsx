@@ -46,7 +46,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         case "sm":
           return "px-3 py-1 text-sm";
         case "md":
-          return "p-2";
+          return "p-2 py-2 text-md";
         case "lg":
           return "px-5 py-3 text-lg";
         default:
