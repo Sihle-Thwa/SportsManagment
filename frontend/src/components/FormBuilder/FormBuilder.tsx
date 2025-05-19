@@ -22,17 +22,18 @@ import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 
 // Define field types
-export type FieldType = 
-  | 'text'
-  | 'email'
-  | 'password'
-  | 'number'
-  | 'tel'
-  | 'date'
-  | 'select'
-  | 'radio'
-  | 'checkbox'
-  | 'textarea';
+export enum FieldType {
+  Text = 'text',
+  Email = 'email',
+  Password = 'password',
+  Number = 'number',
+  Tel = 'tel',
+  Date = 'date',
+  Select = 'select',
+  Radio = 'radio',
+  Checkbox = 'checkbox',
+  Textarea = 'textarea',
+  }
 
 // Define option type for select, radio, checkbox fields
 export interface FieldOption {
