@@ -1,8 +1,12 @@
 import React from 'react'
 
-function Profile() {
+const Profile: React.FC = () => {
   return (
-    <div>Profile</div>
+    <div className='space-y-6'>
+      <div className='flex gap-6'>
+        Profile
+      </div>
+    </div>
   )
 }
 
