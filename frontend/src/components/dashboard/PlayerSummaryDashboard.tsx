@@ -1,6 +1,6 @@
 import { MoreHorizontal, Plus } from "lucide-react"
 import { Button } from "../common/Button"
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card"
 
 const PlayerSummaryDashboard = () => {
   const boysCount = 111;
@@ -10,7 +10,7 @@ const PlayerSummaryDashboard = () => {
   const girlsPercentage = Math.round((girlsCount / totalPlayers) * 100);
 
   return (
-    <Card className="flex flex-col w-full max-w-lg shadow-sm rounded-lg overflow-hidden bg-white">
+    <Card className="flex flex-col max-h-[320px] w-full  shadow-sm rounded-lg overflow-hidden bg-white">
       <CardHeader className="flex flex-row items-start justify-between p-3">
         <CardTitle className="text-xl font-semibold text-slate-800">
           Players Summary
@@ -19,8 +19,8 @@ const PlayerSummaryDashboard = () => {
           <MoreHorizontal className="h-6 w-6 text-slate-600" />
         </Button>
       </CardHeader>
-      <CardContent className="p-3">
-        <div className="flex flex-row items-start gap-3 p-3">
+      <CardContent className="flex w-full overflow-y-auto">
+        <div className="flex flex-row items-center gap-3 justify-center w-full">
           {/* Boys Donut Chart */}
           <div className="flex flex-col items-center">
             <div className="relative flex items-center justify-center h-24 w-24">
@@ -55,7 +55,7 @@ const PlayerSummaryDashboard = () => {
                 </div>
               </div>
             </div>
-            <div className="flex items-center mt-3">
+            <div className="flex items-center mt-auto">
               <div className="h-2 w-2 rounded-full bg-blue-900 mr-2"></div>
               <span className="text-sm text-slate-700">{boysCount} ( Boys )</span>
             </div>
@@ -95,24 +95,27 @@ const PlayerSummaryDashboard = () => {
                 </div>
               </div>
             </div>
-            <div className="flex items-center mt-3">
+            <div className="flex items-center mt-auto">
               <div className="h-2 w-2 rounded-full bg-amber-500 mr-2"></div>
               <span className="text-sm text-slate-700">{girlsCount} ( Girls )</span>
             </div>
           </div>
         </div>
 
-        {/* Add New Player Button */}
+
+      </CardContent>
+      <CardFooter>
+    
         <Button className="bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
-        size="md"
+          size="md"
           variant="primary"
-          withIcon ={true}
+          withIcon={true}
           iconPosition="left"
-          icon = {<Plus />}
+          icon={<Plus />}
           fullWidth={true}>
           Add New Player
         </Button>
-      </CardContent>
+      </CardFooter>
     </Card>
   )
 }

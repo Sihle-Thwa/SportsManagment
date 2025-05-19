@@ -16,7 +16,7 @@ const Dashboard: React.FC = () => {
           <CardGreeting />
         </div>
         <div className="flex-1/4 ">
-          <NoticeBoard />
+          <CardCalendar />
         </div>
 
       </div>
@@ -31,14 +31,14 @@ const Dashboard: React.FC = () => {
           />
         ))}
       </div>
-      <div className="flex gap-6 md:grid-cols-6 lg:grid-cols-9">
-        <div className="col-span-1 md:grid-cols-2 lg:col-span-3">
+      <div className="flex gap-6 md:grid-cols-6 lg:grid-cols-9 lg:h-56">
+        <div className="col-span-1 md:grid-cols-2 lg:col-span-3 w-full">
           <MessageDashboard />
         </div>
-        <div className="col-span-1 md:grid-cols-2 lg:col-span-3">
-          <CardCalendar />
+        <div className="col-span-1 md:grid-cols-2 lg:col-span-3 w-full">
+          <NoticeBoard />
         </div>
-        <div className="col-span-1 md:grid-cols-2 lg:col-span-3">
+        <div className="col-span-1 md:grid-cols-2 lg:col-span-3 w-full">
           <PlayerSummaryDashboard />
         </div>
       </div>

@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { MoreHorizontal, Bell, Plus, Pencil, X } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "../common/Button";
 
 const NoticeBoard = ({ notices = [] }) => {
   const [selectedNotice, setSelectedNotice] = useState<number | null>(null);
 
-  // If no notices provided, use sample data
+  // If no notices provided from database, we used sample data
   const noticeData = notices.length > 0 ? notices : [
     {
       id: 1,
@@ -31,69 +31,77 @@ const NoticeBoard = ({ notices = [] }) => {
   };
 
   return (
-    <div className="flex flex-col w-fit h-fit py-3 px-6 border rounded-lg overflow-hidden bg-white shadow-sm">
-      <div className="flex items-center justify-between p-3 border-b">
-        <h2 className="text-xl font-bold text-slate-800">Notice Board</h2>
-        <Button variant={"ghost"} className="p-2 border-0 hover:bg-slate-100">
-          <MoreHorizontal size={24} className="text-slate-600" />
+    <Card className="flex flex-col max-h-[320px] w-full shadow-sm rounded-lg gap-3 overflow-hidden bg-white">
+      <CardHeader className="flex flex-row items-start justify-between p-3">
+        <CardTitle className="text-xl font-semibold text-slate-800">
+          Notice Board
+          </CardTitle>
+        <Button variant="ghost" className=" hover:bg-slate-100">
+          <MoreHorizontal className="h-6 w-6 text-slate-600" />
         </Button>
-      </div>
-
-      <ScrollArea className="flex h-40 p-3 ">
-        <div className="flex flex-col items-center justify-center mb-2">
+      </CardHeader>
+      <ScrollArea className="flex w-full  overflow-y-auto ">
+        <CardContent className="flex flex-col items-start gap-3 p-3">
           {noticeData.map((notice) => (
-            <Card
+            <div
               key={notice.id}
-              className={`grid items-start justify-center mb-3 border-b hover:bg-slate-50 cursor-pointer" ${selectedNotice === notice.id ? "bg-slate-50" : ""
+              className={`flex items-start gap-3 mb-2 border-b hover:bg-slate-50 cursor-pointer" ${selectedNotice === notice.id ? "bg-slate-50" : ""
                 }`}
               onClick={() => setSelectedNotice(notice.id)}
             >
-              <CardContent className="grid items-center">
-                <div className=" grid self-auto justify-start ">
+              <div className="flex flex-col gap-2 items-start mb-auto">
+                <div className="flex items-center gap-2 self-stretch">
                   {renderIcon()}
                 </div>
-                <div className="grid items-start justify-start mb-2">
+                <div className="flex flex-col items-start self-stretch">
                   <h3 className="text-xl font-medium text-slate-800">{notice.title}</h3>
                 </div>
 
-                <div className="grid items-start justify-start mb-2">
+                <div className="flex flex-col items-start self-stretch">
                   <p className="text-base text-slate-700">{notice.content}</p>
                 </div>
 
-              </CardContent>
+              </div>
 
-            </Card>
+            </div>
           ))}
-        </div>
+        </CardContent>
       </ScrollArea>
 
-      <div className="flex flex-wrap h-full justify-center items-center shrink-0 gap-3 p-3 border-t bg-white">
+      <CardFooter className="flex flex-row  items-center gap-3  ">
         <Button
           variant="primary"
           size="md"
+          withIcon={true}
+          iconPosition="left"
+          icon={<Plus />}
+          fullWidth={true}
           className=" bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
-
         >
-          <Plus size={36} />
         </Button>
         <Button
           variant="primary"
           size="md"
-          className="bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
-
+          withIcon={true}
+          iconPosition="left"
+          icon={<Pencil />}
+          fullWidth={true}
+          className=" bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
         >
-          <Pencil size={36} />
+        
         </Button>
-       <Button
-          variant="primary"
+        <Button
+        variant="primary"
           size="md"
-          className="bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
-
+          withIcon={true}
+          iconPosition="left"
+          icon={<X />}
+          fullWidth={true}
+          className=" bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
         >
-          <X size={36} />
         </Button>
-      </div>
-    </div>
+      </CardFooter>
+    </Card>
   );
 };
 

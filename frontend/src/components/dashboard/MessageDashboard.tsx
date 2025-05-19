@@ -64,7 +64,7 @@ const MessageDashboard = ({ messages = [] }) => {
   ];
 
   return (
-    <Card className="flex flex-col w-full max-w-lg shadow-sm rounded-lg overflow-hidden bg-white">
+    <Card className="flex flex-col w-full max-h-[320px] shadow-sm rounded-lg gap-3 overflow-hidden bg-white">
       <CardHeader className="flex flex-row items-start justify-between p-3">
         <CardTitle className="text-xl font-semibold text-slate-800">
           Messages
@@ -82,7 +82,7 @@ const MessageDashboard = ({ messages = [] }) => {
                 }`}
               onClick={() => setSelectedConversation(msg.id)}
             >
-              <div className="flex flex-col gap-2 items-start mb-2">
+              <div className="flex flex-col gap-2 items-start mb-auto">
                 <div className="flex items-center gap-2 self-stretch">
                   <Avatar className="flex w-12 h-12 justify-end items-center" >
                     <img
