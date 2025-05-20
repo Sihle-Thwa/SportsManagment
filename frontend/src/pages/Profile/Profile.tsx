@@ -1,71 +1,65 @@
-import { FileUploadCard } from '@/components/FileUpload'
-import { FormBuilder, FieldType } from '@/components/FormBuilder';
-import React from 'react'
+import React, { useState } from 'react';
+import { UserInfoForm } from "../../components/Form/UserInfoForm";
+import { UserInfoFormDefaultValues } from "../../utils/validators";
 
 
 const Profile: React.FC = () => {
 
-  const handleFileSelect = (file: File) => {
-    console.log('Selected file:', file);
-    // Handle the file upload logic here
-  }
-
-  const formConfig ={
-    title: 'Profile Information',
-    fields: [
-      {
-        name: "First Name",
-        label: "First Name",
-        type: FieldType.Text,
-        required: true,
-      },
-      {
-        name: "Last Name",
-        label: "Last Name",
-        type: FieldType.Text,
-        required: true,
-      },
-      {
-        name: "Email",
-        label: "Email",
-        type: FieldType.Email,
-        required: true,
-      },
-      {
-        name: "Phone Number",
-        label: "Phone Number",
-        type: FieldType.Tel,
-        required: true,
-      }
-      
-    ]
-  }
+  const [formData, setFormData] = useState<unknown | null>(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
 
-  const handleSubmit = (data: unknown) => {
-    // If you expect data to be a Record<string, unknown>, you can type guard or cast here
-    console.log('Form data:', data);
-    // Handle the form submission logic here
-  }
+   const handleSubmit = (data: unknown) => {
+    console.log('Form submitted with data:', data);
+    setFormData(data);
+    setIsSubmitted(true);
+  };
+
+
 
   return (
-    <div className='space-y-6'>
-      <div className='flex gap-6'>
-        Profile
-        <FileUploadCard 
-        title='Upload Display Picture'
-        description='Upload a picture to be displayed on your profile.'
-        acceptedFileTypes='.jpg, .jpeg, .png'
-        maxFileSize={5 * 1024 * 1024} // 5MB
-        onFileSelect={handleFileSelect}
-        />
-
-        <FormBuilder
-        config={formConfig}
-        onSubmit={handleSubmit}
-        />
+    <div className="min-h-screen bg-gray-50 py-12 px-4">
+      <div className="max-w-4xl mx-auto">
+        
+        {isSubmitted ? (
+          <div className="bg-white p-6 rounded-lg shadow-md">
+            <h2 className="text-2xl font-bold mb-4">Form Submitted Successfully!</h2>
+            <p className="mb-4">Thank you for submitting your information.</p>
+            
+            <div className="border-t pt-4 mt-4">
+              <h3 className="text-lg font-semibold mb-3">Submitted Data:</h3>
+              <pre className="bg-gray-100 p-4 rounded overflow-auto">
+                {JSON.stringify(formData, (key, value) => {
+                  // Format date object for display
+                  if (key === 'dateOfBirth' && value instanceof Date) {
+                    return value.toLocaleDateString();
+                  }
+                  return value;
+                }, 2)}
+              </pre>
+            </div>
+            
+            <button 
+              className="mt-6 bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors"
+              onClick={() => {
+                setFormData(null);
+                setIsSubmitted(false);
+              }}
+            >
+              Submit Another Form
+            </button>
+          </div>
+        ) : (
+          <UserInfoForm 
+            defaultValues={UserInfoFormDefaultValues}
+            onSubmit={handleSubmit}
+            formTitle="User Information"
+            
+          />
+        )}
       </div>
     </div>
+
   );
 };
 
