@@ -1,334 +1,424 @@
-import  { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { format } from 'date-fns';
-import {  ChevronDown, CalendarIcon } from 'lucide-react';
-import { 
-  validateUserInfo, 
-  UserInfoFormDefaultValues, 
-  GENDER_OPTIONS, 
+import { Calendar as CalendarIcon } from 'lucide-react';
+import {
+  validateUserInfo,
+  UserInfoFormDefaultValues,
+  GENDER_OPTIONS,
   COUNTRY_OPTIONS,
-   
+  PROVINCE_OPTIONS
 } from '../../utils/validators';
-import { Select } from '../ui/select';
 
-type UserInfoFormProps = {
+import { Button } from '@/components/ui/button';
+import { Calendar } from '@/components/ui/calendar';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+import { cn } from '@/lib/utils';
+import { useForm } from 'react-hook-form';
+import { Card, CardContent, CardHeader } from '../ui/card';
+
+type FormValues = typeof UserInfoFormDefaultValues;
+
+interface UserInfoFormProps {
   defaultValues?: typeof UserInfoFormDefaultValues;
   onSubmit: (formData: typeof UserInfoFormDefaultValues) => void;
   formTitle?: string;
-};
+}
 
-export const UserInfoForm = ({
+export function UserInfoForm({
   defaultValues = UserInfoFormDefaultValues,
   onSubmit,
   formTitle = "User Information"
-}: UserInfoFormProps) => {
-  const [formData, setFormData] = useState(defaultValues);
-  const [errors, setErrors] = useState<Partial<Record<keyof typeof UserInfoFormDefaultValues, string>>>({});
-  const [showCalendar, setShowCalendar] = useState(false);
+}: UserInfoFormProps) {
+  // Initializing react-hook-form
+  const form = useForm<FormValues>({
+    defaultValues,
+  });
 
-  const handleChange = (field: keyof typeof UserInfoFormDefaultValues, value: unknown) => {
-    setFormData(prev => ({
-      ...prev,
-      [field]: value
-    }));
-    
-    // Clear error when field is updated
-    if (errors[field]) {
-      setErrors(prev => {
-        const newErrors = {...prev};
-        delete newErrors[field];
-        return newErrors;
-      });
-    }
-  };
+  // Storing validation errors
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const validationErrors = validateUserInfo(formData);
-    
-    if (Object.keys(validationErrors).length === 0) {
-      onSubmit(formData);
+  // Handling form submission with custom validation
+  const handleSubmit = (data: FormValues) => {
+    const errors = validateUserInfo(data);
+
+    if (Object.keys(errors).length === 0) {
+      onSubmit(data);
+      setValidationErrors({});
     } else {
-      setErrors(validationErrors);
+      setValidationErrors(errors);
     }
   };
+
+  // Setting errors in react-hook-form when validationErrors change
+  useEffect(() => {
+    Object.entries(validationErrors).forEach(([field, message]) => {
+      form.setError(field as keyof FormValues, {
+        type: 'manual',
+        message
+      });
+    });
+  }, [validationErrors, form]);
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="text-2xl font-bold mb-6">{formTitle}</div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* First Name */}
-          <div className="space-y-2">
-            <label className="text-sm font-medium">First Name</label>
-            <input
-              type="text"
-              className={`w-full px-3 py-2 border rounded-md ${errors.firstName ? 'border-red-500' : 'border-gray-300'}`}
-              placeholder="First name"
-              value={formData.firstName}
-              onChange={(e) => handleChange('firstName', e.target.value)}
-            />
-            {errors.firstName && (
-              <p className="text-sm text-red-500">{errors.firstName}</p>
-            )}
-          </div>
+    <Card className="w-full max-w-xl mx-auto p-3 bg-white rounded-lg shadow-md">
+      <CardHeader>
+        <h2 className="text-xl font-bold mb-3">{formTitle}</h2>
+      </CardHeader>
+      <CardContent>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* First Name */}
+              <FormField
+                control={form.control}
+                name="firstName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>First Name</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="First Name"
+                        {...field}
+                        className={cn(
+                          validationErrors.firstName && "border-red-500"
+                        )}
+                      />
+                    </FormControl>
+                    {validationErrors.firstName && (
+                      <FormMessage>{validationErrors.firstName}</FormMessage>
+                    )}
+                  </FormItem>
+                )}
+              />
 
-          {/* Last Name */}
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Last Name</label>
-            <input
-              type="text"
-              className={`w-full px-3 py-2 border rounded-md ${errors.lastName ? 'border-red-500' : 'border-gray-300'}`}
-              placeholder="Last name"
-              value={formData.lastName}
-              onChange={(e) => handleChange('lastName', e.target.value)}
-            />
-            {errors.lastName && (
-              <p className="text-sm text-red-500">{errors.lastName}</p>
-            )}
-          </div>
+              {/* Last Name */}
+              <FormField
+                control={form.control}
+                name="lastName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Last Name</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Last Name"
+                        {...field}
+                        className={cn(
+                          validationErrors.lastName && "border-red-500"
+                        )}
+                      />
+                    </FormControl>
+                    {validationErrors.lastName && (
+                      <FormMessage>{validationErrors.lastName}</FormMessage>
+                    )}
+                  </FormItem>
+                )}
+              />
 
-          {/* Gender */}
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Gender</label>
-            <div className={`relative w-full px-3 py-2 border rounded-md appearance-none ${errors.gender ? 'border-red-500' : 'border-gray-300'}`}>
-              <Select
-                value={formData.gender}
-                onValueChange={(value: string) => handleChange('gender', value)}
-              >
-                {GENDER_OPTIONS.map(option => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </Select>
-              <ChevronDown className="absolute right-3 top-3 h-4 w-4 opacity-50" />
-            </div>
-            {errors.gender && (
-              <p className="text-sm text-red-500">{errors.gender}</p>
-            )}
-          </div>
+              {/* Gender */}
+              <FormField
+                control={form.control}
+                name="gender"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Gender</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger className={cn(
+                          validationErrors.gender && "border-red-500"
+                        )}>
+                          <SelectValue placeholder="Select gender" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {GENDER_OPTIONS.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    {validationErrors.gender && (
+                      <FormMessage>{validationErrors.gender}</FormMessage>
+                    )}
+                  </FormItem>
+                )}
+              />
 
-          {/* Date of Birth */}
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Date of Birth</label>
-            <div className="relative">
-              <div 
-                className={`flex items-center justify-between w-full px-3 py-2 border rounded-md cursor-pointer ${errors.dateOfBirth ? 'border-red-500' : 'border-gray-300'}`}
-                onClick={() => setShowCalendar(!showCalendar)}
-              >
-                <span>{formData.dateOfBirth ? format(formData.dateOfBirth, 'PPP') : 'Select date'}</span>
-                <CalendarIcon className="h-4 w-4 opacity-50" />
-              </div>
-              
-              {showCalendar && (
-                <div className="absolute z-10 mt-1 bg-white border rounded-md shadow-lg p-3">
-                  <div className="flex flex-col">
-                    {/* Simple month/year selector */}
-                    <div className="flex justify-between mb-2">
-                      <button 
-                        type="button"
-                        className="p-1"
-                        onClick={() => {
-                          const newDate = new Date(formData.dateOfBirth);
-                          newDate.setMonth(newDate.getMonth() - 1);
-                          handleChange('dateOfBirth', newDate);
-                        }}
-                      >
-                        &lt;
-                      </button>
-                      <div>
-                        {formData.dateOfBirth && format(formData.dateOfBirth, 'MMMM yyyy')}
-                      </div>
-                      <button 
-                        type="button"
-                        className="p-1"
-                        onClick={() => {
-                          const newDate = new Date(formData.dateOfBirth);
-                          newDate.setMonth(newDate.getMonth() + 1);
-                          handleChange('dateOfBirth', newDate);
-                        }}
-                      >
-                        &gt;
-                      </button>
-                    </div>
-                    
-                    {/* Simple calendar grid */}
-                    <div className="grid grid-cols-7 gap-1">
-                      {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map(day => (
-                        <div key={day} className="text-center text-xs p-1">{day}</div>
-                      ))}
-                      
-                      {Array(31).fill(null).map((_, i) => {
-                        const day = i + 1;
-                        const currentDate = new Date(formData.dateOfBirth);
-                        currentDate.setDate(day);
-                        
-                        // Only render if day is valid for current month
-                        if (currentDate.getDate() !== day) return null;
-                        
-                        const isSelected = 
-                          formData.dateOfBirth && 
-                          formData.dateOfBirth.getDate() === day &&
-                          formData.dateOfBirth.getMonth() === currentDate.getMonth();
-                          
-                        return (
-                          <button
-                            key={day}
-                            type="button"
-                            className={`text-center p-1 rounded-full w-8 h-8 ${
-                              isSelected ? 'bg-blue-500 text-white' : 'hover:bg-gray-100'
-                            }`}
-                            onClick={() => {
-                              handleChange('dateOfBirth', currentDate);
-                              setShowCalendar(false);
-                            }}
+              {/* Date of Birth */}
+              <FormField
+                control={form.control}
+                name="dateOfBirth"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col">
+                    <FormLabel>Date of Birth</FormLabel>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            variant="outline"
+                            className={cn(
+                              "w-full pl-3 text-left font-normal",
+                              !field.value && "text-muted-foreground",
+                              validationErrors.dateOfBirth && "border-red-500"
+                            )}
                           >
-                            {day}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-              )}
+                            {field.value ? (
+                              format(field.value, "PPP")
+                            ) : (
+                              <span>Select date</span>
+                            )}
+                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <Calendar
+                          mode="single"
+                          selected={field.value}
+                          onSelect={field.onChange}
+                          initialFocus
+                        />
+                      </PopoverContent>
+                    </Popover>
+                    {validationErrors.dateOfBirth && (
+                      <FormMessage>{validationErrors.dateOfBirth}</FormMessage>
+                    )}
+                  </FormItem>
+                )}
+              />
+
+              {/* Phone */}
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Phone</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="tel"
+                        placeholder="Phone number"
+                        {...field}
+                        className={cn(
+                          validationErrors.phone && "border-red-500"
+                        )}
+                      />
+                    </FormControl>
+                    {validationErrors.phone && (
+                      <FormMessage>{validationErrors.phone}</FormMessage>
+                    )}
+                  </FormItem>
+                )}
+              />
+
+              {/* Email */}
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder="Email address"
+                        {...field}
+                        className={cn(
+                          validationErrors.email && "border-red-500"
+                        )}
+                      />
+                    </FormControl>
+                    {validationErrors.email && (
+                      <FormMessage>{validationErrors.email}</FormMessage>
+                    )}
+                  </FormItem>
+                )}
+              />
+
+              {/* Address Line 1 */}
+              <FormField
+                control={form.control}
+                name="addressLine1"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Address Line 1</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Address Line 1"
+                        {...field}
+                        className={cn(
+                          validationErrors.addressLine1 && "border-red-500"
+                        )}
+                      />
+                    </FormControl>
+                    {validationErrors.addressLine1 && (
+                      <FormMessage>{validationErrors.addressLine1}</FormMessage>
+                    )}
+                  </FormItem>
+                )}
+              />
+
+              {/* Address Line 2 */}
+              <FormField
+                control={form.control}
+                name="addressLine2"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Address Line 2 (Optional)</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Address Line 2"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* City */}
+              <FormField
+                control={form.control}
+                name="city"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>City</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="City"
+                        {...field}
+                        className={cn(
+                          validationErrors.city && "border-red-500"
+                        )}
+                      />
+                    </FormControl>
+                    {validationErrors.city && (
+                      <FormMessage>{validationErrors.city}</FormMessage>
+                    )}
+                  </FormItem>
+                )}
+              />
+
+              {/* Province */}
+              <FormField
+                control={form.control}
+                name="province"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Province</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger className={cn(
+                          validationErrors.province && "border-red-500"
+                        )}>
+                          <SelectValue placeholder="Select province" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {PROVINCE_OPTIONS.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    {validationErrors.province && (
+                      <FormMessage>{validationErrors.province}</FormMessage>
+                    )}
+                  </FormItem>
+                )}
+              />
+
+              {/* Post Code */}
+              <FormField
+                control={form.control}
+                name="postCode"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Post Code</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Post Code"
+                        {...field}
+                        className={cn(
+                          validationErrors.postCode && "border-red-500"
+                        )}
+                      />
+                    </FormControl>
+                    {validationErrors.postCode && (
+                      <FormMessage>{validationErrors.postCode}</FormMessage>
+                    )}
+                  </FormItem>
+                )}
+              />
+
+              {/* Country */}
+              <FormField
+                control={form.control}
+                name="country"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Country</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger className={cn(
+                          validationErrors.country && "border-red-500"
+                        )}>
+                          <SelectValue placeholder="Select country" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {COUNTRY_OPTIONS.map((option) => (
+                          <SelectItem key={option.value} value={option.value}>
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    {validationErrors.country && (
+                      <FormMessage>{validationErrors.country}</FormMessage>
+                    )}
+                  </FormItem>
+                )}
+              />
             </div>
-            {errors.dateOfBirth && (
-              <p className="text-sm text-red-500">{errors.dateOfBirth}</p>
-            )}
-          </div>
 
-          {/* Phone */}
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Phone</label>
-            <input
-              type="tel"
-              className={`w-full px-3 py-2 border rounded-md ${errors.phone ? 'border-red-500' : 'border-gray-300'}`}
-              placeholder="Phone number"
-              value={formData.phone}
-              onChange={(e) => handleChange('phone', e.target.value)}
-            />
-            {errors.phone && (
-              <p className="text-sm text-red-500">{errors.phone}</p>
-            )}
-          </div>
+            <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 text-white">
+              Submit
+            </Button>
+          </form>
+        </Form>
+      </CardContent>
 
-          {/* Email */}
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Email</label>
-            <input
-              type="email"
-              className={`w-full px-3 py-2 border rounded-md ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
-              placeholder="Email address"
-              value={formData.email}
-              onChange={(e) => handleChange('email', e.target.value)}
-            />
-            {errors.email && (
-              <p className="text-sm text-red-500">{errors.email}</p>
-            )}
-          </div>
-
-          {/* Address Line 1 */}
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Address Line 1</label>
-            <input
-              type="text"
-              className={`w-full px-3 py-2 border rounded-md ${errors.addressLine1 ? 'border-red-500' : 'border-gray-300'}`}
-              placeholder="Address Line 1"
-              value={formData.addressLine1}
-              onChange={(e) => handleChange('addressLine1', e.target.value)}
-            />
-            {errors.addressLine1 && (
-              <p className="text-sm text-red-500">{errors.addressLine1}</p>
-            )}
-          </div>
-
-          {/* Address Line 2 */}
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Address Line 2 (Optional)</label>
-            <input
-              type="text"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
-              placeholder="Address Line 2"
-              value={formData.addressLine2}
-              onChange={(e) => handleChange('addressLine2', e.target.value)}
-            />
-          </div>
-
-          {/* City */}
-          <div className="space-y-2">
-            <label className="text-sm font-medium">City</label>
-            <input
-              type="text"
-              className={`w-full px-3 py-2 border rounded-md ${errors.city ? 'border-red-500' : 'border-gray-300'}`}
-              placeholder="City"
-              value={formData.city}
-              onChange={(e) => handleChange('city', e.target.value)}
-            />
-            {errors.city && (
-              <p className="text-sm text-red-500">{errors.city}</p>
-            )}
-          </div>
-
-          {/* Province */}
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Province</label>
-            <input
-              type="text"
-              className={`w-full px-3 py-2 border rounded-md ${errors.province ? 'border-red-500' : 'border-gray-300'}`}
-              placeholder="Province"
-              value={formData.province}
-              onChange={(e) => handleChange('province', e.target.value)}
-            />
-            {errors.province && (
-              <p className="text-sm text-red-500">{errors.province}</p>
-            )}
-          </div>
-
-          {/* Post Code */}
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Post Code</label>
-            <input
-              type="text"
-              className={`w-full px-3 py-2 border rounded-md ${errors.postCode ? 'border-red-500' : 'border-gray-300'}`}
-              placeholder="Post Code"
-              value={formData.postCode}
-              onChange={(e) => handleChange('postCode', e.target.value)}
-            />
-            {errors.postCode && (
-              <p className="text-sm text-red-500">{errors.postCode}</p>
-            )}
-          </div>
-
-          {/* Country */}
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Country</label>
-            <div className={`relative w-full px-3 py-2 border rounded-md appearance-none ${errors.country ? 'border-red-500' : 'border-gray-300'}`}>
-              <Select
-                value={formData.country}
-                onValueChange={(value: string) => handleChange('country', value)}
-              >
-                {COUNTRY_OPTIONS.map(option => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </Select>
-              <ChevronDown className="absolute right-3 top-3 h-4 w-4 opacity-50" />
-            </div>
-            {errors.country && (
-              <p className="text-sm text-red-500">{errors.country}</p>
-            )}
-          </div>
-        </div>
-
-        <button 
-          type="submit" 
-          className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors"
-        >
-          Submit
-        </button>
-      </form>
-    </div>
+    </Card>
   );
-};
+}
