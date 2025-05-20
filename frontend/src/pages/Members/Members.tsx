@@ -4,7 +4,8 @@ import React from 'react'
 const Members: React.FC =() => {
   return (
     <div className='space-y-6'>
-      <TableBuilder data={[]}       />
+      <TableBuilder data={[]}
+      itemsPerPage={10}/>
     </div>
   )
 }
