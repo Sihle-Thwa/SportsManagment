@@ -1,8 +1,11 @@
+import { TableBuilder } from '@/components/common/Table/TableBuilder'
 import React from 'react'
 
-function Members() {
+const Members: React.FC =() => {
   return (
-    <div>Members</div>
+    <div className='space-y-6'>
+      <TableBuilder data={[]}       />
+    </div>
   )
 }
 
