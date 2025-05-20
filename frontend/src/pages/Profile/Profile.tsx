@@ -24,7 +24,7 @@ const Profile: React.FC = () => {
       <FileUploadCard description={'Upload a picture for your profile picture'} onFileSelect={function (): void {
         throw new Error('Function not implemented.');
       } }       />
-      <div className="w-l mx-auto">
+      <div className="w-l mx-auto p-3">
         
         {isSubmitted ? (
           <div className="bg-white p-2 rounded-lg shadow-sm">

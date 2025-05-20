@@ -80,9 +80,9 @@ export function UserInfoForm({
   }, [validationErrors, form]);
 
   return (
-    <Card className="w-full max-w-xl mx-auto p-3 bg-white rounded-lg shadow-md">
+    <Card className="w-full bg-white rounded-lg shadow-sm">
       <CardHeader>
-        <h2 className="text-xl font-bold mb-3">{formTitle}</h2>
+        <h2 className="text-xl font-semibold mb-auto">{formTitle}</h2>
       </CardHeader>
       <CardContent>
         <Form {...form}>
