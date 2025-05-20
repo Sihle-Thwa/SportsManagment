@@ -20,11 +20,11 @@ const Profile: React.FC = () => {
 
 
   return (
-    <div className="flex flex-row h-fit bg-gray-50">
+    <div className="flex flex-row h-fit gap-6 bg-gray-50">
       <FileUploadCard description={'Upload a picture for your profile picture'} onFileSelect={function (): void {
         throw new Error('Function not implemented.');
       } }       />
-      <div className="w-l mx-auto p-3">
+      <div className="flex flex-row w-fit ">
         
         {isSubmitted ? (
           <div className="bg-white p-2 rounded-lg shadow-sm">

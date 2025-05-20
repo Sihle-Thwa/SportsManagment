@@ -80,14 +80,14 @@ export function UserInfoForm({
   }, [validationErrors, form]);
 
   return (
-    <Card className="w-full bg-white rounded-lg shadow-sm">
-      <CardHeader>
-        <h2 className="text-xl font-semibold mb-auto">{formTitle}</h2>
+    <Card className="w-[750px] bg-white rounded-lg shadow-sm gap-3">
+      <CardHeader className=''>
+        <h2 className="text-xl font-semibold border-b border-amber-600">{formTitle}</h2>
       </CardHeader>
       <CardContent>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {/* First Name */}
               <FormField
                 control={form.control}
@@ -220,7 +220,7 @@ export function UserInfoForm({
                     <FormControl>
                       <Input
                         type="tel"
-                        placeholder="Phone number"
+                        placeholder="Phone Number"
                         {...field}
                         className={cn(
                           validationErrors.phone && "border-red-500"
@@ -244,7 +244,7 @@ export function UserInfoForm({
                     <FormControl>
                       <Input
                         type="email"
-                        placeholder="Email address"
+                        placeholder="Email Address"
                         {...field}
                         className={cn(
                           validationErrors.email && "border-red-500"
@@ -337,7 +337,7 @@ export function UserInfoForm({
                         <SelectTrigger className={cn(
                           validationErrors.province && "border-red-500"
                         )}>
-                          <SelectValue placeholder="Select province" />
+                          <SelectValue placeholder="Select Province" />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -361,10 +361,10 @@ export function UserInfoForm({
                 name="postCode"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Post Code</FormLabel>
+                    <FormLabel>Postal Code</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Post Code"
+                        placeholder="Postal Code"
                         {...field}
                         className={cn(
                           validationErrors.postCode && "border-red-500"

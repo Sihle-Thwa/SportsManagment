@@ -101,7 +101,7 @@ export const FileUploadCard = ({
   };
 
   return (
-    <Card className={cn("w-full max-w-md mx-auto")}>
+    <Card className={cn("w-[360px] ")}>
       <CardHeader className="text-center">
         <div className="mx-auto bg-gray-100 rounded-full p-3 mb-2">
           <Upload className="h-32 w-32 text-gray-600" />
