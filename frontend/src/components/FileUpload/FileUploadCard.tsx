@@ -6,13 +6,12 @@ import { cn } from '@/lib/utils';
 
 export interface FileUploadCardProps {
   title?: string;
-  description?: string;
+  description: string;
   acceptedFileTypes?: string; // e.g. ".jpg,.png,.svg,.gif"
   maxFileSize?: number; // in bytes
   maxDimensions?: { width: number; height: number }; // for images
   onFileSelect: (file: File) => void;
   onFileRemove?: () => void;
-  className?: string;
 }
 
 export const FileUploadCard = ({
@@ -23,7 +22,6 @@ export const FileUploadCard = ({
   maxDimensions = { width: 800, height: 400 },
   onFileSelect,
   onFileRemove,
-  className,
 }: FileUploadCardProps) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
@@ -103,7 +101,7 @@ export const FileUploadCard = ({
   };
 
   return (
-    <Card className={cn("w-full max-w-md mx-auto", className)}>
+    <Card className={cn("w-full max-w-md mx-auto")}>
       <CardHeader className="text-center">
         <div className="mx-auto bg-gray-100 rounded-full p-3 mb-2">
           <Upload className="h-32 w-32 text-gray-600" />
