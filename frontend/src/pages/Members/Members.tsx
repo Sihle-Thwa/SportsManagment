@@ -39,9 +39,13 @@ export default function Members() {
   };
 
   return (
-    <div className="container mx-auto py-10">
-      <h1 className="text-2xl font-bold mb-6">Members Management</h1>
-      <MembersTable 
+    <div className="container">
+      <div className="flex flex-col justify-start items-start mb-3 bg-white p-3 ">
+        <h1 className="text-xl font-bold mb-3">Members</h1>
+        <p className="">View and Manage all members of your organisation</p>
+      </div>
+
+      <MembersTable
         data={members}
         onEdit={handleEdit}
         onDelete={handleDelete}
