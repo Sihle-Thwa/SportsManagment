@@ -5,12 +5,13 @@ import { TableBuilder, TableColumn } from "@/components/common/Table";
 // Define the Team interface
 export interface Team {
   id: string;
-  name: string;
-  description: string;
-  leader: string;
-  memberCount: number;
-  projects: string[];
-  createdAt: string;
+  teamName: string;
+  teamCaptain: string;
+  ageGroup: string;
+  code: string;
+  sport: string;
+  playerCount: number;
+  tournaments: string[];
   [key: string]: unknown;
 }
 
@@ -42,32 +43,37 @@ export function TeamsTable({
       cell: (team) => (
         <div className="flex items-center gap-2">
           <Users size={16} className="text-blue-500" />
-          {team.name}
+          {team.teamName}
         </div>
       )
     },
     {
-      header: "Description",
-      accessorKey: "description"
+      header: "Team Code",
+      accessorKey: "code",
     },
     {
-      header: "Team Leader",
-      accessorKey: "leader"
+      header: "Team Captain",
+      accessorKey: "teamCaptain"
     },
     {
-      header: "Members",
-      accessorKey: "memberCount",
-      cell: (team) => `${team.memberCount} members`
+      header: "Gender",
+      accessorKey: "gender"
     },
     {
-      header: "Projects",
-      accessorKey: "projects",
-      cell: (team) => `${team.projects.length} projects`
+      header: "Age Group",
+      accessorKey: "ageGroup"
     },
     {
-      header: "Created",
-      accessorKey: "createdAt"
-    }
+      header: "Players",
+      accessorKey: "playerCount",
+      cell: (team) => `${team.playerCount} players`
+    },
+    {
+      header: "Tournaments",
+      accessorKey: "tournaments",
+      cell: (team) => `${team.tournaments.length} tournaments`
+    },
+    
   ];
 
   // Define action buttons for each row

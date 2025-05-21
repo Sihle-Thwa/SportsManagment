@@ -59,7 +59,7 @@ export function MembersTable({ data, onEdit, onDelete, onAddNew }: MembersTableP
 
   // Define action buttons for each row
   const renderActions = (member: Member) => (
-    <div className="flex justify-end gap-2">
+    <div className="flex justify-end gap-0">
       <Button 
         variant="ghost" 
         size="icon"

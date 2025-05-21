@@ -6,40 +6,26 @@ export default function Teams() {
   const [team] = useState<Team[]>([
     {
       id: "1",
-      name: "John",
-      surname: "Doe",
-      email: "john.doe@example.com",
-      role: "Admin",
-      contact: "+1234567890",
-      username: "johndoe",
-      fullName: "John Doe",
-      status: "active",
-      lastLogin: "2024-06-01T10:00:00Z",
-      permissions: ["manage_users", "view_reports"],
-      description: "Team responsible for administration",
-      leader: "John Doe",
-      memberCount: 5,
-      projects: ["Project Alpha", "Project Beta"],
-      createdAt: "2024-01-15T09:00:00Z"
+      teamName: "Highland Hawks",
+      teamCaptain: "John Doe",
+      gender: "Male",
+      ageGroup: "U19",
+      code: "HH",
+      sport: "Basketball",
+      playerCount: 5,
+      tournaments: ["Project Alpha", "Project Beta"]
     },
     {
       id: "2",
-      name: "Jane",
-      surname: "Smith",
-      email: "jane.smith@example.com",
-      role: "User",
-      contact: "+0987654321",
-      username: "janesmith",
-      fullName: "Jane Smith",
-      status: "inactive",
-      lastLogin: "2024-05-28T14:30:00Z",
-      permissions: ["view_reports"],
-      description: "Team focused on reporting",
-      leader: "Jane Smith",
-      memberCount: 3,
-      projects: ["Project Gamma"],
-      createdAt: "2024-02-10T11:30:00Z"
-    }
+      teamName: "Golden Eagles",
+      teamCaptain: "Jane Smith",
+      gender: "Female",
+      ageGroup: "U16",
+      code: "GE FC",
+      sport: "Soccer",
+      playerCount: 5,
+      tournaments: ["Project Alpha", "Project Beta"]
+    },
     // Add more members as needed
   ]);
 
