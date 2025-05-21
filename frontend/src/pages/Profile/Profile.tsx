@@ -45,7 +45,10 @@ const Profile: React.FC = () => {
             </div>
             
             <Button 
-              className="mt-6 bg-blue-500 text-white py-2 px-3 rounded-lg hover:bg-blue-600 transition-colors"
+              className="mt-4"
+              variant="primary"
+              size="lg"
+              withIcon={false}
               onClick={() => {
                 setFormData(null);
                 setIsSubmitted(false);
