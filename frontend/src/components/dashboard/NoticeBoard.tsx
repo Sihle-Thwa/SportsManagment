@@ -25,14 +25,14 @@ const NoticeBoard = ({ notices = [] }) => {
   const renderIcon = () => {
     return (
       <div className="w-fit h-fit object-cover bg-amber-100 rounded-full">
-        <Bell size={24} className="text-amber-500" />
+        <Bell size={32} className="text-amber-500" />
       </div>
     );
   };
 
   return (
-    <Card className="flex flex-col max-h-[320px] w-full shadow-sm rounded-lg gap-3 overflow-hidden bg-white">
-      <CardHeader className="flex flex-row items-start justify-between p-3">
+    <Card className="flex flex-col max-h-[320px] w-full shadow-sm rounded-lg overflow-hidden bg-white">
+      <CardHeader className="flex flex-row items-start justify-between p-auto">
         <CardTitle className="text-xl font-semibold text-slate-800">
           Notice Board
           </CardTitle>
@@ -41,22 +41,21 @@ const NoticeBoard = ({ notices = [] }) => {
         </Button>
       </CardHeader>
       <ScrollArea className="flex w-full  overflow-y-auto ">
-        <CardContent className="flex flex-col items-start gap-3 p-3">
+        <CardContent className="flex flex-col items-center justify-around gap-auto w-full">
           {noticeData.map((notice) => (
             <div
               key={notice.id}
-              className={`flex items-start gap-3 mb-2 border-b hover:bg-slate-50 cursor-pointer" ${selectedNotice === notice.id ? "bg-slate-50" : ""
+              className={`flex items-start mb-3 border-b hover:bg-slate-50 cursor-pointer" ${selectedNotice === notice.id ? "bg-slate-50" : ""
                 }`}
               onClick={() => setSelectedNotice(notice.id)}
             >
-              <div className="flex flex-col gap-2 items-start mb-auto">
-                <div className="flex items-center gap-2 self-stretch">
+              <div className="flex flex-col gap-3 items-start mb-3">
+                <div className="flex flex-row items-start gap-3 self-stretch">
                   {renderIcon()}
-                </div>
-                <div className="flex flex-col items-start self-stretch">
+                  <div className="flex flex-col items-start self-stretch">
                   <h3 className="text-xl font-medium text-slate-800">{notice.title}</h3>
                 </div>
-
+                </div>
                 <div className="flex flex-col items-start self-stretch">
                   <p className="text-base text-slate-700">{notice.content}</p>
                 </div>
@@ -68,35 +67,35 @@ const NoticeBoard = ({ notices = [] }) => {
         </CardContent>
       </ScrollArea>
 
-      <CardFooter className="flex flex-row  items-center gap-3  ">
+      <CardFooter className="flex flex-row items-center justify-center gap-3 p-3  ">
         <Button
           variant="primary"
-          size="md"
+          size="sm"
           withIcon={true}
           iconPosition="left"
           icon={<Plus />}
-          fullWidth={true}
+          fullWidth={false}
           className=" bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
         >
         </Button>
         <Button
           variant="primary"
-          size="md"
+          size="sm"
           withIcon={true}
           iconPosition="left"
-          icon={<Pencil />}
-          fullWidth={true}
+          icon={<Pencil/>}
+          fullWidth={false}
           className=" bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
         >
         
         </Button>
         <Button
         variant="primary"
-          size="md"
+          size="sm"
           withIcon={true}
           iconPosition="left"
           icon={<X />}
-          fullWidth={true}
+          fullWidth={false}
           className=" bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
         >
         </Button>

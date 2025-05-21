@@ -10,8 +10,8 @@ const PlayerSummaryDashboard = () => {
   const girlsPercentage = Math.round((girlsCount / totalPlayers) * 100);
 
   return (
-    <Card className="flex flex-col max-h-[320px] w-full  shadow-sm rounded-lg overflow-hidden bg-white">
-      <CardHeader className="flex flex-row items-start justify-between p-3">
+    <Card className="flex flex-col max-h-[320px] w-full shadow-sm rounded-lg overflow-hidden bg-white">
+      <CardHeader className="flex flex-row items-start justify-between p-auto">
         <CardTitle className="text-xl font-semibold text-slate-800">
           Players Summary
         </CardTitle>
@@ -20,10 +20,10 @@ const PlayerSummaryDashboard = () => {
         </Button>
       </CardHeader>
       <CardContent className="flex w-full overflow-y-auto">
-        <div className="flex flex-row items-center gap-3 justify-center w-full">
+        <div className="flex flex-row items-center justify-around gap-auto w-full">
           {/* Boys Donut Chart */}
-          <div className="flex flex-col items-center">
-            <div className="relative flex items-center justify-center h-24 w-24">
+          <div className="flex flex-col shrink-0 h-fit w-fit items-center">
+            <div className="flex items-center justify-center h-[124px] w-[124px]">
               <svg className="w-full h-full" viewBox="0 0 100 100">
                 <circle
                   cx="50"
@@ -40,14 +40,14 @@ const PlayerSummaryDashboard = () => {
                   fill="none"
                   stroke="#1E3A5F"
                   strokeWidth="12"
-                  strokeDasharray={`${2.51 * boysPercentage} 251`}
-                  strokeDashoffset="62.75"
+                  strokeDasharray={`${ boysPercentage} 200`}
+                  strokeDashoffset="50"
                   transform="rotate(-90 50 50)"
                 />
               </svg>
               <div className="absolute flex flex-col items-center">
                 <div className="flex items-center">
-                  <svg className="h-4 w-3 mr-1" viewBox="0 0 24 24" fill="#1E3A5F">
+                  <svg className="h-[24px] w-[24px] mr-1" viewBox="0 0 24 24" fill="#1E3A5F">
                     <path d="M12 2C11.2 2 10.5 2.7 10.5 3.5V11H7L12 16L17 11H13.5V3.5C13.5 2.7 12.8 2 12 2Z" />
                     <path d="M12 17C9.2 17 7 19.2 7 22H17C17 19.2 14.8 17 12 17Z" />
                   </svg>
@@ -63,7 +63,7 @@ const PlayerSummaryDashboard = () => {
 
           {/* Girls Donut Chart */}
           <div className="flex flex-col items-center">
-            <div className="relative flex items-center justify-center h-24 w-24">
+            <div className="flex items-center justify-center h-[124px] w-[124px]">
               <svg className="w-full h-full" viewBox="0 0 100 100">
                 <circle
                   cx="50"
@@ -104,15 +104,15 @@ const PlayerSummaryDashboard = () => {
 
 
       </CardContent>
-      <CardFooter>
+      <CardFooter className="flex flex-row items-center justify-center ">
     
         <Button className="bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
-          size="md"
+          size="sm"
           variant="primary"
           withIcon={true}
           iconPosition="left"
           icon={<Plus />}
-          fullWidth={true}>
+          fullWidth={false}>
           Add New Player
         </Button>
       </CardFooter>

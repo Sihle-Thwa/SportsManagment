@@ -64,8 +64,8 @@ const MessageDashboard = ({ messages = [] }) => {
   ];
 
   return (
-    <Card className="flex flex-col w-full max-h-[320px] shadow-sm rounded-lg gap-3 overflow-hidden bg-white">
-      <CardHeader className="flex flex-row items-start justify-between p-3">
+    <Card className="flex flex-col w-full max-h-[320px] shadow-sm rounded-lg overflow-hidden bg-white">
+      <CardHeader className="flex flex-row items-start justify-between p-auto">
         <CardTitle className="text-xl font-semibold text-slate-800">
           Messages
           </CardTitle>
@@ -73,30 +73,30 @@ const MessageDashboard = ({ messages = [] }) => {
           <MoreHorizontal className="h-6 w-6 text-slate-600" />
         </Button>
       </CardHeader>
-      <ScrollArea className="flex h-56 w-full overflow-y-auto">
-        <CardContent className="flex flex-col items-start gap-3 p-3">
+      <ScrollArea className="flex w-full overflow-y-auto">
+        <CardContent className="flex flex-col items-center justify-around gap-auto w-full">
           {messageData.map((msg) => (
             <div
               key={msg.id}
-              className={`flex items-start gap-3 self-stretch p-3 mb-2 border-b hover:bg-slate-50 cursor-pointer" ${selectedConversation === msg.id ? "bg-slate-50" : ""
+              className={`flex  w-full items-start mb-3 border-b hover:bg-slate-50 cursor-pointer" ${selectedConversation === msg.id ? "bg-slate-50" : ""
                 }`}
               onClick={() => setSelectedConversation(msg.id)}
             >
-              <div className="flex flex-col gap-2 items-start mb-auto">
-                <div className="flex items-center gap-2 self-stretch">
-                  <Avatar className="flex w-12 h-12 justify-end items-center" >
+              <div className="flex flex-col gap-3 items-start mb-3">
+                <div className="flex flex-row items-start gap-3 self-stretch">
+                  <Avatar className="w-[32px] h-[32px] object-cover bg-amber-100 rounded-full" >
                     <img
                       src={msg.sender.avatar}
                       alt={msg.sender.name}
                     />
                   </Avatar>
 
-                  <div className="flex flex-col items-start gap-3 ">
-                    <div className="flex flex-col items-start self-stretch">
-                      <h3 className="text-xl font-medium text-slate-800">{msg.sender.name}</h3>
-                      <span className="grid items-center justify-end text-sm text-slate-500">{msg.timestamp}</span>
+                  <div className="flex flex-col items-start self-stretch">
+                    <div className="flex flex-row items-start justify-between self-stretch">
+                      <h3 className=" flex flex-col text-xl font-medium text-slate-800">{msg.sender.name}</h3>
+                      <span className="flex flex-col text-sm text-slate-500">{msg.timestamp}</span>
                     </div>
-                    <p className="text-base text-slate-700">{msg.message}</p>
+                    <p className="flex flex-row text-base text-slate-700">{msg.message}</p>
                   </div>
                 </div>
               </div>
