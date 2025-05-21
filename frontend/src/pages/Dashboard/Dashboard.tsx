@@ -31,11 +31,11 @@ const Dashboard: React.FC = () => {
           />
         ))}
       </div>
-      <div className="flex gap-6 md:grid-cols-6 lg:grid-cols-9 lg:h-56">
-        <div className="col-span-1 md:grid-cols-2 lg:col-span-3 w-full">
+      <div className="flex flex-row gap-6 md:grid-cols-6 lg:grid-cols-9 h-[320px]">
+        <div className="col-span-1 md:grid-cols-2 lg:col-span-3 w-full ">
           <MessageDashboard />
         </div>
-        <div className="col-span-1 md:grid-cols-2 lg:col-span-3 w-full">
+        <div className="col-span-1 md:grid-cols-2 lg:col-span-3 w-full ">
           <NoticeBoard />
         </div>
         <div className="col-span-1 md:grid-cols-2 lg:col-span-3 w-full">
