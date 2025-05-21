@@ -9,7 +9,7 @@ import {
   PROVINCE_OPTIONS
 } from '../../utils/validators';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '../common/Button';
 import { Calendar } from '@/components/ui/calendar';
 import {
   Form,
@@ -178,9 +178,14 @@ export function UserInfoForm({
                       <PopoverTrigger asChild>
                         <FormControl>
                           <Button
-                            variant="outline"
+                            variant="primary"
+                            withIcon={true}
+                            size="md"
+                            iconPosition="right"
+                            icon={<CalendarIcon />}
+                            fullWidth={true}
                             className={cn(
-                              "w-full pl-3 text-left font-normal",
+                              "pl-3 text-left font-normal",
                               !field.value && "text-muted-foreground",
                               validationErrors.dateOfBirth && "border-red-500"
                             )}
@@ -190,7 +195,7 @@ export function UserInfoForm({
                             ) : (
                               <span>Select date</span>
                             )}
-                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            
                           </Button>
                         </FormControl>
                       </PopoverTrigger>
@@ -412,7 +417,11 @@ export function UserInfoForm({
               />
             </div>
 
-            <Button type="submit" className="w-full bg-blue-500 hover:bg-blue-600 text-white">
+            <Button 
+            variant='primary'
+            size='md'
+            withIcon={false}
+            fullWidth={true}>
               Submit
             </Button>
           </form>

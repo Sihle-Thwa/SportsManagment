@@ -10,7 +10,7 @@ import {
   FormMessage 
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import { Button } from '../common/Button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Checkbox } from '@/components/ui/checkbox';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -377,7 +377,7 @@ export const FormBuilder = ({
                   <PopoverTrigger asChild>
                     <FormControl>
                       <Button
-                        variant="outline"
+                        variant="primary"
                         className={cn(
                           "w-full pl-3 text-left font-normal",
                           !formField.value && "text-muted-foreground"
@@ -426,14 +426,22 @@ export const FormBuilder = ({
           <div className="flex justify-end space-x-2">
             {config.onCancel && (
               <Button 
-                type="button" 
-                variant="outline" 
+                variant="primary"
+              icon={false}
+              size="lg"
+              type="submit"
+              fullWidth={true} 
                 onClick={config.onCancel}
               >
                 {config.cancelLabel || "Cancel"}
               </Button>
             )}
-            <Button type="submit">
+            <Button
+              variant="primary"
+              icon={false}
+              size="lg"
+              type="submit"
+              fullWidth={true}>
               {config.submitLabel || "Submit"}
             </Button>
           </div>
