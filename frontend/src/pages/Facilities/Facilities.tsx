@@ -59,7 +59,7 @@ export default function Facilities() {
   };
 
   const handleDelete = (facility: Facility) => {
-    console.log("Delete Team:", facility);
+    console.log("Delete Facility:", facility);
     // Show confirmation dialog and delete logic
   };
 
@@ -71,8 +71,8 @@ export default function Facilities() {
   return (
     <div className="container">
       <div className="flex flex-col justify-start items-start mb-3 bg-white p-3 ">
-        <h1 className="text-xl font-bold mb-3">Teams</h1>
-        <p className="">View and Manage all teams of your organisation</p>
+        <h1 className="text-xl font-bold mb-3">Facilities</h1>
+        <p className="">View and Manage all facilities of your organisation</p>
       </div>
 
       <FacilitiesTable

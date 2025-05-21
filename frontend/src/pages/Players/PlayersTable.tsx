@@ -1,16 +1,17 @@
 import { Button } from "@/components/ui/button";
-import { Pencil, Trash2, UserRound, ShieldCheck } from "lucide-react";
+import { Pencil, Trash2, UserRound } from "lucide-react";
 import { TableBuilder, TableColumn } from "@/components/common/Table";
 
 // Define the User interface
 export interface Player {
   id: string;
-  username: string;
-  fullName: string;
+  name: string;
+  surname: string;
+  dob: string;
   email: string;
+  contact: string;
+  nationality: string;
   status: 'active' | 'inactive' | 'pending';
-  lastLogin: string;
-  permissions: string[];
   [key: string]: unknown;
 }
 
@@ -30,22 +31,34 @@ export function PlayersTable({ data, onEdit, onDelete, onAddNew }: PlayersTableP
       className: "w-20"
     },
     {
-      header: "Username",
-      accessorKey: "username",
+      header: "Name",
+      accessorKey: "name",
       cell: (player) => (
         <div className="flex items-center gap-2">
           <UserRound size={16} className="text-gray-500" />
-          {player.username}
+          {player.name} {player.surname}  
         </div>
       )
     },
     {
-      header: "Full Name",
-      accessorKey: "fullName"
+      header: "Surname",
+      accessorKey: "surname"
+    },
+    {
+      header: "DOB",
+      accessorKey: "dob"
     },
     {
       header: "Email",
       accessorKey: "email"
+    },
+    {
+      header: "Contact",
+      accessorKey: "contact"
+    },
+    {
+      header: "Nationality",
+      accessorKey: "nationality",
     },
     {
       header: "Status",
@@ -64,20 +77,6 @@ export function PlayersTable({ data, onEdit, onDelete, onAddNew }: PlayersTableP
         );
       }
     },
-    {
-      header: "Last Login",
-      accessorKey: "lastLogin"
-    },
-    {
-      header: "Permissions",
-      accessorKey: "permissions",
-      cell: (player) => (
-        <div className="flex items-center gap-1">
-          <ShieldCheck size={16} className="text-blue-500" />
-          <span>{player.permissions.length} roles</span>
-        </div>
-      )
-    }
   ];
 
   // Define action buttons for each row

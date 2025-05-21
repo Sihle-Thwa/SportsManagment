@@ -8,27 +8,21 @@ export default function Players() {
       id: "1",
       name: "John",
       surname: "Doe",
+      dob: "1990-01-01",
       email: "john.doe@example.com",
-      role: "Admin",
       contact: "+1234567890",
-      username: "johndoe",
-      fullName: "John Doe",
+      nationality: "USA",
       status: "active",
-      lastLogin: "2024-06-01T10:00:00Z",
-      permissions: ["manage_users", "view_reports"]
     },
     {
       id: "2",
       name: "Jane",
       surname: "Smith",
+      dob: "1992-02-02",
       email: "jane.smith@example.com",
-      role: "User",
       contact: "+0987654321",
-      username: "janesmith",
-      fullName: "Jane Smith",
+      nationality: "RSA",
       status: "inactive",
-      lastLogin: "2024-05-28T14:30:00Z",
-      permissions: ["view_reports"]
     }
     // Add more members as needed
   ]);
