@@ -20,7 +20,7 @@ const Profile: React.FC = () => {
 
 
   return (
-    <div className="flex flex-row h-fit gap-6 bg-gray-50">
+    <div className="flex flex-row h-fit gap-6 w-full  ">
       <FileUploadCard description={'Upload a picture for your profile picture'} onFileSelect={function (): void {
         throw new Error('Function not implemented.');
       } }       />
