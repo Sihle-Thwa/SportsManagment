@@ -1,0 +1,199 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Base Aliases */
+  --background: var(--colour-background);
+  --foreground: var(--text-primary);
+  --card: var(--colour-surface);
+  --card-foreground: var(--text-primary);
+  --popover: var(--colour-surface-variant);
+  --popover-foreground: var(--text-primary);
+
+  --primary: var(--colour-primary);
+  --primary-foreground: var(--button-primary-text);
+  --secondary: var(--colour-accent);
+  --secondary-foreground: var(--button-secondary-text);
+  --muted: var(--colour-surface-variant);
+  --muted-foreground: var(--text-tertiary);
+  --accent: var(--colour-accent);
+  --accent-foreground: var(--text-on-accent);
+  --destructive: oklch(52.47% 0.167 27.33);
+  --destructive-foreground: oklch(100% 0 0);
+
+  --input: var(--input-bg);
+  --ring: var(--border-focus);
+  --radius: 0.5rem;
+
+  /* Chart Colors */
+  --chart-1: oklch(65% 0.2 200);
+  --chart-2: oklch(60% 0.15 120);
+  --chart-3: oklch(50% 0.1 280);
+  --chart-4: oklch(70% 0.2 340);
+  --chart-5: oklch(60% 0.15 60);
+
+  /* Sidebar Colors */
+  --sidebar: var(--colour-background);
+  --sidebar-foreground: var(--text-primary);
+  --sidebar-primary: var(--colour-primary);
+  --sidebar-primary-foreground: var(--button-primary-text);
+  --sidebar-accent: var(--colour-accent);
+  --sidebar-accent-foreground: var(--text-on-accent);
+  --sidebar-border: var(--border-light);
+  --sidebar-ring: var(--border-focus);
+
+  /* Primary Colors */
+  --colour-primary: oklch(25.84% 0.056 230.12);
+  --colour-accent: oklch(72.31% 0.189 67.89);
+  --colour-background: oklch(97.35% 0.006 98.73);
+  --colour-surface: oklch(93.51% 0.003 157.89);
+  --colour-surface-variant: oklch(87.45% 0.003 98.73);
+  --colour-neutral: oklch(63.57% 0.000 0);
+
+  /* Text Colors */
+  --text-primary: oklch(25.84% 0.056 230.12);
+  --text-secondary: oklch(41.18% 0.040 230.12);
+  --text-tertiary: oklch(54.12% 0.000 0);
+  --text-on-dark: oklch(100% 0.000 0);
+  --text-on-accent: oklch(25.84% 0.056 230.12);
+
+  /* Button Colors */
+  --button-primary-bg: oklch(25.84% 0.056 230.12);
+  --button-primary-text: oklch(100% 0.000 0);
+  --button-secondary-bg: oklch(72.31% 0.189 67.89);
+  --button-secondary-text: oklch(25.84% 0.056 230.12);
+  --button-tertiary-bg: oklch(100% 0.000 0);
+  --button-tertiary-text: oklch(25.84% 0.056 230.12);
+  --button-disabled-bg: oklch(93.51% 0.003 157.89);
+  --button-disabled-text: oklch(54.12% 0.000 0);
+
+  /* State Colors */
+  --state-success: oklch(49.86% 0.098 173.45);
+  --state-warning: oklch(72.31% 0.189 67.89);
+  --state-error: oklch(52.47% 0.167 27.33);
+  --state-info: oklch(65.49% 0.164 253.89);
+
+  /* Border Colors */
+  --border-light: oklch(93.51% 0.003 157.89);
+  --border-medium: oklch(87.45% 0.003 98.73);
+  --border-focus: oklch(72.31% 0.189 67.89);
+
+  /* Hover States */
+  --colour-primary-hover: oklch(18.43% 0.067 230.12);
+  --colour-accent-hover: oklch(62.15% 0.173 67.89);
+
+  /* Component Colors */
+  --card-bg: oklch(100% 0.000 0);
+  --footer-bg: oklch(97.35% 0.006 98.73);
+  --input-bg: oklch(100% 0.000 0);
+  --input-border: oklch(93.51% 0.003 157.89);
+  --tag-bg: oklch(72.31% 0.189 67.89);
+  --tag-text: oklch(25.84% 0.056 230.12);
+}
+
+.dark {
+  --background: var(--colour-background);
+  --foreground: var(--text-primary);
+  --card: var(--colour-surface);
+  --card-foreground: var(--text-primary);
+  --popover: var(--colour-surface-variant);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--colour-primary);
+  --primary-foreground: var(--button-primary-text);
+  --secondary: var(--colour-accent);
+  --secondary-foreground: var(--button-secondary-text);
+  --muted: var(--colour-surface-variant);
+  --muted-foreground: var(--text-tertiary);
+  --accent: var(--colour-accent);
+  --accent-foreground: var(--text-on-accent);
+  --destructive: oklch(68.24% 0.185 27.33);
+  --destructive-foreground: oklch(100% 0 0);
+  --input: var(--input-bg);
+  --ring: var(--border-focus);
+  --radius: 0.625rem;
+  --chart-1: oklch(65% 0.2 200);
+  --chart-2: oklch(60% 0.15 120);
+  --chart-3: oklch(50% 0.1 280);
+  --chart-4: oklch(70% 0.2 340);
+  --chart-5: oklch(60% 0.15 60);
+  --sidebar: var(--colour-background);
+  --sidebar-foreground: var(--text-primary);
+  --sidebar-primary: var(--colour-primary);
+  --sidebar-primary-foreground: var(--button-primary-text);
+  --sidebar-accent: var(--colour-accent);
+  --sidebar-accent-foreground: var(--text-on-accent);
+  --sidebar-border: var(--border-light);
+  --sidebar-ring: var(--border-focus);
+}
+
+@layer base {
+  html {
+    --tw-bg-opacity: 1;
+    background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+}
+
+@layer utilities {
+  .bg-colour-primary { background-color: var(--colour-primary); }
+  .bg-colour-accent { background-color: var(--colour-accent); }
+  .bg-colour-surface { background-color: var(--colour-surface); }
+  .bg-colour-surface-variant { background-color: var(--colour-surface-variant); }
+  .bg-card-custom { background-color: var(--card-bg); }
+
+  .text-colour-primary { color: var(--text-primary); }
+  .text-colour-secondary { color: var(--text-secondary); }
+  .text-colour-tertiary { color: var(--text-tertiary); }
+  .text-on-dark { color: var(--text-on-dark); }
+  .text-on-accent { color: var(--text-on-accent); }
+
+  .border-colour-light { border-color: var(--border-light); }
+  .border-colour-medium { border-color: var(--border-medium); }
+  .border-colour-focus { border-color: var(--border-focus); }
+
+  .btn-primary {
+    background-color: var(--button-primary-bg);
+    color: var(--button-primary-text);
+  }
+  .btn-primary:hover {
+    background-color: var(--colour-primary-hover);
+  }
+  .btn-primary:focus {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
+  }
+  .btn-primary:disabled {
+    background-color: var(--button-disabled-bg);
+    color: var(--button-disabled-text);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .btn-secondary {
+    background-color: var(--button-secondary-bg);
+    color: var(--button-secondary-text);
+  }
+  .btn-secondary:hover {
+    background-color: var(--colour-accent-hover);
+  }
+
+  .btn-tertiary {
+    background-color: var(--button-tertiary-bg);
+    color: var(--button-tertiary-text);
+  }
+
+  .text-state-success { color: var(--state-success); }
+  .text-state-warning { color: var(--state-warning); }
+  .text-state-error { color: var(--state-error); }
+  .text-state-info { color: var(--state-info); }
+
+  .bg-state-success { background-color: var(--state-success); }
+  .bg-state-warning { background-color: var(--state-warning); }
+  .bg-state-error { background-color: var(--state-error); }
+  .bg-state-info { background-color: var(--state-info); }
+}
