@@ -14,7 +14,7 @@ export const CardStat: React.FC<{
 					{icon}
 				</div>
 
-				<div className="flex flex-col items-start p-3 gap-2 flex-shrink-0 self-stretch">
+				<div className="flex flex-col items-start p-3 gap-2 shrink-0 self-stretch">
 					<div className="flex text-xl font-bold">{value}</div>
 					<div className="flex text-sm font-normal">{title}</div>
 				</div>
