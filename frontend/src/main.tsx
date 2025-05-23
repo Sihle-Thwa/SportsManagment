@@ -3,9 +3,10 @@ import "./styles/globals.css";
 import App from "./App";
 import ReactDOM from "react-dom/client";
 
-const root = ReactDOM.createRoot(
-	document.getElementById("root") as HTMLElement,
-);
+const rootElement = document.getElementById("root");
+if (!rootElement) throw new Error("Failed to find the root element");
+
+const root = ReactDOM.createRoot(rootElement as HTMLElement);
 
 root.render(
 	<React.StrictMode>
