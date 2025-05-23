@@ -11,6 +11,7 @@ import { NavSecondary } from "./nav-secondary";
 import { NavUser } from "./nav-user";
 import { useState } from "react";
 import { House } from "lucide-react";
+import "../../../styles/globals.css";
 
 interface AppSideBarProps {
 	currentPath: string;
@@ -24,7 +25,7 @@ export function AppSideBar({ currentPath }: AppSideBarProps) {
 			<SidebarHeader className="flex flex-row items-start justify-center p-4">
 				<SidebarMenuButton
 					size="lg"
-					className="flex flex-row data-[state=open]:bg-white data-[state=open]:text-black p-3 "
+					className="flex flex-row data-[state=open]:data-[state=open]: p-3 "
 				>
 					<div className="flex flex-row rounded-lg items-center justify-center">
 						<House className="h-fit w-fit bg-white" />

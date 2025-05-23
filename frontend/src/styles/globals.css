@@ -1,199 +1,284 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
-:root {
-  /* Base Aliases */
-  --background: var(--colour-background);
-  --foreground: var(--text-primary);
-  --card: var(--colour-surface);
-  --card-foreground: var(--text-primary);
-  --popover: var(--colour-surface-variant);
-  --popover-foreground: var(--text-primary);
-
-  --primary: var(--colour-primary);
-  --primary-foreground: var(--button-primary-text);
-  --secondary: var(--colour-accent);
-  --secondary-foreground: var(--button-secondary-text);
-  --muted: var(--colour-surface-variant);
-  --muted-foreground: var(--text-tertiary);
-  --accent: var(--colour-accent);
-  --accent-foreground: var(--text-on-accent);
-  --destructive: oklch(52.47% 0.167 27.33);
-  --destructive-foreground: oklch(100% 0 0);
-
-  --input: var(--input-bg);
-  --ring: var(--border-focus);
-  --radius: 0.5rem;
-
-  /* Chart Colors */
-  --chart-1: oklch(65% 0.2 200);
-  --chart-2: oklch(60% 0.15 120);
-  --chart-3: oklch(50% 0.1 280);
-  --chart-4: oklch(70% 0.2 340);
-  --chart-5: oklch(60% 0.15 60);
-
-  /* Sidebar Colors */
-  --sidebar: var(--colour-background);
-  --sidebar-foreground: var(--text-primary);
-  --sidebar-primary: var(--colour-primary);
-  --sidebar-primary-foreground: var(--button-primary-text);
-  --sidebar-accent: var(--colour-accent);
-  --sidebar-accent-foreground: var(--text-on-accent);
-  --sidebar-border: var(--border-light);
-  --sidebar-ring: var(--border-focus);
-
-  /* Primary Colors */
-  --colour-primary: oklch(25.84% 0.056 230.12);
-  --colour-accent: oklch(72.31% 0.189 67.89);
-  --colour-background: oklch(97.35% 0.006 98.73);
-  --colour-surface: oklch(93.51% 0.003 157.89);
-  --colour-surface-variant: oklch(87.45% 0.003 98.73);
-  --colour-neutral: oklch(63.57% 0.000 0);
-
-  /* Text Colors */
-  --text-primary: oklch(25.84% 0.056 230.12);
-  --text-secondary: oklch(41.18% 0.040 230.12);
-  --text-tertiary: oklch(54.12% 0.000 0);
-  --text-on-dark: oklch(100% 0.000 0);
-  --text-on-accent: oklch(25.84% 0.056 230.12);
-
-  /* Button Colors */
-  --button-primary-bg: oklch(25.84% 0.056 230.12);
-  --button-primary-text: oklch(100% 0.000 0);
-  --button-secondary-bg: oklch(72.31% 0.189 67.89);
-  --button-secondary-text: oklch(25.84% 0.056 230.12);
-  --button-tertiary-bg: oklch(100% 0.000 0);
-  --button-tertiary-text: oklch(25.84% 0.056 230.12);
-  --button-disabled-bg: oklch(93.51% 0.003 157.89);
-  --button-disabled-text: oklch(54.12% 0.000 0);
-
-  /* State Colors */
-  --state-success: oklch(49.86% 0.098 173.45);
-  --state-warning: oklch(72.31% 0.189 67.89);
-  --state-error: oklch(52.47% 0.167 27.33);
-  --state-info: oklch(65.49% 0.164 253.89);
-
-  /* Border Colors */
-  --border-light: oklch(93.51% 0.003 157.89);
-  --border-medium: oklch(87.45% 0.003 98.73);
-  --border-focus: oklch(72.31% 0.189 67.89);
-
-  /* Hover States */
-  --colour-primary-hover: oklch(18.43% 0.067 230.12);
-  --colour-accent-hover: oklch(62.15% 0.173 67.89);
-
-  /* Component Colors */
-  --card-bg: oklch(100% 0.000 0);
-  --footer-bg: oklch(97.35% 0.006 98.73);
-  --input-bg: oklch(100% 0.000 0);
-  --input-border: oklch(93.51% 0.003 157.89);
-  --tag-bg: oklch(72.31% 0.189 67.89);
-  --tag-text: oklch(25.84% 0.056 230.12);
-}
-
-.dark {
-  --background: var(--colour-background);
-  --foreground: var(--text-primary);
-  --card: var(--colour-surface);
-  --card-foreground: var(--text-primary);
-  --popover: var(--colour-surface-variant);
-  --popover-foreground: var(--text-primary);
-  --primary: var(--colour-primary);
-  --primary-foreground: var(--button-primary-text);
-  --secondary: var(--colour-accent);
-  --secondary-foreground: var(--button-secondary-text);
-  --muted: var(--colour-surface-variant);
-  --muted-foreground: var(--text-tertiary);
-  --accent: var(--colour-accent);
-  --accent-foreground: var(--text-on-accent);
-  --destructive: oklch(68.24% 0.185 27.33);
-  --destructive-foreground: oklch(100% 0 0);
-  --input: var(--input-bg);
-  --ring: var(--border-focus);
-  --radius: 0.625rem;
-  --chart-1: oklch(65% 0.2 200);
-  --chart-2: oklch(60% 0.15 120);
-  --chart-3: oklch(50% 0.1 280);
-  --chart-4: oklch(70% 0.2 340);
-  --chart-5: oklch(60% 0.15 60);
-  --sidebar: var(--colour-background);
-  --sidebar-foreground: var(--text-primary);
-  --sidebar-primary: var(--colour-primary);
-  --sidebar-primary-foreground: var(--button-primary-text);
-  --sidebar-accent: var(--colour-accent);
-  --sidebar-accent-foreground: var(--text-on-accent);
-  --sidebar-border: var(--border-light);
-  --sidebar-ring: var(--border-focus);
-}
-
+/* Improved CSS Variables */
 @layer base {
+  :root {
+    /* Light Theme Colors */
+    --colour-primary: oklch(25.84% 0.056 230.12);
+    --colour-accent: oklch(72.31% 0.189 67.89);
+    --colour-background: oklch(97.35% 0.006 98.73);
+    --colour-surface: oklch(93.51% 0.003 157.89);
+    --colour-surface-variant: oklch(87.45% 0.003 98.73);
+    --colour-neutral: oklch(63.57% 0.000 0);
+
+   
+    --text-primary: oklch(25.84% 0.056 230.12) ;
+    --text-secondary: oklch(41.18% 0.040 230.12) ;
+    --text-tertiary: oklch(54.12% 0.000 0) ;
+    --text-on-dark: oklch(100% 0.000 0) ;
+    --text-on-accent: oklch(25.84% 0.056 230.12) ;
+
+    --button-primary-bg: oklch(25.84% 0.056 230.12) ;
+    --button-primary-text: oklch(100% 0.000 0);
+    --button-secondary-bg: oklch(72.31% 0.189 67.89) ;
+    --button-secondary-text: oklch(25.84% 0.056 230.12) ;
+    --button-tertiary-bg: oklch(100% 0.000 0) ;
+    --button-tertiary-text: oklch(25.84% 0.056 230.12) ;
+
+    --state-success: oklch(49.86% 0.098 173.45) ;
+    --state-warning: var(--colour-accent);
+    --state-error: oklch(52.47% 0.167 27.33);
+    --state-info: oklch(65.49% 0.164 253.89);
+
+    --border-light: oklch(93.51% 0.003 157.89);
+    --border-medium: oklch(87.45% 0.003 98.73);
+    --border-focus: var(--colour-accent);
+
+    --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-family-mono: 'JetBrains Mono', 'SF Mono', Monaco, monospace;
+
+    --colour-primary-hover: oklch(18.43% 0.067 230.12);
+    --colour-accent-hover: oklch(62.15% 0.173 67.89);
+  
+    /* Component Colors */
+  --card-bg: var(--colour-background);
+  --footer-bg: var(--colour-background);
+  --input-bg: var(--button-primary-text);
+  --input-border: var(--border-light);
+  --tag-bg: var(--border-focus);
+  --tag-text: var(--colour-primary);
+
+/* Font Sizes */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-5xl: 3rem;
+    --font-size-6xl: 3.75rem;
+
+    /* Line Heights */
+    --line-height-tight: 1.2;
+    --line-height-snug: 1.375;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.625;
+
+     /* Letter Spacing */
+    --letter-spacing-tighter: -0.05em;
+    --letter-spacing-tight: -0.025em;
+    --letter-spacing-normal: 0em;
+    --letter-spacing-wide: 0.025em;
+    --letter-spacing-wider: 0.05em;
+
+  }
+
+  .dark {
+
+    /* Dark Theme Colors */
+    --colour-primary: oklch(65.49% 0.164 253.89);
+    --colour-accent: oklch(78.24% 0.189 67.89);
+    --colour-background: oklch(12.16% 0.004 230.12);
+    --colour-surface: oklch(16.73% 0.010 230.12);
+    --colour-surface-variant: oklch(21.57% 0.015 230.12);
+    --colour-neutral: oklch(58.82% 0.000 0);
+
+    --text-primary: oklch(94.12% 0.012 230.12);
+    --text-secondary: oklch(78.82% 0.035 230.12);
+    --text-tertiary: oklch(70.59% 0.000 0);
+    --text-on-dark: oklch(100% 0.000 0);
+    --text-on-accent: oklch(12.16% 0.004 230.12);
+
+    --button-primary-bg: oklch(65.49% 0.164 253.89);
+    --button-primary-text: oklch(12.16% 0.004 230.12);
+    --button-secondary-bg: oklch(78.24% 0.189 67.89);
+    --button-secondary-text: oklch(12.16% 0.004 230.12);
+    --button-tertiary-bg: oklch(21.57% 0.015 230.12);
+    --button-tertiary-text: oklch(94.12% 0.012 230.12);
+
+    --state-success: oklch(62.35% 0.120 173.45);
+    --state-warning: oklch(78.24% 0.189 67.89);
+    --state-error: oklch(68.24% 0.185 27.33);
+    --state-info: oklch(70.59% 0.150 253.89);
+    
+    --border-light: oklch(21.57% 0.015 230.12);
+    --border-medium: oklch(27.45% 0.020 230.12);
+    --border-focus: oklch(78.24% 0.189 67.89);
+
+  }
+
+  /* Apply base styles */
   html {
-    --tw-bg-opacity: 1;
-    background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+    color-scheme: light;
+    font-family: var(--font-family-primary);
   }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
   body {
-    background-color: var(--background);
-    color: var(--foreground);
+    background-color: var(--colour-background);
+    color: var(--text-primary);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
   }
+
+  
 }
 
-@layer utilities {
-  .bg-colour-primary { background-color: var(--colour-primary); }
-  .bg-colour-accent { background-color: var(--colour-accent); }
-  .bg-colour-surface { background-color: var(--colour-surface); }
-  .bg-colour-surface-variant { background-color: var(--colour-surface-variant); }
-  .bg-card-custom { background-color: var(--card-bg); }
+@layer utilities{
+  /* Utility Classes */
 
-  .text-colour-primary { color: var(--text-primary); }
-  .text-colour-secondary { color: var(--text-secondary); }
-  .text-colour-tertiary { color: var(--text-tertiary); }
-  .text-on-dark { color: var(--text-on-dark); }
-  .text-on-accent { color: var(--text-on-accent); }
-
-  .border-colour-light { border-color: var(--border-light); }
-  .border-colour-medium { border-color: var(--border-medium); }
-  .border-colour-focus { border-color: var(--border-focus); }
 
   .btn-primary {
     background-color: var(--button-primary-bg);
     color: var(--button-primary-text);
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    transition: all 0.2s;
   }
   .btn-primary:hover {
-    background-color: var(--colour-primary-hover);
-  }
-  .btn-primary:focus {
-    outline: 2px solid var(--border-focus);
-    outline-offset: 2px;
-  }
-  .btn-primary:disabled {
-    background-color: var(--button-disabled-bg);
-    color: var(--button-disabled-text);
-    cursor: not-allowed;
-    opacity: 0.6;
+    background-color: var(--button-primary-bg) / 0.9;
   }
 
   .btn-secondary {
     background-color: var(--button-secondary-bg);
     color: var(--button-secondary-text);
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    transition: all 0.2s;
   }
-  .btn-secondary:hover {
-    background-color: var(--colour-accent-hover);
-  }
-
   .btn-tertiary {
     background-color: var(--button-tertiary-bg);
     color: var(--button-tertiary-text);
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    border: 1px solid var(--border-light);
+    font-weight: 500;
+    transition: all 0.2s;
   }
 
-  .text-state-success { color: var(--state-success); }
-  .text-state-warning { color: var(--state-warning); }
-  .text-state-error { color: var(--state-error); }
-  .text-state-info { color: var(--state-info); }
+  /* Typography Utilities */
+  .text-display-large {
+    font-size: var(--font-size-6xl);
+    font-weight: 700;
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tighter);
+  }
 
-  .bg-state-success { background-color: var(--state-success); }
-  .bg-state-warning { background-color: var(--state-warning); }
-  .bg-state-error { background-color: var(--state-error); }
-  .bg-state-info { background-color: var(--state-info); }
+  .text-display-medium {
+    font-size: var(--font-size-5xl);
+    font-weight: 700;
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tight);
+  }
+
+  .text-display-small {
+    font-size: var(--font-size-4xl);
+    font-weight: 600;
+    line-height: var(--line-height-snug);
+  }
+
+  .text-heading-h1 {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    line-height: var(--line-height-snug);
+    letter-spacing: var(--letter-spacing-tight);
+  }
+
+  .text-heading-h2 {
+    font-size: var(--font-size-2xl);
+    font-weight: 600;
+    line-height: var(--line-height-snug);
+  }
+
+  .text-heading-h3 {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    line-height: var(--line-height-normal);
+  }
+  .text-body-large {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+  }
+
+  .text-body-medium {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-normal);
+  }
+
+  .text-body-small {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+  }
+
+  .text-label-large {
+    font-size: var(--font-size-base);
+    font-weight: 500;
+    line-height: var(--line-height-normal);
+  }
+
+  .text-label-medium {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    line-height: var(--line-height-normal);
+  }
+
+  .text-label-small {
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+  }
+
+  /* Medium screens (≤1024px) */
+@media (max-width: 1024px) {
+  .text-display-large {
+    font-size: var(--font-size-5xl);
+  }
+  .text-display-medium {
+    font-size: var(--font-size-4xl);
+  }
+  .text-heading-h1 {
+    font-size: var(--font-size-2xl);
+  }
+  .text-body-large {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* Small screens (≤768px) */
+@media (max-width: 768px) {
+  .text-display-large {
+    font-size: var(--font-size-4xl);
+    line-height: var(--line-height-snug);
+    letter-spacing: var(--letter-spacing-tight);
+  }
+  .text-display-medium {
+    font-size: var(--font-size-3xl);
+    line-height: var(--line-height-snug);
+    letter-spacing: var(--letter-spacing-normal);
+  }
+  .text-heading-h1 {
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
+  }
+  .text-body-large {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
+  }
+  .text-body-medium {
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
+  }
+}
 }
