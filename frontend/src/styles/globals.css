@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* Improved CSS Variables */
 @layer base {
 	:root {
 		/* Light Theme Colors */
