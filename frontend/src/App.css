@@ -1,5 +1,2 @@
-#root {
-  width: 100%;
-  margin: 0 auto;
-
-}
+@import "tailwindcss";
+@import "./styles/globals.css";
