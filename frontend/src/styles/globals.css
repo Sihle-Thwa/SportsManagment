@@ -1,116 +1,15 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@custom-variant dark (&:is(.dark *));
+
 @layer base {
-	:root {
-		/* Light Theme Colors */
-		--colour-primary: hsl(25.84% 0.056 230.12);
-		--colour-accent: hsl(72.31% 0.189 67.89);
-		--colour-background: hsl(97.35% 0.006 98.73);
-		--colour-surface: hsl(93.51% 0.003 157.89);
-		--colour-surface-variant: hsl(87.45% 0.003 98.73);
-		--colour-neutral: hsl(63.57% 0 0);
-
-		--text-primary: hsl(25.84% 0.056 230.12);
-		--text-secondary: hsl(41.18% 0.04 230.12);
-		--text-tertiary: hsl(54.12% 0 0);
-		--text-on-dark: hsl(100% 0 0);
-		--text-on-accent: hsl(25.84% 0.056 230.12);
-
-		--button-primary-bg: hsl(25.84% 0.056 230.12);
-		--button-primary-text: hsl(100% 0 0);
-		--button-secondary-bg: hsl(72.31% 0.189 67.89);
-		--button-secondary-text: hsl(25.84% 0.056 230.12);
-		--button-tertiary-bg: hsl(100% 0 0);
-		--button-tertiary-text: hsl(25.84% 0.056 230.12);
-
-		--state-success: hsl(49.86% 0.098 173.45);
-		--state-warning: var(--colour-accent);
-		--state-error: hsl(52.47% 0.167 27.33);
-		--state-info: hsl(65.49% 0.164 253.89);
-
-		--border-light: hsl(93.51% 0.003 157.89);
-		--border-medium: hsl(87.45% 0.003 98.73);
-		--border-focus: var(--colour-accent);
-
-		--font-family-primary: "Inter", -apple-system, BlinkMacSystemFont,
-			"Segoe UI", sans-serif;
-		--font-family-mono: "JetBrains Mono", "SF Mono", Monaco, monospace;
-
-		--colour-primary-hover: hsl(18.43% 0.067 230.12);
-		--colour-accent-hover: hsl(62.15% 0.173 67.89);
-
-		/* Component Colors */
-		--card-bg: var(--colour-background);
-		--card-bg: var(--colour-background);
-		--footer-bg: var(--colour-background);
-		--input-bg: var(--button-primary-text);
-		--input-border: var(--border-light);
-		--tag-bg: var(--border-focus);
-		--tag-text: var(--colour-primary);
-
-		/* Font Sizes */
-		--font-size-xs: 0.75rem;
-		--font-size-sm: 0.875rem;
-		--font-size-base: 1rem;
-		--font-size-lg: 1.125rem;
-		--font-size-xl: 1.25rem;
-		--font-size-2xl: 1.5rem;
-		--font-size-3xl: 1.875rem;
-		--font-size-4xl: 2.25rem;
-		--font-size-5xl: 3rem;
-		--font-size-6xl: 3.75rem;
-
-		/* Line Heights */
-		--line-height-tight: 1.2;
-		--line-height-snug: 1.375;
-		--line-height-normal: 1.5;
-		--line-height-relaxed: 1.625;
-
-		/* Letter Spacing */
-		--letter-spacing-tighter: -0.05em;
-		--letter-spacing-tight: -0.025em;
-		--letter-spacing-normal: 0em;
-		--letter-spacing-wide: 0.025em;
-		--letter-spacing-wider: 0.05em;
-	}
-
-	.dark {
-		/* Dark Theme Colors */
-		--colour-primary: hsl(65.49% 0.164 253.89);
-		--colour-accent: hsl(78.24% 0.189 67.89);
-		--colour-background: hsl(12.16% 0.004 230.12);
-		--colour-surface: hsl(16.73% 0.01 230.12);
-		--colour-surface-variant: hsl(21.57% 0.015 230.12);
-		--colour-neutral: hsl(58.82% 0 0);
-
-		--text-primary: hsl(94.12% 0.012 230.12);
-		--text-secondary: hsl(78.82% 0.035 230.12);
-		--text-tertiary: hsl(70.59% 0 0);
-		--text-on-dark: hsl(100% 0 0);
-		--text-on-accent: hsl(12.16% 0.004 230.12);
-
-		--button-primary-bg: hsl(65.49% 0.164 253.89);
-		--button-primary-text: hsl(12.16% 0.004 230.12);
-		--button-secondary-bg: hsl(78.24% 0.189 67.89);
-		--button-secondary-text: hsl(12.16% 0.004 230.12);
-		--button-tertiary-bg: hsl(21.57% 0.015 230.12);
-		--button-tertiary-text: hsl(94.12% 0.012 230.12);
-
-		--state-success: hsl(62.35% 0.12 173.45);
-		--state-warning: hsl(78.24% 0.189 67.89);
-		--state-error: hsl(68.24% 0.185 27.33);
-		--state-info: hsl(70.59% 0.15 253.89);
-
-		--border-light: hsl(21.57% 0.015 230.12);
-		--border-medium: hsl(27.45% 0.02 230.12);
-		--border-focus: hsl(78.24% 0.189 67.89);
-	}
 
 	/* Apply base styles */
 	html {
 		color-scheme: light;
 		font-family: var(--font-family-primary);
+		scroll-behavior: smooth;
 	}
 
 	html.dark {
@@ -125,6 +24,173 @@
 	}
 }
 
+:root {
+	/* Default Theme Colors */
+	--colour-background: hsl(0, 0%, 100%);
+	--colour-foreground: hsl(211, 48%, 10%);
+	--colour-card: hsl(0, 0%, 100%);
+	--colour-card-foreground: hsl(211, 48%, 10%);
+	--colour-popover: hsl(0, 0%, 100%);
+	--colour-popover-foreground: hsl(211, 48%, 10%);
+
+	/* Light Theme Colors */
+
+	--colour-primary: hsl(171, 100%, 32%);
+	--colour-primary-foreground: hsl(0, 0%, 100%);
+
+	--colour-secondary: hsl(182, 98%, 34%);
+	--colour-secondary-foreground: hsl(0, 0%, 100%);
+
+	--colour-accent: hsl(45, 94%, 61%);
+	--colour-accent-foreground: hsl(211, 48%, 45%);
+
+	--colour-muted: hsl(211, 48%, 95%);
+	--colour-muted-foreground: hsl(211, 48%, 45%);
+
+	--colour-border: hsl(211, 48%, 85%);
+	--colour-input: hsl(211, 48%, 85%);
+
+	--colour-ring: hsl(171, 100%, 32%);
+
+	/* Chart colors using your palette */
+	--colour-chart-1: hsl(171 100% 32%);
+	/* Persian Green */
+	--colour-chart-2: hsl(182 98% 34%);
+	/* Verdigris */
+	--colour-chart-3: hsl(45 94% 61%);
+	/* Sunglow */
+	--colour-chart-4: hsl(7 82% 63%);
+	/* Bittersweet */
+	--colour-chart-5: hsl(211 48% 22%);
+	/* Prussian Blue */
+
+	/* Your full color scales for custom usage */
+	--color-persian-green-50: hsl(171 100% 95%);
+	--color-persian-green-100: hsl(171 100% 85%);
+	--color-persian-green-200: hsl(171 100% 75%);
+	--color-persian-green-300: hsl(171 100% 65%);
+	--color-persian-green-400: hsl(171 100% 48%);
+	--color-persian-green-500: hsl(171 100% 32%);
+	--color-persian-green-600: hsl(171 100% 28%);
+	--color-persian-green-700: hsl(171 100% 22%);
+	--color-persian-green-800: hsl(171 100% 18%);
+	--color-persian-green-900: hsl(171 100% 12%);
+
+	--color-verdigris-50: hsl(182 98% 90%);
+	--color-verdigris-100: hsl(182 98% 80%);
+	--color-verdigris-200: hsl(182 98% 70%);
+	--color-verdigris-300: hsl(182 98% 60%);
+	--color-verdigris-400: hsl(182 98% 47%);
+	--color-verdigris-500: hsl(182 98% 34%);
+	--color-verdigris-600: hsl(182 98% 28%);
+	--color-verdigris-700: hsl(182 98% 22%);
+	--color-verdigris-800: hsl(182 98% 18%);
+	--color-verdigris-900: hsl(182 98% 12%);
+
+	--color-sunglow-50: hsl(45 94% 95%);
+	--color-sunglow-100: hsl(45 94% 85%);
+	--color-sunglow-200: hsl(45 94% 75%);
+	--color-sunglow-300: hsl(45 94% 70%);
+	--color-sunglow-400: hsl(45 94% 65%);
+	--color-sunglow-500: hsl(45 94% 61%);
+	--color-sunglow-600: hsl(45 94% 55%);
+	--color-sunglow-700: hsl(45 94% 45%);
+	--color-sunglow-800: hsl(45 94% 35%);
+	--color-sunglow-900: hsl(45 94% 25%);
+
+	--color-bittersweet-50: hsl(7 82% 95%);
+	--color-bittersweet-100: hsl(7 82% 85%);
+	--color-bittersweet-200: hsl(7 82% 75%);
+	--color-bittersweet-300: hsl(7 82% 70%);
+	--color-bittersweet-400: hsl(7 82% 67%);
+	--color-bittersweet-500: hsl(7 82% 63%);
+	--color-bittersweet-600: hsl(7 82% 55%);
+	--color-bittersweet-700: hsl(7 82% 45%);
+	--color-bittersweet-800: hsl(7 82% 35%);
+	--color-bittersweet-900: hsl(7 82% 25%);
+
+	--color-prussian-blue-50: hsl(211 48% 95%);
+	--color-prussian-blue-100: hsl(211 48% 85%);
+	--color-prussian-blue-200: hsl(211 48% 75%);
+	--color-prussian-blue-300: hsl(211 48% 65%);
+	--color-prussian-blue-400: hsl(211 48% 45%);
+	--color-prussian-blue-500: hsl(211 48% 35%);
+	--color-prussian-blue-600: hsl(211 48% 22%);
+	--color-prussian-blue-700: hsl(211 48% 18%);
+	--color-prussian-blue-800: hsl(211 48% 14%);
+	--color-prussian-blue-900: hsl(211 48% 10%);
+
+	/* Text Colors */
+	--font-family-primary: "Inter", -apple-system, BlinkMacSystemFont,
+		"Segoe UI", sans-serif;
+	--font-family-mono: "JetBrains Mono", "SF Mono", Monaco, monospace;
+
+	--colour-primary-hover: hsl(18.43% 0.067 230.12);
+	--colour-accent-hover: hsl(62.15% 0.173 67.89);
+
+	/* Component Colors */
+	--card-bg: var(--colour-background);
+	--footer-bg: var(--colour-background);
+	--input-bg: var(--colour-border-input);
+	--input-border: var(--colour-input);
+	--input-text: var(--colour-foreground);
+
+	/* Font Sizes */
+	--font-size-xs: 0.75rem;
+	--font-size-sm: 0.875rem;
+	--font-size-base: 1rem;
+	--font-size-lg: 1.125rem;
+	--font-size-xl: 1.25rem;
+	--font-size-2xl: 1.5rem;
+	--font-size-3xl: 1.875rem;
+	--font-size-4xl: 2.25rem;
+	--font-size-5xl: 3rem;
+	--font-size-6xl: 3.75rem;
+
+	/* Line Heights */
+	--line-height-tight: 1.2;
+	--line-height-snug: 1.375;
+	--line-height-normal: 1.5;
+	--line-height-relaxed: 1.625;
+
+	/* Letter Spacing */
+	--letter-spacing-tighter: -0.05em;
+	--letter-spacing-tight: -0.025em;
+	--letter-spacing-normal: 0em;
+	--letter-spacing-wide: 0.025em;
+	--letter-spacing-wider: 0.05em;
+}
+
+.dark {
+	/* Dark Theme Colors */
+	--colour-background: hsl(211 48% 5%);
+	--colour-foreground: hsl(0 0% 98%);
+	--colour-card: hsl(211 48% 8%);
+	--colour-card-foreground: hsl(0 0% 98%);
+	--colour-popover: hsl(211 48% 8%);
+	--colour-popover-foreground: hsl(0 0% 98%);
+
+	--colour-primary: hsl(171 100% 40%);
+	--colour-primary-foreground: hsl(211 48% 5%);
+
+	--colour-secondary: hsl(182 98% 42%);
+	--colour-secondary-foreground: hsl(211 48% 5%);
+
+	--colour-muted: hsl(211 48% 15%);
+	--colour-muted-foreground: hsl(211 48% 65%);
+
+	--colour-accent: hsl(45 94% 55%);
+	--colour-accent-foreground: hsl(211 48% 5%);
+
+	--colour-destructive: hsl(7 82% 55%);
+	--colour-destructive-foreground: hsl(0 0% 98%);
+
+	--colour-border: hsl(211 48% 15%);
+	--colour-input: hsl(211 48% 15%);
+
+	--colour-ring: hsl(171 100% 40%);
+}
+
 @layer utilities {
 	/* Utility Classes */
 
@@ -136,6 +202,7 @@
 		font-weight: 500;
 		transition: all 0.2s;
 	}
+
 	.btn-primary:hover {
 		background-color: var(--button-primary-bg) / 0.9;
 	}
@@ -148,6 +215,7 @@
 		font-weight: 500;
 		transition: all 0.2s;
 	}
+
 	.btn-tertiary {
 		background-color: var(--button-tertiary-bg);
 		color: var(--button-tertiary-text);
@@ -197,6 +265,7 @@
 		font-weight: 600;
 		line-height: var(--line-height-normal);
 	}
+
 	.text-body-large {
 		font-size: var(--font-size-lg);
 		line-height: var(--line-height-relaxed);
@@ -237,12 +306,15 @@
 		.text-display-large {
 			font-size: var(--font-size-5xl);
 		}
+
 		.text-display-medium {
 			font-size: var(--font-size-4xl);
 		}
+
 		.text-heading-h1 {
 			font-size: var(--font-size-2xl);
 		}
+
 		.text-body-large {
 			font-size: var(--font-size-base);
 		}
@@ -255,21 +327,25 @@
 			line-height: var(--line-height-snug);
 			letter-spacing: var(--letter-spacing-tight);
 		}
+
 		.text-display-medium {
 			font-size: var(--font-size-3xl);
 			line-height: var(--line-height-snug);
 			letter-spacing: var(--letter-spacing-normal);
 		}
+
 		.text-heading-h1 {
 			font-size: var(--font-size-xl);
 			line-height: var(--line-height-normal);
 			letter-spacing: var(--letter-spacing-normal);
 		}
+
 		.text-body-large {
 			font-size: var(--font-size-sm);
 			line-height: var(--line-height-normal);
 			letter-spacing: var(--letter-spacing-normal);
 		}
+
 		.text-body-medium {
 			font-size: var(--font-size-xs);
 			line-height: var(--line-height-normal);
