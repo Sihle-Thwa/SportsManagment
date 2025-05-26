@@ -11,7 +11,6 @@ import { NavSecondary } from "./nav-secondary";
 import { NavUser } from "./nav-user";
 import { useState } from "react";
 import { House } from "lucide-react";
-import "../../../styles/globals.css";
 
 interface AppSideBarProps {
 	currentPath: string;

@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { MainLayout } from "./components/layout/MainLayout";
 import { routes } from "./routes";
-import "./styles/globals.css";
+import './index.css';
+
 function App() {
 	return (
 		<Router>

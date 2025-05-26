@@ -4,7 +4,6 @@ import AppTopBar from "@/components/layout/TopNav/app-topbar";
 import { Outlet } from "react-router-dom"; // Import Outlet for nested routing
 import { SidebarProvider, SidebarInset } from "../ui/sidebar";
 import bgGradient from "../../assets/images/bodyGradient.png";
-import "../../styles/globals.css";
 export function MainLayout() {
 	return (
 		<SidebarProvider>
