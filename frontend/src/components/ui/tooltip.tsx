@@ -3,7 +3,9 @@
 import * as React from "react"
 import * as TooltipPrimitive from "@radix-ui/react-tooltip"
 
-import { cn } from "@/lib/utils"
+// Update the import path if your utils file is located elsewhere, for example:
+import { cn } from "../../lib/utils"
+// Or provide the correct relative path based on your project structure
 
 const TooltipProvider = TooltipPrimitive.Provider
 
