@@ -1,4 +1,4 @@
-import { TableBody as UITableBody, TableCell, TableRow } from "@/components/ui/table";
+import { TableBody as UITableBody, TableCell, TableRow } from "../../ui/table";
 import { TableColumn } from "./types";
 
 interface TableBodyProps<T> {

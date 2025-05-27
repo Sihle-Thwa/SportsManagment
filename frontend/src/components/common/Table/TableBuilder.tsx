@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Table } from "@/components/ui/table";
+import { Table } from "../../ui/table";
 import { TableHeader } from "./TableHeader";
 import { TableBody } from "./TableBody";
 import { TableControls } from "./TableControls";

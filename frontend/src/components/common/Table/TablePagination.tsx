@@ -5,7 +5,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious
-} from "@/components/ui/pagination";
+} from "../../ui/pagination";
 
 interface TablePaginationProps {
   currentPage: number;
@@ -49,16 +49,14 @@ export function TablePagination({
         <PaginationItem>
           <PaginationPrevious 
             onClick={() => onPageChange(Math.max(currentPage - 1, 1))}
-            className={currentPage === 1 ? "pointer-events-none opacity-50" : ""}
-          />
+            className={currentPage === 1 ? "pointer-events-none opacity-50" : ""} size={undefined}          />
         </PaginationItem>
         
         {pageNumbers.map(number => (
           <PaginationItem key={number}>
             <PaginationLink
               isActive={currentPage === number}
-              onClick={() => onPageChange(number)}
-            >
+              onClick={() => onPageChange(number)} size={undefined}            >
               {number}
             </PaginationLink>
           </PaginationItem>
@@ -67,8 +65,7 @@ export function TablePagination({
         <PaginationItem>
           <PaginationNext 
             onClick={() => onPageChange(Math.min(currentPage + 1, totalPages))}
-            className={currentPage === totalPages ? "pointer-events-none opacity-50" : ""}
-          />
+            className={currentPage === totalPages ? "pointer-events-none opacity-50" : ""} size={undefined}          />
         </PaginationItem>
       </PaginationContent>
     </Pagination>

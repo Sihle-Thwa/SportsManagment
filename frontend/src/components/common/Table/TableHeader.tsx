@@ -1,4 +1,4 @@
-import { TableHead, TableHeader as UITableHeader, TableRow } from "@/components/ui/table";
+import { TableHead, TableHeader as UITableHeader, TableRow } from "../../ui/table";
 import { TableColumn } from "./types";
 
 interface TableHeaderProps<T> {
