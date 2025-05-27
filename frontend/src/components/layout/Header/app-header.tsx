@@ -4,8 +4,9 @@ import {
 	BreadcrumbItem,
 	BreadcrumbList,
 	BreadcrumbPage,
-} from "@/components/ui/breadcrumb";
-import { SidebarTrigger } from "@/components/ui/sidebar";
+} from "../../ui/breadcrumb";
+
+import { SidebarTrigger } from "../../ui/sidebar-trigger";
 import { Separator } from "@radix-ui/react-separator";
 
 const Header = () => {

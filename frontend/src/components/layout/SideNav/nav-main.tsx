@@ -2,9 +2,9 @@ import {
 	SidebarMenuItem,
 	SidebarMenuButton,
 	SidebarMenu,
-} from "@/components/ui/sidebar";
+} from "../../ui/sidebar";
 import { NavLink } from "react-router-dom";
-import { routes } from "@/routes";
+import { routes } from "../../../routes";
 
 interface NavMainProps {
 	activeRoute: string;

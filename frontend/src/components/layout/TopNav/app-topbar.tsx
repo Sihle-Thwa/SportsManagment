@@ -1,4 +1,4 @@
-import { SearchInput } from "@/components/common/Input/search-input";
+import { SearchInput } from "../../common/Input/search-input";
 import Header from "../Header/app-header";
 
 const AppTopBar = () => {

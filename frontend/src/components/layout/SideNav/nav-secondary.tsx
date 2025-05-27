@@ -2,7 +2,7 @@ import {
 	SidebarMenuItem,
 	SidebarMenuButton,
 	SidebarMenu,
-} from "@/components/ui/sidebar";
+} from "../../ui/sidebar";
 import { HandHelping, Settings } from "lucide-react";
 
 const items = [

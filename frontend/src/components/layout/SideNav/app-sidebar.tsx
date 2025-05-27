@@ -5,7 +5,7 @@ import {
 	SidebarHeader,
 	SidebarMenuButton,
 	SidebarRail,
-} from "@/components/ui/sidebar";
+} from "../../ui/sidebar";
 import { NavMain } from "./nav-main";
 import { NavSecondary } from "./nav-secondary";
 import { NavUser } from "./nav-user";
