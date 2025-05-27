@@ -26,3 +26,5 @@ export default tseslint.config(
     },
   },
 )
+// ...existing code...
+// (Second export default removed)
