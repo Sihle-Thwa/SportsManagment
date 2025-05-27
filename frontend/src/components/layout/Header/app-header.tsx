@@ -6,8 +6,9 @@ import {
 	BreadcrumbPage,
 } from "../../ui/breadcrumb";
 
-import { Separator } from "../../ui/separator";
+
 import { SidebarTrigger } from "../../ui/sidebar";
+import { Separator } from "../../ui/separator";
 const Header = () => {
 	const location = useLocation();
 	const pathSegments = location.pathname.split("/").filter(Boolean);
