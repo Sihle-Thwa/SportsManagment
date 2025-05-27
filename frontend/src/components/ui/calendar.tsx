@@ -26,7 +26,7 @@ function Calendar({
         caption_label: "tw-text-sm tw-font-medium",
         nav: "tw-space-x-1 tw-flex tw-items-center",
         nav_button: cn(
-          buttonVariants({ variant: "outline" }),
+          buttonVariants({ variant: "outline-solid" }),
           "tw-h-7 tw-w-7 tw-bg-transparent tw-p-0 tw-opacity-50 hover:tw-opacity-100"
         ),
         nav_button_previous: "tw-absolute tw-left-1",

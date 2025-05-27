@@ -31,7 +31,7 @@ const NoticeBoard = ({ notices = [] }) => {
   };
 
   return (
-    <Card className="flex flex-col max-h-[320px] w-full shadow-sm rounded-lg overflow-hidden bg-white">
+    <Card className="flex flex-col max-h-[320px] w-full shadow-xs rounded-lg overflow-hidden bg-white">
       <CardHeader className="flex flex-row items-start justify-between p-auto">
         <CardTitle className="text-xl font-semibold text-slate-800">
           Notice Board
@@ -75,7 +75,7 @@ const NoticeBoard = ({ notices = [] }) => {
           iconPosition="left"
           icon={<Plus />}
           fullWidth={false}
-          className=" bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
+          className=" bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-xs"
         >
         </Button>
         <Button
@@ -85,7 +85,7 @@ const NoticeBoard = ({ notices = [] }) => {
           iconPosition="left"
           icon={<Pencil/>}
           fullWidth={false}
-          className=" bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
+          className=" bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-xs"
         >
         
         </Button>
@@ -96,7 +96,7 @@ const NoticeBoard = ({ notices = [] }) => {
           iconPosition="left"
           icon={<X />}
           fullWidth={false}
-          className=" bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-sm"
+          className=" bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-xs"
         >
         </Button>
       </CardFooter>

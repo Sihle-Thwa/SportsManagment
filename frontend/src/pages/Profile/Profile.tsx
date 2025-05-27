@@ -27,7 +27,7 @@ const Profile: React.FC = () => {
       <div className="flex flex-row w-fit ">
         
         {isSubmitted ? (
-          <div className="bg-white p-2 rounded-lg shadow-sm">
+          <div className="bg-white p-2 rounded-lg shadow-xs">
             <h2 className="text-xl font-bold mb-4">Form Submitted Successfully!</h2>
             <p className="mb-4">Thank you for submitting your information.</p>
             

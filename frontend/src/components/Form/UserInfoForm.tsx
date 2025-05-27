@@ -80,7 +80,7 @@ export function UserInfoForm({
   }, [validationErrors, form]);
 
   return (
-    <Card className="w-[750px] bg-white rounded-lg shadow-sm gap-3">
+    <Card className="w-[750px] bg-white rounded-lg shadow-xs gap-3">
       <CardHeader className=''>
         <h2 className="text-xl font-semibold border-b border-amber-600">{formTitle}</h2>
       </CardHeader>

@@ -64,7 +64,7 @@ const MessageDashboard = ({ messages = [] }) => {
   ];
 
   return (
-    <Card className="flex flex-col w-full max-h-[320px] shadow-sm rounded-lg overflow-hidden bg-white">
+    <Card className="flex flex-col w-full max-h-[320px] shadow-xs rounded-lg overflow-hidden bg-white">
       <CardHeader className="flex flex-row items-start justify-between p-auto">
         <CardTitle className="text-xl font-semibold text-slate-800">
           Messages

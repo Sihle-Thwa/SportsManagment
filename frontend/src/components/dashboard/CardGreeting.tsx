@@ -4,7 +4,7 @@ import greetingCardImg from "@/assets/images/standing-dashboard-image.svg";
 
 export function CardGreeting() {
 	return (
-		<Card className="flex flex-row max-w-full max-h-[345px] items-center justify-center rounded-lg overflow-hidden shadow-sm ">
+		<Card className="flex flex-row max-w-full max-h-[345px] items-center justify-center rounded-lg overflow-hidden shadow-xs ">
 			<CardContent className="flex flex-row items-start justify-center gap-3 ">
 				<div className="flex flex-row items-center justify-center gap-3 w-full h-fit">
 					<div className="flex flex-col items-start">

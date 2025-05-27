@@ -80,7 +80,7 @@ export function TableBuilder<T extends Record<string, unknown>>({
   };
 
   return (
-    <div className="w-full space-y-3 bg-white p-3 rounded-md shadow-sm">
+    <div className="w-full space-y-3 bg-white p-3 rounded-md shadow-xs">
       {/* Table Controls */}
       {(searchable || onAddNew) && (
         <TableControls
