@@ -1,6 +1,6 @@
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { CalendarObject } from "@/components/common/CalendarObject";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter } from "../ui/card";
+import { CalendarObject } from "../common/CalendarObject";
+import { Button } from "../ui/button";
 
 export function CardCalendar() {
   return (

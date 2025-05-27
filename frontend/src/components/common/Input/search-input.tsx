@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Input } from "@/components/common/Input/input";
+import { Input } from "../Input/input";
 import { Search } from "lucide-react";
 
 const SearchInput = () => {
