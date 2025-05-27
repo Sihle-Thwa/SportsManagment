@@ -6,7 +6,7 @@ import { VariantProps, cva } from "class-variance-authority"
 import { PanelLeft } from "lucide-react"
 
 // Update the import path if the file exists elsewhere, e.g.:
-import { useIsMobile } from "../hooks/use-mobile"
+import { useIsMobile } from "../../hooks/use-mobile"
 // Or create 'src/hooks/use-mobile.ts' with the following content if it doesn't exist:
 import { cn } from "../../lib/utils"
 // Update the import path if the file exists elsewhere, e.g.:
