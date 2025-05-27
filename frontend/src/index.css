@@ -90,7 +90,7 @@
   }
 
   * {
-    @apply box-border;
+    box-sizing: border-box;
   }
 
   body {

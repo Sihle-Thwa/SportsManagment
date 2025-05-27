@@ -1,3 +1,4 @@
+import { ModeToggle } from "@/components/mode-toggle";
 import { SearchInput } from "../../common/Input/search-input";
 import Header from "../Header/app-header";
 
@@ -12,6 +13,10 @@ const AppTopBar = () => {
 			<div className="flex items-center justify-center w-full">
 				{/* Center - Search */}
 				<SearchInput />
+			</div>
+			<div className="flex items-center justify-end w-full">
+				{/* Right - Theme-toggle */}
+				<ModeToggle />
 			</div>
 		</div>
 	);
