@@ -6,8 +6,8 @@ import {
 	BreadcrumbPage,
 } from "../../ui/breadcrumb";
 
-import { SidebarTrigger } from "../../ui/sidebar-trigger";
-import { Separator } from "@radix-ui/react-separator";
+import { SidebarTrigger } from "../../ui/sidebar";
+import { Separator } from "../../ui/separator";
 
 const Header = () => {
 	const location = useLocation();
