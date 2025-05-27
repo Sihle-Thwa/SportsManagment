@@ -1,18 +1,18 @@
 import { lazy, Suspense } from 'react';
-import { createBrowserRouter, Navigate } from 'react-router';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 
 // Lazy load MainLayout
-const MainLayout = lazy(() => import('@/components/layout/MainLayout'));
+const MainLayout = lazy(() => import('../components/layout/MainLayout'));
 
 // Other imports remain the same
-import Planner from '@/pages/Calendar/Planner';
-import Dashboard from '@/pages/Dashboard/Dashboard';
-import Facilities from '@/pages/Facilities/Facilities';
-import Members from '@/pages/Members/Members';
-import Players from '@/pages/Players/Players';
-import Profile from '@/pages/Profile/Profile';
-import Report from '@/pages/Reports/Report';
-import Teams from '@/pages/Teams/Teams';
+import Planner from '../pages/Calendar/Planner';
+import Dashboard from '../pages/Dashboard/Dashboard';
+import Facilities from '../pages/Facilities/Facilities';
+import Members from '../pages/Members/Members';
+import Players from '../pages/Players/Players';
+import Profile from '../pages/Profile/Profile';
+import Report from '../pages/Reports/Report';
+import Teams from '../pages/Teams/Teams';
 
 // Icons
 import {

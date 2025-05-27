@@ -1,6 +1,6 @@
 import {} from "react";
-import AppSideBar from "@/components/layout/SideNav/app-sidebar";
-import AppTopBar from "@/components/layout/TopNav/app-topbar";
+import AppSideBar from "../layout/SideNav/app-sidebar";
+import AppTopBar from "../layout/TopNav/app-topbar";
 import { Outlet } from "react-router-dom"; // Import Outlet for nested routing
 import { SidebarProvider, SidebarInset } from "../ui/sidebar";
 import bgGradient from "../../assets/images/bodyGradient.png";
