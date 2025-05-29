@@ -7,13 +7,15 @@ function App() {
 	return (
 		<Router>
 			<ThemeProvider>
-				<Routes>
-					<Route path="/" element={<MainLayout />}>
-						{routes.map((route) => (
-							<Route key={route.id} path={route.path} element={route.element} />
-						))}
-					</Route>
-				</Routes>
+				<div className="min-h-screen bg-background font-sans antialiased"> {/* shadcn/tailwind v4 best practices */}
+					<Routes>
+						<Route path="/" element={<MainLayout />}>
+							{routes.map((route) => (
+								<Route key={route.id} path={route.path} element={route.element} />
+							))}
+						</Route>
+					</Routes>
+				</div>
 			</ThemeProvider>
 		</Router>
 	);

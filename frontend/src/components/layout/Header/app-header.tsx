@@ -7,7 +7,6 @@ import {
 } from "../../ui/breadcrumb";
 import { Separator } from "../../ui/separator";
 import { SidebarTrigger } from "../../ui/sidebar";
-import React from "react";
 
 const Header = () => {
 	const location = useLocation();
