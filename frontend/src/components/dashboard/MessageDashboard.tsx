@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { MoreHorizontal } from "lucide-react";
-import { Avatar } from "@/components/ui/avatar";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Avatar } from "../../components/ui/avatar";
+import { ScrollArea } from "../../components/ui/scroll-area";
+import { Button } from "../../components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 
 
 const MessageDashboard = ({ messages = [] }) => {
@@ -68,7 +68,7 @@ const MessageDashboard = ({ messages = [] }) => {
       <CardHeader className="flex flex-row items-start justify-between p-auto">
         <CardTitle className="text-xl font-semibold text-slate-800">
           Messages
-          </CardTitle>
+        </CardTitle>
         <Button variant="ghost" className=" hover:bg-slate-100">
           <MoreHorizontal className="h-6 w-6 text-slate-600" />
         </Button>

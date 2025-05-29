@@ -1,6 +1,6 @@
 import { Users, Pencil, Trash2, UserPlus } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { TableBuilder, TableColumn } from "@/components/common/Table";
+import { Button } from "../../components/ui/button";
+import { TableBuilder, TableColumn } from "../../components/common/Table";
 
 // Define the Team interface
 export interface Team {
@@ -23,12 +23,12 @@ interface TeamsTableProps {
   onManageMembers?: (team: Team) => void;
 }
 
-export function TeamsTable({ 
-  data, 
-  onEdit, 
-  onDelete, 
+export function TeamsTable({
+  data,
+  onEdit,
+  onDelete,
   onAddNew,
-  onManageMembers 
+  onManageMembers
 }: TeamsTableProps) {
   // Define columns for the Teams table
   const columns: TableColumn<Team>[] = [
@@ -73,30 +73,30 @@ export function TeamsTable({
       accessorKey: "tournaments",
       cell: (team) => `${team.tournaments.length} tournaments`
     },
-    
+
   ];
 
   // Define action buttons for each row
   const renderActions = (team: Team) => (
     <div className="flex justify-end gap-2">
-      <Button 
-        variant="ghost" 
+      <Button
+        variant="ghost"
         size="icon"
         onClick={() => onManageMembers && onManageMembers(team)}
         title="Manage Members"
       >
         <UserPlus size={16} className="text-blue-500" />
       </Button>
-      <Button 
-        variant="ghost" 
+      <Button
+        variant="ghost"
         size="icon"
         onClick={() => onEdit && onEdit(team)}
         title="Edit Team"
       >
         <Pencil size={16} className="text-gray-500" />
       </Button>
-      <Button 
-        variant="ghost" 
+      <Button
+        variant="ghost"
         size="icon"
         onClick={() => onDelete && onDelete(team)}
         title="Delete Team"

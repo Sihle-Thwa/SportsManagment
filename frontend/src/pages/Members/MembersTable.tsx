@@ -1,7 +1,7 @@
 // src/pages/members/MembersTable.tsx
-import { Button } from "@/components/ui/button";
+import { Button } from "../../components/ui/button";
 import { Pencil, Trash2, UserRound } from "lucide-react";
-import { TableColumn,TableBuilder } from "../../components/common/Table";
+import { TableColumn, TableBuilder } from "../../components/common/Table";
 
 // Define the Member interface
 export interface Member {
@@ -60,15 +60,15 @@ export function MembersTable({ data, onEdit, onDelete, onAddNew }: MembersTableP
   // Define action buttons for each row
   const renderActions = (member: Member) => (
     <div className="flex justify-end gap-0">
-      <Button 
-        variant="ghost" 
+      <Button
+        variant="ghost"
         size="icon"
         onClick={() => onEdit && onEdit(member)}
       >
         <Pencil size={16} className="text-gray-500" />
       </Button>
-      <Button 
-        variant="ghost" 
+      <Button
+        variant="ghost"
         size="icon"
         onClick={() => onDelete && onDelete(member)}
       >

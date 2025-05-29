@@ -6,7 +6,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
+} from '../../components/ui/form';
 import { Control, Path, FieldValues } from 'react-hook-form';
 
 interface FormFieldProps<T extends FieldValues = FieldValues> {

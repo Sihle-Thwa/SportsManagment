@@ -40,7 +40,7 @@ const PlayerSummaryDashboard = () => {
                   fill="none"
                   stroke="#1E3A5F"
                   strokeWidth="12"
-                  strokeDasharray={`${ boysPercentage} 200`}
+                  strokeDasharray={`${boysPercentage} 200`}
                   strokeDashoffset="50"
                   transform="rotate(-90 50 50)"
                 />
@@ -105,7 +105,7 @@ const PlayerSummaryDashboard = () => {
 
       </CardContent>
       <CardFooter className="flex flex-row items-center justify-center ">
-    
+
         <Button className="bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-xs"
           size="sm"
           variant="primary"

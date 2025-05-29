@@ -1,6 +1,6 @@
 import { Building, MapPin, Pencil, Trash2, Calendar } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { TableBuilder, TableColumn } from "@/components/common/Table";
+import { Button } from "../../components/ui/button";
+import { TableBuilder, TableColumn } from "../../components/common/Table";
 
 // Define the Facility interface
 export interface Facility {
@@ -23,12 +23,12 @@ interface FacilitiesTableProps {
   onScheduleInspection?: (facility: Facility) => void;
 }
 
-export function FacilitiesTable({ 
-  data, 
-  onEdit, 
-  onDelete, 
+export function FacilitiesTable({
+  data,
+  onEdit,
+  onDelete,
   onAddNew,
-  onScheduleInspection 
+  onScheduleInspection
 }: FacilitiesTableProps) {
   // Define columns for the Facilities table
   const columns: TableColumn<Facility>[] = [
@@ -75,7 +75,7 @@ export function FacilitiesTable({
           maintenance: "bg-yellow-100 text-yellow-800",
           closed: "bg-red-100 text-red-800"
         };
-        
+
         return (
           <span className={`px-2 py-1 rounded-full text-xs font-medium ${statusColors[facility.status]}`}>
             {facility.status}
@@ -92,24 +92,24 @@ export function FacilitiesTable({
   // Define action buttons for each row
   const renderActions = (facility: Facility) => (
     <div className="flex justify-end gap-2">
-      <Button 
-        variant="ghost" 
+      <Button
+        variant="ghost"
         size="icon"
         onClick={() => onScheduleInspection && onScheduleInspection(facility)}
         title="Schedule Inspection"
       >
         <Calendar size={16} className="text-blue-500" />
       </Button>
-      <Button 
-        variant="ghost" 
+      <Button
+        variant="ghost"
         size="icon"
         onClick={() => onEdit && onEdit(facility)}
         title="Edit Facility"
       >
         <Pencil size={16} className="text-gray-500" />
       </Button>
-      <Button 
-        variant="ghost" 
+      <Button
+        variant="ghost"
         size="icon"
         onClick={() => onDelete && onDelete(facility)}
         title="Delete Facility"

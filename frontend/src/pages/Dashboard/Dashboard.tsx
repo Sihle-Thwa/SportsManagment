@@ -1,12 +1,12 @@
 // src/pages/Dashboard.tsx
 import React from "react";
 import { CardGreeting } from "../../components/dashboard/CardGreeting";
-import { CardStat } from "@/components/dashboard/CardStat";
-import { statsdata } from "@/routes/statsdata";
-import { CardCalendar } from "@/components/dashboard/CardCalendar";
-import MessageDashboard from "@/components/dashboard/MessageDashboard";
-import NoticeBoard from "@/components/dashboard/NoticeBoard";
-import PlayerSummaryDashboard from "@/components/dashboard/PlayerSummaryDashboard";
+import { CardStat } from "../../components/dashboard/CardStat";
+import { statsdata } from "../../routes/statsdata";
+import { CardCalendar } from "../../components/dashboard/CardCalendar";
+import MessageDashboard from "../../components/dashboard/MessageDashboard";
+import NoticeBoard from "../../components/dashboard/NoticeBoard";
+import PlayerSummaryDashboard from "../../components/dashboard/PlayerSummaryDashboard";
 
 const Dashboard: React.FC = () => {
   return (

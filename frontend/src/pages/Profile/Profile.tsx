@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { UserInfoForm } from "../../components/Form/UserInfoForm";
 import { UserInfoFormDefaultValues } from "../../utils/validators";
-import { Button } from '@/components/common/Button';
-import { FileUploadCard } from '@/components/FileUpload';
+import { Button } from '../../components/common/Button';
+import { FileUploadCard } from '../../components/FileUpload';
 
 
 const Profile: React.FC = () => {
@@ -11,7 +11,7 @@ const Profile: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
 
-   const handleSubmit = (data: unknown) => {
+  const handleSubmit = (data: unknown) => {
     console.log('Form submitted with data:', data);
     setFormData(data);
     setIsSubmitted(true);
@@ -23,14 +23,14 @@ const Profile: React.FC = () => {
     <div className="flex flex-row h-fit gap-6 w-full  ">
       <FileUploadCard description={'Upload a picture for your profile picture'} onFileSelect={function (): void {
         throw new Error('Function not implemented.');
-      } }       />
+      }} />
       <div className="flex flex-row w-fit ">
-        
+
         {isSubmitted ? (
           <div className="bg-white p-2 rounded-lg shadow-xs">
             <h2 className="text-xl font-bold mb-4">Form Submitted Successfully!</h2>
             <p className="mb-4">Thank you for submitting your information.</p>
-            
+
             <div className="border-t pt-3 mt-3">
               <h3 className="text-lg font-semibold mb-3">Submitted Data:</h3>
               <pre className="bg-gray-100 p-3 rounded overflow-auto">
@@ -43,8 +43,8 @@ const Profile: React.FC = () => {
                 }, 2)}
               </pre>
             </div>
-            
-            <Button 
+
+            <Button
               className="mt-4"
               variant="primary"
               size="lg"
@@ -58,11 +58,11 @@ const Profile: React.FC = () => {
             </Button>
           </div>
         ) : (
-          <UserInfoForm 
+          <UserInfoForm
             defaultValues={UserInfoFormDefaultValues}
             onSubmit={handleSubmit}
             formTitle="User Information"
-            
+
           />
         )}
       </div>

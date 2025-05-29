@@ -10,7 +10,7 @@ import {
 } from '../../utils/validators';
 
 import { Button } from '../common/Button';
-import { Calendar } from '@/components/ui/calendar';
+import { Calendar } from '../../components/ui/calendar';
 import {
   Form,
   FormControl,
@@ -18,21 +18,21 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+} from '../../components/ui/form';
+import { Input } from '../../components/ui/input';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select';
+} from '../../components/ui/select';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@/components/ui/popover';
-import { cn } from '@/lib/utils';
+} from '../../components/ui/popover';
+import { cn } from '../../lib/utils';
 import { useForm } from 'react-hook-form';
 import { Card, CardContent, CardHeader } from '../ui/card';
 
@@ -195,7 +195,7 @@ export function UserInfoForm({
                             ) : (
                               <span>Select date</span>
                             )}
-                            
+
                           </Button>
                         </FormControl>
                       </PopoverTrigger>
@@ -417,11 +417,11 @@ export function UserInfoForm({
               />
             </div>
 
-            <Button 
-            variant='primary'
-            size='md'
-            withIcon={false}
-            fullWidth={true}>
+            <Button
+              variant='primary'
+              size='md'
+              withIcon={false}
+              fullWidth={true}>
               Submit
             </Button>
           </form>

@@ -1,4 +1,4 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "../../components/ui/card";
 import React from "react";
 
 export const CardStat: React.FC<{

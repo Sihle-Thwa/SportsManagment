@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MoreHorizontal, Bell, Plus, Pencil, X } from "lucide-react";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { ScrollArea } from "../../components/ui/scroll-area";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
 import { Button } from "../common/Button";
 
 const NoticeBoard = ({ notices = [] }) => {
@@ -35,7 +35,7 @@ const NoticeBoard = ({ notices = [] }) => {
       <CardHeader className="flex flex-row items-start justify-between p-auto">
         <CardTitle className="text-xl font-semibold text-slate-800">
           Notice Board
-          </CardTitle>
+        </CardTitle>
         <Button variant="ghost" className=" hover:bg-slate-100">
           <MoreHorizontal className="h-6 w-6 text-slate-600" />
         </Button>
@@ -53,8 +53,8 @@ const NoticeBoard = ({ notices = [] }) => {
                 <div className="flex flex-row items-start gap-3 self-stretch">
                   {renderIcon()}
                   <div className="flex flex-col items-start self-stretch">
-                  <h3 className="text-xl font-medium text-slate-800">{notice.title}</h3>
-                </div>
+                    <h3 className="text-xl font-medium text-slate-800">{notice.title}</h3>
+                  </div>
                 </div>
                 <div className="flex flex-col items-start self-stretch">
                   <p className="text-base text-slate-700">{notice.content}</p>
@@ -83,14 +83,14 @@ const NoticeBoard = ({ notices = [] }) => {
           size="sm"
           withIcon={true}
           iconPosition="left"
-          icon={<Pencil/>}
+          icon={<Pencil />}
           fullWidth={false}
           className=" bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-xs"
         >
-        
+
         </Button>
         <Button
-        variant="primary"
+          variant="primary"
           size="sm"
           withIcon={true}
           iconPosition="left"

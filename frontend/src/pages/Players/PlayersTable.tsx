@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "../../components/ui/button";
 import { Pencil, Trash2, UserRound } from "lucide-react";
-import { TableBuilder, TableColumn } from "@/components/common/Table";
+import { TableBuilder, TableColumn } from "../../components/common/Table";
 
 // Define the User interface
 export interface Player {
@@ -36,7 +36,7 @@ export function PlayersTable({ data, onEdit, onDelete, onAddNew }: PlayersTableP
       cell: (player) => (
         <div className="flex items-center gap-2">
           <UserRound size={16} className="text-gray-500" />
-          {player.name} {player.surname}  
+          {player.name} {player.surname}
         </div>
       )
     },
@@ -69,7 +69,7 @@ export function PlayersTable({ data, onEdit, onDelete, onAddNew }: PlayersTableP
           inactive: "bg-gray-100 text-gray-800",
           pending: "bg-yellow-100 text-yellow-800"
         };
-        
+
         return (
           <span className={`px-2 py-1 rounded-full text-xs font-medium ${statusColors[player.status]}`}>
             {player.status}
@@ -82,15 +82,15 @@ export function PlayersTable({ data, onEdit, onDelete, onAddNew }: PlayersTableP
   // Define action buttons for each row
   const renderActions = (player: Player) => (
     <div className="flex justify-end gap-2">
-      <Button 
-        variant="ghost" 
+      <Button
+        variant="ghost"
         size="icon"
         onClick={() => onEdit && onEdit(player)}
       >
         <Pencil size={16} className="text-gray-500" />
       </Button>
-      <Button 
-        variant="ghost" 
+      <Button
+        variant="ghost"
         size="icon"
         onClick={() => onDelete && onDelete(player)}
       >
