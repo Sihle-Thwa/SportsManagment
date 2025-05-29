@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@layer theme, base, components, utilities;
 
 /* ---------- Tailwind CSS v4-compatible styles ---------- */
 
