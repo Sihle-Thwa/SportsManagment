@@ -1,0 +1,377 @@
+@import "tailwindcss";
+
+
+@layer theme, base, components, utilities;
+
+:root {
+
+    --font-family-primary: "Inter", -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+    --font-family-mono: "JetBrains Mono", "SF Mono", Monaco, monospace;
+
+
+    /*Font Sizes*/
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-5xl: 3rem;
+    --font-size-6xl: 3.75rem;
+
+    /* Line Heights */
+    --line-height-tight: 1.2;
+    --line-height-snug: 1.375;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.625;
+
+    /* Letter Spacing */
+    --letter-spacing-tighter: -0.05em;
+    --letter-spacing-tight: -0.025em;
+    --letter-spacing-normal: 0em;
+    --letter-spacing-wide: 0.025em;
+    --letter-spacing-wider: 0.05em;
+
+    /*Font weight*/
+    --font-weight-thin: 100;
+    --font-weight-extralight: 200;
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    --font-weight-black: 900;
+
+    /* Border Radius */
+    --radius-xs: 0.125rem;
+    --radius-sm: 0.25rem;
+    --radius-md: 0.375rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-2xl: 1rem;
+    --radius-3xl: 1.5rem;
+    --radius-4xl: 2rem;
+
+    @layer utilities {
+        /* Utility Classes */
+
+        .btn-primary {
+            background-color: var(--button-primary-bg);
+            color: var(--button-primary-text);
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--button-primary-bg) / 0.9;
+        }
+
+        .btn-secondary {
+            background-color: var(--button-secondary-bg);
+            color: var(--button-secondary-text);
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .btn-tertiary {
+            background-color: var(--button-tertiary-bg);
+            color: var(--button-tertiary-text);
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            border: 1px solid var(--border-light);
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        /* Typography Utilities */
+        .text-display-large {
+            font-size: var(--font-size-6xl);
+            font-weight: 700;
+            line-height: var(--line-height-tight);
+            letter-spacing: var(--letter-spacing-tighter);
+        }
+
+        .text-display-medium {
+            font-size: var(--font-size-5xl);
+            font-weight: 700;
+            line-height: var(--line-height-tight);
+            letter-spacing: var(--letter-spacing-tight);
+        }
+
+        .text-display-small {
+            font-size: var(--font-size-4xl);
+            font-weight: 600;
+            line-height: var(--line-height-snug);
+        }
+
+        .text-heading-h1 {
+            font-size: var(--font-size-3xl);
+            font-weight: 700;
+            line-height: var(--line-height-snug);
+            letter-spacing: var(--letter-spacing-tight);
+        }
+
+        .text-heading-h2 {
+            font-size: var(--font-size-2xl);
+            font-weight: 600;
+            line-height: var(--line-height-snug);
+        }
+
+        .text-heading-h3 {
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            line-height: var(--line-height-normal);
+        }
+
+        .text-body-large {
+            font-size: var(--font-size-lg);
+            line-height: var(--line-height-relaxed);
+        }
+
+        .text-body-medium {
+            font-size: var(--font-size-base);
+            line-height: var(--line-height-normal);
+        }
+
+        .text-body-small {
+            font-size: var(--font-size-sm);
+            line-height: var(--line-height-normal);
+        }
+
+        .text-label-large {
+            font-size: var(--font-size-base);
+            font-weight: 500;
+            line-height: var(--line-height-normal);
+        }
+
+        .text-label-medium {
+            font-size: var(--font-size-sm);
+            font-weight: 500;
+            line-height: var(--line-height-normal);
+        }
+
+        .text-label-small {
+            font-size: var(--font-size-xs);
+            font-weight: 500;
+            line-height: var(--line-height-tight);
+            letter-spacing: var(--letter-spacing-wide);
+            text-transform: uppercase;
+        }
+    }
+
+    /* Inline Theme Colors */
+    --button-primary-bg: var(--color-primary);
+    --button-primary-text: var(--color-primary-foreground);
+
+    --button-secondary-bg: var(--color-secondary);
+    --button-secondary-text: var(--color-secondary-foreground);
+
+    --button-tertiary-bg: var(--color-muted);
+    --button-tertiary-text: var(--color-muted-foreground);
+
+    --border-light: var(--color-border);
+
+
+    --background: hsl(0 0% 100%);
+    --foreground: hsl(211, 48%, 10%);
+    --card: hsl(0 0% 100%);
+    --card-foreground: hsl(211, 48%, 10%);
+    --popover: hsl(0 0% 100%);
+    --popover-foreground: hsl(211, 48%, 10%);
+    --primary: hsl(171 100% 32%);
+    --primary-foreground: var();
+    --secondary: hsl(182 98% 34%);
+    --secondary-foreground: hsl(0 0% 100%);
+    --muted: hsl(211 48% 95%);
+    --muted-foreground: hsl(211, 48%, 45%);
+    --accent: hsl(45 94% 61%);
+    --accent-foreground: hsl(211, 48%, 45%);
+    --destructive: hsl(7 82% 63%);
+    --destructive-foreground: hsl(0 0% 100%);
+    --border: hsl(211, 48%, 85%);
+    --input: hsl(0 0% 100%);
+    --ring: hsl(171, 100%, 32%);
+    --chart-1: hsl(171 100% 32%);
+    --chart-2: hsl(182 98% 34%);
+    --chart-3: hsl(45 94% 61%);
+    --chart-4: hsl(7 82% 63%);
+    --chart-5: hsl(211 48% 22%);
+    --radius: 0.5rem;
+    --sidebar: hsl(0 0% 100%);
+    --sidebar-foreground: hsl(211, 48%, 10%);
+    --sidebar-primary: hsl(171 100% 32%);
+    --sidebar-primary-foreground: hsl(0 0% 100%);
+    --sidebar-accent: hsl(45 94% 61%);
+    --sidebar-accent-foreground: hsl(211, 48%, 45%);
+    --sidebar-border: hsl(211, 48%, 85%);
+    --sidebar-ring: hsl(171, 100%, 32%);
+}
+
+.dark {
+    --background: hsl(211 48% 5%);
+    --foreground: hsl(0 0% 98%);
+    --card: hsl(211 48% 8%);
+    --card-foreground: hsl(0 0% 98%);
+    --popover: hsl(211 48% 8%);
+    --popover-foreground: hsl(0 0% 98%);
+    --primary: hsl(171 100% 40%);
+    --primary-foreground: hsl(211 48% 5%);
+    --secondary: hsl(182 98% 42%);
+    --secondary-foreground: hsl(211 48% 5%);
+    --muted: hsl(211 48% 15%);
+    --muted-foreground: hsl(211 48% 65%);
+    --accent: hsl(45 94% 55%);
+    --accent-foreground: hsl(211 48% 5%);
+    --destructive: hsl(7 82% 55%);
+    --destructive-foreground: hsl(0 0% 98%);
+    --border: hsl(211 48% 15%);
+    --input: hsl(211 48% 15%);
+    --ring: hsl(171 100% 40%);
+
+}
+
+@layer utilities {
+    /* Utility Classes */
+
+    .btn-primary {
+        background-color: var(--button-primary-bg);
+        color: var(--button-primary-text);
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
+        font-weight: 500;
+        transition: all 0.2s;
+    }
+
+    .btn-primary:hover {
+        background-color: var(--button-primary-bg) / 0.9;
+    }
+
+    .btn-secondary {
+        background-color: var(--button-secondary-bg);
+        color: var(--button-secondary-text);
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
+        font-weight: 500;
+        transition: all 0.2s;
+    }
+
+    .btn-tertiary {
+        background-color: var(--button-tertiary-bg);
+        color: var(--button-tertiary-text);
+        padding: 0.5rem 1rem;
+        border-radius: 0.375rem;
+        border: 1px solid var(--border-light);
+        font-weight: 500;
+        transition: all 0.2s;
+    }
+
+    /* Typography Utilities */
+    .text-display-large {
+        font-size: var(--font-size-6xl);
+        font-weight: 700;
+        line-height: var(--line-height-tight);
+        letter-spacing: var(--letter-spacing-tighter);
+    }
+
+    .text-display-medium {
+        font-size: var(--font-size-5xl);
+        font-weight: 700;
+        line-height: var(--line-height-tight);
+        letter-spacing: var(--letter-spacing-tight);
+    }
+
+    .text-display-small {
+        font-size: var(--font-size-4xl);
+        font-weight: 600;
+        line-height: var(--line-height-snug);
+    }
+
+    .text-heading-h1 {
+        font-size: var(--font-size-3xl);
+        font-weight: 700;
+        line-height: var(--line-height-snug);
+        letter-spacing: var(--letter-spacing-tight);
+    }
+
+    .text-heading-h2 {
+        font-size: var(--font-size-2xl);
+        font-weight: 600;
+        line-height: var(--line-height-snug);
+    }
+
+    .text-heading-h3 {
+        font-size: var(--font-size-xl);
+        font-weight: 600;
+        line-height: var(--line-height-normal);
+    }
+
+    .text-body-large {
+        font-size: var(--font-size-lg);
+        line-height: var(--line-height-relaxed);
+    }
+
+    .text-body-medium {
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-normal);
+    }
+
+    .text-body-small {
+        font-size: var(--font-size-sm);
+        line-height: var(--line-height-normal);
+    }
+
+    .text-label-large {
+        font-size: var(--font-size-base);
+        font-weight: 500;
+        line-height: var(--line-height-normal);
+    }
+
+    .text-label-medium {
+        font-size: var(--font-size-sm);
+        font-weight: 500;
+        line-height: var(--line-height-normal);
+    }
+
+    .text-label-small {
+        font-size: var(--font-size-xs);
+        font-weight: 500;
+        line-height: var(--line-height-tight);
+        letter-spacing: var(--letter-spacing-wide);
+        text-transform: uppercase;
+    }
+}
+
+@layer base {
+    body {
+        font-family: var(--font-family-primary);
+        background-color: var(--background);
+        color: var(--foreground);
+        line-height: var(--line-height-normal);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    p {
+        margin-bottom: 1rem;
+    }
+
+    a {
+        color: var(--primary);
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+}
