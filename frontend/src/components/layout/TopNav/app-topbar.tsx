@@ -1,4 +1,4 @@
-import { ModeToggle } from "@/components/mode-toggle";
+import { ModeToggle } from "../../mode-toggle";
 import { SearchInput } from "../../common/Input/search-input";
 import Header from "../Header/app-header";
 

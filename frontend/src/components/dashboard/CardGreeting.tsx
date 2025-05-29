@@ -1,6 +1,6 @@
 import { Card, CardContent } from "../../components/ui/card";
 
-import greetingCardImg from "./assets/images/standing-dashboard-image.svg";
+import greetingCardImg from "../../assets/images/standing-dashboard-image.svg";
 
 export function CardGreeting() {
 	return (

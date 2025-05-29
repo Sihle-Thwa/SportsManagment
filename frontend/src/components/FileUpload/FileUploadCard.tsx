@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
+import { Button } from '../../components/ui/button';
 import { Upload } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { cn } from '../../lib/utils';
 
 export interface FileUploadCardProps {
   title?: string;
@@ -35,51 +35,51 @@ export const FileUploadCard = ({
   const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
     event.preventDefault();
     event.stopPropagation();
-    
+
     const file = event.dataTransfer.files?.[0];
     handleFile(file);
   };
 
   const handleFile = (file?: File) => {
     if (!file) return;
-    
+
     setError(null);
-    
+
     // Check file size
     if (file.size > maxFileSize) {
       setError(`File size exceeds the maximum limit of ${maxFileSize / (1024 * 1024)}MB`);
       return;
     }
-    
+
     // Check file type based on extension
     const fileExtension = file.name.split('.').pop()?.toLowerCase();
     const acceptedExtensions = acceptedFileTypes
       .split(',')
       .map(type => type.trim().replace('.', '').toLowerCase());
-      
+
     if (fileExtension && !acceptedExtensions.includes(fileExtension)) {
       setError(`File type not supported. Please upload: ${acceptedFileTypes}`);
       return;
     }
-    
+
     // For images, check dimensions
     if (file.type.startsWith('image/')) {
       const img = new Image();
       const objectUrl = URL.createObjectURL(file);
-      
+
       img.onload = () => {
         URL.revokeObjectURL(objectUrl);
-        
+
         if (img.width > maxDimensions.width || img.height > maxDimensions.height) {
           setError(`Image dimensions should not exceed ${maxDimensions.width}×${maxDimensions.height} pixels`);
           return;
         }
-        
+
         setSelectedFile(file);
         setPreview(objectUrl);
         onFileSelect(file);
       };
-      
+
       img.src = objectUrl;
     } else {
       // For non-image files
@@ -166,11 +166,11 @@ export const FileUploadCard = ({
             </label>
           </div>
         )}
-        
+
         {error && (
           <div className="mt-3 text-red-500 text-sm">{error}</div>
         )}
-        
+
         <div className="mt-4 flex justify-center">
           {!selectedFile ? (
             <Button
