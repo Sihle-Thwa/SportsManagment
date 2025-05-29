@@ -13,26 +13,27 @@ interface NavMainProps {
 
 export function NavMain({ activeRoute, setActiveRoute }: NavMainProps) {
 	return (
-		<SidebarMenu className="flex flex-col gap-1 self-stretch items-start justify-center p-3">
+		<SidebarMenu className="flex flex-col gap-2 self-stretch items-start justify-center p-4">
 			{routes.map((route) => (
 				<SidebarMenuItem
 					key={route.id}
-					className="flex flex-row items-start justify-start w-full"
+					className="flex flex-row items-center w-full"
 				>
-					<SidebarMenuButton asChild className="w-full p-3">
+					<SidebarMenuButton asChild className="w-full px-4 py-2">
 						<NavLink
 							to={route.path}
 							className={({ isActive }) =>
-								`flex flex-row rounded-lg ${
+								[
+									"flex flex-row items-center gap-3 rounded-lg transition-colors duration-150",
 									isActive || activeRoute === route.path
-										? "bg-primary text-white"
-										: "text-muted-foreground hover:bg-gray-100"
-								}`
+										? "bg-primary text-primary-foreground"
+										: "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+								].join(" ")
 							}
 							onClick={() => setActiveRoute(route.path)}
 						>
 							{route.icon}
-							<span>{route.title}</span>
+							<span className="truncate">{route.title}</span>
 						</NavLink>
 					</SidebarMenuButton>
 				</SidebarMenuItem>

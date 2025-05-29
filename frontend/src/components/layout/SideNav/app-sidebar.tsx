@@ -20,27 +20,23 @@ export function AppSideBar({ currentPath }: AppSideBarProps) {
 	const [activeRoute, setActiveRoute] = useState(currentPath);
 
 	return (
-		<Sidebar collapsible="icon" className="h-screen">
-			<SidebarHeader className="flex flex-row items-start justify-center p-4">
+		<Sidebar collapsible="icon" className="h-screen bg-background border-r border-border">
+			<SidebarHeader className="flex flex-row items-center justify-center p-4">
 				<SidebarMenuButton
 					size="lg"
-					className="flex flex-row data-[state=open]:data-[state=open]: p-3 "
+					className="flex flex-row items-center gap-2 p-3 rounded-lg hover:bg-muted transition-colors"
 				>
-					<div className="flex flex-row rounded-lg items-center justify-center">
-						<House className="h-fit w-fit bg-white" />
+					<div className="flex items-center justify-center">
+						<House className="w-6 h-6 text-primary" />
 					</div>
-					<div className="flex flex-row items-center justify-center">
-						<span className=" font-semibold">U-Organise</span>
-					</div>
+					<span className="font-semibold text-lg text-primary">U-Organise</span>
 				</SidebarMenuButton>
 			</SidebarHeader>
-			<SidebarContent>
+			<SidebarContent className="flex flex-col gap-2 px-2">
 				<NavMain activeRoute={activeRoute} setActiveRoute={setActiveRoute} />
-
 				<NavSecondary />
 			</SidebarContent>
-			<SidebarFooter className="mt-auto">
-				{/* Fix Icon to display center when sidenav bar is 'closed' */}
+			<SidebarFooter className="mt-auto flex items-center justify-center p-4">
 				<NavUser />
 			</SidebarFooter>
 			<SidebarRail />

@@ -5,27 +5,18 @@ import {
 	BreadcrumbList,
 	BreadcrumbPage,
 } from "../../ui/breadcrumb";
-// import { SidebarTrigger } from "./sidebar-trigger";
 import { Separator } from "../../ui/separator";
 import { SidebarTrigger } from "../../ui/sidebar";
+
 const Header = () => {
 	const location = useLocation();
 	const pathSegments = location.pathname.split("/").filter(Boolean);
 
 	return (
 		<div
-			className={[
-				"flex",
-				"h-16",
-				"shrink-0",
-				"items-center",
-				"gap-1",
-				"transition-[width,height]",
-				"ease-linear",
-				"group-has-data-[collapsible=icon]/sidebar-wrapper:h-16",
-			].join(" ")}
+			className="flex h-16 shrink-0 items-center gap-1 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-16"
 		>
-			<div className="flex items-center gap-2 ">
+			<div className="flex items-center gap-2">
 				<SidebarTrigger className="ml-0" />
 				<Separator orientation="vertical" className="h-4" />
 
