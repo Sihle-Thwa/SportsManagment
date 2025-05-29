@@ -20,11 +20,15 @@ export function AppSideBar({ currentPath }: AppSideBarProps) {
 	const [activeRoute, setActiveRoute] = useState(currentPath);
 
 	return (
-		<Sidebar collapsible="icon" className="h-screen bg-background border-r border-border">
+		<Sidebar
+			collapsible="icon"
+			className="h-screen bg-background border-r border-border"
+			data-testid="app-sidebar"
+		>
 			<SidebarHeader className="flex flex-row items-center justify-center p-4">
 				<SidebarMenuButton
 					size="lg"
-					className="flex flex-row items-center gap-2 p-3 rounded-lg hover:bg-muted transition-colors"
+					className="flex flex-row items-center gap-2 p-3 rounded-lg hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
 				>
 					<div className="flex items-center justify-center">
 						<House className="w-6 h-6 text-primary" />
@@ -43,4 +47,5 @@ export function AppSideBar({ currentPath }: AppSideBarProps) {
 		</Sidebar>
 	);
 }
+
 export default AppSideBar;

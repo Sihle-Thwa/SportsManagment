@@ -17,17 +17,18 @@ export function NavMain({ activeRoute, setActiveRoute }: NavMainProps) {
 			{routes.map((route) => (
 				<SidebarMenuItem
 					key={route.id}
-					className="flex flex-row items-center w-full"
+					className="flex items-center w-full"
 				>
 					<SidebarMenuButton asChild className="w-full px-4 py-2">
 						<NavLink
 							to={route.path}
 							className={({ isActive }) =>
 								[
-									"flex flex-row items-center gap-3 rounded-lg transition-colors duration-150",
+									"flex items-center gap-3 rounded-lg transition-colors duration-150",
 									isActive || activeRoute === route.path
 										? "bg-primary text-primary-foreground"
 										: "text-muted-foreground hover:bg-accent hover:text-accent-foreground",
+									"custom-sidenav-link", // Example: add your custom class from global.css
 								].join(" ")
 							}
 							onClick={() => setActiveRoute(route.path)}

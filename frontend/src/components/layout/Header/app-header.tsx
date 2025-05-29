@@ -7,36 +7,30 @@ import {
 } from "../../ui/breadcrumb";
 import { Separator } from "../../ui/separator";
 import { SidebarTrigger } from "../../ui/sidebar";
+import React from "react";
 
 const Header = () => {
 	const location = useLocation();
 	const pathSegments = location.pathname.split("/").filter(Boolean);
 
 	return (
-		<div
-			className="flex h-16 shrink-0 items-center gap-1 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-16"
-		>
-			<div className="flex items-center gap-2">
-				<SidebarTrigger className="ml-0" />
-				<Separator orientation="vertical" className="h-4" />
-
-				{/* Breadcrumb */}
-				<Breadcrumb>
-					<BreadcrumbList>
-						{pathSegments.length > 0 && (
-							<BreadcrumbItem className="hidden md:block">
-								<BreadcrumbPage>
-									{pathSegments[pathSegments.length - 1]
-										.charAt(0)
-										.toUpperCase() +
-										pathSegments[pathSegments.length - 1].slice(1)}
-								</BreadcrumbPage>
-							</BreadcrumbItem>
-						)}
-					</BreadcrumbList>
-				</Breadcrumb>
-			</div>
-		</div>
+		<header className="flex h-16 items-center gap-2 border-b bg-background px-4">
+			<SidebarTrigger className="ml-0" />
+			<Separator orientation="vertical" className="h-6 mx-2" />
+			<Breadcrumb>
+				<BreadcrumbList>
+					{pathSegments.length > 0 && (
+						<BreadcrumbItem className="hidden md:block">
+							<BreadcrumbPage>
+								{pathSegments[pathSegments.length - 1]
+									.replace(/-/g, " ")
+									.replace(/\b\w/g, (c) => c.toUpperCase())}
+							</BreadcrumbPage>
+						</BreadcrumbItem>
+					)}
+				</BreadcrumbList>
+			</Breadcrumb>
+		</header>
 	);
 };
 

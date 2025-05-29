@@ -1,35 +1,27 @@
 import { ModeToggle } from "../../mode-toggle";
 import { SearchInput } from "../../common/Input/search-input";
 import Header from "../Header/app-header";
+import "../../../styles/global.css"; // Import your custom global styles
 
 const MainAppTopBar = () => {
 	return (
-		<div
-			className={`
-				flex 
-				{/* Component responsible for displaying the page header */}
-				<Header />
-				h-[72px] 
-				px-6 
-				items-center 
-				justify-between
-			`}
-		>
-			<div className="flex items-start">
-				{/* Left side - Page Name */}
+		<header className="flex h-18 px-6 items-center justify-between border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+			{/* Left side - Page Name */}
+			<div className="flex items-center">
 				<Header />
 			</div>
 
 			{/* Center - Search */}
-			{/* The SearchInput component provides a search bar for user input. 
-					It may accept props such as 'placeholder' or 'onSearch' for customization. */}
-			<SearchInput />
+			<div className="flex-1 flex justify-center">
+				<SearchInput />
+			</div>
+
 			{/* Right - Theme-toggle */}
-			{/* Component responsible for toggling between light and dark mode */}
-			<ModeToggle />
-			{/* Right - Theme-toggle */}
-			<ModeToggle />
-		</div>
+			<div className="flex items-center gap-2">
+				<ModeToggle />
+			</div>
+		</header>
 	);
-}
+};
+
 export default MainAppTopBar;
