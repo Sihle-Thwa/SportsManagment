@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
-import { format } from 'date-fns';
-import { Calendar as CalendarIcon } from 'lucide-react';
+import { useState, useEffect } from "react";
+import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
 import {
   validateUserInfo,
   UserInfoFormDefaultValues,
   GENDER_OPTIONS,
   COUNTRY_OPTIONS,
-  PROVINCE_OPTIONS
-} from '../../utils/validators';
+  PROVINCE_OPTIONS,
+} from "../../utils/validators";
 
-import { Button } from '../common/Button';
-import { Calendar } from '../../components/ui/calendar';
+import { Button } from "../../components/ui/button";
+import { Calendar } from "../../components/ui/calendar";
 import {
   Form,
   FormControl,
@@ -18,23 +18,23 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '../../components/ui/form';
-import { Input } from '../../components/ui/input';
+} from "../../components/ui/form";
+import { Input } from "../../components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../../components/ui/select';
+} from "../../components/ui/select";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '../../components/ui/popover';
-import { cn } from '../../lib/utils';
-import { useForm } from 'react-hook-form';
-import { Card, CardContent, CardHeader } from '../ui/card';
+} from "../../components/ui/popover";
+import { Card, CardContent, CardHeader } from "../../components/ui/card";
+import { cn } from "../../lib/utils";
+import { useForm } from "react-hook-form";
 
 type FormValues = typeof UserInfoFormDefaultValues;
 
@@ -47,17 +47,14 @@ interface UserInfoFormProps {
 export function UserInfoForm({
   defaultValues = UserInfoFormDefaultValues,
   onSubmit,
-  formTitle = "User Information"
+  formTitle = "User Information",
 }: UserInfoFormProps) {
-  // Initializing react-hook-form
   const form = useForm<FormValues>({
     defaultValues,
   });
 
-  // Storing validation errors
   const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
 
-  // Handling form submission with custom validation
   const handleSubmit = (data: FormValues) => {
     const errors = validateUserInfo(data);
 
@@ -69,20 +66,19 @@ export function UserInfoForm({
     }
   };
 
-  // Setting errors in react-hook-form when validationErrors change
   useEffect(() => {
     Object.entries(validationErrors).forEach(([field, message]) => {
       form.setError(field as keyof FormValues, {
-        type: 'manual',
-        message
+        type: "manual",
+        message,
       });
     });
   }, [validationErrors, form]);
 
   return (
-    <Card className="w-[750px] bg-white rounded-lg shadow-xs gap-3">
-      <CardHeader className=''>
-        <h2 className="text-xl font-semibold border-b border-amber-600">{formTitle}</h2>
+    <Card className="w-full max-w-2xl bg-white rounded shadow gap-3">
+      <CardHeader>
+        <h2 className="text-xl font-semibold border-b border-amber-600 pb-2">{formTitle}</h2>
       </CardHeader>
       <CardContent>
         <Form {...form}>
@@ -99,14 +95,10 @@ export function UserInfoForm({
                       <Input
                         placeholder="First Name"
                         {...field}
-                        className={cn(
-                          validationErrors.firstName && "border-red-500"
-                        )}
+                        className={cn(validationErrors.firstName && "border-red-500")}
                       />
                     </FormControl>
-                    {validationErrors.firstName && (
-                      <FormMessage>{validationErrors.firstName}</FormMessage>
-                    )}
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -122,14 +114,10 @@ export function UserInfoForm({
                       <Input
                         placeholder="Last Name"
                         {...field}
-                        className={cn(
-                          validationErrors.lastName && "border-red-500"
-                        )}
+                        className={cn(validationErrors.lastName && "border-red-500")}
                       />
                     </FormControl>
-                    {validationErrors.lastName && (
-                      <FormMessage>{validationErrors.lastName}</FormMessage>
-                    )}
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -141,14 +129,9 @@ export function UserInfoForm({
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Gender</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
-                        <SelectTrigger className={cn(
-                          validationErrors.gender && "border-red-500"
-                        )}>
+                        <SelectTrigger className={cn(validationErrors.gender && "border-red-500")}>
                           <SelectValue placeholder="Select gender" />
                         </SelectTrigger>
                       </FormControl>
@@ -160,9 +143,7 @@ export function UserInfoForm({
                         ))}
                       </SelectContent>
                     </Select>
-                    {validationErrors.gender && (
-                      <FormMessage>{validationErrors.gender}</FormMessage>
-                    )}
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -178,24 +159,16 @@ export function UserInfoForm({
                       <PopoverTrigger asChild>
                         <FormControl>
                           <Button
-                            variant="primary"
-                            withIcon={true}
-                            size="md"
-                            iconPosition="right"
-                            icon={<CalendarIcon />}
-                            fullWidth={true}
+                            variant="outline"
+                            type="button"
                             className={cn(
-                              "pl-3 text-left font-normal",
+                              "pl-3 text-left font-normal w-full justify-between",
                               !field.value && "text-muted-foreground",
                               validationErrors.dateOfBirth && "border-red-500"
                             )}
                           >
-                            {field.value ? (
-                              format(field.value, "PPP")
-                            ) : (
-                              <span>Select date</span>
-                            )}
-
+                            {field.value ? format(field.value, "PPP") : <span>Select date</span>}
+                            <CalendarIcon className="ml-2 h-4 w-4" />
                           </Button>
                         </FormControl>
                       </PopoverTrigger>
@@ -208,9 +181,7 @@ export function UserInfoForm({
                         />
                       </PopoverContent>
                     </Popover>
-                    {validationErrors.dateOfBirth && (
-                      <FormMessage>{validationErrors.dateOfBirth}</FormMessage>
-                    )}
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -227,14 +198,10 @@ export function UserInfoForm({
                         type="tel"
                         placeholder="Phone Number"
                         {...field}
-                        className={cn(
-                          validationErrors.phone && "border-red-500"
-                        )}
+                        className={cn(validationErrors.phone && "border-red-500")}
                       />
                     </FormControl>
-                    {validationErrors.phone && (
-                      <FormMessage>{validationErrors.phone}</FormMessage>
-                    )}
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -251,14 +218,10 @@ export function UserInfoForm({
                         type="email"
                         placeholder="Email Address"
                         {...field}
-                        className={cn(
-                          validationErrors.email && "border-red-500"
-                        )}
+                        className={cn(validationErrors.email && "border-red-500")}
                       />
                     </FormControl>
-                    {validationErrors.email && (
-                      <FormMessage>{validationErrors.email}</FormMessage>
-                    )}
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -274,14 +237,10 @@ export function UserInfoForm({
                       <Input
                         placeholder="Address Line 1"
                         {...field}
-                        className={cn(
-                          validationErrors.addressLine1 && "border-red-500"
-                        )}
+                        className={cn(validationErrors.addressLine1 && "border-red-500")}
                       />
                     </FormControl>
-                    {validationErrors.addressLine1 && (
-                      <FormMessage>{validationErrors.addressLine1}</FormMessage>
-                    )}
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -294,10 +253,7 @@ export function UserInfoForm({
                   <FormItem>
                     <FormLabel>Address Line 2 (Optional)</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="Address Line 2"
-                        {...field}
-                      />
+                      <Input placeholder="Address Line 2" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -315,14 +271,10 @@ export function UserInfoForm({
                       <Input
                         placeholder="City"
                         {...field}
-                        className={cn(
-                          validationErrors.city && "border-red-500"
-                        )}
+                        className={cn(validationErrors.city && "border-red-500")}
                       />
                     </FormControl>
-                    {validationErrors.city && (
-                      <FormMessage>{validationErrors.city}</FormMessage>
-                    )}
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -334,14 +286,9 @@ export function UserInfoForm({
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Province</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
-                        <SelectTrigger className={cn(
-                          validationErrors.province && "border-red-500"
-                        )}>
+                        <SelectTrigger className={cn(validationErrors.province && "border-red-500")}>
                           <SelectValue placeholder="Select Province" />
                         </SelectTrigger>
                       </FormControl>
@@ -353,9 +300,7 @@ export function UserInfoForm({
                         ))}
                       </SelectContent>
                     </Select>
-                    {validationErrors.province && (
-                      <FormMessage>{validationErrors.province}</FormMessage>
-                    )}
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -371,14 +316,10 @@ export function UserInfoForm({
                       <Input
                         placeholder="Postal Code"
                         {...field}
-                        className={cn(
-                          validationErrors.postCode && "border-red-500"
-                        )}
+                        className={cn(validationErrors.postCode && "border-red-500")}
                       />
                     </FormControl>
-                    {validationErrors.postCode && (
-                      <FormMessage>{validationErrors.postCode}</FormMessage>
-                    )}
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -390,14 +331,9 @@ export function UserInfoForm({
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Country</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
-                        <SelectTrigger className={cn(
-                          validationErrors.country && "border-red-500"
-                        )}>
+                        <SelectTrigger className={cn(validationErrors.country && "border-red-500")}>
                           <SelectValue placeholder="Select country" />
                         </SelectTrigger>
                       </FormControl>
@@ -409,25 +345,18 @@ export function UserInfoForm({
                         ))}
                       </SelectContent>
                     </Select>
-                    {validationErrors.country && (
-                      <FormMessage>{validationErrors.country}</FormMessage>
-                    )}
+                    <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
 
-            <Button
-              variant='primary'
-              size='md'
-              withIcon={false}
-              fullWidth={true}>
+            <Button type="submit" variant="primary" className="w-full">
               Submit
             </Button>
           </form>
         </Form>
       </CardContent>
-
     </Card>
   );
 }

@@ -17,7 +17,6 @@ interface FormFieldProps<T extends FieldValues = FieldValues> {
   children: React.ReactNode;
 }
 
-
 export const FormField = <T extends FieldValues = FieldValues>({
   name,
   label,
@@ -30,11 +29,23 @@ export const FormField = <T extends FieldValues = FieldValues>({
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem>
-          {label && <FormLabel>{label}</FormLabel>}
-          <FormControl>{React.cloneElement(children as React.ReactElement, { ...field })}</FormControl>
-          {description && <FormDescription>{description}</FormDescription>}
-          <FormMessage />
+        <FormItem className="mb-4"> {/* Example Tailwind v4 spacing */}
+          {label && (
+            <FormLabel className="font-semibold text-base text-gray-800 dark:text-gray-200">
+              {label}
+            </FormLabel>
+          )}
+          <FormControl>
+            {React.isValidElement(children)
+              ? React.cloneElement(children as React.ReactElement, { ...field })
+              : children}
+          </FormControl>
+          {description && (
+            <FormDescription className="text-sm text-gray-500 dark:text-gray-400">
+              {description}
+            </FormDescription>
+          )}
+          <FormMessage className="text-red-500 text-xs mt-1" />
         </FormItem>
       )}
     />
