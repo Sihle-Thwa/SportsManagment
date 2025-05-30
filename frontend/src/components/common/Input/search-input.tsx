@@ -6,7 +6,7 @@ const SearchInput = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <div className="flex w-72  ">
+    <div className="flex flex-row  ">
       <div className="flex items-center">
         <Input
           startIcon={Search}
@@ -14,7 +14,7 @@ const SearchInput = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search..."
-          className="input-base "
+          className="input-base"
         />
       </div>
     </div>
