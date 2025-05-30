@@ -5,10 +5,6 @@
 /* Custom Properties */
 
 :root {
-    --font-family-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    --font-family-mono: "JetBrains Mono", "SF Mono", Monaco, monospace;
-
-    /* Functional Color Scales based on your palette */
 
     /* Primary Color Scale */
     --primary-50: hsl(211, 48%, 92%);
@@ -87,12 +83,12 @@
     --accent-foreground: var(--background-50);
     --destructive: var(--accent-700);
     --destructive-foreground: var(--background-50);
-    --border: var(--primary-300);
+    --border: var(--primary-50);
     --input: var(--background-100);
     --ring: var(--accent-300);
 
     /* Sidebar and UI */
-    --sidebar: var(--primary-700);
+    --sidebar: var(--primary-50);
     --sidebar-foreground: var(--background-50);
     --sidebar-primary: var(--secondary-700);
     --sidebar-primary-foreground: var(--background-50);
@@ -161,6 +157,10 @@
         background-color: var(--background);
         color: var(--foreground);
         line-height: var(--line-height-normal);
+    }
+
+    .dark body {
+        background-color: var(--background);
     }
 
     input, select, textarea {

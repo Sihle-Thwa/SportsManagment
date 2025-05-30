@@ -1,8 +1,17 @@
 /* Typography Variables tied to global.css values */
+@import './global.css';
+
 @layer base {
 
     /* Font families */
     :root {
+
+
+        --font-family-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --font-family-mono: "JetBrains Mono", "SF Mono", Monaco, monospace;
+        --font-family-serif: "Merriweather", Georgia, serif;
+        --font-family-sans: "Open Sans", Arial, sans-serif;
+
         /* Font Sizes */
         --font-size-xs: 0.75rem;
         --font-size-sm: 0.875rem;

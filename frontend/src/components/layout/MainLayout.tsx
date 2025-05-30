@@ -15,11 +15,11 @@ export function MainLayout() {
 
 	return (
 		<SidebarProvider>
-			<div className="flex h-screen w-full bg-background">
+			<div className="flex h-screen w-full">
 				<AppSideBar currentPath={location.pathname} />
-				<div className="flex flex-col flex-1 min-h-0">
+				<div className="flex flex-col flex-1">
 					<AppTopBar />
-					<main className="flex-1 overflow-y-auto p-6 bg-gradient-to-b from-white to-muted">
+					<main className="flex-1 overflow-y-auto p-6">
 						<Outlet />
 					</main>
 				</div>
