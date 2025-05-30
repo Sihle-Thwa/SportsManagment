@@ -3,6 +3,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /* Custom Properties */
+
 :root {
     --font-family-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     --font-family-mono: "JetBrains Mono", "SF Mono", Monaco, monospace;
