@@ -64,17 +64,17 @@ const MessageDashboard = ({ messages = [] }) => {
   ];
 
   return (
-    <Card className="flex flex-col w-full max-h-[320px] shadow-xs rounded-lg overflow-hidden bg-white">
-      <CardHeader className="flex flex-row items-start justify-between p-auto">
-        <CardTitle className="text-xl font-semibold text-slate-800">
+    <Card className="card-base flex flex-col w-full max-h-[320px]  rounded-lg">
+      <CardHeader className="card-header flex flex-row items-start justify-between">
+        <CardTitle className="card-title text-xl font-semibold">
           Messages
         </CardTitle>
-        <Button variant="ghost" className=" hover:bg-slate-100">
+        <Button className="btn-tertiary">
           <MoreHorizontal className="h-6 w-6 text-slate-600" />
         </Button>
       </CardHeader>
       <ScrollArea className="flex w-full overflow-y-auto">
-        <CardContent className="flex flex-col items-center justify-around gap-auto w-full">
+        <CardContent className="card-body flex flex-col items-center justify-around w-full">
           {messageData.map((msg) => (
             <div
               key={msg.id}

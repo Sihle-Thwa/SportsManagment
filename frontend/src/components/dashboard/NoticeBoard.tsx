@@ -31,17 +31,17 @@ const NoticeBoard = ({ notices = [] }) => {
   };
 
   return (
-    <Card className="flex flex-col max-h-[320px] w-full shadow-xs rounded-lg overflow-hidden bg-white">
-      <CardHeader className="flex flex-row items-start justify-between p-auto">
-        <CardTitle className="text-xl font-semibold text-slate-800">
+    <Card className="card-base flex flex-col max-h-[320px] w-full rounded-lg overflow-hidden">
+      <CardHeader className="card-header flex flex-row items-start justify-between p-auto">
+        <CardTitle className="card-title text-xl font-semibold text-slate-800">
           Notice Board
         </CardTitle>
-        <Button variant="ghost" className=" hover:bg-slate-100">
+        <Button className="btn-tertiary">
           <MoreHorizontal className="h-6 w-6 text-slate-600" />
         </Button>
       </CardHeader>
       <ScrollArea className="flex w-full  overflow-y-auto ">
-        <CardContent className="flex flex-col items-center justify-around gap-auto w-full">
+        <CardContent className="card-body flex flex-col items-center justify-around w-full">
           {noticeData.map((notice) => (
             <div
               key={notice.id}
@@ -67,36 +67,30 @@ const NoticeBoard = ({ notices = [] }) => {
         </CardContent>
       </ScrollArea>
 
-      <CardFooter className="flex flex-row items-center justify-center gap-3 p-3  ">
+      <CardFooter className="card-footer flex flex-row items-center justify-center gap-3 p-3  ">
         <Button
-          variant="primary"
-          size="sm"
           withIcon={true}
           iconPosition="left"
           icon={<Plus />}
           fullWidth={false}
-          className=" bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-xs"
+          className="btn-primary"
         >
         </Button>
         <Button
-          variant="primary"
-          size="sm"
           withIcon={true}
           iconPosition="left"
           icon={<Pencil />}
           fullWidth={false}
-          className=" bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-xs"
+          className="btn-primary"
         >
 
         </Button>
         <Button
-          variant="primary"
-          size="sm"
           withIcon={true}
           iconPosition="left"
           icon={<X />}
           fullWidth={false}
-          className=" bg-slate-800 hover:bg-slate-700 text-white rounded-lg border-none shadow-xs"
+          className="btn-primary"
         >
         </Button>
       </CardFooter>

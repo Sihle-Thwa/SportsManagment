@@ -4,13 +4,13 @@ import { Button } from "../ui/button";
 
 export function CardCalendar() {
   return (
-    <Card className="flex flex-col py-3 px-6 w-full h-full items-center justify-items-center gap-2 shrink-0">
-      <CardContent className="">
+    <Card className="card-base flex flex-col  h-full items-center">
+      <CardContent className="card-body flex flex-row w-fit h-fit">
         <CalendarObject />
       </CardContent>
-      <CardFooter >
-        <Button variant="outline">
-          <span className="max-w-32 max-h-7 text-sm">Manage Calendar</span>
+      <CardFooter className="card-footer">
+        <Button className="btn-secondary">
+          <span className="max-w-full">Manage Calendar</span>
         </Button>
       </CardFooter>
     </Card>

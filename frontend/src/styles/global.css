@@ -498,6 +498,38 @@
         border-color: var(--border-light);
     }
 
+    /*Card Style*/
+    .card-base {
+        background-color: var(--card);
+        color: var(--card-foreground);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-md);
+        padding: 1.5rem;
+        margin: 1rem 0;
+        transition: var(--transition-base);
+        border: 1px solid var(--border-strong);
+        max-width: 100%;
+        min-width: fit-content;
+    }
+
+    .card-base:hover {
+        box-shadow: var(--shadow-lg);
+    }
+
+    .card-header {
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-semibold);
+        margin-bottom: var(--spacing-3);
+        color: var(--text-primary);
+    }
+
+    .card-body {
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-normal);
+        color: var(--text-secondary);
+        margin-bottom: var(--spacing-4);
+    }
+
     .input-base {
         background-color: var(--input);
         color: var(--foreground);
