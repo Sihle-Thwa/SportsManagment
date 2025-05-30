@@ -10,20 +10,20 @@ const PlayerSummaryDashboard = () => {
   const girlsPercentage = Math.round((girlsCount / totalPlayers) * 100);
 
   return (
-    <Card className="card-base flex flex-col max-h-[320px] w-full h-full rounded-lg overflow-hidden">
+    <Card className="card-base ">
       <CardHeader className="card-header flex flex-row items-start justify-between p-auto">
-        <CardTitle className="card-title text-xl font-semibold text-slate-800">
+        <CardTitle className="card-title ">
           Players Summary
         </CardTitle>
         <Button className=" btn-tertiary">
           <MoreHorizontal className="h-6 w-6 text-slate-600" />
         </Button>
       </CardHeader>
-      <CardContent className="card-body flex w-full overflow-y-auto">
-        <div className="flex flex-row items-center justify-around gap-auto w-full">
+      <CardContent className="card-body flex flex-row w-full overflow-y-auto">
+        <div className=" h-full w-full gap-1">
           {/* Boys Donut Chart */}
-          <div className="flex flex-col shrink-0 h-fit w-fit items-center">
-            <div className="flex items-center justify-center h-[124px] w-[124px]">
+          <div className="flex flex-row shrink-0 h-full w-full items-start">
+            <div className="flex items-center justify-center h-[25%] w-[25%]">
               <svg className="w-full h-full" viewBox="0 0 100 100">
                 <circle
                   cx="50"
@@ -62,8 +62,8 @@ const PlayerSummaryDashboard = () => {
           </div>
 
           {/* Girls Donut Chart */}
-          <div className="flex flex-col items-center">
-            <div className="flex items-center justify-center h-[124px] w-[124px]">
+          <div className="flex flex-row shrink-0 h-full w-full items-end">
+            <div className="flex flex-col h-[25%] w-[25%]">
               <svg className="w-full h-full" viewBox="0 0 100 100">
                 <circle
                   cx="50"
@@ -104,7 +104,7 @@ const PlayerSummaryDashboard = () => {
 
 
       </CardContent>
-      <CardFooter className="card-footer flex flex-row items-center justify-center ">
+      <CardFooter className="card-footer ">
 
         <Button className="btn-primary"
           withIcon={true}

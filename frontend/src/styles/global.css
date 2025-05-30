@@ -372,21 +372,18 @@
     .btn-primary {
         background-color: var(--button-primary-bg);
         color: var(--button-primary-text);
-        padding: var(--spacing-2) var(--spacing-5);
         border: none;
         border-radius: var(--radius-lg);
-        font-weight: var(--font-weight-semibold);
-        font-size: var(--font-size-base);
-        line-height: var(--line-height-normal);
+        font-weight: var(--font-weight-normal);
+        font-size: var(--font-size-lg);
         box-shadow: var(--shadow-md);
         transition: var(--transition-fast);
         cursor: pointer;
         outline: none;
-        display: inline-flex;
+        display: flex;
         align-items: center;
         justify-content: center;
-        gap: var(--spacing-2);
-        user-select: none;
+        gap: var(--spacing-3);
     }
 
     .btn-primary:hover,
@@ -508,8 +505,11 @@
         margin: 1rem 0;
         transition: var(--transition-base);
         border: 1px solid var(--border-strong);
-        max-width: 100%;
-        min-width: fit-content;
+        width: 100%;
+        max-height: 320px;
+        display: flex;
+        flex-direction: column;
+
     }
 
     .card-base:hover {
@@ -517,19 +517,42 @@
     }
 
     .card-header {
-        font-size: var(--font-size-lg);
-        font-weight: var(--font-weight-semibold);
-        margin-bottom: var(--spacing-3);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: auto;
+    }
+
+    .card-title {
+        font-size: var(--font-size-2xl);
+        font-weight: var(--font-weight-bold);
+        margin-bottom: var(--spacing-2);
         color: var(--text-primary);
+        line-height: var(--line-height-normal);
+        flex: 1;
     }
 
     .card-body {
         font-size: var(--font-size-base);
-        line-height: var(--line-height-normal);
+        font-weight: var(--font-weight-normal);
         color: var(--text-secondary);
-        margin-bottom: var(--spacing-4);
+        overflow-y: auto;
+        align-items: center;
     }
 
+    .card-footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        border-top: 1px solid var(--border-light);
+        padding: var(--spacing-3);
+        gap: var(--spacing-3);
+    }
+
+
+
+    /* Input Styles */
     .input-base {
         background-color: var(--input);
         color: var(--foreground);

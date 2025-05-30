@@ -64,9 +64,9 @@ const MessageDashboard = ({ messages = [] }) => {
   ];
 
   return (
-    <Card className="card-base flex flex-col w-full max-h-[320px]  rounded-lg">
-      <CardHeader className="card-header flex flex-row items-start justify-between">
-        <CardTitle className="card-title text-xl font-semibold">
+    <Card className="card-base">
+      <CardHeader className="card-header flex flex-row items-start justify-between p-auto">
+        <CardTitle className="card-title">
           Messages
         </CardTitle>
         <Button className="btn-tertiary">
@@ -74,11 +74,11 @@ const MessageDashboard = ({ messages = [] }) => {
         </Button>
       </CardHeader>
       <ScrollArea className="flex w-full overflow-y-auto">
-        <CardContent className="card-body flex flex-col items-center justify-around w-full">
+        <CardContent className="card-body flex flex-col  justify-around w-full">
           {messageData.map((msg) => (
             <div
               key={msg.id}
-              className={`flex  w-full items-start mb-3 border-b hover:bg-slate-50 cursor-pointer" ${selectedConversation === msg.id ? "bg-slate-50" : ""
+              className={`flex w-full items-start mb-3 border-b hover:bg-slate-50 cursor-pointer" ${selectedConversation === msg.id ? "bg-slate-50" : ""
                 }`}
               onClick={() => setSelectedConversation(msg.id)}
             >

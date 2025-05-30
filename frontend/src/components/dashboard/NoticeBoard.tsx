@@ -31,9 +31,9 @@ const NoticeBoard = ({ notices = [] }) => {
   };
 
   return (
-    <Card className="card-base flex flex-col max-h-[320px] w-full rounded-lg overflow-hidden">
+    <Card className="card-base">
       <CardHeader className="card-header flex flex-row items-start justify-between p-auto">
-        <CardTitle className="card-title text-xl font-semibold text-slate-800">
+        <CardTitle className="card-title ">
           Notice Board
         </CardTitle>
         <Button className="btn-tertiary">
@@ -41,7 +41,7 @@ const NoticeBoard = ({ notices = [] }) => {
         </Button>
       </CardHeader>
       <ScrollArea className="flex w-full  overflow-y-auto ">
-        <CardContent className="card-body flex flex-col items-center justify-around w-full">
+        <CardContent className="card-body flex flex-col  w-full overflow-y-auto">
           {noticeData.map((notice) => (
             <div
               key={notice.id}
@@ -67,12 +67,12 @@ const NoticeBoard = ({ notices = [] }) => {
         </CardContent>
       </ScrollArea>
 
-      <CardFooter className="card-footer flex flex-row items-center justify-center gap-3 p-3  ">
+      <CardFooter className="card-footer ">
         <Button
           withIcon={true}
           iconPosition="left"
           icon={<Plus />}
-          fullWidth={false}
+          fullWidth={true}
           className="btn-primary"
         >
         </Button>
@@ -80,7 +80,7 @@ const NoticeBoard = ({ notices = [] }) => {
           withIcon={true}
           iconPosition="left"
           icon={<Pencil />}
-          fullWidth={false}
+          fullWidth={true}
           className="btn-primary"
         >
 
@@ -89,7 +89,7 @@ const NoticeBoard = ({ notices = [] }) => {
           withIcon={true}
           iconPosition="left"
           icon={<X />}
-          fullWidth={false}
+          fullWidth={true}
           className="btn-primary"
         >
         </Button>
