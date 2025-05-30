@@ -1,0 +1,231 @@
+@import 'global.css';
+
+/* Typography Variables tied to global.css values */
+@layer base {
+
+    /* Font families */
+    :root {
+        /* Font Sizes */
+        --font-size-xs: 0.75rem;
+        --font-size-sm: 0.875rem;
+        --font-size-base: 1rem;
+        --font-size-lg: 1.125rem;
+        --font-size-xl: 1.25rem;
+        --font-size-2xl: 1.5rem;
+        --font-size-3xl: 1.875rem;
+        --font-size-4xl: 2.25rem;
+        --font-size-5xl: 3rem;
+        --font-size-6xl: 3.75rem;
+
+        /* Line Heights */
+        --line-height-tight: 1.2;
+        --line-height-snug: 1.375;
+        --line-height-normal: 1.5;
+        --line-height-relaxed: 1.625;
+
+        /* Letter Spacing */
+        --letter-spacing-tighter: -0.05em;
+        --letter-spacing-tight: -0.025em;
+        --letter-spacing-normal: 0em;
+        --letter-spacing-wide: 0.025em;
+        --letter-spacing-wider: 0.05em;
+
+        /* Font Weight */
+        --font-weight-thin: 100;
+        --font-weight-extralight: 200;
+        --font-weight-light: 300;
+        --font-weight-normal: 400;
+        --font-weight-medium: 500;
+        --font-weight-semibold: 600;
+        --font-weight-bold: 700;
+        --font-weight-extrabold: 800;
+        --font-weight-black: 900;
+
+        /* Border Radius */
+        --radius-xs: 0.125rem;
+        --radius-sm: 0.25rem;
+        --radius-md: 0.375rem;
+        --radius-lg: 0.5rem;
+        --radius-xl: 0.75rem;
+        --radius-2xl: 1rem;
+        --radius-3xl: 1.5rem;
+        --radius-4xl: 2rem;
+
+
+    }
+
+    /* Base text */
+    body {
+        font-family: var(--font-family-primary);
+        font-weight: var(--font-weight-normal);
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-relaxed);
+        color: var(--foreground);
+    }
+
+    /* Headings */
+    h1, h2, h3, h4, h5, h6 {
+        font-family: var(--font-family-primary);
+        font-weight: var(--font-weight-semibold);
+        color: var(--foreground);
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+        line-height: var(--line-height-snug);
+    }
+
+    h1 {
+        font-size: var(--font-size-4xl);
+        letter-spacing: var(--letter-spacing-tighter);
+    }
+
+    h2 {
+        font-size: var(--font-size-3xl);
+    }
+
+    h3 {
+        font-size: var(--font-size-2xl);
+    }
+
+    h4 {
+        font-size: var(--font-size-xl);
+    }
+
+    h5 {
+        font-size: var(--font-size-lg);
+    }
+
+    h6 {
+        font-size: var(--font-size-base);
+    }
+
+    /* Paragraphs */
+    p {
+        margin-bottom: 1rem;
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-relaxed);
+        color: var(--foreground);
+    }
+
+    /* Small text */
+    small, .text-small {
+        font-size: var(--font-size-sm);
+        color: var(--muted-foreground);
+    }
+
+    /* Links */
+    a {
+        color: var(--primary);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        transition: color 0.3s ease;
+    }
+
+    a:hover {
+        color: var(--accent);
+    }
+
+    /* Lists */
+    ul, ol {
+        padding-left: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--foreground);
+    }
+
+    /* Blockquotes */
+    blockquote {
+        font-style: italic;
+        border-left: 4px solid var(--accent);
+        padding-left: 1rem;
+        margin-left: 0;
+        color: var(--muted-foreground);
+        background-color: var(--muted);
+        border-radius: var(--radius-md);
+    }
+}
+
+@layer components {
+
+    /* Emphasized labels and utility classes */
+    .label-emphasis {
+        font-weight: var(--font-weight-semibold);
+        color: var(--secondary);
+        font-size: var(--font-size-sm);
+        text-transform: uppercase;
+        letter-spacing: var(--letter-spacing-wide);
+    }
+
+    /* Text utilities */
+    .text-display-large {
+        font-size: var(--font-size-6xl);
+        font-weight: var(--font-weight-bold);
+        line-height: var(--line-height-tight);
+        letter-spacing: var(--letter-spacing-tighter);
+    }
+
+    .text-display-medium {
+        font-size: var(--font-size-5xl);
+        font-weight: var(--font-weight-bold);
+        line-height: var(--line-height-tight);
+        letter-spacing: var(--letter-spacing-tight);
+    }
+
+    .text-display-small {
+        font-size: var(--font-size-4xl);
+        font-weight: var(--font-weight-semibold);
+        line-height: var(--line-height-snug);
+    }
+
+    .text-heading-h1 {
+        font-size: var(--font-size-3xl);
+        font-weight: var(--font-weight-bold);
+        line-height: var(--line-height-snug);
+        letter-spacing: var(--letter-spacing-tight);
+    }
+
+    .text-heading-h2 {
+        font-size: var(--font-size-2xl);
+        font-weight: var(--font-weight-semibold);
+        line-height: var(--line-height-snug);
+    }
+
+    .text-heading-h3 {
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-semibold);
+        line-height: var(--line-height-normal);
+    }
+
+    .text-body-large {
+        font-size: var(--font-size-lg);
+        line-height: var(--line-height-relaxed);
+    }
+
+    .text-body-medium {
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-normal);
+    }
+
+    .text-body-small {
+        font-size: var(--font-size-sm);
+        line-height: var(--line-height-normal);
+    }
+
+    .text-label-large {
+        font-size: var(--font-size-base);
+        font-weight: var(--font-weight-semibold);
+        line-height: var(--line-height-normal);
+    }
+
+    .text-label-medium {
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-semibold);
+        line-height: var(--line-height-normal);
+    }
+
+    .text-label-small {
+        font-size: var(--font-size-xs);
+        font-weight: var(--font-weight-semibold);
+        line-height: var(--line-height-tight);
+        letter-spacing: var(--letter-spacing-wide);
+        text-transform: uppercase;
+    }
+}
