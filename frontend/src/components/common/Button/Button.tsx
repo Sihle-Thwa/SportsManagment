@@ -3,7 +3,7 @@ import React from "react";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: "primary" | "secondary" | "tertiary" | "ghost";
-    size?: "sm" | "md" | "lg";
+    size?: "sm" | "md" | "lg" | "xl";
     withIcon?: boolean;
     iconPosition?: "left" | "right";
     icon?: React.ReactNode;
@@ -35,7 +35,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 case "tertiary":
                     return "btn-tertiary";
                 case "ghost":
-                    return "bg-transparent text-blue-500 hover:bg-blue-100";
+                    return "bg-transparent text-muted hover:bg-muted focus:bg-muted active:bg-muted";
                 default:
                     return "";
             }
@@ -44,11 +44,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         const getSizeStyles = () => {
             switch (size) {
                 case "sm":
-                    return "px-3 py-1 text-sm";
+                    return "px-3 py-1 text-size-sm";
                 case "md":
-                    return "p-2 py-2 text-md";
+                    return "p-2 py-2 text-size-md";
                 case "lg":
-                    return "px-5 py-3 text-lg";
+                    return "px-5 py-3 text-size-lg";
+                case "xl":
+                    return "px-5 py-3 text-size-xl";
                 default:
                     return "px-4 py-2";
             }
@@ -67,7 +69,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         return (
             <button
                 className={cn(
-                    "btn",
+                    "btn-primary",
                     getVariantStyles(),
                     getSizeStyles(),
                     fullWidth ? "w-full" : "",
