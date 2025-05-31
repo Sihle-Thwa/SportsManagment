@@ -10,9 +10,9 @@ interface TableBodyProps<T> {
 export function TableBody<T>({ data, columns, actions }: TableBodyProps<T>) {
   if (data.length === 0) {
     return (
-      <UITableBody>
-        <TableRow>
-          <TableCell colSpan={columns.length + (actions ? 1 : 0)} className="h-24 text-center">
+      <UITableBody className="table-body">
+        <TableRow className="table-row">
+          <TableCell colSpan={columns.length + (actions ? 1 : 0)} className="table-cell text-center">
             No results found.
           </TableCell>
         </TableRow>
@@ -21,20 +21,20 @@ export function TableBody<T>({ data, columns, actions }: TableBodyProps<T>) {
   }
 
   return (
-    <UITableBody>
+    <UITableBody className="table-body">
       {data.map((item, rowIndex) => (
-        <TableRow key={rowIndex}>
+        <TableRow key={rowIndex} className="table-row">
           {columns.map((column, colIndex) => (
-            <TableCell key={colIndex} className={column.className}>
-              {column.cell 
-                ? column.cell(item) 
-                : typeof column.accessorKey === 'string' 
-                  ? item[column.accessorKey as keyof T] as React.ReactNode 
+            <TableCell key={colIndex} className={`table-cell ${column.className}`}>
+              {column.cell
+                ? column.cell(item)
+                : typeof column.accessorKey === 'string'
+                  ? item[column.accessorKey as keyof T] as React.ReactNode
                   : ''}
             </TableCell>
           ))}
           {actions && (
-            <TableCell className="text-right">
+            <TableCell className="table-cell">
               {actions(item)}
             </TableCell>
           )}

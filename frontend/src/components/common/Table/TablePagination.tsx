@@ -21,7 +21,7 @@ export function TablePagination({
   // Generate page numbers with a maximum of 5 pages shown
   const pageNumbers: number[] = [];
   const maxPages = 5;
-  
+
   // Logic to show relevant page numbers
   if (totalPages <= maxPages) {
     for (let i = 1; i <= totalPages; i++) {
@@ -47,11 +47,11 @@ export function TablePagination({
     <Pagination>
       <PaginationContent>
         <PaginationItem>
-          <PaginationPrevious 
+          <PaginationPrevious
             onClick={() => onPageChange(Math.max(currentPage - 1, 1))}
-            className={currentPage === 1 ? "pointer-events-none opacity-50" : ""} size={undefined}          />
+            className={currentPage === 1 ? "pointer-events-none opacity-50" : ""} size={undefined} />
         </PaginationItem>
-        
+
         {pageNumbers.map(number => (
           <PaginationItem key={number}>
             <PaginationLink
@@ -61,11 +61,11 @@ export function TablePagination({
             </PaginationLink>
           </PaginationItem>
         ))}
-        
+
         <PaginationItem>
-          <PaginationNext 
+          <PaginationNext
             onClick={() => onPageChange(Math.min(currentPage + 1, totalPages))}
-            className={currentPage === totalPages ? "pointer-events-none opacity-50" : ""} size={undefined}          />
+            className={currentPage === totalPages ? "pointer-events-none opacity-50" : ""} size={undefined} />
         </PaginationItem>
       </PaginationContent>
     </Pagination>

@@ -9,12 +9,12 @@ interface TableHeaderProps<T> {
 
 export function TableHeader<T>({ columns, onSort, sorting }: TableHeaderProps<T>) {
   return (
-    <UITableHeader>
-      <TableRow>
+    <UITableHeader className="table-header">
+      <TableRow className="table-row">
         {columns.map((column, index) => (
-          <TableHead 
-            key={index} 
-            className={column.className}
+          <TableHead
+            key={index}
+            className={`table-head ${column.className}`}
             onClick={() => onSort && onSort(column.accessorKey as string)}
           >
             {column.header}
@@ -26,7 +26,7 @@ export function TableHeader<T>({ columns, onSort, sorting }: TableHeaderProps<T>
           </TableHead>
         ))}
         {/* If there are actions, add an extra header cell */}
-        <TableHead className="text-right">Action</TableHead>
+        <TableHead className="table-head text-right">Action</TableHead>
       </TableRow>
     </UITableHeader>
   );

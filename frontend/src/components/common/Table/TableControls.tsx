@@ -51,11 +51,11 @@ export function TableControls({
           placeholder="Search..."
           value={searchTerm}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="max-w-xs"
+          className="input-base"
         />
         {onAddNew && (
-          <Button 
-            className="bg-orange-500 hover:bg-orange-600"
+          <Button
+            className="btn-primary"
             onClick={onAddNew}
           >
             {addNewLabel}

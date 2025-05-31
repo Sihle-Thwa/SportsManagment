@@ -40,7 +40,7 @@ export function TableBuilder<T extends Record<string, unknown>>({
   const processedData = useMemo(() => {
     // First filter the data
     let result = [...data];
-    
+
     if (searchable && searchTerm) {
       result = result.filter(item => {
         return columns.some(column => {
@@ -50,19 +50,19 @@ export function TableBuilder<T extends Record<string, unknown>>({
         });
       });
     }
-    
+
     // Then sort the data
     if (sorting.column && sorting.direction) {
       result.sort((a, b) => {
         const valueA = a[sorting.column as keyof T];
         const valueB = b[sorting.column as keyof T];
-        
+
         if (valueA < valueB) return sorting.direction === 'asc' ? -1 : 1;
         if (valueA > valueB) return sorting.direction === 'asc' ? 1 : -1;
         return 0;
       });
     }
-    
+
     return result;
   }, [data, searchTerm, sorting, columns, searchable]);
 
@@ -80,7 +80,7 @@ export function TableBuilder<T extends Record<string, unknown>>({
   };
 
   return (
-    <div className="w-full space-y-3 bg-white p-3 rounded-md shadow-xs">
+    <div className="card-base w-full space-y-3 p-3 rounded-md shadow-lg">
       {/* Table Controls */}
       {(searchable || onAddNew) && (
         <TableControls
@@ -95,23 +95,24 @@ export function TableBuilder<T extends Record<string, unknown>>({
           addNewLabel={addNewLabel}
         />
       )}
-      
+
       {/* Data Table */}
       <div className="rounded-md border">
-        <Table>
-          <TableHeader 
-            columns={columns} 
+        <Table className="table-auto w-full">
+          <TableHeader
+
+            columns={columns}
             onSort={handleSort}
             sorting={sorting}
           />
-          <TableBody 
-            data={paginatedData} 
-            columns={columns} 
+          <TableBody
+            data={paginatedData}
+            columns={columns}
             actions={actions}
           />
         </Table>
       </div>
-      
+
       {/* Pagination */}
       {pagination && processedData.length > 0 && (
         <TablePagination
