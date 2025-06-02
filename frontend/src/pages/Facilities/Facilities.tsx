@@ -69,10 +69,10 @@ export default function Facilities() {
   };
 
   return (
-    <div className="container">
-      <div className="flex flex-col justify-start items-start mb-3 bg-white p-3 ">
-        <h1 className="text-xl font-bold mb-3">Facilities</h1>
-        <p className="">View and Manage all facilities of your organisation</p>
+    <div className="flex flex-col items-start justify-start min-h-screen p-6">
+      <div className="mb-6 ">
+        <h1 className="text-2xl font-bold">Facilities</h1>
+        <p className="text-gray-600">View and Manage all facilities of your organisation</p>
       </div>
 
       <FacilitiesTable
