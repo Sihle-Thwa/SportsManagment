@@ -20,20 +20,20 @@ const Profile: React.FC = () => {
 
 
   return (
-    <div className="flex flex-row h-fit gap-6 w-full  ">
+    <div className="flex flex-row items-start justify-start min-h-screen p-6">
       <FileUploadCard description={'Upload a picture for your profile picture'} onFileSelect={function (): void {
         throw new Error('Function not implemented.');
       }} />
-      <div className="flex flex-row w-fit ">
+      <div className="flex max-w-full mx-auto p-6">
 
         {isSubmitted ? (
-          <div className="bg-white p-2 rounded-lg shadow-xs">
+          <div className="p-6">
             <h2 className="text-xl font-bold mb-4">Form Submitted Successfully!</h2>
             <p className="mb-4">Thank you for submitting your information.</p>
 
             <div className="border-t pt-3 mt-3">
               <h3 className="text-lg font-semibold mb-3">Submitted Data:</h3>
-              <pre className="bg-gray-100 p-3 rounded overflow-auto">
+              <pre className=" p-3 rounded overflow-auto">
                 {JSON.stringify(formData, (key, value) => {
                   // Format date object for display
                   if (key === 'dateOfBirth' && value instanceof Date) {
@@ -45,9 +45,7 @@ const Profile: React.FC = () => {
             </div>
 
             <Button
-              className="mt-4"
-              variant="primary"
-              size="lg"
+              className="btn-primary mt-4"
               withIcon={false}
               onClick={() => {
                 setFormData(null);
