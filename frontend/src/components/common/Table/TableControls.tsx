@@ -13,7 +13,6 @@ interface TableControlsProps {
   // Optional & Customizable Props
   pageOptions?: number[];
   searchPlaceholder?: string;
-  alignment?: "start" | "center" | "end"; // for horizontal alignment
   className?: string;
 }
 

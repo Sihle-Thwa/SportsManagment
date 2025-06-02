@@ -336,33 +336,6 @@
         background-color: var(--color-background);
     }
 
-    input, select, textarea {
-        background-color: var(--input);
-        color: var(--foreground);
-        border: 1px solid var(--border-light);
-        border-radius: var(--radius);
-        padding: 0.5rem 0.75rem;
-        font-family: var(--font-family-primary);
-        font-size: var(--font-size-base);
-        line-height: var(--line-height-normal);
-        transition: var(--transition-base);
-    }
-
-    input:focus, select:focus, textarea:focus {
-        outline: none;
-        border-color: var(--ring);
-        box-shadow: 0 0 0 3px var(--ring);
-    }
-
-    button {
-        cursor: pointer;
-        border-radius: var(--radius);
-        font-family: var(--font-family-primary);
-        font-weight: var(--font-weight-semibold);
-        font-size: var(--font-size-base);
-        line-height: var(--line-height-normal);
-        transition: var(--transition-base);
-    }
 }
 
 @layer components {
@@ -635,7 +608,7 @@
 
     /*select primary*/
     .select-primary {
-        background-color: var(--color-primary-50);
+        background-color: var(--color-primary);
         color: var(--color-primary-900);
         border: 1.5px solid var(--color-primary-400);
     }

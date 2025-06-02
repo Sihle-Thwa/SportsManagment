@@ -1,7 +1,6 @@
 import React from "react";
 import { ChevronDown } from "lucide-react";
-import { Select } from "../Select";
-
+import { Select } from "../Select/Select";
 interface PageSelectProps {
     value: number;
     onValueChange: (value: number) => void;
