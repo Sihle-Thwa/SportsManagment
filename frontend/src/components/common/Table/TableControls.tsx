@@ -9,6 +9,12 @@ interface TableControlsProps {
   onSearchChange: (value: string) => void;
   onAddNew?: () => void;
   addNewLabel?: string;
+
+  // Optional & Customizable Props
+  pageOptions?: number[];
+  searchPlaceholder?: string;
+  alignment?: "start" | "center" | "end"; // for horizontal alignment
+  className?: string;
 }
 
 export function TableControls({
@@ -17,34 +23,43 @@ export function TableControls({
   searchTerm,
   onSearchChange,
   onAddNew,
-  addNewLabel = "Add New"
+  addNewLabel = "Add New",
+  pageOptions = [5, 10, 15, 20, 50],
+  searchPlaceholder = "Search...",
+  className
 }: TableControlsProps) {
-  const pageOptions = [5, 10, 15, 20, 50];
-
-
   return (
-    <div className="flex items-center justify-between">
-      <div className="flex items-center gap-2">
-        <span>Show</span>
+    <div
+      className={`flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 ${className}`}
+    >
+      {/* Page Selection */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
+        <label htmlFor="itemsPerPage" className="text-sm font-medium">
+          Show
+        </label>
         <PageSelect
           value={itemsPerPage}
           onValueChange={onItemsPerPageChange}
           options={pageOptions}
-          className="select-base select-primary"
+          className="min-w-[80px]"
         />
-        <span>entries</span>
+
+        <span className="text-sm">entries</span>
       </div>
 
-      <div className="flex items-center gap-2">
+      {/* Search & Add */}
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
         <Input
-          placeholder="Search..."
+          id="table-search"
+          placeholder={searchPlaceholder}
           value={searchTerm}
           onChange={(e) => onSearchChange(e.target.value)}
-          className="input-base"
+          className="input-base w-full sm:w-64"
+          aria-label="Search table"
         />
         {onAddNew && (
           <Button
-            className="btn-primary"
+            className="btn-primary whitespace-nowrap"
             onClick={onAddNew}
           >
             {addNewLabel}
@@ -54,3 +69,5 @@ export function TableControls({
     </div>
   );
 }
+TableControls.displayName = "TableControls";
+export type { TableControlsProps };
