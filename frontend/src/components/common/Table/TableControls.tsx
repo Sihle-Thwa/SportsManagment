@@ -33,14 +33,14 @@ export function TableControls({
           value={itemsPerPage.toString()}
           onValueChange={(value) => onItemsPerPageChange(Number(value))}
         >
-          <SelectTrigger className="w-16">
-            <SelectValue placeholder={itemsPerPage.toString()} />
+          <SelectTrigger className="select-trigger">
+            <SelectValue className="select-value" placeholder={itemsPerPage.toString()} />
           </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="5">5</SelectItem>
-            <SelectItem value="10">10</SelectItem>
-            <SelectItem value="20">20</SelectItem>
-            <SelectItem value="50">50</SelectItem>
+          <SelectContent className="select-content">
+            <SelectItem className="select-item" value="5">5</SelectItem>
+            <SelectItem className="select-item" value="10">10</SelectItem>
+            <SelectItem className="select-item" value="20">20</SelectItem>
+            <SelectItem className="select-item" value="50">50</SelectItem>
           </SelectContent>
         </Select>
         <span>entries</span>
