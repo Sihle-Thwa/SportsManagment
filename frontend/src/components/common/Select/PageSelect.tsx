@@ -1,11 +1,12 @@
 import React from "react";
-import { cn } from "../../../lib/utils"; // Assuming you have a utility for class names
-import { ChevronDown } from "lucide-react"; // Importing an icon for the dropdown
+import { ChevronDown } from "lucide-react";
+import { cn } from "../../../lib/utils";
+import { Select } from "../Select"; // Update this path based on your folder structure
 
 interface PageSelectProps {
     value: number;
     onValueChange: (value: number) => void;
-    options: number[]; // Array of page numbers
+    options: number[];
     className?: string;
 }
 
@@ -15,20 +16,30 @@ const PageSelect: React.FC<PageSelectProps> = ({
     options,
     className,
 }) => {
+    const transformedOptions = options.map((page) => ({
+        label: `${page}`,
+        value: page,
+    }));
+
     return (
-        <div className="relative">
-            <select
+        <div className="relative w-full">
+            <Select
                 value={value}
-                onChange={(e) => onValueChange(Number(e.target.value))}
-                className={cn("select-base select-primary", className)}
-            >
-                {options.map((option) => (
-                    <option key={option} value={option}>
-                        {option}
-                    </option>
-                ))}
-            </select>
-            <ChevronDown className="select-icon" />
+                onValueChange={(value) => {
+                    if (typeof value === "number") {
+                        onValueChange(value);
+                    } else if (!isNaN(Number(value))) {
+                        onValueChange(Number(value));
+                    }
+                }}
+                options={transformedOptions}
+                placeholder="Select page"
+                withIcon
+                icon={<ChevronDown className="select-icon" />}
+                iconPosition="right"
+                variant="select-primary" // 👈 Now controlled via prop
+                className={className}
+            />
         </div>
     );
 };

@@ -1,10 +1,12 @@
 import React from "react";
 import { Select as ShadSelectBase, SelectContent as ShadSelectContent, SelectItem as ShadSelectItem, SelectTrigger as ShadSelectTrigger, SelectValue as ShadSelectValue } from "../../ui/select";
+import { cn } from "../../../lib/utils";
 
 
 
 interface SelectProps {
     size?: "sm" | "md" | "lg" | "xl";
+    variant?: "select-primary" | "select-secondary" | "select-tertiary";
     withIcon?: boolean;
     iconPosition?: "left" | "right";
     icon?: React.ReactNode;
@@ -12,7 +14,8 @@ interface SelectProps {
     placeholder?: string;
     className?: string;
     disabled?: boolean;
-    value?: string | number;
+
+    value?: string | number; // Only allow string or number
     onValueChange?: (value: string | number) => void;
     options?: {
         label: string;
@@ -22,29 +25,28 @@ interface SelectProps {
 }
 
 
-
 const Select: React.FC<SelectProps> = (props) => {
     const {
         value,
         onValueChange,
         options = [],
+        variant,
+        fullWidth,
+        withIcon = false,
+        iconPosition = "right",
+        icon,
+        className,
+        placeholder,
         ...rest
     } = props;
 
     // Ensure value is always a string or undefined
+    // Ensure value is always a string or undefined
     const stringValue = value !== undefined ? String(value) : undefined;
-
     // Ensure onValueChange returns a string or number as expected by SelectProps
-    const handleValueChange = (val: string) => {
-        if (onValueChange) {
-            // Try to convert back to number if original value was a number
-            const option = options.find(opt => String(opt.value) === val);
-            if (option) {
-                onValueChange(option.value);
-            } else {
-                onValueChange(val);
-            }
-        }
+    const handleValueChange = (value: string) => {
+        const option = options.find(opt => String(opt.value) === value);
+        onValueChange?.(option?.value ?? value);
     };
 
     return (
@@ -53,8 +55,17 @@ const Select: React.FC<SelectProps> = (props) => {
             onValueChange={handleValueChange}
             {...rest}
         >
-            <ShadSelectTrigger>
-                <ShadSelectValue placeholder={props.placeholder} />
+            <ShadSelectTrigger
+                className={cn(
+                    "select-base",
+                    `select-${variant}`,
+                    fullWidth ? "w-full" : "w-fit",
+                    className
+                )}
+            >
+                {withIcon && iconPosition === "left" && icon}
+                <ShadSelectValue placeholder={placeholder} />
+                {withIcon && iconPosition === "right" && icon}
             </ShadSelectTrigger>
             <ShadSelectContent>
                 {options.map(option => (
