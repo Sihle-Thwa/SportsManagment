@@ -1,12 +1,6 @@
-import { Input } from "../../ui/input";
-import { Button } from "../../ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from "../../ui/select";
+import { Button } from "../../common/Button";
+import { Input } from "../Input/input";
+import { PageSelect } from "../Select/PageSelect";
 
 interface TableControlsProps {
   itemsPerPage: number;
@@ -25,24 +19,19 @@ export function TableControls({
   onAddNew,
   addNewLabel = "Add New"
 }: TableControlsProps) {
+  const pageOptions = [5, 10, 15, 20, 50];
+
+
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-2">
         <span>Show</span>
-        <Select
-          value={itemsPerPage.toString()}
-          onValueChange={(value) => onItemsPerPageChange(Number(value))}
-        >
-          <SelectTrigger className="select-trigger">
-            <SelectValue className="select-value" placeholder={itemsPerPage.toString()} />
-          </SelectTrigger>
-          <SelectContent className="select-content">
-            <SelectItem className="select-item" value="5">5</SelectItem>
-            <SelectItem className="select-item" value="10">10</SelectItem>
-            <SelectItem className="select-item" value="20">20</SelectItem>
-            <SelectItem className="select-item" value="50">50</SelectItem>
-          </SelectContent>
-        </Select>
+        <PageSelect
+          value={itemsPerPage}
+          onValueChange={onItemsPerPageChange}
+          options={pageOptions}
+          className="select-base select-primary"
+        />
         <span>entries</span>
       </div>
 

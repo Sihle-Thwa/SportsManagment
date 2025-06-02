@@ -1,7 +1,5 @@
-import { cn } from "../../../lib/utils";
 import React from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
-import { Select as ShadSelect, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select as ShadSelectBase, SelectContent as ShadSelectContent, SelectItem as ShadSelectItem, SelectTrigger as ShadSelectTrigger, SelectValue as ShadSelectValue } from "../../ui/select";
 
 
 
@@ -14,6 +12,8 @@ interface SelectProps {
     placeholder?: string;
     className?: string;
     disabled?: boolean;
+    value?: string | number;
+    onValueChange?: (value: string | number) => void;
     options?: {
         label: string;
         value: string | number;
@@ -23,47 +23,53 @@ interface SelectProps {
 
 
 
-export const Select: React.FC<SelectProps> = ({
-    placeholder = "Select an option"
-    , options = [],
-    size = "md",
-    withIcon = false,
-    iconPosition = "left",
-    icon,
-    fullWidth = false,
-    className,
-    disabled = false
-}) => {
+const Select: React.FC<SelectProps> = (props) => {
+    const {
+        value,
+        onValueChange,
+        options = [],
+        ...rest
+    } = props;
+
+    // Ensure value is always a string or undefined
+    const stringValue = value !== undefined ? String(value) : undefined;
+
+    // Ensure onValueChange returns a string or number as expected by SelectProps
+    const handleValueChange = (val: string) => {
+        if (onValueChange) {
+            // Try to convert back to number if original value was a number
+            const option = options.find(opt => String(opt.value) === val);
+            if (option) {
+                onValueChange(option.value);
+            } else {
+                onValueChange(val);
+            }
+        }
+    };
+
     return (
-        <ShadSelect>
-            <SelectTrigger
-                className={cn(
-                    "select-base",
-                    {
-                        "select-full-width": fullWidth,
-                        "select-disabled": disabled,
-                        [`select-${size}`]: size,
-                    },
-                    className
-                )}
-            >
-                <SelectValue placeholder={placeholder} />
-                {withIcon && icon && (
-                    <span className={`select-icon select-icon-${iconPosition}`}>
-                        {icon}
-                    </span>
-                )}
-                <ChevronDown className="ml-2" />
-            </SelectTrigger>
-            <SelectContent>
-                {options.map((option) => (
-                    <SelectItem key={option.value} value={String(option.value)} disabled={option.disabled}>
+        <ShadSelectBase
+            value={stringValue}
+            onValueChange={handleValueChange}
+            {...rest}
+        >
+            <ShadSelectTrigger>
+                <ShadSelectValue placeholder={props.placeholder} />
+            </ShadSelectTrigger>
+            <ShadSelectContent>
+                {options.map(option => (
+                    <ShadSelectItem
+                        key={option.value}
+                        value={String(option.value)}
+                        disabled={option.disabled}
+                    >
                         {option.label}
-                    </SelectItem>
+                    </ShadSelectItem>
                 ))}
-            </SelectContent>
-        </ShadSelect>
+            </ShadSelectContent>
+        </ShadSelectBase>
     );
 };
 
-export default Select;
+Select.displayName = "Select";
+export { Select, ShadSelectContent, ShadSelectItem, ShadSelectTrigger, ShadSelectValue };
