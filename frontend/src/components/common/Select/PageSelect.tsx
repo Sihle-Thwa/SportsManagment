@@ -1,7 +1,6 @@
 import React from "react";
 import { ChevronDown } from "lucide-react";
-import { cn } from "../../../lib/utils";
-import { Select } from "../Select"; // Update this path based on your folder structure
+import { Select } from "../Select";
 
 interface PageSelectProps {
     value: number;
@@ -21,23 +20,24 @@ const PageSelect: React.FC<PageSelectProps> = ({
         value: page,
     }));
 
+    const handlePageChange = (val: string | number) => {
+        const numeric = typeof val === "number" ? val : Number(val);
+        if (!isNaN(numeric)) {
+            onValueChange(numeric);
+        }
+    };
+
     return (
         <div className="relative w-full">
             <Select
                 value={value}
-                onValueChange={(value) => {
-                    if (typeof value === "number") {
-                        onValueChange(value);
-                    } else if (!isNaN(Number(value))) {
-                        onValueChange(Number(value));
-                    }
-                }}
+                onValueChange={handlePageChange}
                 options={transformedOptions}
                 placeholder="Select page"
                 withIcon
                 icon={<ChevronDown className="select-icon" />}
                 iconPosition="right"
-                variant="select-primary" // 👈 Now controlled via prop
+                variant="primary"
                 className={className}
             />
         </div>

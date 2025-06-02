@@ -1,12 +1,16 @@
 import React from "react";
-import { Select as ShadSelectBase, SelectContent as ShadSelectContent, SelectItem as ShadSelectItem, SelectTrigger as ShadSelectTrigger, SelectValue as ShadSelectValue } from "../../ui/select";
+import {
+    Select as ShadSelectBase,
+    SelectContent as ShadSelectContent,
+    SelectItem as ShadSelectItem,
+    SelectTrigger as ShadSelectTrigger,
+    SelectValue as ShadSelectValue,
+} from "../../ui/select";
 import { cn } from "../../../lib/utils";
-
-
 
 interface SelectProps {
     size?: "sm" | "md" | "lg" | "xl";
-    variant?: "select-primary" | "select-secondary" | "select-tertiary";
+    variant?: "primary" | "secondary" | "tertiary";
     withIcon?: boolean;
     iconPosition?: "left" | "right";
     icon?: React.ReactNode;
@@ -14,8 +18,7 @@ interface SelectProps {
     placeholder?: string;
     className?: string;
     disabled?: boolean;
-
-    value?: string | number; // Only allow string or number
+    value?: string | number;
     onValueChange?: (value: string | number) => void;
     options?: {
         label: string;
@@ -24,51 +27,55 @@ interface SelectProps {
     }[];
 }
 
+const variantClasses = {
+    primary: "select-primary",
+    secondary: "select-secondary",
+    tertiary: "select-tertiary",
+};
 
-const Select: React.FC<SelectProps> = (props) => {
-    const {
-        value,
-        onValueChange,
-        options = [],
-        variant,
-        fullWidth,
-        withIcon = false,
-        iconPosition = "right",
-        icon,
-        className,
-        placeholder,
-        ...rest
-    } = props;
-
-    // Ensure value is always a string or undefined
-    // Ensure value is always a string or undefined
+const Select: React.FC<SelectProps> = ({
+    value,
+    onValueChange,
+    options = [],
+    variant = "primary",
+    fullWidth = false,
+    withIcon = false,
+    iconPosition = "right",
+    icon,
+    className,
+    placeholder,
+    disabled,
+    ...rest
+}) => {
     const stringValue = value !== undefined ? String(value) : undefined;
-    // Ensure onValueChange returns a string or number as expected by SelectProps
-    const handleValueChange = (value: string) => {
-        const option = options.find(opt => String(opt.value) === value);
-        onValueChange?.(option?.value ?? value);
+
+    const handleValueChange = (val: string) => {
+        const matched = options.find(opt => String(opt.value) === val);
+        onValueChange?.(matched?.value ?? val);
     };
 
     return (
         <ShadSelectBase
             value={stringValue}
             onValueChange={handleValueChange}
+            disabled={disabled}
             {...rest}
         >
             <ShadSelectTrigger
                 className={cn(
                     "select-base",
-                    `select-${variant}`,
+                    variantClasses[variant],
                     fullWidth ? "w-full" : "w-fit",
                     className
                 )}
+                disabled={disabled}
             >
                 {withIcon && iconPosition === "left" && icon}
                 <ShadSelectValue placeholder={placeholder} />
                 {withIcon && iconPosition === "right" && icon}
             </ShadSelectTrigger>
             <ShadSelectContent>
-                {options.map(option => (
+                {options.map((option) => (
                     <ShadSelectItem
                         key={option.value}
                         value={String(option.value)}
@@ -83,4 +90,10 @@ const Select: React.FC<SelectProps> = (props) => {
 };
 
 Select.displayName = "Select";
-export { Select, ShadSelectContent, ShadSelectItem, ShadSelectTrigger, ShadSelectValue };
+export {
+    Select,
+    ShadSelectContent,
+    ShadSelectItem,
+    ShadSelectTrigger,
+    ShadSelectValue,
+};
