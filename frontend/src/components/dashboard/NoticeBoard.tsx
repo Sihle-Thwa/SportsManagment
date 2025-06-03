@@ -24,20 +24,20 @@ const NoticeBoard = ({ notices = [] }) => {
   // Always render bell icon with amber color scheme
   const renderIcon = () => {
     return (
-      <div className="w-fit h-fit object-cover bg-amber-100 rounded-full">
-        <Bell size={32} className="text-amber-500" />
+      <div className="w-fit h-fit object-cover">
+        <Bell size={32} className="icon icon-tertiary" />
       </div>
     );
   };
 
   return (
-    <Card className="card-base">
-      <CardHeader className="card-header flex flex-row items-start justify-between p-auto">
+    <Card className="card-base ">
+      <CardHeader className="card-header flex flex-row items-start justify-between">
         <CardTitle className="card-title ">
           Notice Board
         </CardTitle>
-        <Button className="btn-tertiary">
-          <MoreHorizontal className="h-6 w-6 text-slate-600" />
+        <Button className="btn-base btn-tertiary ">
+          <MoreHorizontal className="icon-base icon-tertiary" />
         </Button>
       </CardHeader>
       <ScrollArea className="flex w-full  overflow-y-auto ">
@@ -45,7 +45,7 @@ const NoticeBoard = ({ notices = [] }) => {
           {noticeData.map((notice) => (
             <div
               key={notice.id}
-              className={`flex items-start mb-3 border-b hover:bg-slate-50 cursor-pointer" ${selectedNotice === notice.id ? "bg-slate-50" : ""
+              className={`flex items-start mb-3 border-b  cursor-pointer" ${selectedNotice === notice.id ? "bg-slate-50" : ""
                 }`}
               onClick={() => setSelectedNotice(notice.id)}
             >
@@ -67,7 +67,7 @@ const NoticeBoard = ({ notices = [] }) => {
         </CardContent>
       </ScrollArea>
 
-      <CardFooter className="card-footer ">
+      <CardFooter className="card-footer gap-6 flex flex-row items-center justify-between p-auto">
         <Button
           withIcon={true}
           iconPosition="left"

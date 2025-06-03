@@ -65,12 +65,12 @@ const MessageDashboard = ({ messages = [] }) => {
 
   return (
     <Card className="card-base">
-      <CardHeader className="card-header flex flex-row items-start justify-between p-auto">
+      <CardHeader className="card-header flex flex-row items-start justify-between">
         <CardTitle className="card-title">
           Messages
         </CardTitle>
-        <Button className="btn-tertiary">
-          <MoreHorizontal className="h-6 w-6 text-slate-600" />
+        <Button className="btn-base btn-tertiary">
+          <MoreHorizontal className="icon-base icon-tertiary" />
         </Button>
       </CardHeader>
       <ScrollArea className="flex w-full overflow-y-auto">

@@ -12,11 +12,11 @@ const PlayerSummaryDashboard = () => {
         <CardTitle className="card-title ">
           Players Summary
         </CardTitle>
-        <Button className=" btn-tertiary">
-          <MoreHorizontal className="h-6 w-6 text-slate-600" />
+        <Button className="btn-base btn-tertiary">
+          <MoreHorizontal className="icon-base icon-tertiary" />
         </Button>
       </CardHeader>
-      <CardContent className="card-body flex flex-row w-full overflow-y-auto">
+      <CardContent className="card-body flex flex-col w-full overflow-y-auto">
         <ChartBar />
 
       </CardContent>

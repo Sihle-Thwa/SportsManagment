@@ -107,7 +107,7 @@
     --background-canvas: var(--color-neutral-100);
     --background-surface: var(--color-neutral-50);
     --background-surface-secondary: var(--color-secondary-500);
-    --background-surface-tertiary: var(--color-neutral-600);
+    --background-surface-tertiary: var(--color-neutral-50);
     --background-surface-hover: var(--color-primary-50);
     --background-surface-pressed: var(--color-primary-100);
     --background-surface-focus: var(--color-primary-200);
@@ -124,7 +124,7 @@
     --background-surface-tertiary-pressed: var(--color-neutral-800);
     --background-surface-tertiary-active: var(--color-neutral-900);
     --background-surface-tertiary-selected: var(--color-neutral-950);
-    --background-surface-tertiary-inverse: var(--color-neutral-1000);
+    --background-surface-tertiary-inverse: var(--color-neutral-100);
     --background-surface-disabled: var(--color-neutral-200);
 
 
@@ -141,7 +141,7 @@
     --border-default: var(--color-neutral-300);
     --border-strong: var(--color-neutral-400);
     --border-focus: var(--color-accent-500);
-    --border-disab--text-disabled: var(--color-neutral-500);
+    --border-disabled: var(--color-neutral-500);
     --border-error: var(--color-error-500);
 
     /* Interactive Colors */
@@ -207,6 +207,7 @@
     --button-tertiary-background-hover: var(--background-surface-hover);
     --button-tertiary-background-pressed: var(--background-surface-pressed);
     --button-tertiary-text: var(--text-tertiary);
+    --button-tertiary-border: var(--border-subtle);
 
 
     /***** End Section *****/
@@ -491,17 +492,10 @@
 
 
     /* Button Styles */
-    .btn.base {
+    .btn-base {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 0.5rem 1rem;
-        border-radius: var(--radius);
-        font-weight: var(--font-weight-semibold);
-        font-size: var(--font-size-base);
-        line-height: var(--line-height-normal);
-        transition: var(--transition-fast);
-        cursor: pointer;
         outline: none;
         text-decoration: none;
     }
@@ -514,7 +508,7 @@
         font-weight: var(--font-weight-normal);
         font-size: var(--font-size-base);
         box-shadow: var(--shadow-md);
-        transition: var(--transition-fast);
+        transition: var(--duration-fast);
         cursor: pointer;
         outline: none;
         display: flex;
@@ -593,18 +587,16 @@
         color: var(--button-tertiary-text);
         padding: 0.5rem 1.25rem;
         border: 1px solid var(--border-light);
-        border-radius: var(--radius);
-        font-weight: var(--font-weight-semibold);
+        border-radius: var(--radius-md);
+        font-weight: var(--font-weight-normal);
         font-size: var(--font-size-base);
         line-height: var(--line-height-normal);
-        box-shadow: var(--shadow-md);
-        transition: var(--transition-fast);
+        transition: var(--duration-fast);
         cursor: pointer;
         outline: none;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 0.5rem;
         user-select: none;
     }
 
@@ -635,14 +627,14 @@
 
     /*Card Style*/
     .card-base {
-        background-color: var(--background-surface);
-        color: var(--card-foreground);
+        background-color: var(--card-background);
+        color: var(--text-primary);
         border-radius: var(--radius-lg);
         box-shadow: var(--shadow-md);
         padding: 1.5rem;
         margin: 1rem 0;
-        transition: var(--transition-base);
-        border: 1px solid var(--border-subtle);
+        transition: var(--duration-base);
+        border: 1px solid var(--border-default);
         width: 100%;
         max-height: 320px;
         display: flex;
@@ -665,7 +657,7 @@
     .card-title {
         font-size: var(--font-size-2xl);
         font-weight: var(--font-weight-bold);
-        margin-bottom: var(--spacing-2);
+        margin-bottom: var(--spacing-3);
         color: var(--text-primary);
         line-height: var(--line-height-normal);
         flex: 1;
@@ -689,6 +681,42 @@
     }
 
     /* Chart Styles */
+
+    /*Icon Styles*/
+    /* ================================
+   ICON BASE STYLE
+================================= */
+    .icon-base {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: var(--spacing-6);
+        width: var(--spacing-6);
+        color: var(--color-primary);
+        transition: var(--duration-fast);
+        background-color: var(--background-surface);
+        border-radius: 1px solid var(--radius-sm);
+    }
+
+    /* ================================
+     ICON VARIANTS
+  ================================= */
+    .icon-primary {
+        color: var(--color-primary);
+    }
+
+    .icon-secondary {
+        color: var(--color-secondary);
+    }
+
+    .icon-tertiary {
+        color: var(--color-tertiary);
+    }
+
+    .icon-accent {
+        color: var(--color-accent);
+    }
+
 
     /* Input Styles */
     .input-base {
