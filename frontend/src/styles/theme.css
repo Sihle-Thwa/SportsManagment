@@ -20,8 +20,6 @@
     --color-primary-900: hsl(215, 36%, 18%);
     --color-primary-950: hsl(222, 46%, 10%);
 
-
-
     /***** Section: Secondary Color Palette *****/
     /* Secondary Color Scale */
     --color-secondary: hsl(211, 38%, 25%);
@@ -69,6 +67,13 @@
     --color-neutral-800: hsl(210, 20%, 25%);
     --color-neutral-900: hsl(210, 20%, 18%);
     --color-neutral-950: hsl(210, 20%, 10%);
+
+    /***** End Section *****/
+    --gradient-primary: linear-gradient(to right,
+            var(--color-neutral) 25%,
+            var(--color-primary-200) 75%,
+            var(--color-accent) 100%);
+
 
     /***** End Section *****/
 
@@ -128,7 +133,6 @@
 
     /*Gradient Colors*/
 
-    --gradient-primary: linear-gradient(135deg, (var(--color-neutral) 25%), var(var(--color-primary-200) 75%) var(--color-accent)100%);
 
 
     /* Text Colors */

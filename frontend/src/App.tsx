@@ -7,7 +7,7 @@ function App() {
 	return (
 		<Router>
 			<ThemeProvider>
-				<div className="min-h-screen"> {/* shadcn/tailwind v4 best practices */}
+				<div className="min-h-screen bg-[linear-gradient(135deg,_var(--color-neutral-50)_25%,_var(--color-primary-200)_50%,_var(--color-accent-400)_100%)]"> {/* shadcn/tailwind v4 best practices */}
 					<Routes>
 						<Route path="/" element={<MainLayout />}>
 							{routes.map((route) => (
