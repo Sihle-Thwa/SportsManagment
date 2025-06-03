@@ -1,0 +1,60 @@
+@import 'tailwindcss';
+
+/* Utilities for Tailwind CSS */
+
+@layer utilities {
+
+    /* Font Family Utilities */
+    .font-sans {
+        font-family: var(--font-sans);
+    }
+
+    .font-serif {
+        font-family: var(--font-serif);
+    }
+
+    .font-mono {
+        font-family: var(--font-mono);
+    }
+
+    /* Font Size Utilities */
+
+    .text-base {
+        font-size: var(--font-size-base);
+    }
+
+    .text-xs {
+        font-size: var(--font-size-xs);
+    }
+
+
+    .text-sm {
+        font-size: var(--font-size-sm);
+    }
+
+    .text-md {
+        font-size: var(--font-size-base);
+        /* Default base size */
+    }
+
+
+    .text-lg {
+        font-size: var(--font-size-lg);
+    }
+
+    .text-xl {
+        font-size: var(--font-size-xl);
+    }
+
+    .text-2xl {
+        font-size: var(--font-size-2xl);
+    }
+
+    .text-3xl {
+        font-size: var(--font-size-3xl);
+    }
+
+    .text-4xl {
+        font-size: var(--font-size-4xl);
+    }
+}

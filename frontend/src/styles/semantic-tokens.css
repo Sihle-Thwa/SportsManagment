@@ -1,0 +1,217 @@
+/* semantic-tokens.css */
+
+/* Light Theme (default) */
+:root {
+    /* Background */
+    --background-canvas: var(--color-neutral-100);
+    --background-surface: var(--color-neutral-50);
+    --background-surface-secondary: var(--color-secondary-500);
+    --background-surface-tertiary: var(--color-neutral-50);
+    --background-surface-hover: var(--color-primary-50);
+    --background-surface-pressed: var(--color-primary-100);
+    --background-surface-focus: var(--color-primary-200);
+    --background-surface-disabled: var(--color-neutral-200);
+    --background-surface-active: var(--color-primary-300);
+    --background-surface-selected: var(--color-primary-400);
+    --background-surface-inverse: var(--color-neutral-900);
+    --background-surface-secondary-hover: var(--color-secondary-600);
+    --background-surface-secondary-pressed: var(--color-secondary-700);
+    --background-surface-secondary-active: var(--color-secondary-800);
+    --background-surface-secondary-selected: var(--color-secondary-900);
+    --background-surface-secondary-inverse: var(--color-secondary-950);
+    --background-surface-tertiary-hover: var(--color-neutral-700);
+    --background-surface-tertiary-pressed: var(--color-neutral-800);
+    --background-surface-tertiary-active: var(--color-neutral-900);
+    --background-surface-tertiary-selected: var(--color-neutral-950);
+    --background-surface-tertiary-inverse: var(--color-neutral-100);
+
+    /* Text Colors */
+    --text-primary: var(--color-primary-500);
+    --text-secondary: var(--color-secondary-500);
+    --text-tertiary: var(--color-accent-500);
+    --text-placeholder: var(--color-neutral-500);
+    --text-disabled: var(--color-neutral-300);
+    --text-inverse: var(--color-neutral);
+
+    /* Border Colors */
+    --border-subtle: var(--color-neutral-200);
+    --border-default: var(--color-neutral-300);
+    --border-strong: var(--color-neutral-400);
+    --border-focus: var(--color-accent-500);
+    --border-disabled: var(--color-neutral-500);
+    --border-error: var(--color-error-500);
+
+    /* Interactive Colors */
+    --interactive-primary: var(--color-primary-700);
+    --interactive-primary-hover: var(--color-primary-800);
+    --interactive-primary-pressed: var(--color-primary-900);
+    --interactive-primary-disabled: var(--color-neutral-300);
+
+    --interactive-secondary: var(--color-secondary-500);
+    --interactive-secondary-hover: var(--color-secondary-600);
+    --interactive-secondary-pressed: var(--color-secondary-700);
+
+    --interactive-accent: var(--color-accent-500);
+    --interactive-accent-hover: var(--color-accent-600);
+    --interactive-accent-pressed: var(--color-accent-700);
+
+    /* Status Colors */
+    --status-success: var(--color-success-500);
+    --status-success-background: var(--color-success-50);
+    --status-success-border: var(--color-success-100);
+
+    --status-warning: var(--color-warning-500);
+    --status-warning-background: var(--color-warning-50);
+    --status-warning-border: var(--color-warning-100);
+
+    --status-error: var(--color-error-500);
+    --status-error-background: var(--color-error-50);
+    --status-error-border: var(--color-error-100);
+
+    --status-info: var(--color-info-500);
+    --status-info-background: var(--color-info-50);
+    --status-info-border: var(--color-info-100);
+
+    /* Component-Specific Colors */
+    --sidebar-background: var(--color-primary-200);
+    --sidebar-border: var(--border-subtle);
+    --sidebar-text: var(--text-primary-600);
+    --sidebar-text-active: var(--interactive-primary);
+
+    --card-background: var(--background-surface);
+    --card-border: var(--border-subtle);
+    --card-shadow: var(--shadow-sm);
+    --card-foreground: var(--text-primary);
+
+    --input-background: var(--background-surface);
+    --input-border: var(--border-default);
+    --input-border-hover: var(--border-strong);
+    --input-border-focus: var(--border-focus);
+
+    --button-primary-background: var(--interactive-primary);
+    --button-primary-background-hover: var(--interactive-primary-hover);
+    --button-primary-background-pressed: var(--interactive-primary-pressed);
+    --button-primary-text: var(--text-inverse);
+
+    --button-secondary-background: var(--background-surface-secondary);
+    --button-secondary-background-hover: var(--background-surface-tertiary);
+    --button-secondary-background-pressed: var(--color-secondary-600);
+    --button-secondary-text: var(--text-primary);
+    --button-secondary-border: var(--border-default);
+
+    --button-tertiary-background: var(--background-surface-tertiary);
+    --button-tertiary-background-hover: var(--background-surface-hover);
+    --button-tertiary-background-pressed: var(--background-surface-pressed);
+    --button-tertiary-text: var(--text-tertiary);
+    --button-tertiary-border: var(--border-subtle);
+}
+
+/* Dark Theme */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Background */
+        --background-canvas: var(--color-neutral-900);
+        --background-surface: var(--color-neutral-950);
+        --background-surface-secondary: var(--color-secondary-700);
+        --background-surface-tertiary: var(--color-neutral-800);
+        --background-surface-hover: var(--color-primary-800);
+        --background-surface-pressed: var(--color-primary-700);
+        --background-surface-focus: var(--color-primary-600);
+        --background-surface-disabled: var(--color-neutral-700);
+        --background-surface-active: var(--color-primary-500);
+        --background-surface-selected: var(--color-primary-400);
+        --background-surface-inverse: var(--color-neutral-100);
+        --background-surface-secondary-hover: var(--color-secondary-600);
+        --background-surface-secondary-pressed: var(--color-secondary-500);
+        --background-surface-secondary-active: var(--color-secondary-400);
+        --background-surface-secondary-selected: var(--color-secondary-300);
+        --background-surface-secondary-inverse: var(--color-secondary-100);
+        --background-surface-tertiary-hover: var(--color-neutral-600);
+        --background-surface-tertiary-pressed: var(--color-neutral-500);
+        --background-surface-tertiary-active: var(--color-neutral-400);
+        --background-surface-tertiary-selected: var(--color-neutral-300);
+        --background-surface-tertiary-inverse: var(--color-neutral-200);
+
+        /* Text Colors */
+        --text-primary: var(--color-primary-300);
+        --text-secondary: var(--color-secondary-300);
+        --text-tertiary: var(--color-accent-400);
+        --text-placeholder: var(--color-neutral-400);
+        --text-disabled: var(--color-neutral-600);
+        --text-inverse: var(--color-neutral-950);
+
+        /* Border Colors */
+        --border-subtle: var(--color-neutral-700);
+        --border-default: var(--color-neutral-600);
+        --border-strong: var(--color-neutral-500);
+        --border-focus: var(--color-accent-400);
+        --border-disabled: var(--color-neutral-600);
+        --border-error: var(--color-error-400);
+
+        /* Interactive Colors */
+        --interactive-primary: var(--color-primary-300);
+        --interactive-primary-hover: var(--color-primary-200);
+        --interactive-primary-pressed: var(--color-primary-100);
+        --interactive-primary-disabled: var(--color-neutral-600);
+
+        --interactive-secondary: var(--color-secondary-300);
+        --interactive-secondary-hover: var(--color-secondary-200);
+        --interactive-secondary-pressed: var(--color-secondary-100);
+
+        --interactive-accent: var(--color-accent-400);
+        --interactive-accent-hover: var(--color-accent-300);
+        --interactive-accent-pressed: var(--color-accent-200);
+
+        /* Status Colors */
+        --status-success: var(--color-success-300);
+        --status-success-background: var(--color-success-900);
+        --status-success-border: var(--color-success-800);
+
+        --status-warning: var(--color-warning-300);
+        --status-warning-background: var(--color-warning-900);
+        --status-warning-border: var(--color-warning-800);
+
+        --status-error: var(--color-error-300);
+        --status-error-background: var(--color-error-900);
+        --status-error-border: var(--color-error-800);
+
+        --status-info: var(--color-info-300);
+        --status-info-background: var(--color-info-900);
+        --status-info-border: var(--color-info-800);
+
+        /* Component-Specific Colors */
+        --sidebar-background: var(--color-primary-700);
+        --sidebar-border: var(--border-subtle);
+        --sidebar-text: var(--text-primary);
+        --sidebar-text-active: var(--interactive-primary);
+
+        --card-background: var(--background-surface);
+        --card-border: var(--border-subtle);
+        --card-shadow: var(--shadow-lg);
+        --card-foreground: var(--text-primary);
+
+        --input-background: var(--background-surface);
+        --input-border: var(--border-default);
+        --input-border-hover: var(--border-strong);
+        --input-border-focus: var(--border-focus);
+
+        --button-primary-background: var(--interactive-primary);
+        --button-primary-background-hover: var(--interactive-primary-hover);
+        --button-primary-background-pressed: var(--interactive-primary-pressed);
+        --button-primary-text: var(--text-inverse);
+
+        --button-secondary-background: var(--background-surface-secondary);
+        --button-secondary-background-hover: var(--background-surface-tertiary);
+        --button-secondary-background-pressed: var(--color-secondary-600);
+        --button-secondary-text: var(--text-primary);
+        --button-secondary-border: var(--border-default);
+
+        --button-tertiary-background: var(--background-surface-tertiary);
+        --button-tertiary-background-hover: var(--background-surface-hover);
+        --button-tertiary-background-pressed: var(--background-surface-pressed);
+        --button-tertiary-text: var(--text-tertiary);
+        --button-tertiary-border: var(--border-subtle);
+    }
+}
+
+/* End of semantic-tokens.css */

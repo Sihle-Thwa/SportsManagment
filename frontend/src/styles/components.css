@@ -1,8 +1,8 @@
 @import 'tailwindcss';
 
+
 /* Component Styles */
 @layer components {
-
 
 
     /* Button Styles */
@@ -198,7 +198,7 @@
 
     /*Icon Styles*/
     /* ================================
-ICON BASE STYLE
+   ICON BASE STYLE
 ================================= */
     .icon-base {
         display: inline-flex;
@@ -213,8 +213,8 @@ ICON BASE STYLE
     }
 
     /* ================================
- ICON VARIANTS
-================================= */
+     ICON VARIANTS
+  ================================= */
     .icon-primary {
         color: var(--color-primary);
     }
@@ -598,7 +598,7 @@ ICON BASE STYLE
     }
 
     /* ================================
-PRIMARY TABLE VARIANT
+   PRIMARY TABLE VARIANT
 ================================= */
     .table-primary {
         background-color: var(--background-surface);
@@ -616,7 +616,7 @@ PRIMARY TABLE VARIANT
     }
 
     /* ================================
-SECONDARY TABLE VARIANT
+   SECONDARY TABLE VARIANT
 ================================= */
     .table-secondary {
         background-color: var(--background-surface-secondary);
@@ -633,7 +633,7 @@ SECONDARY TABLE VARIANT
     }
 
     /* ================================
-TERTIARY TABLE VARIANT
+   TERTIARY TABLE VARIANT
 ================================= */
     .table-tertiary {
         background-color: var(--background-surface-tertiary);
@@ -648,6 +648,5 @@ TERTIARY TABLE VARIANT
     .table-tertiary .table-row:hover {
         background-color: var(--background-surface-tertiary-hover);
     }
-
 
 }

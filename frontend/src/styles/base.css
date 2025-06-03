@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+@import 'utilities.css';
+@import 'components.css';
 
 /* Base UI Styles */
 @layer base {
@@ -24,6 +26,10 @@
 
     body {
         transition: background-color 0.2s var(--ease-in-out), color 0.2s var(--ease-in-out);
+
+        @media (prefers-reduced-motion: reduce) {
+            transition: none;
+        }
     }
 
     .dark body,
