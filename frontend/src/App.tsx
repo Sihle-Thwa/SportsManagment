@@ -7,7 +7,7 @@ function App() {
 	return (
 		<Router>
 			<ThemeProvider>
-				<div className="min-h-screen bg-background font-sans antialiased"> {/* shadcn/tailwind v4 best practices */}
+				<div className="min-h-screen"> {/* shadcn/tailwind v4 best practices */}
 					<Routes>
 						<Route path="/" element={<MainLayout />}>
 							{routes.map((route) => (

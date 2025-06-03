@@ -3,7 +3,6 @@ import AppTopBar from "../layout/TopNav/app-topbar";
 import { Outlet } from "react-router-dom";
 import { SidebarProvider } from "../ui/sidebar";
 import AppSideBar from "./SideNav/app-sidebar";
-import "../../styles/global.css"; // Import your custom global CSS
 
 /**
  * MainLayout component serves as the primary layout for the application.

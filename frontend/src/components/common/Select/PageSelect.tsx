@@ -1,5 +1,4 @@
 import React from "react";
-import { ChevronDown } from "lucide-react";
 import { Select } from "../Select/Select";
 interface PageSelectProps {
     value: number;
@@ -33,8 +32,6 @@ const PageSelect: React.FC<PageSelectProps> = ({
                 onValueChange={handlePageChange}
                 options={transformedOptions}
                 placeholder="Select page"
-                withIcon
-                icon={<ChevronDown className="select-icon" />}
                 iconPosition="right"
                 variant="primary"
                 className={className}

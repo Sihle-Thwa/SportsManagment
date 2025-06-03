@@ -16,18 +16,11 @@
     }
 
     body {
-        background-color: var(--background-canvas);
+        background-color: var(--background-canvas-gradient);
         color: var(--text-primary);
         --webkit-font-smoothing: var(--text-primary);
         -moz-osx-font-smoothing: var(--text-primary);
     }
 
-    body {
-        transition: background-color 0.2s var(--ease-in-out), color 0.2s var(--ease-in-out);
-
-        @media (prefers-reduced-motion: reduce) {
-            transition: none;
-        }
-    }
 
 }

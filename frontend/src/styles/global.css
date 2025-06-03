@@ -26,12 +26,3 @@
 
 /* Import utility classes */
 @import "./utilities.css";
-
-/* Your global base styles */
-body {
-    font-family: system-ui, sans-serif;
-    background-color: var(--background-canvas);
-    color: var(--text-primary);
-    margin: 0;
-    padding: 0;
-}
