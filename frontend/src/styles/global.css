@@ -215,12 +215,6 @@
     /***** Section: Typography Scale *****/
 
     /* Typography Defaults */
-    h1, h2, h3, h4, h5, h6, p, span, label, strong, em {
-        margin: 0;
-        font-family: inherit;
-        line-height: 1.4;
-        color: var(--text-primary);
-    }
 
     /* Headings */
     h1 {
