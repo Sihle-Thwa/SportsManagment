@@ -1,1 +1,37 @@
-@import 'tailwindcss';
+/* global/index.css */
+@import "tailwindcss";
+
+/* Import base styles */
+@import "./base.css";
+
+/* Import base colors (color palette) */
+@import "./colors.css";
+
+/* Import component-specific styles */
+@import "./components.css";
+
+
+/* Import semantic tokens with light/dark mode variables */
+@import "./semantic-tokens.css";
+
+
+/* Import typography styles */
+@import "./typography.css";
+
+/* Import theme styles */
+@import "./theme.css";
+
+/* Import typography styles */
+@import "./typography.css";
+
+/* Import utility classes */
+@import "./utilities.css";
+
+/* Your global base styles */
+body {
+    font-family: system-ui, sans-serif;
+    background-color: var(--background-canvas);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+}
