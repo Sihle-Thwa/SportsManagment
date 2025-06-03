@@ -22,10 +22,10 @@ export function AppSideBar({ currentPath }: AppSideBarProps) {
 	return (
 		<Sidebar
 			collapsible="icon"
-			className="h-screen bg-background border-r border-border"
+			className="sidebar sidebar-primary  flex flex-col"
 			data-testid="app-sidebar"
 		>
-			<SidebarHeader className="flex flex-row items-center justify-center p-4">
+			<SidebarHeader className="sidebar-header flex flex-row items-center justify-center p-4">
 				<SidebarMenuButton
 					size="lg"
 					className="flex flex-row items-center gap-2 p-3 rounded-lg hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"

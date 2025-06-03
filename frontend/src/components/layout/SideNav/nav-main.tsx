@@ -17,7 +17,7 @@ export function NavMain({ activeRoute, setActiveRoute }: NavMainProps) {
 			{routes.map((route) => (
 				<SidebarMenuItem
 					key={route.id}
-					className="flex items-center w-full"
+					className="sidebar-item flex items-center w-full"
 				>
 					<SidebarMenuButton asChild className="w-full px-4 py-2">
 						<NavLink
