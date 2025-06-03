@@ -17,7 +17,6 @@
 
     body {
 
-        background-color: var(--background-canvas);
         color: var(--text-primary);
         --webkit-font-smoothing: var(--text-primary);
         -moz-osx-font-smoothing: var(--text-primary);

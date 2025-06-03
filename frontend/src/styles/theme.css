@@ -69,10 +69,6 @@
     --color-neutral-950: hsl(210, 20%, 10%);
 
     /***** End Section *****/
-    --gradient-primary: linear-gradient(to right,
-            var(--color-neutral) 25%,
-            var(--color-primary-200) 75%,
-            var(--color-accent) 100%);
 
 
     /***** End Section *****/
@@ -107,7 +103,7 @@
 
     /***** Section: Light Theme Semantic Tokens *****/
     /* Background */
-    --background-canvas: var(--background-canvas-gradient);
+    --background-canvas: var(--color-neutral-100);
     --background-surface: var(--color-neutral-50);
     --background-surface-secondary: var(--color-secondary-500);
     --background-surface-tertiary: var(--color-neutral-50);
@@ -183,6 +179,9 @@
     --status-info-border: var(--color-info-100);
 
 
+    --sidebar-background: var(--color-neutral-50);
+    --sidebar-text: var(--text-primary);
+    --sidebar-text-active: var(--interactive-primary);
 
 
     /***** End Section *****/

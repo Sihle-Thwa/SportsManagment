@@ -196,6 +196,35 @@
 
     /* Chart Styles */
 
+    /*Header Styles*/
+    .header-base {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--spacing-4);
+        background-color: var(--background-surface);
+        border-bottom: 1px solid var(--border-default);
+    }
+
+    .header-title {
+        font-size: var(--font-size-2xl);
+        font-weight: var(--font-weight-bold);
+        color: var(--text-primary);
+    }
+
+    .header-subtitle {
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-normal);
+        color: var(--text-secondary);
+    }
+
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-3);
+    }
+
+
     /*Icon Styles*/
     /* ================================
    ICON BASE STYLE
@@ -481,6 +510,7 @@
     .sidebar {
         height: 100vh;
         background-color: var(--sidebar-background);
+        box-shadow: var(--shadow-md);
         color: var(--sidebar-text);
         border-right: 1px solid var(--sidebar-border);
         display: flex;
