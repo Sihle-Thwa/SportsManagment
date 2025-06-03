@@ -7,7 +7,7 @@ const MainAppTopBar = () => {
 	return (
 		<header className="flex flex-row h-18 px-6 items-center justify-between">
 			{/* Left side - Page Name */}
-			<div className="flex items-center">
+			<div className="flex items-start gap-4">
 				<Header />
 			</div>
 
