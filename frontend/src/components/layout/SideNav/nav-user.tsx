@@ -25,7 +25,7 @@ export function NavUser() {
       <DropdownMenuTrigger asChild>
         <button
           type="button"
-          className="flex items-center gap-3 px-4 py-2 rounded-lg cursor-pointer transition-colors hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="btn-base btn-tertiary"
         >
           <Avatar className="size-8 rounded-lg grayscale">
             <AvatarImage alt="User Name" src="/path/to/default-image.jpg" />

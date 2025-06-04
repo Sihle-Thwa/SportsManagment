@@ -27,21 +27,21 @@ const items = [
 
 export function NavSecondary() {
 	return (
-		<SidebarMenu className="flex flex-col gap-1 self-stretch items-start justify-center p-3 mt-auto">
+		<SidebarMenu className="sidebar-menu mt-auto">
 			{items.map((item) => (
 				<SidebarMenuItem
-					className="flex w-full items-center"
+					className="sidebar-menu-item"
 					key={item.title}
 				>
-					<SidebarMenuButton asChild>
+					<SidebarMenuButton className="sidebar-menu-button" asChild>
 						<a
 							href={item.url}
-							className="flex items-center gap-2 rounded-lg px-3 py-2 text-muted-foreground transition-colors hover:bg-muted"
+							className="sidebar-menu-item"
 						>
 							<Suspense fallback={<span className="w-5 h-5 animate-pulse" />}>
-								<item.icon className="w-5 h-5" />
+								<item.icon className="icon-base" />
 							</Suspense>
-							<span className="font-medium">{item.title}</span>
+							<span >{item.title}</span>
 						</a>
 					</SidebarMenuButton>
 				</SidebarMenuItem>
