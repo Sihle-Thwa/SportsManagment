@@ -25,9 +25,7 @@ export function AppSideBar({ currentPath }: AppSideBarProps) {
 			className="sidebar"
 		>
 			<SidebarHeader className="sidebar-header">
-				<SidebarMenuButton
-					className="sidebar-menu-button"
-				>
+				<SidebarMenuButton className="sidebar-menu-button">
 					<div className="icon-base icon-accent">
 						<House />
 					</div>

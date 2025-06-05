@@ -6,6 +6,9 @@ import {
 import { NavLink } from "react-router-dom";
 import { routes } from "../../../routes";
 
+import { clsx } from "clsx";
+
+
 interface NavMainProps {
 	activeRoute: string;
 	setActiveRoute: (path: string) => void;
@@ -13,7 +16,7 @@ interface NavMainProps {
 
 export function NavMain({ activeRoute, setActiveRoute }: NavMainProps) {
 	return (
-		<SidebarMenu className="sidebar-menu-">
+		<SidebarMenu className="sidebar-menu">
 			{routes.map((route) => (
 				<SidebarMenuItem
 					key={route.id}
@@ -23,18 +26,15 @@ export function NavMain({ activeRoute, setActiveRoute }: NavMainProps) {
 						<NavLink
 							to={route.path}
 							className={({ isActive }) =>
-								[
-									"sidebar-menu-item",
-									isActive || activeRoute === route.path
-										? "text-accent-foreground bg-accent"
-										: "text-muted-foreground",
-									"", // Example: add your custom class from global.css
-								].join(" ")
+								clsx(
+									"sidebar-menu-item sidebar-menu-item-custom",
+									isActive ? "sidebar-menu-item-active" : "sidebar-menu-item-disabled"
+								)
 							}
 							onClick={() => setActiveRoute(route.path)}
 						>
 							{route.icon}
-							<span >{route.title}</span>
+							<span className="sidebar-menu-item">{route.title}</span>
 						</NavLink>
 					</SidebarMenuButton>
 				</SidebarMenuItem>
