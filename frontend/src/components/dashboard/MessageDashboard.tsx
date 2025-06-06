@@ -67,7 +67,7 @@ const MessageDashboard = ({ messages = [] }) => {
     <Card className="card-base">
       <CardHeader className="card-header flex flex-row items-start justify-between">
         <CardTitle className="card-title">
-          Messages
+          <h4>Messages</h4>
         </CardTitle>
         <Button className="btn-base btn-tertiary">
           <MoreHorizontal className="icon-base icon-tertiary" />
@@ -93,7 +93,7 @@ const MessageDashboard = ({ messages = [] }) => {
 
                   <div className="flex flex-col items-start self-stretch">
                     <div className="flex flex-row items-start justify-between self-stretch">
-                      <h5>{msg.sender.name}</h5>
+                      <h6>{msg.sender.name}</h6>
                       <span>{msg.timestamp}</span>
                     </div>
                     <p>{msg.message}</p>

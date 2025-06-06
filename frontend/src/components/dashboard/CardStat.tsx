@@ -15,8 +15,8 @@ export const CardStat: React.FC<{
 				</div>
 
 				<div className=" card-body flex flex-col items-start  shrink-0 self-stretch">
-					<h5>{value}</h5>
-					<h6>{title}</h6>
+					<h4>{value}</h4>
+					<h5>{title}</h5>
 				</div>
 			</CardContent>
 		</Card>
