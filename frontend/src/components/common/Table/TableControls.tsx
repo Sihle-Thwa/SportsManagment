@@ -33,14 +33,13 @@ export function TableControls({
     >
       {/* Page Selection */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
-        <label htmlFor="itemsPerPage" className="text-sm font-medium">
+        <label htmlFor="itemsPerPage" >
           Show
         </label>
         <PageSelect
           value={itemsPerPage}
           onValueChange={onItemsPerPageChange}
           options={pageOptions}
-          className="min-w-[80px]"
         />
 
         <span className="text-sm">entries</span>

@@ -52,7 +52,7 @@ export function TableBuilder<T>({
       />
 
       {/* Table Container */}
-      <div className="overflow-auto rounded-md border border-border-muted">
+      <div className="overflow-auto rounded-lg border border-border-muted">
         <UITable className="table-primary w-full">
           <TableHeader columns={columns} sorting={sorting} onSort={onSort} actions={actions} />
           <TableBody data={data} columns={columns} actions={actions} />
@@ -60,8 +60,8 @@ export function TableBuilder<T>({
       </div>
       {/* Table Footer */}
       <TableFooter className="bg-background border-t border-border-muted">
-        <div className="flex items-center justify-between p-4">
-          <span className="text-sm text-muted">
+        <div className="flex items-end justify-end p-2">
+          <span >
             {data.length} {data.length === 1 ? "item" : "items"} found
           </span>
         </div>

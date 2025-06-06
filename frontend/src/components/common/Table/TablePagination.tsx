@@ -11,19 +11,21 @@ export function TablePagination({ currentPage, totalPages, onPageChange }: Table
   const isLast = currentPage === totalPages;
 
   return (
-    <div className="flex items-center justify-end gap-2 px-2 py-4">
+    <div className="flex items-center justify-center gap-2 px-2 py-4">
       <Button
-        variant="ghost"
+        className="btn-base"
+        variant="primary"
         disabled={isFirst}
         onClick={() => onPageChange(currentPage - 1)}
       >
         Previous
       </Button>
-      <span className="text-sm text-muted">
+      <span>
         Page {currentPage} of {totalPages}
       </span>
       <Button
-        variant="ghost"
+        className="btn-base"
+        variant="primary"
         disabled={isLast}
         onClick={() => onPageChange(currentPage + 1)}
       >

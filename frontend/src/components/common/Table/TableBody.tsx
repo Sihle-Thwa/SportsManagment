@@ -13,7 +13,7 @@ export function TableBody<T>({ data, columns, actions }: TableBodyProps<T>) {
   if (data.length === 0) {
     return (
       <UITableBody className="table-body">
-        <TableRow>
+        <TableRow className="table-row">
           <TableCell colSpan={columns.length + (actions ? 1 : 0)} className="table-cell">
             <EmptyState message="No data available for this table." />
           </TableCell>
@@ -36,7 +36,7 @@ export function TableBody<T>({ data, columns, actions }: TableBodyProps<T>) {
 
           ))}
           {actions && (
-            <TableCell className="table-cell">
+            <TableCell className=" table-cell">
               {actions(item)}
             </TableCell>
           )}
