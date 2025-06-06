@@ -26,8 +26,11 @@ const PlayerSummaryDashboard = () => {
           withIcon={true}
           iconPosition="left"
           icon={<Plus />}
-          fullWidth={false}>
-          Add New Player
+          fullWidth={true}
+          size="sm"
+          variant="primary"
+        >
+          <span>Add New Player</span>
         </Button>
       </CardFooter>
     </Card>

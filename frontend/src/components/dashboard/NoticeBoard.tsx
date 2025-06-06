@@ -73,7 +73,9 @@ const NoticeBoard = ({ notices = [] }) => {
           iconPosition="left"
           icon={<Plus />}
           fullWidth={true}
-          className="btn-base btn-primary"
+          variant="primary"
+          size="sm"
+          className="btn-base"
         >
         </Button>
         <Button
@@ -81,7 +83,9 @@ const NoticeBoard = ({ notices = [] }) => {
           iconPosition="left"
           icon={<Pencil />}
           fullWidth={true}
-          className="btn-base btn-primary"
+          variant="primary"
+          size="sm"
+          className="btn-base"
         >
 
         </Button>
@@ -90,7 +94,9 @@ const NoticeBoard = ({ notices = [] }) => {
           iconPosition="left"
           icon={<X />}
           fullWidth={true}
-          className="btn-base btn-primary"
+          variant="primary"
+          size="sm"
+          className="btn-base"
         >
         </Button>
       </CardFooter>
