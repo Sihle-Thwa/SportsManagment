@@ -14,7 +14,7 @@ interface NavMainProps {
 	setActiveRoute: (path: string) => void;
 }
 
-export function NavMain({ activeRoute, setActiveRoute }: NavMainProps) {
+export function NavMain({ setActiveRoute }: NavMainProps) {
 	return (
 		<SidebarMenu className="sidebar-menu">
 			{routes.map((route) => (

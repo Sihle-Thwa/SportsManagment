@@ -517,6 +517,7 @@
         min-height: 100vh;
         box-shadow: var(--shadow-md);
         border: 1px solid var(--border-subtle);
+        min-width: var(--space-16);
 
     }
 
@@ -530,7 +531,8 @@
 
     /* Sidebar Group */
     .sidebar-group {
-        margin-bottom: var(--space-4);
+        margin-bottom: var(--space-2);
+        padding: var(--space-2);
     }
 
     .sidebar-group-title {
@@ -560,7 +562,6 @@
     .sidebar-menu {
         display: flex;
         flex-direction: column;
-        gap: 0.25rem;
     }
 
     /* Sidebar Menu Button */
