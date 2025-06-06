@@ -3,4 +3,4 @@ export * from './TableHeader';
 export * from './TableBody';
 export * from './TableControls';
 export * from './TablePagination';
-export * from './TableBuilder';
+export * from './Table';

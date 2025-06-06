@@ -1,6 +1,6 @@
 import { Building, MapPin, Pencil, Trash2, Calendar } from "lucide-react";
 import { Button } from "../../components/ui/button";
-import { TableBuilder, TableColumn } from "../../components/common/Table";
+import { TableBuilder, TableColumn } from "../../components/common/Table/Table";
 
 // Define the Facility interface
 export interface Facility {
@@ -126,7 +126,12 @@ export function FacilitiesTable({
       actions={renderActions}
       onAddNew={onAddNew}
       addNewLabel="Add New Facility"
-      itemsPerPage={10}
-    />
+      itemsPerPage={10} currentPage={0} totalPages={0} onPageChange={function (_: number): void {
+        throw new Error("Function not implemented.");
+      }} onItemsPerPageChange={function (_: number): void {
+        throw new Error("Function not implemented.");
+      }} searchTerm={""} onSearchChange={function (_: string): void {
+        throw new Error("Function not implemented.");
+      }} />
   );
 }

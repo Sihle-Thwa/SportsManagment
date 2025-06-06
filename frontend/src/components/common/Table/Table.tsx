@@ -18,7 +18,7 @@ interface TableProps<T> extends TableControlsProps {
 }
 
 
-export function Table<T>({
+export function TableBuilder<T>({
   data,
   columns,
   actions,
@@ -77,4 +77,5 @@ export function Table<T>({
     </div>
   );
 }
-Table.displayName = "Table";
+TableBuilder.displayName = "TableBuilder";
+export type { TableProps, TableColumn };
