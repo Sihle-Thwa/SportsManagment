@@ -58,6 +58,14 @@ export function Table<T>({
           <TableBody data={data} columns={columns} actions={actions} />
         </UITable>
       </div>
+      {/* Table Footer */}
+      <TableFooter className="bg-background border-t border-border-muted">
+        <div className="flex items-center justify-between p-4">
+          <span className="text-sm text-muted">
+            {data.length} {data.length === 1 ? "item" : "items"} found
+          </span>
+        </div>
+      </TableFooter>
       {data.length > 0 && (
         <TablePagination
           currentPage={currentPage}
