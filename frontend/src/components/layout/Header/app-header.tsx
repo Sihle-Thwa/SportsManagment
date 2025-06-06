@@ -15,7 +15,7 @@ const Header = () => {
 	return (
 		<header className="navigation-content">
 			<SidebarTrigger className="navigation-trigger" />
-			<Separator orientation="vertical" className="icon-base icon-accent" />
+			<Separator orientation="vertical" />
 			<Breadcrumb className="navigation-content">
 				<BreadcrumbList className="navigation-list">
 					{pathSegments.length > 0 && (
