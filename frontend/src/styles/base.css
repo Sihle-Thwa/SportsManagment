@@ -4,6 +4,7 @@
 @layer base {
     * {
         border-color: var(--border-default);
+        border-radius: var(--border-radius);
         box-sizing: border-box;
     }
 
