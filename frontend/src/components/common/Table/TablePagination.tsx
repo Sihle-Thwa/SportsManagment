@@ -1,42 +1,34 @@
-import { Pagination } from "../Pagination/Pagination";
-
-import { cn } from "../../../lib/utils";
+import { Button } from "../../common/Button";
 
 interface TablePaginationProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
-  variant?: "pagination-primary" | "pagination-secondary" | "pagination-tertiary";
 }
 
-export function TablePagination({
-  currentPage,
-  totalPages,
-  onPageChange,
-  variant = "pagination-primary"
-}: TablePaginationProps) {
-  const pageNumbers: number[] = [];
-  const maxPages = 5;
-
-  if (totalPages <= maxPages) {
-    for (let i = 1; i <= totalPages; i++) pageNumbers.push(i);
-  } else {
-    if (currentPage <= 3) {
-      for (let i = 1; i <= maxPages; i++) pageNumbers.push(i);
-    } else if (currentPage >= totalPages - 2) {
-      for (let i = totalPages - maxPages + 1; i <= totalPages; i++) pageNumbers.push(i);
-    } else {
-      for (let i = currentPage - 2; i <= currentPage + 2; i++) pageNumbers.push(i);
-    }
-  }
+export function TablePagination({ currentPage, totalPages, onPageChange }: TablePaginationProps) {
+  const isFirst = currentPage === 1;
+  const isLast = currentPage === totalPages;
 
   return (
-    <Pagination
-      className="pagination-base"
-      currentPage={currentPage}
-      totalPages={totalPages}
-      onPageChange={onPageChange}
-      variant={variant}
-    />
+    <div className="flex items-center justify-end gap-2 px-2 py-4">
+      <Button
+        variant="ghost"
+        disabled={isFirst}
+        onClick={() => onPageChange(currentPage - 1)}
+      >
+        Previous
+      </Button>
+      <span className="text-sm text-muted">
+        Page {currentPage} of {totalPages}
+      </span>
+      <Button
+        variant="ghost"
+        disabled={isLast}
+        onClick={() => onPageChange(currentPage + 1)}
+      >
+        Next
+      </Button>
+    </div>
   );
 }

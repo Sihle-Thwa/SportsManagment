@@ -680,20 +680,83 @@
     /* ================================
    PRIMARY TABLE VARIANT
 ================================= */
+
     .table-primary {
+        width: 100%;
+        border-collapse: collapse;
         background-color: var(--background-surface);
         color: var(--text-primary);
+        font-size: var(--text-sm);
+        font-family: var(--font-sans);
     }
 
-    .table-primary .table-head {
+    /* Table Header */
+    .table-primary thead {
         background-color: var(--background-surface);
         color: var(--text-primary);
+        font-weight: var(--font-semibold);
+        text-align: left;
+        border-bottom: 1px solid var(--border-subtle);
     }
 
-    .table-primary .table-row:hover {
+    .table-primary thead th {
+        padding: 0.75rem 1rem;
+        font-size: var(--text-sm);
+        white-space: nowrap;
+    }
+
+    /* Table Body Rows */
+    .table-primary tbody tr {
+        transition: background-color 0.2s ease;
+        border-bottom: 1px solid var(--border-muted);
+    }
+
+    .table-primary tbody tr:hover {
         background-color: var(--background-surface-hover);
         color: var(--text-primary);
     }
+
+    /* Selected or Focused Row */
+    .table-primary tbody tr:focus,
+    .table-primary tbody tr[aria-selected="true"] {
+        outline: 2px solid var(--accent);
+        outline-offset: -2px;
+    }
+
+    /* Table Cells */
+    .table-primary td {
+        padding: 0.75rem 1rem;
+        font-size: var(--text-sm);
+        color: var(--text-secondary);
+        vertical-align: middle;
+    }
+
+    /* First/Last Column Modifiers (Optional) */
+    .table-primary td:first-child,
+    .table-primary th:first-child {
+        padding-left: 1.25rem;
+    }
+
+    .table-primary td:last-child,
+    .table-primary th:last-child {
+        padding-right: 1.25rem;
+    }
+
+    /* Responsive Overflow Wrapper (optional class) */
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Optional Table Caption */
+    .table-primary caption {
+        caption-side: bottom;
+        text-align: left;
+        font-size: var(--text-sm);
+        color: var(--text-muted);
+        padding: 0.5rem 1rem;
+    }
+
 
     /* ================================
    SECONDARY TABLE VARIANT
