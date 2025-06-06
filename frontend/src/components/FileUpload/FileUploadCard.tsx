@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card';
 import { Button } from '../../components/ui/button';
 import { Upload } from 'lucide-react';
-import { cn } from '../../lib/utils';
 
 export interface FileUploadCardProps {
   title?: string;
@@ -101,15 +100,15 @@ export const FileUploadCard = ({
   };
 
   return (
-    <Card className={cn("w-[360px] ")}>
-      <CardHeader className="text-center">
-        <div className="mx-auto bg-gray-100 rounded-full p-3 mb-2">
-          <Upload className="h-32 w-32 text-gray-600" />
+    <Card className='card-base h-full w-full max-w-md mx-auto overflow-hidden'>
+      <CardHeader className="card-header">
+        <div className="flex items-center justify-center mb-4">
+          <Upload className="h-32 w-32" />
         </div>
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
+        <CardTitle className='card-title'>{title}</CardTitle>
+        <CardDescription className='card-description'>{description}</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className='card-body'>
         {selectedFile ? (
           <div className="space-y-3">
             {preview && (
@@ -123,15 +122,13 @@ export const FileUploadCard = ({
             )}
             <div className="flex items-center justify-between">
               <div className="text-sm">
-                <p className="font-medium">{selectedFile.name}</p>
-                <p className="text-gray-500">
+                <p >{selectedFile.name}</p>
+                <p>
                   {(selectedFile.size / 1024).toFixed(2)} KB
                 </p>
               </div>
               <div className="flex space-x-2">
-                <Button
-                  variant="outline"
-                  size="sm"
+                <Button className='btn-base btn-primary'
                   onClick={handleRemove}
                 >
                   Remove
@@ -157,9 +154,9 @@ export const FileUploadCard = ({
                 <div className="text-amber-500 mb-2">
                   <Upload className="h-6 w-6" />
                 </div>
-                <span className="text-amber-500 font-medium">Click to upload</span>
-                <span className="text-gray-500 text-sm">or drag and drop</span>
-                <span className="text-gray-400 text-xs">
+                <span className="">Click to upload</span>
+                <span className="">or drag and drop</span>
+                <span className="">
                   {acceptedFileTypes.replace(/\./g, '').toUpperCase()} (max. {maxDimensions.width}×{maxDimensions.height}px)
                 </span>
               </div>
@@ -168,13 +165,12 @@ export const FileUploadCard = ({
         )}
 
         {error && (
-          <div className="mt-3 text-red-500 text-sm">{error}</div>
+          <pre className="mt-3 text-red-500 text-sm">{error}</pre>
         )}
 
         <div className="mt-4 flex justify-center">
           {!selectedFile ? (
-            <Button
-              variant="default"
+            <Button className='btn-base btn-primary'
               onClick={() => document.getElementById('file-upload')?.click()}
             >
               Add Photo

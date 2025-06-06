@@ -20,7 +20,13 @@ const Profile: React.FC = () => {
 
 
   return (
-    <div className="flex flex-row items-start justify-start min-h-screen p-6">
+
+
+    <div className="flex flex-col items-start justify-start min-h-screen p-3">
+      <div className="mb-6">
+        <h1 >User Profile</h1>
+        <h2 >View and Manage all members of your organisation</h2>
+      </div>
       <FileUploadCard description={'Upload a picture for your profile picture'} onFileSelect={function (): void {
         throw new Error('Function not implemented.');
       }} />
@@ -28,12 +34,12 @@ const Profile: React.FC = () => {
 
         {isSubmitted ? (
           <div className="p-6">
-            <h2 className="text-xl font-bold mb-4">Form Submitted Successfully!</h2>
-            <p className="mb-4">Thank you for submitting your information.</p>
+            <h2 >Form Submitted Successfully!</h2>
+            <p >Thank you for submitting your information.</p>
 
             <div className="border-t pt-3 mt-3">
-              <h3 className="text-lg font-semibold mb-3">Submitted Data:</h3>
-              <pre className=" p-3 rounded overflow-auto">
+              <h3 >Submitted Data:</h3>
+              <pre >
                 {JSON.stringify(formData, (key, value) => {
                   // Format date object for display
                   if (key === 'dateOfBirth' && value instanceof Date) {
@@ -45,12 +51,13 @@ const Profile: React.FC = () => {
             </div>
 
             <Button
-              className="btn-primary mt-4"
+              className="btn-base"
               withIcon={false}
               onClick={() => {
                 setFormData(null);
                 setIsSubmitted(false);
               }}
+              variant='primary'
             >
               Submit Another Form
             </Button>

@@ -32,7 +32,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "../../components/ui/popover";
-import { Card, CardContent, CardHeader } from "../../components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 import { cn } from "../../lib/utils";
 import { useForm } from "react-hook-form";
 
@@ -76,11 +76,11 @@ export function UserInfoForm({
   }, [validationErrors, form]);
 
   return (
-    <Card className="w-full max-w-2xl bg-white rounded shadow gap-3">
-      <CardHeader>
-        <h2 className="text-xl font-semibold border-b border-amber-600 pb-2">{formTitle}</h2>
+    <Card className="card-base card-primary w-full h-full">
+      <CardHeader className="card-header">
+        <CardTitle className="card-title">{formTitle}</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="card-body">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -135,9 +135,9 @@ export function UserInfoForm({
                           <SelectValue placeholder="Select gender" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
+                      <SelectContent className="select-content">
                         {GENDER_OPTIONS.map((option) => (
-                          <SelectItem key={option.value} value={option.value}>
+                          <SelectItem className="select-item" key={option.value} value={option.value}>
                             {option.label}
                           </SelectItem>
                         ))}
@@ -351,7 +351,7 @@ export function UserInfoForm({
               />
             </div>
 
-            <Button type="submit" variant="primary" className="w-full">
+            <Button className="btn-base btn-primary" type="submit">
               Submit
             </Button>
           </form>
