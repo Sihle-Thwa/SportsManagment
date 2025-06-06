@@ -13,9 +13,9 @@ const Header = () => {
 	const pathSegments = location.pathname.split("/").filter(Boolean);
 
 	return (
-		<header className="flex h-16 flex-row items-center gap-4">
-			<SidebarTrigger className="btn-base btn-primary" />
-			<Separator orientation="vertical" className="icon-base icon-primary" />
+		<header className="sidebar-header">
+			<SidebarTrigger className="btn-base btn-accent" />
+			<Separator orientation="vertical" className="icon-base icon-accent" />
 			<Breadcrumb>
 				<BreadcrumbList>
 					{pathSegments.length > 0 && (

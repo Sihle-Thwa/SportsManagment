@@ -508,6 +508,18 @@
     }
 
 
+    /*Header Styles */
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--space-2);
+        background-color: var(--sidebar-background);
+        color: var(--sidebar-text);
+        border-bottom: 1px solid var(--border-default);
+    }
+
     /* Sidebar Styles */
 
     /* Sidebar Container */
@@ -517,7 +529,6 @@
         min-height: 100vh;
         box-shadow: var(--shadow-md);
         border: 1px solid var(--border-subtle);
-        min-width: var(--space-16);
 
     }
 

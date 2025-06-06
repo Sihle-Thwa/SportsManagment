@@ -5,7 +5,7 @@ import "../../../styles/global.css"; // Import your custom global styles
 
 const MainAppTopBar = () => {
 	return (
-		<header className="flex flex-row h-18 px-6 items-center justify-between bg-white dark:bg-gray-800 shadow-md">
+		<header className="header">
 			{/* Left side - Page Name */}
 			<div className="flex items-start gap-4">
 				<Header />
