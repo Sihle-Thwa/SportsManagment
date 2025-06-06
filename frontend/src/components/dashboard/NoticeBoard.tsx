@@ -53,11 +53,11 @@ const NoticeBoard = ({ notices = [] }) => {
                 <div className="flex flex-row items-start gap-3 self-stretch">
                   {renderIcon()}
                   <div className="flex flex-col items-start self-stretch">
-                    <h3 className="text-xl font-medium text-slate-800">{notice.title}</h3>
+                    <h5>{notice.title}</h5>
                   </div>
                 </div>
                 <div className="flex flex-col items-start self-stretch">
-                  <p className="text-base text-slate-700">{notice.content}</p>
+                  <p>{notice.content}</p>
                 </div>
 
               </div>
@@ -73,7 +73,7 @@ const NoticeBoard = ({ notices = [] }) => {
           iconPosition="left"
           icon={<Plus />}
           fullWidth={true}
-          className="btn-primary"
+          className="btn-base btn-primary"
         >
         </Button>
         <Button
@@ -81,7 +81,7 @@ const NoticeBoard = ({ notices = [] }) => {
           iconPosition="left"
           icon={<Pencil />}
           fullWidth={true}
-          className="btn-primary"
+          className="btn-base btn-primary"
         >
 
         </Button>
@@ -90,7 +90,7 @@ const NoticeBoard = ({ notices = [] }) => {
           iconPosition="left"
           icon={<X />}
           fullWidth={true}
-          className="btn-primary"
+          className="btn-base btn-primary"
         >
         </Button>
       </CardFooter>

@@ -10,7 +10,7 @@ export function CalendarObject() {
       mode="single"
       selected={date}
       onSelect={setDate}
-      className="w-fit h-fit p-2"
+      className="w-full h-full"
     />
   )
 

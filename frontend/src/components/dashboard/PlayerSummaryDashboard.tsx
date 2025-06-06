@@ -8,8 +8,8 @@ const PlayerSummaryDashboard = () => {
 
   return (
     <Card className="card-base ">
-      <CardHeader className="card-header flex flex-row items-start justify-between p-auto">
-        <CardTitle className="card-title ">
+      <CardHeader className="card-header flex flex-row items-start justify-between">
+        <CardTitle className="card-title">
           Players Summary
         </CardTitle>
         <Button className="btn-base btn-tertiary">
@@ -20,9 +20,9 @@ const PlayerSummaryDashboard = () => {
         <ChartBar />
 
       </CardContent>
-      <CardFooter className="card-footer ">
+      <CardFooter className="card-footer">
 
-        <Button className="btn-primary"
+        <Button className="btn-base btn-primary"
           withIcon={true}
           iconPosition="left"
           icon={<Plus />}

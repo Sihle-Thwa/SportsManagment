@@ -93,10 +93,10 @@ const MessageDashboard = ({ messages = [] }) => {
 
                   <div className="flex flex-col items-start self-stretch">
                     <div className="flex flex-row items-start justify-between self-stretch">
-                      <h3 className=" flex flex-col text-xl font-medium text-slate-800">{msg.sender.name}</h3>
-                      <span className="flex flex-col text-sm text-slate-500">{msg.timestamp}</span>
+                      <h5>{msg.sender.name}</h5>
+                      <span>{msg.timestamp}</span>
                     </div>
-                    <p className="flex flex-row text-base text-slate-700">{msg.message}</p>
+                    <p>{msg.message}</p>
                   </div>
                 </div>
               </div>
