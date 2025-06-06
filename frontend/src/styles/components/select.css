@@ -1,0 +1,47 @@
+@import 'tailwindcss';
+
+@layer components {
+    .select {
+        width: 100%;
+        appearance: none;
+        font-family: var(--font-sans, sans-serif);
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-normal);
+        border-radius: var(--radius-md);
+        padding: var(--spacing-2);
+        transition: var(--duration-fast);
+        outline: none;
+        box-shadow: var(--shadow-md);
+        position: relative;
+    }
+
+    .select:focus {
+        border-color: var(--border-focus);
+    }
+
+    .select::placeholder {
+        color: var(--text-placeholder);
+    }
+
+    .select:disabled {
+        background-color: var(--input-disabled-background);
+        color: var(--text-disabled);
+        cursor: not-allowed;
+    }
+
+    .select--error {
+        border-color: var(--border-error);
+        background-color: var(--input-error-background);
+        color: var(--text-error);
+    }
+
+    .select-icon {
+        position: absolute;
+        right: var(--spacing-3);
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: var(--text-secondary);
+    }
+
+}

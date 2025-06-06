@@ -1,0 +1,42 @@
+@import 'tailwindcss';
+
+@layer components {
+
+    .input {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: var(--spacing-2);
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border-default);
+        background-color: var(--input-background);
+        color: var(--text-primary);
+        font-size: var(--font-size-base);
+        font-weight: var(--font-weight-normal);
+        box-shadow: var(--shadow-sm);
+        transition: var(--duration-fast);
+    }
+
+    .input:focus {
+        border-color: var(--border-focus);
+        outline: none;
+    }
+
+    .input::placeholder {
+        color: var(--text-placeholder);
+    }
+
+    .input:disabled {
+        background-color: var(--input-disabled-background);
+        color: var(--text-disabled);
+        cursor: not-allowed;
+    }
+
+    .input--error {
+        border-color: var(--border-error);
+        background-color: var(--input-error-background);
+        color: var(--text-error);
+    }
+
+}

@@ -1,0 +1,85 @@
+@import 'tailwindcss';
+
+@layer components {
+    .card {
+        color: var(--text-primary);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+        padding: var(--spacing-4);
+        margin: var(--spacing-4);
+        transition: var(--duration-fast);
+        border: 1px solid var(--border-default);
+        width: 100%;
+        max-height: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--spacing-4);
+    }
+
+    .card-header-title {
+        font-size: var(--font-size-2xl);
+        font-weight: var(--font-weight-bold);
+        margin-bottom: var(--spacing-2);
+        color: var(--text-primary);
+        line-height: var(--line-height-normal);
+        flex: 1;
+    }
+
+    .card-body {
+        font-size: var(--font-size-base);
+        font-weight: var(--font-weight-normal);
+        color: var(--text-primary);
+        margin-bottom: var(--spacing-4);
+        overflow-y: auto;
+        align-items: center;
+    }
+
+    .card-description {
+        font-size: var(--font-size-base);
+        color: var(--text-secondary);
+        line-height: var(--line-height-normal);
+        margin-bottom: var(--spacing-2);
+    }
+
+    .card-footer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--spacing-3);
+        border-top: 1px solid var(--border-light);
+        gap: var(--spacing-3);
+
+    }
+
+    .card-action {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: var(--spacing-3);
+    }
+
+    .card--primary {
+        background-color: var(--card-primary-background);
+        color: var(--card-primary-text);
+    }
+
+    .card--secondary {
+        background-color: var(--card-secondary-background);
+        color: var(--card-secondary-text);
+    }
+
+    .card--tertiary {
+        background-color: var(--card-tertiary-background);
+        color: var(--card-tertiary-text);
+    }
+}

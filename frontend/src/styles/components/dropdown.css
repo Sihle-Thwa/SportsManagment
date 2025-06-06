@@ -1,0 +1,63 @@
+@import 'tailwindcss';
+
+@layer components {
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: var(--dropdown-background);
+        box-shadow: var(--shadow-lg);
+        border-radius: var(--radius-md);
+        z-index: 1;
+        min-width: 160px;
+    }
+
+    .dropdown-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2);
+    }
+
+    .dropdown-item {
+        padding: var(--spacing-2);
+        color: var(--text-primary);
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown-label {
+        padding: var(--spacing-2);
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-secondary);
+        cursor: default;
+    }
+
+    .dropdown-seperator {
+        height: 1px;
+        background-color: var(--border-light);
+        margin: var(--spacing-2) 0;
+    }
+
+    .dropdown-trigger {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--spacing-2);
+        background-color: var(--dropdown-trigger-background);
+        color: var(--text-primary);
+        border-radius: var(--radius-md);
+        transition: var(--transition-fast);
+    }
+
+    .dropdown-item:hover {
+        background-color: var(--dropdown-item-hover-background);
+    }
+
+}

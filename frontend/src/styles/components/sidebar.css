@@ -1,0 +1,94 @@
+@import 'tailwindcss';
+
+@layer components {
+    .sidebar {
+        background-color: var(--sidebar-background);
+        color: var(--text-primary);
+        padding: var(--spacing-4);
+        box-shadow: var(--shadow-lg);
+        border-right: 1px solid var(--border-light);
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-3);
+    }
+
+    .sidebar-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar-group {
+        margin-bottom: var(--spacing-2);
+        padding: var(--spacing-2);
+    }
+
+    .sidebar-group-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2);
+    }
+
+    .sidebar-group-label {
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-secondary);
+        margin-bottom: var(--spacing-2);
+    }
+
+    .sidebar-menu {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-2);
+    }
+
+    .sidebar-menu-button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--spacing-2);
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        transition: var(--transition-fast);
+    }
+
+    .sidebar-menu-item {
+        padding: var(--spacing-2);
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        transition: var(--transition-fast);
+        color: var(--text-primary);
+    }
+
+    .sidebar-menu-item:hover {
+        background-color: var(--hover-background);
+    }
+
+    .sidebar-menu-item.active {
+        background-color: var(--active-background);
+        color: var(--text-active);
+        font-weight: var(--font-weight-bold);
+    }
+
+    .sidebar-rail {
+        background-color: var(--sidebar-background);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        padding: var(--space-2);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .sidebar-footer {
+        margin-top: auto;
+        padding: var(--space-4);
+        border-top: 1px solid var(--border-subtle);
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        background-color: var(--background-surface);
+    }
+
+    .sidebar-footer:hover {
+        color: var(--text-primary);
+    }
+}

@@ -1,0 +1,66 @@
+@import 'tailwindcss';
+
+@layer components {
+
+    .table-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--spacing-4);
+        background-color: var(--background);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+    }
+
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0 auto;
+        background-color: var(--table-background);
+        color: var(--text-primary);
+    }
+
+    .table-header {
+        background-color: var(--table-header-background);
+        color: var(--text-secondary);
+        font-weight: var(--font-weight-semibold);
+        text-align: left;
+        padding: var(--spacing-2);
+    }
+
+    .table-head {
+        background-color: var(--table-head-background);
+        color: var(--text-secondary);
+        font-weight: var(--font-weight-semibold);
+        text-align: left;
+        padding: var(--spacing-2);
+    }
+
+    .table-body {
+        background-color: var(--table-body-background);
+        color: var(--text-primary);
+    }
+
+    .table-row {
+        border-bottom: 1px solid var(--border-light);
+        transition: var(--transition-fast);
+    }
+
+    .table-cell {
+        padding: var(--spacing-2);
+        border-bottom: 1px solid var(--border-light);
+        text-align: left;
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-normal);
+    }
+
+    .table-row:hover {
+        background-color: var(--table-row-hover-background);
+    }
+
+    .table-row.selected {
+        background-color: var(--table-row-selected-background);
+        color: var(--text-selected);
+    }
+}

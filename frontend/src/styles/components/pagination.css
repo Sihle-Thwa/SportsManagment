@@ -1,0 +1,38 @@
+@import 'tailwindcss';
+
+@layer components {
+
+    .pagination {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--spacing-2);
+        padding: var(--spacing-2);
+        background-color: var(--background-primary);
+        border-radius: var(--radius-md);
+        width: 100%;
+        box-shadow: var(--shadow-md);
+
+    }
+
+    .pagination-item {
+        padding: var(--spacing-2);
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        transition: var(--transition-fast);
+    }
+
+    .pagination-item:hover {
+        background-color: var(--background-hover);
+    }
+
+    .pagination-item--active {
+        background-color: var(--background-active);
+        color: var(--text-active);
+    }
+
+    .pagination-item--disabled {
+        color: var(--text-disabled);
+        cursor: not-allowed;
+    }
+}

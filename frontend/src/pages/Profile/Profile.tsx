@@ -21,7 +21,7 @@ const Profile: React.FC = () => {
     <div className="space-y-6 p-6 ">
       <div className="mb-6">
         <h1 >User Profile</h1>
-        <h2 >View and Manage all members of your organisation</h2>
+        <p >View and Manage all members of your organisation</p>
       </div>
       <div className="flex gap-6 md:flex-row flex-col">
         <div className="lg:flex-9/12 md:flex-3/4 flex-1/2">
