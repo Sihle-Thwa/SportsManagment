@@ -3,19 +3,22 @@
 @layer components {
 
     .input {
+        font-family: var(--font-serif);
         display: inline-flex;
         align-items: center;
         justify-content: center;
         width: 100%;
-        padding: var(--spacing-2);
+        padding: var(--spacing-4);
         border-radius: var(--radius-md);
         border: 1px solid var(--border-default);
         background-color: var(--input-background);
         color: var(--text-primary);
-        font-size: var(--font-size-base);
+        font-size: var(--font-size-lg);
         font-weight: var(--font-weight-normal);
         box-shadow: var(--shadow-sm);
         transition: var(--duration-fast);
+        height: var(--space-12);
+
     }
 
     .input:focus {

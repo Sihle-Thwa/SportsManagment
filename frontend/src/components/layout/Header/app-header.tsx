@@ -13,13 +13,13 @@ const Header = () => {
 	const pathSegments = location.pathname.split("/").filter(Boolean);
 
 	return (
-		<header className="sidebar-header">
-			<SidebarTrigger className="btn-base btn-accent" />
+		<header className="navigation-content">
+			<SidebarTrigger className="navigation-trigger" />
 			<Separator orientation="vertical" className="icon-base icon-accent" />
-			<Breadcrumb>
-				<BreadcrumbList>
+			<Breadcrumb className="navigation-content">
+				<BreadcrumbList className="navigation-list">
 					{pathSegments.length > 0 && (
-						<BreadcrumbItem className="flex items-center gap-2">
+						<BreadcrumbItem className="navigation-item">
 							<BreadcrumbPage className="h-full flex items-start gap-2">
 								{pathSegments[pathSegments.length - 1]
 									.replace(/-/g, " ")

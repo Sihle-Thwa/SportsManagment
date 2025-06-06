@@ -5,19 +5,19 @@ import "../../../styles/global.css"; // Import your custom global styles
 
 const MainAppTopBar = () => {
 	return (
-		<header className="header">
+		<header className="navigation">
 			{/* Left side - Page Name */}
-			<div className="flex items-start gap-4">
+			<div className="flex justify-start ">
 				<Header />
 			</div>
 
 			{/* Center - Search */}
-			<div className="flex-1 flex justify-center">
+			<div className="flex justify-center">
 				<SearchInput />
 			</div>
 
 			{/* Right - Theme-toggle */}
-			<div className="flex items-center gap-2">
+			<div className="flex justify-end">
 				<ModeToggle />
 			</div>
 		</header>
