@@ -14,7 +14,7 @@ export function MainLayout() {
 
 	return (
 		<SidebarProvider>
-			<div className="flex h-screen w-full">
+			<div className="flex h-screen">
 				{/* Sidebar */}
 				<AppSideBar currentPath={location.pathname} />
 				<div className="flex-1 flex flex-col">

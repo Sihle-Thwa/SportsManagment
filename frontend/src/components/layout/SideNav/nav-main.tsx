@@ -27,7 +27,7 @@ export function NavMain({ setActiveRoute }: NavMainProps) {
 							to={route.path}
 							className={({ isActive }) =>
 								clsx(
-									"sidebar-menu-item sidebar-menu-item-custom",
+									"sidebar-menu-item sidebar-menu-item",
 									isActive ? "sidebar-menu-item-active" : "sidebar-menu-item-disabled"
 								)
 							}
