@@ -7,10 +7,6 @@
 /* Import base colors (color palette) */
 @import "./colors.css";
 
-/* Import component-specific styles */
-@import "./components.css";
-
-
 /* Import semantic tokens with light/dark mode variables */
 @import "./semantic-tokens.css";
 

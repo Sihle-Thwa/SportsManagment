@@ -5,7 +5,7 @@ import {
 } from "../../ui/sidebar";
 import { NavLink } from "react-router-dom";
 import { routes } from "../../../routes";
-import { cn } from "@/lib/utils";
+import { cn } from "../../../lib/utils";
 
 
 
