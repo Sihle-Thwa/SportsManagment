@@ -27,6 +27,7 @@ export function NavMain({ setActiveRoute, collapsed = false }: NavMainProps) {
 							className={({ isActive }) =>
 								cn(
 									"sidebar-menu-link",
+									"sidebar-menu-link-hoverable", // Explicit hover class
 									isActive && "sidebar-menu-link-active",
 									collapsed && "sidebar-menu-link-collapsed"
 								)

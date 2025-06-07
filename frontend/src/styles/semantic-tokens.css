@@ -75,10 +75,14 @@
     --status-info-border: var(--color-info-100);
 
     /* Component-Specific Colors */
-    --sidebar-background: var(--color-primary-200);
+    --sidebar-background: var(--color-neutral-200);
+    --sidebar-background-hover: var(--color-primary-500);
     --sidebar-border: var(--border-subtle);
     --sidebar-text: var(--text-primary-600);
+    --sidebar-text-hover: var(--text-secondary);
+    --sidebar-text-pressed: var(--text-tertiary);
     --sidebar-text-active: var(--interactive-primary);
+
 
     --card-background: var(--background-surface);
     --card-border: var(--border-subtle);

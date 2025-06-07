@@ -25,9 +25,9 @@ export function AppSideBar({ currentPath }: AppSideBarProps) {
 			className="sidebar"
 		>
 			<SidebarHeader className="sidebar-header">
-				<SidebarMenuButton className="sidebar-menu-item">
-					<House className="icon-base icon-accent" />
-					<h5>U-Organise</h5>
+				<SidebarMenuButton className="sidebar-menu-button sidebar-brand">
+					<House />
+					<h5 >U-Organise</h5>
 				</SidebarMenuButton>
 			</SidebarHeader>
 			<SidebarContent className="sidebar-content">
