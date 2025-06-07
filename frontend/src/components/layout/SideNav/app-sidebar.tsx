@@ -25,13 +25,11 @@ export function AppSideBar({ currentPath }: AppSideBarProps) {
 			className="sidebar"
 		>
 			<SidebarHeader className="sidebar-header">
-				<SidebarMenuButton className="sidebar-menu-button">
-					<div className="icon-base ">
-						<House />
-					</div>
+				<SidebarMenuButton className="sidebar-menu-item">
+					<House className="icon-base icon-accent" />
 					<h5>U-Organise</h5>
 				</SidebarMenuButton>
-			</SidebarHeader >
+			</SidebarHeader>
 			<SidebarContent className="sidebar-content">
 				<NavMain activeRoute={activeRoute} setActiveRoute={setActiveRoute} />
 				<NavSecondary />
@@ -40,7 +38,7 @@ export function AppSideBar({ currentPath }: AppSideBarProps) {
 				<NavUser />
 			</SidebarFooter>
 			<SidebarRail />
-		</Sidebar >
+		</Sidebar>
 	);
 }
 

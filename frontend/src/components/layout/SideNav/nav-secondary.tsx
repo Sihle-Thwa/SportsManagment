@@ -4,6 +4,7 @@ import {
 	SidebarMenu,
 } from "../../ui/sidebar";
 import { lazy, Suspense } from "react";
+import { cn } from "../../../lib/utils";
 
 const HandHelping = lazy(() =>
 	import("lucide-react").then((module) => ({ default: module.HandHelping }))
@@ -17,17 +18,23 @@ const items = [
 		title: "Support",
 		url: "#",
 		icon: HandHelping,
+		ariaLabel: "Get help and support",
 	},
 	{
 		title: "Settings",
 		url: "#",
 		icon: Settings,
+		ariaLabel: "App settings and preferences",
 	},
 ];
 
-export function NavSecondary() {
+interface NavSecondaryProps {
+	collapsed?: boolean;
+}
+
+export function NavSecondary({ collapsed = false }: NavSecondaryProps) {
 	return (
-		<SidebarMenu className="sidebar-menu mt-auto">
+		<SidebarMenu className="sidebar-menu sidebar-menu-secondary">
 			{items.map((item) => (
 				<SidebarMenuItem
 					className="sidebar-menu-item"
@@ -36,12 +43,29 @@ export function NavSecondary() {
 					<SidebarMenuButton className="sidebar-menu-button" asChild>
 						<a
 							href={item.url}
-							className="sidebar-menu-item"
+							className={cn(
+								"sidebar-menu-link sidebar-menu-link-secondary",
+								collapsed && "sidebar-menu-link-collapsed"
+							)}
+							title={collapsed ? item.title : undefined}
+							aria-label={item.ariaLabel}
 						>
-							<Suspense fallback={<span className="w-5 h-5 animate-pulse" />}>
-								<item.icon className="icon-base" />
+							<Suspense fallback={
+								<span
+									className="sidebar-menu-icon-placeholder"
+									aria-hidden="true"
+								/>
+							}>
+								<item.icon
+									className="sidebar-menu-icon"
+									aria-hidden="true"
+								/>
 							</Suspense>
-							<span >{item.title}</span>
+							{!collapsed && (
+								<span className="sidebar-menu-text">
+									{item.title}
+								</span>
+							)}
 						</a>
 					</SidebarMenuButton>
 				</SidebarMenuItem>

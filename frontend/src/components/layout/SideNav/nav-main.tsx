@@ -7,14 +7,13 @@ import { NavLink } from "react-router-dom";
 import { routes } from "../../../routes";
 import { cn } from "../../../lib/utils";
 
-
-
 interface NavMainProps {
 	activeRoute: string;
 	setActiveRoute: (path: string) => void;
+	collapsed?: boolean;
 }
 
-export function NavMain({ setActiveRoute }: NavMainProps) {
+export function NavMain({ setActiveRoute, collapsed = false }: NavMainProps) {
 	return (
 		<SidebarMenu className="sidebar-menu">
 			{routes.map((route) => (
@@ -28,13 +27,22 @@ export function NavMain({ setActiveRoute }: NavMainProps) {
 							className={({ isActive }) =>
 								cn(
 									"sidebar-menu-link",
-									isActive ? "sidebar-menu-link active" : "sidebar-menu-item-disabled"
+									isActive && "sidebar-menu-link-active",
+									collapsed && "sidebar-menu-link-collapsed"
 								)
 							}
 							onClick={() => setActiveRoute(route.path)}
+							title={collapsed ? route.title : undefined}
+							aria-label={route.title}
 						>
-							{route.icon}
-							<span className="sidebar-menu-item">{route.title}</span>
+							<span className="sidebar-menu-icon" aria-hidden="true">
+								{route.icon}
+							</span>
+							{!collapsed && (
+								<span className="sidebar-menu-text">
+									{route.title}
+								</span>
+							)}
 						</NavLink>
 					</SidebarMenuButton>
 				</SidebarMenuItem>

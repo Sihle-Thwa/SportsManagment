@@ -16,67 +16,102 @@ import {
   UserCircleIcon,
 } from "lucide-react";
 import { useState } from "react";
+import { cn } from "../../../lib/utils";
 
-export function NavUser() {
+interface NavUserProps {
+  collapsed?: boolean;
+}
+
+export function NavUser({ collapsed = false }: NavUserProps) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const userInfo = {
+    name: "User Name",
+    email: "user@example.com",
+    initials: "UN",
+    avatar: "/path/to/default-image.jpg"
+  };
 
   return (
     <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
       <DropdownMenuTrigger asChild>
         <button
           type="button"
-          className="btn-base btn-tertiary"
+          className={cn(
+            "btn-base btn-tertiary nav-user-trigger",
+            collapsed && "nav-user-trigger-collapsed"
+          )}
+          aria-label={collapsed ? `User menu for ${userInfo.name}` : undefined}
         >
-          <Avatar className="size-8 rounded-lg grayscale">
-            <AvatarImage alt="User Name" src="/path/to/default-image.jpg" />
-            <AvatarFallback className="rounded-md">UN</AvatarFallback>
+          <Avatar className="nav-user-avatar">
+            <AvatarImage
+              alt={`${userInfo.name}'s profile picture`}
+              src={userInfo.avatar}
+            />
+            <AvatarFallback className="nav-user-avatar-fallback">
+              {userInfo.initials}
+            </AvatarFallback>
           </Avatar>
-          <div className="flex flex-col flex-1 min-w-0 text-left text-sm leading-tight">
-            <span className="truncate font-medium">User Name</span>
-            <span className="truncate text-xs text-muted-foreground">
-              user@example.com
-            </span>
-          </div>
-          <MoreVerticalIcon className="ml-auto size-5" />
+
+          {!collapsed && (
+            <>
+              <div className="nav-user-info">
+                <span className="nav-user-name">{userInfo.name}</span>
+                <span className="nav-user-email">{userInfo.email}</span>
+              </div>
+              <MoreVerticalIcon
+                className="nav-user-menu-icon"
+                aria-hidden="true"
+              />
+            </>
+          )}
         </button>
       </DropdownMenuTrigger>
+
       <DropdownMenuContent
-        className="min-w-56 rounded-md"
-        align="start"
+        className="nav-user-dropdown"
+        align={collapsed ? "center" : "start"}
         sideOffset={8}
       >
-        <DropdownMenuLabel className="p-0 font-normal">
-          <div className="flex items-center gap-2 px-1 py-1 text-left text-sm">
-            <Avatar className="size-8 rounded-md">
-              <AvatarImage alt="User Name" />
-              <AvatarFallback className="rounded-md">UN</AvatarFallback>
+        <DropdownMenuLabel className="nav-user-dropdown-header">
+          <div className="nav-user-dropdown-info">
+            <Avatar className="nav-user-dropdown-avatar">
+              <AvatarImage
+                alt={`${userInfo.name}'s profile picture`}
+                src={userInfo.avatar}
+              />
+              <AvatarFallback className="nav-user-dropdown-avatar-fallback">
+                {userInfo.initials}
+              </AvatarFallback>
             </Avatar>
-            <div className="flex flex-col flex-1 min-w-0 text-left text-sm leading-tight">
-              <span className="truncate font-medium">User Name</span>
-              <span className="truncate text-xs text-muted-foreground">
-                user@example.com
-              </span>
+            <div className="nav-user-dropdown-text">
+              <span className="nav-user-dropdown-name">{userInfo.name}</span>
+              <span className="nav-user-dropdown-email">{userInfo.email}</span>
             </div>
           </div>
         </DropdownMenuLabel>
+
         <DropdownMenuSeparator />
+
         <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <UserCircleIcon className="mr-2 size-4" />
+          <DropdownMenuItem className="nav-user-dropdown-item">
+            <UserCircleIcon className="nav-user-dropdown-item-icon" aria-hidden="true" />
             Account
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <CreditCardIcon className="mr-2 size-4" />
+          <DropdownMenuItem className="nav-user-dropdown-item">
+            <CreditCardIcon className="nav-user-dropdown-item-icon" aria-hidden="true" />
             Billing
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            <BellIcon className="mr-2 size-4" />
+          <DropdownMenuItem className="nav-user-dropdown-item">
+            <BellIcon className="nav-user-dropdown-item-icon" aria-hidden="true" />
             Notifications
           </DropdownMenuItem>
         </DropdownMenuGroup>
+
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <LogOutIcon className="mr-2 size-4" />
+
+        <DropdownMenuItem className="nav-user-dropdown-item nav-user-dropdown-logout">
+          <LogOutIcon className="nav-user-dropdown-item-icon" aria-hidden="true" />
           Log out
         </DropdownMenuItem>
       </DropdownMenuContent>
