@@ -2,27 +2,46 @@
 
 @layer components {
     .sidebar {
-        @apply flex flex-col items-start justify-start border-r gap-4 p-4 shadow-lg;
-        background-color: var(--sidebar-background);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        border-right: 1px solid;
+        gap: 1rem;
+        padding: 1rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        background-color: var(--background-surface);
         color: var(--sidebar-text);
         border-color: var(--border-subtle);
     }
 
     .sidebar-header {
-        @apply border-b;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
         border-color: var(--border-subtle);
     }
 
     .sidebar-content {
-        @apply flex flex-col flex-grow overflow-y-auto gap-3;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        overflow-y: auto;
+        gap: 0.75rem;
+        /* gap-3 in Tailwind is usually 0.75rem */
     }
 
     .sidebar-group {
-        @apply mb-2 p-2;
+        margin-bottom: 0.5rem;
+        /* mb-2 */
+        padding: 0.5rem;
+        /* p-2 */
     }
 
     .sidebar-group-content {
-        @apply flex flex-col gap-2;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        /* gap-2 in Tailwind is usually 0.5rem */
     }
 
     .sidebar-group-label {
@@ -33,11 +52,15 @@
     }
 
     .sidebar-menu {
-        @apply flex flex-col justify-start gap-4;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 1rem;
+        /* gap-4 in Tailwind is usually 1rem */
     }
 
     .sidebar-menu-item {
-        @apply cursor-pointer;
+        cursor: pointer;
     }
 
     .sidebar-menu-item:hover {
@@ -46,7 +69,12 @@
     }
 
     .sidebar-menu-link {
-        @apply flex items-center no-underline p-2 rounded-sm transition-all;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        padding: 0.5rem;
+        border-radius: 0.125rem;
+        transition: all 0.2s;
         color: var(--text-primary);
     }
 
@@ -65,7 +93,15 @@
     }
 
     .sidebar-menu-button {
-        @apply flex flex-row items-center justify-start w-full p-3 cursor-pointer no-underline;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        padding: 0.75rem;
+        /* p-3 in Tailwind is 0.75rem */
+        cursor: pointer;
+        text-decoration: none;
         color: var(--text-primary);
     }
 
@@ -81,13 +117,24 @@
     }
 
     .sidebar-rail {
-        @apply flex flex-col items-center justify-start shadow-sm;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        /* shadow-sm equivalent */
         background-color: var(--sidebar-background);
         padding: var(--space-2);
     }
 
     .sidebar-footer {
-        @apply mt-auto border-t text-sm;
+        margin-top: auto;
+        /* mt-auto */
+        border-top-width: 1px;
+        /* border-t */
+        border-top-style: solid;
+        font-size: 0.875rem;
+        /* text-sm */
         padding: var(--space-4);
         color: var(--text-secondary);
         background-color: var(--background-surface);
