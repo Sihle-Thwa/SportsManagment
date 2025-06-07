@@ -1,31 +1,28 @@
-@import 'tailwindcss';
+@import 'tailwindcss/components';
 
 @layer components {
     .sidebar {
+        @apply flex flex-col items-start justify-start border-r gap-4 p-4 shadow-lg;
         background-color: var(--sidebar-background);
-        color: var(--text-primary);
-        padding: var(--spacing-4);
-        box-shadow: var(--shadow-lg);
-        border-right: 1px solid var(--border-light);
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-3);
+        color: var(--sidebar-text);
+        border-color: var(--border-subtle);
+    }
+
+    .sidebar-header {
+        @apply border-b;
+        border-color: var(--border-subtle);
     }
 
     .sidebar-content {
-        display: flex;
-        flex-direction: column;
+        @apply flex flex-col flex-grow overflow-y-auto gap-3;
     }
 
     .sidebar-group {
-        margin-bottom: var(--spacing-2);
-        padding: var(--spacing-2);
+        @apply mb-2 p-2;
     }
 
     .sidebar-group-content {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-2);
+        @apply flex flex-col gap-2;
     }
 
     .sidebar-group-label {
@@ -36,31 +33,45 @@
     }
 
     .sidebar-menu {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-2);
-    }
-
-    .sidebar-menu-button {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: var(--spacing-2);
-        border-radius: var(--radius-sm);
-        cursor: pointer;
-        transition: var(--transition-fast);
+        @apply flex flex-col justify-start gap-4;
     }
 
     .sidebar-menu-item {
-        padding: var(--spacing-2);
-        border-radius: var(--radius-sm);
-        cursor: pointer;
-        transition: var(--transition-fast);
-        color: var(--text-primary);
+        @apply cursor-pointer;
     }
 
     .sidebar-menu-item:hover {
         background-color: var(--hover-background);
+        color: var(--interactive-primary);
+    }
+
+    .sidebar-menu-link {
+        @apply flex items-center no-underline p-2 rounded-sm transition-all;
+        color: var(--text-primary);
+    }
+
+    .sidebar-menu-link:hover {
+        background-color: var(--hover-background);
+        color: var(--interactive-primary);
+    }
+
+    .sidebar-menu-link:active,
+    .sidebar-menu-link.active,
+    .sidebar-menu-link[aria-current='page'],
+    .sidebar-menu-link[aria-selected='true'] {
+        background-color: var(--interactive-primary-active);
+        color: var(--text-active);
+        font-weight: var(--font-weight-bold);
+    }
+
+    .sidebar-menu-button {
+        @apply flex flex-row items-center justify-start w-full p-3 cursor-pointer no-underline;
+        color: var(--text-primary);
+    }
+
+    .sidebar-menu-button:hover {
+        background-color: var(--hover-background);
+        color: var(--interactive-text);
     }
 
     .sidebar-menu-item.active {
@@ -70,22 +81,17 @@
     }
 
     .sidebar-rail {
+        @apply flex flex-col items-center justify-start shadow-sm;
         background-color: var(--sidebar-background);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: start;
         padding: var(--space-2);
-        box-shadow: var(--shadow-sm);
     }
 
     .sidebar-footer {
-        margin-top: auto;
+        @apply mt-auto border-t text-sm;
         padding: var(--space-4);
-        border-top: 1px solid var(--border-subtle);
         color: var(--text-secondary);
-        font-size: 0.875rem;
         background-color: var(--background-surface);
+        border-color: var(--border-subtle);
     }
 
     .sidebar-footer:hover {

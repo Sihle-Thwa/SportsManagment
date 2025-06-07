@@ -5,8 +5,8 @@ import {
 } from "../../ui/sidebar";
 import { NavLink } from "react-router-dom";
 import { routes } from "../../../routes";
+import { cn } from "@/lib/utils";
 
-import { clsx } from "clsx";
 
 
 interface NavMainProps {
@@ -26,9 +26,9 @@ export function NavMain({ setActiveRoute }: NavMainProps) {
 						<NavLink
 							to={route.path}
 							className={({ isActive }) =>
-								clsx(
-									"sidebar-menu-item sidebar-menu-item",
-									isActive ? "sidebar-menu-item-active" : "sidebar-menu-item-disabled"
+								cn(
+									"sidebar-menu-link",
+									isActive ? "sidebar-menu-link active" : "sidebar-menu-item-disabled"
 								)
 							}
 							onClick={() => setActiveRoute(route.path)}

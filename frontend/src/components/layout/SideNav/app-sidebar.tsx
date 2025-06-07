@@ -26,10 +26,10 @@ export function AppSideBar({ currentPath }: AppSideBarProps) {
 		>
 			<SidebarHeader className="sidebar-header">
 				<SidebarMenuButton className="sidebar-menu-button">
-					<div className="icon-base icon-accent ">
+					<div className="icon-base ">
 						<House />
 					</div>
-					<h5 >U-Organise</h5>
+					<h5>U-Organise</h5>
 				</SidebarMenuButton>
 			</SidebarHeader >
 			<SidebarContent className="sidebar-content">

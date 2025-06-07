@@ -17,9 +17,9 @@ export function MainLayout() {
 			<div className="flex h-screen w-screen">
 				{/* Sidebar */}
 				<AppSideBar currentPath={location.pathname} />
-				<div className="flex-1 flex flex-col">
+				<div className="flex-1/2 flex-col">
 					<AppTopBar />
-					<main className="flex-1 overflow-y-auto p-4 ">
+					<main className="flex-1 p-1 overflow-y-auto">
 						<Outlet />
 					</main>
 				</div>

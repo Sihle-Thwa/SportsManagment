@@ -5,7 +5,7 @@ import "../../../styles/global.css"; // Import your custom global styles
 
 const MainAppTopBar = () => {
 	return (
-		<header className="navigation p-6">
+		<header className="navigation p-4 flex items-center justify-between">
 			{/* Left side - Page Name */}
 			<div className="flex justify-start ">
 				<Header />
