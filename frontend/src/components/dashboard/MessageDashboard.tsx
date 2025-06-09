@@ -64,9 +64,9 @@ const MessageDashboard = ({ messages = [] }) => {
   ];
 
   return (
-    <Card className="card-base">
+    <Card className="card">
       <CardHeader className="card-header flex flex-row items-start justify-between">
-        <CardTitle className="card-title">
+        <CardTitle className="card-header-title">
           <h4>Messages</h4>
         </CardTitle>
         <Button className="btn-base btn-tertiary">

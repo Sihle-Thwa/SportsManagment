@@ -1,11 +1,12 @@
-import { cn } from "../../../lib/utils";
+// components/ui/Button.tsx
 import React from "react";
+import { cn } from "../../../lib/utils";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: "primary" | "secondary" | "tertiary" | "ghost";
     size?: "sm" | "md" | "lg" | "xl";
     withIcon?: boolean;
-    iconPosition?: "left" | "right";
+    iconPosition?: "left" | "right" | "center";
     icon?: React.ReactNode;
     fullWidth?: boolean;
     className?: string;
@@ -26,64 +27,47 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         },
         ref
     ) => {
-        const getVariantStyles = () => {
-            switch (variant) {
-                case "primary":
-                    return "btn-primary";
-                case "secondary":
-                    return "btn-secondary";
-                case "tertiary":
-                    return "btn-tertiary";
-                case "ghost":
-                    return "bg-transparent text-muted hover:bg-muted focus:bg-muted active:bg-muted";
-                default:
-                    return "";
-            }
-        };
+        const base = "btn";
 
-        const getSizeStyles = () => {
-            switch (size) {
-                case "sm":
-                    return "px-3 py-1 text-size-sm";
-                case "md":
-                    return "p-2 py-2 text-size-md";
-                case "lg":
-                    return "px-5 py-3 text-size-lg";
-                case "xl":
-                    return "px-5 py-3 text-size-xl";
-                default:
-                    return "px-4 py-2";
-            }
-        };
-        const getIcon = () => {
-            if (!icon) return null;
-            return (
-                <span className={`mr-2 ${iconPosition === "right" ? "ml-2" : ""}`}>
-                    {icon}
-                </span>
-            );
-        };
+        const variantClass = {
+            primary: "btn--primary",
+            secondary: "btn--secondary",
+            tertiary: "btn--tertiary",
+            ghost: "btn--ghost"
+        }[variant];
 
-
+        const sizeClass = {
+            sm: "btn--sm",
+            md: "btn--md",
+            lg: "btn--lg",
+            xl: "btn--xl"
+        }[size];
 
         return (
             <button
+                ref={ref}
                 className={cn(
-                    "btn-primary",
-                    getVariantStyles(),
-                    getSizeStyles(),
-                    fullWidth ? "w-full" : "",
+                    base,
+                    variantClass,
+                    sizeClass,
+                    fullWidth && "w-full",
+                    withIcon && iconPosition === "center" && "btn--icon-only",
                     className
                 )}
-                ref={ref}
                 {...props}
             >
-                {withIcon && iconPosition === "left" && (
-                    getIcon()
+                {withIcon && iconPosition === "left" && icon && (
+                    <span className="btn__icon btn__icon--left">{icon}</span>
                 )}
-                {children}
-                {withIcon && iconPosition === "right" && (
-                    getIcon()
+
+                {iconPosition !== "center" && children && <span>{children}</span>}
+
+                {withIcon && iconPosition === "right" && icon && (
+                    <span className="btn__icon btn__icon--right">{icon}</span>
+                )}
+
+                {withIcon && iconPosition === "center" && !children && icon && (
+                    <span className="btn__icon btn__icon--center">{icon}</span>
                 )}
             </button>
         );

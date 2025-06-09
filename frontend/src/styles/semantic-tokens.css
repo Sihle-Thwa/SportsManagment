@@ -94,22 +94,22 @@
     --input-border-hover: var(--border-strong);
     --input-border-focus: var(--border-focus);
 
-    --button-primary-background: var(--interactive-primary);
-    --button-primary-background-hover: var(--interactive-primary-hover);
-    --button-primary-background-pressed: var(--interactive-primary-pressed);
-    --button-primary-text: var(--text-inverse);
+    /*Button tokens*/
+    --button-primary-background: var(--color-primary-500);
+    --button-primary-background-hover: var(--color-neutral);
+    --button-primary-background-pressed: var(--color-primary-700);
+    --button-primary-text: var(--color-neutral);
 
-    --button-secondary-background: var(--background-surface-secondary);
-    --button-secondary-background-hover: var(--background-surface-tertiary);
-    --button-secondary-background-pressed: var(--color-secondary-600);
-    --button-secondary-text: var(--text-primary);
-    --button-secondary-border: var(--border-default);
+    --button-secondary-background: var(--color-secondary);
+    --button-secondary-background-hover: var(--color-neutral-200);
+    --button-secondary-background-pressed: var(--color-secondary-700);
+    --button-secondary-text: var(--color-neutral);
 
-    --button-tertiary-background: var(--background-surface-tertiary);
-    --button-tertiary-background-hover: var(--background-surface-hover);
-    --button-tertiary-background-pressed: var(--background-surface-pressed);
-    --button-tertiary-text: var(--text-tertiary);
-    --button-tertiary-border: var(--border-subtle);
+    --button-tertiary-background: var(--color-tertiary-500);
+    --button-tertiary-background-hover: var(--color-neutral-300);
+    --button-tertiary-background-pressed: var(--color-tertiary-700);
+    --button-tertiary-text: var(--color-accent-100);
+    --button-tertiary-border: var(--border-strong);
 }
 
 /* Dark Theme */

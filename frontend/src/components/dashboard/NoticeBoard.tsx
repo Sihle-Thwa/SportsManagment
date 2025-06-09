@@ -31,9 +31,9 @@ const NoticeBoard = ({ notices = [] }) => {
   };
 
   return (
-    <Card className="card-base ">
+    <Card className="card ">
       <CardHeader className="card-header flex flex-row items-start justify-between">
-        <CardTitle className="card-title ">
+        <CardTitle className="card-header-title ">
           Notice Board
         </CardTitle>
         <Button className="btn-base btn-tertiary ">
@@ -67,7 +67,7 @@ const NoticeBoard = ({ notices = [] }) => {
         </CardContent>
       </ScrollArea>
 
-      <CardFooter className="card-footer gap-6 flex flex-row items-center justify-between p-auto">
+      <CardFooter className="card-footer gap-6 flex flex-row">
         <Button
           withIcon={true}
           iconPosition="left"
