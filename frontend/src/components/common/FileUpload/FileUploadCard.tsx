@@ -12,7 +12,6 @@ export interface FileUploadCardProps {
   maxDimensions?: { width: number; height: number }; // for images
   onFileSelect: (file: File) => void;
   onFileRemove?: () => void;
-  className?: string;
 }
 
 export const FileUploadCard = ({
@@ -23,7 +22,6 @@ export const FileUploadCard = ({
   maxDimensions = { width: 800, height: 400 },
   onFileSelect,
   onFileRemove,
-  className,
 }: FileUploadCardProps) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
@@ -103,15 +101,15 @@ export const FileUploadCard = ({
   };
 
   return (
-    <Card className={cn("w-full max-w-md mx-auto", className)}>
-      <CardHeader className="text-center">
-        <div className="mx-auto bg-gray-100 rounded-full p-4 mb-2">
-          <Upload className="h-6 w-6 text-gray-600" />
+    <Card className="card">
+      <CardHeader className="card-header flex flex-col items-center">
+        <div className="mx-auto">
+          <Upload className="icon" />
         </div>
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
+        <CardTitle className='card-header-title'>{title}</CardTitle>
+        <CardDescription className='card-description'>{description}</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className='card-body'>
         {selectedFile ? (
           <div className="space-y-4">
             {preview && (
@@ -124,17 +122,17 @@ export const FileUploadCard = ({
               </div>
             )}
             <div className="flex items-center justify-between">
-              <div className="text-sm">
-                <p className="font-medium">{selectedFile.name}</p>
-                <p className="text-gray-500">
+              <div >
+                <p >{selectedFile.name}</p>
+                <p >
                   {(selectedFile.size / 1024).toFixed(2)} KB
                 </p>
               </div>
               <div className="flex space-x-2">
                 <Button
                   variant="secondary"
-                  size="lg"
-                  onClick={handleRemove}
+                  size="md"
+                  className="btn--secondary"
                 >
                   Remove
                 </Button>
@@ -154,14 +152,14 @@ export const FileUploadCard = ({
               onChange={handleFileChange}
               accept={acceptedFileTypes}
             />
-            <label htmlFor="file-upload" className="cursor-pointer">
+            <label htmlFor="file-upload" className="label">
               <div className="flex flex-col items-center space-y-2">
                 <div className=" mb-2">
-                  <Upload className="h-6 w-6" />
+                  <Upload className="" />
                 </div>
                 <span className="">Click to upload</span>
-                <span className="text-gray-500 text-sm">or drag and drop</span>
-                <span className="text-gray-400 text-xs">
+                <span className="">or drag and drop</span>
+                <span className="">
                   {acceptedFileTypes.replace(/\./g, '').toUpperCase()} (max. {maxDimensions.width}×{maxDimensions.height}px)
                 </span>
               </div>
@@ -170,16 +168,20 @@ export const FileUploadCard = ({
         )}
 
         {error && (
-          <div className="mt-3 text-error text-sm">{error}</div>
+          <div className="text-error">{error}</div>
         )}
 
         <div className="mt-4 flex justify-end">
           {!selectedFile ? (
             <Button
 
-              onClick={() => document.getElementById('file-upload')?.click()}
-              className="btn-primary"
+              variant="primary"
+              size="md"
+              className="btn--primary"
+              fullWidth={false}
+              iconPosition="left"
             >
+              <Upload className="icon" />
               Add Photo
             </Button>
           ) : null}

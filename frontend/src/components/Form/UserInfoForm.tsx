@@ -9,7 +9,7 @@ import {
   PROVINCE_OPTIONS,
 } from "../../utils/validators";
 
-import { Button } from "../../components/ui/button";
+import { Button } from "../common/Button/Button";
 import { Calendar } from "../../components/ui/calendar";
 import {
   Form,
@@ -32,7 +32,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "../../components/ui/popover";
-import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
 import { cn } from "../../lib/utils";
 import { useForm } from "react-hook-form";
 
@@ -76,9 +76,9 @@ export function UserInfoForm({
   }, [validationErrors, form]);
 
   return (
-    <Card className="card-base card-primary w-full h-full">
-      <CardHeader className="card-header">
-        <CardTitle className="card-title">{formTitle}</CardTitle>
+    <Card className="card w-full h-full">
+      <CardHeader className="card-header flex flex-row items-center justify-between">
+        <CardTitle className="card-header-title border-b-2">{formTitle}</CardTitle>
       </CardHeader>
       <CardContent className="card-body">
         <Form {...form}>
@@ -159,8 +159,7 @@ export function UserInfoForm({
                       <PopoverTrigger asChild>
                         <FormControl>
                           <Button
-                            variant="outline"
-                            type="button"
+                            variant="ghost"
                             className={cn(
                               "pl-3 text-left font-normal w-full justify-between",
                               !field.value && "text-muted-foreground",
@@ -351,9 +350,26 @@ export function UserInfoForm({
               />
             </div>
 
-            <Button className="btn-base btn-primary" type="submit">
-              Submit
-            </Button>
+            <CardFooter className="card-footer flex flex-row items-center justify-end space-x-3 mt-6">
+              <Button
+                variant="primary"
+                size="md"
+                fullWidth={false}
+                className="btn--primary"
+              >
+                Submit
+              </Button>
+
+              <Button
+                variant="tertiary"
+                size="md"
+                fullWidth={false}
+                className="btn--tertiary"
+              >
+                Reset
+              </Button>
+            </CardFooter>
+
           </form>
         </Form>
       </CardContent>
