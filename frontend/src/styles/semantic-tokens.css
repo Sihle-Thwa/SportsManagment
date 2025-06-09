@@ -196,8 +196,8 @@
     /* Card Components */
     --card-background: var(--color-neutral-100);
     /* Pure white background */
-    --card-background-hover: var(--color-neutral-50);
-    /* Neutral 50 - Light hover state */
+    --card-background-hover: var(--color-neutral-100);
+    /* Neutral 100 - Light hover state */
     --card-border: var(--border-subtle);
     /* Secondary 100 - Subtle border */
     --card-border-hover: var(--border-muted);
