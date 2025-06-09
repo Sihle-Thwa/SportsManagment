@@ -167,27 +167,150 @@
     /* Neutral 300 - Subtle neutral border */
 
 
-    /* Component-Specific Colors */
+    /* Component-Specific Colors - Adapted for CRM Color Palette */
+
+    /* Sidebar Navigation */
     --sidebar-background: var(--color-neutral-100);
+    /* Neutral 50 - Light neutral background */
     --sidebar-background-hover: var(--color-primary-500);
+    /* Primary 700 - Primary color on hover */
+    --sidebar-background-active: var(--color-primary-900);
+    /* Primary 900 - Darkest primary when active */
     --sidebar-border: var(--border-subtle);
+    /* Secondary 100 - Subtle border */
     --sidebar-text: var(--text-primary);
+    /* Neutral 700 - Dark gray text */
     --sidebar-text-hover: var(--text-secondary);
+    /* White text on hover (over primary bg) */
     --sidebar-text-pressed: var(--text-tertiary);
-    --sidebar-text-active: var(--interactive-primary);
+    /* Neutral 300 - Muted when pressed */
+    --sidebar-text-active: var(--text-on-primary);
+    /* White text when active */
+    --sidebar-icon: var(--icon-primary);
+    /* Neutral 500 - Medium gray icons */
+    --sidebar-icon-hover: var(--icon-on-primary);
+    /* White icons on hover */
+    --sidebar-icon-active: var(--icon-on-primary);
+    /* White icons when active */
 
-
-    --card-background: var(--background-surface);
+    /* Card Components */
+    --card-background: var(--color-neutral-100);
+    /* Pure white background */
+    --card-background-hover: var(--color-neutral-50);
+    /* Neutral 50 - Light hover state */
     --card-border: var(--border-subtle);
-    --card-shadow: var(--shadow-sm);
-    --card-foreground: var(--text-primary);
+    /* Secondary 100 - Subtle border */
+    --card-border-hover: var(--border-muted);
+    /* Secondary 300 - Slightly darker on hover */
+    --card-shadow: 0 1px 3px hsla(220, 15%, 15%, 0.1);
+    /* Neutral 900 with low opacity */
+    --card-shadow-hover: 0 4px 12px hsla(220, 15%, 15%, 0.15);
+    /* Enhanced shadow on hover */
+    --card-foreground: var(--color-neutral-900);
+    /* Neutral 900 - Dark text */
+    --card-foreground-secondary: var(--color-neutral-500);
+    /* Neutral 500 - Secondary text */
 
-    --input-background: var(--background-surface);
-    --input-border: var(--border-default);
-    --input-border-hover: var(--border-hover);
-    --input-border-focus: var(--border-focus);
+    /* Input Components */
+    --input-background: var(--color-neutral-100);
+    /* White background */
+    --input-background-disabled: var(--color-neutral-100);
+    /* Neutral 50 - Light gray when disabled */
+    --input-border: var(--border-subtle);
+    /* Secondary 300 - Default border */
+    --input-border-hover: var(--border-muted);
+    /* Secondary 500 - Darker on hover */
+    --input-border-focus: var(--color-primary-500);
+    /* Primary 500 - Primary color when focused */
+    --input-border-error: var(--color-error-500);
+    /* Error 500 - Red border for errors */
+    --input-border-success: var(--color-success-500);
+    /* Success 500 - Green border for success */
+    --input-text: var(--color-neutral-900);
+    /* Neutral 900 - Dark input text */
+    --input-text-disabled: var(--color-neutral-500);
+    /* Neutral 500 - Muted when disabled */
+    --input-placeholder: var(--color-neutral-300);
+    /* Neutral 300 - Light placeholder text */
 
+    /* Header/Navigation Bar */
+    --header-background: var(--color-neutral-900);
+    /* Primary 900 - Dark navy header */
+    --header-border: var(--border-muted);
+    /* Primary 800 - Slightly lighter border */
+    --header-text: var(--color-neutral-100);
+    /* White text */
+    --header-text-secondary: var(--color-neutral-300);
+    /* Secondary 100 - Muted white text */
+    --header-icon: var(--color-neutral-100);
+    /* White icons */
+    --header-icon-hover: var(--color-tertiary-100);
+    /* Tertiary 100 - Light teal on hover */
 
+    /* Table Components */
+    --table-background: var(--color-neutral-100);
+    /* White background */
+    --table-background-alt: var(--color-neutral-50);
+    /* Neutral 50 - Alternate row background */
+    --table-background-hover: var(--color-tertiary-100);
+    /* Tertiary 100 - Light teal row hover */
+    --table-border: var(--border-muted);
+    /* Secondary 100 - Table borders */
+    --table-header-background: var(--color-neutral-100);
+    /* Neutral 100 - Header background */
+    --table-header-text: var(--color-neutral-900);
+    /* Neutral 900 - Dark header text */
+    --table-text: var(--color-neutral-900);
+    /* Neutral 900 - Table cell text */
+    --table-text-secondary: var(--color-neutral-500);
+    /* Neutral 500 - Secondary table text */
+
+    /* Modal/Dialog Components */
+    --modal-background: var(--color-neutral-100);
+    /* White modal background */
+    --modal-overlay: hsla(220, 15%, 15%, 0.5);
+    /* Neutral 900 with 50% opacity */
+    --modal-border: var(--border-muted);
+    /* Secondary 100 - Modal border */
+    --modal-shadow: 0 10px 25px hsla(220, 15%, 15%, 0.25);
+    /* Enhanced shadow for modals */
+    --modal-header-background: var(--color-neutral-100);
+    /* Neutral 100 - Light header */
+    --modal-header-border: var(--border-muted);
+    /* Secondary 100 - Header border */
+
+    /* Badge/Tag Components */
+    --badge-primary-background: var(--color-primary-900);
+    /* Primary 900 - Primary badges */
+    --badge-primary-text: var(--color-neutral-100);
+    /* White text */
+    --badge-secondary-background: var(--color-secondary-300);
+    /* Secondary 300 - Secondary badges */
+    --badge-secondary-text: var(--color-neutral-900);
+    /* Neutral 900 - Dark text */
+    --badge-success-background: var(--color-success-100);
+    /* Success 100 - Light green background */
+    --badge-success-text: var(--color-success-700);
+    /* Success 700 - Dark green text */
+    --badge-warning-background: var(--color-warning-100);
+    /* Warning 100 - Light amber background */
+    --badge-warning-text: var(--color-warning-700);
+    /* Warning 700 - Dark amber text */
+    --badge-error-background: var(--color-error-100);
+    /* Error 100 - Light red background */
+    --badge-error-text: var(--color-error-700);
+    /* Error 700 - Dark red text */
+
+    /* Tooltip Components */
+    --tooltip-background: var(--color-neutral-900);
+    /* Neutral 900 - Dark tooltip background */
+    --tooltip-text: var(--color-neutral-100);
+    /* White tooltip text */
+    --tooltip-border: var(--color-neutral-700);
+    /* Neutral 700 - Tooltip border */
+    --tooltip-shadow: 0 4px 12px hsla(220, 15%, 15%, 0.25);
+    /* Tooltip shadow */
+    --tooltip-shadow: 0 4px 12px hsla(220, 15%, 15%, 0.25);
 
     /* Button Tokens - Adapted for CRM Color Palette */
 
