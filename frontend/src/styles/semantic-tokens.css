@@ -32,20 +32,22 @@
     --text-secondary: var(--color-secondary);
     --text-tertiary: var(--color-tertiary);
     --text-placeholder: var(--color-neutral-700);
-    --text-disabled: var(--color-neutral-500);
+    --text-disabled: var(--color-neutral-300);
+
+
 
     /* Border Colors */
     --border-subtle: var(--color-neutral-100);
     --border-default: var(--color-neutral-300);
     --border-strong: var(--color-neutral-900);
     --border-focus: var(--color-primary);
-    --border-disabled: var(--color-neutral-500);
+    --border-disabled: var(--color-neutral-300);
     --border-error: var(--color-error);
 
     /* Interactive Colors - Adapted for CRM Color Palette */
 
     /* Primary Interactive States */
-    --interactive-primary: var(--color-primary);
+    --interactive-primary: var(--color-primary-100);
     /* Primary 500 - Main interactive state */
     --interactive-primary-hover: var(--color-primary-700);
     /* Primary 700 - Darker on hover for depth */
@@ -55,7 +57,7 @@
     /* Neutral 300 - Muted for disabled state */
 
     /* Secondary Interactive States */
-    --interactive-secondary: var(--color-secondary);
+    --interactive-secondary: var(--color-secondary-100);
     /* Secondary 500 - Main secondary interactive */
     --interactive-secondary-hover: var(--color-secondary-700);
     /* Secondary 700 - Darker on hover */
@@ -265,7 +267,39 @@
     --table-text-secondary: var(--color-neutral-500);
     /* Neutral 500 - Secondary table text */
 
+    --table-row-selected-background: var(--color-primary-100);
+    /* Primary 100 - Light primary background for selected rows */
+    --table-row-selected-text: var(--color-primary-900);
+    /* Primary 900 - Dark primary text for selected rows */
+
+    /* Table footer background */
+    --table-footer-background: var(--color-neutral-100);
+    /* Neutral 100 - Light footer background */
+    --table-footer-text: var(--color-neutral-900);
+    /* Neutral 900 - Dark footer text */
+    --table-footer-border: var(--border-muted);
+    /* Secondary 100 - Footer border */
+    --table-footer-text-secondary: var(--color-neutral-500);
+    /* Neutral 500 - Muted footer text */
+    --table-footer-text-hover: var(--color-secondary-700);
+    /* Secondary 700 - Darker text on hover */
+    --table-footer-text-active: var(--color-secondary-900);
+    /* Secondary 900 - Darkest text when active */
+    --table-footer-text-disabled: var(--color-secondary-300);
+    /* Secondary 300 - Muted footer text when disabled */
+    --table-footer-icon: var(--color-secondary-500);
+    /* Secondary 500 - Footer icons */
+    --table-footer-icon-hover: var(--color-secondary-700);
+    /* Secondary 700 - Darker footer icons on hover */
+    --table-footer-icon-active: var(--color-secondary-900);
+    /* Secondary 900 - Darkest footer icons when active */
+    --table-footer-icon-disabled: var(--color-secondary-300);
+    /* Secondary 300 - Muted footer icons when disabled */
+
+
+
     /* Modal/Dialog Components */
+
     --modal-background: var(--color-neutral-100);
     /* White modal background */
     --modal-overlay: hsla(220, 15%, 15%, 0.5);
