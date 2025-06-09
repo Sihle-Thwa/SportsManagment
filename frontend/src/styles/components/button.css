@@ -10,18 +10,20 @@
         font-weight: var(--font-weight-medium);
         transition: var(--transition-fast);
         cursor: pointer;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--border-color);
     }
 
     /* === Variants === */
     .btn--primary {
         background-color: var(--button-primary-background);
         color: var(--button-primary-text);
-        box-shadow: var(--shadow-sm);
     }
 
     .btn--secondary {
         background-color: var(--button-secondary-background);
         color: var(--button-secondary-text);
+
     }
 
     .btn--tertiary {

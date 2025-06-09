@@ -1,78 +1,58 @@
 // components/ui/Button.tsx
 import React from "react";
 import { cn } from "../../../lib/utils";
+import { Button as ShadButton } from "../../ui/button";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: "primary" | "secondary" | "tertiary" | "ghost";
+
+interface ButtonProps {
     size?: "sm" | "md" | "lg" | "xl";
+    variant?: "primary" | "secondary" | "tertiary" | "ghost";
     withIcon?: boolean;
     iconPosition?: "left" | "right" | "center";
     icon?: React.ReactNode;
     fullWidth?: boolean;
     className?: string;
+    disabled?: boolean;
+    children?: React.ReactNode;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    (
-        {
-            children,
-            variant = "primary",
-            size = "md",
-            withIcon = false,
-            iconPosition = "left",
-            icon,
-            fullWidth = false,
-            className,
-            ...props
-        },
-        ref
-    ) => {
-        const base = "btn";
+const variantClasses = {
+    primary: "btn--primary",
+    secondary: "btn--secondary",
+    tertiary: "btn--tertiary",
+    ghost: "btn--ghost",
+};
 
-        const variantClass = {
-            primary: "btn--primary",
-            secondary: "btn--secondary",
-            tertiary: "btn--tertiary",
-            ghost: "btn--ghost"
-        }[variant];
+const Button: React.FC<ButtonProps> = ({
+    size = "md",
+    variant = "primary",
+    withIcon = false,
+    iconPosition = "left",
+    icon,
+    fullWidth = false,
+    className,
+    disabled = false,
+    children,
+    ...rest
+}) => {
+    return (
+        <ShadButton
+            className={cn(
+                "btn",
+                variantClasses[variant],
+                fullWidth && "w-full",
+                withIcon && `icon-${iconPosition}`,
+                className
+            )}
+            disabled={disabled}
+            {...rest}
+        >
+            {withIcon && icon && (
+                <span className={`icon ${iconPosition}`}>{icon}</span>
+            )}
+            {children}
+        </ShadButton>
+    );
+};
 
-        const sizeClass = {
-            sm: "btn--sm",
-            md: "btn--md",
-            lg: "btn--lg",
-            xl: "btn--xl"
-        }[size];
-
-        return (
-            <button
-                ref={ref}
-                className={cn(
-                    base,
-                    variantClass,
-                    sizeClass,
-                    fullWidth && "w-full",
-                    withIcon && iconPosition === "center" && "btn--icon-only",
-                    className
-                )}
-                {...props}
-            >
-                {withIcon && iconPosition === "left" && icon && (
-                    <span className="btn__icon btn__icon--left">{icon}</span>
-                )}
-
-                {iconPosition !== "center" && children && <span>{children}</span>}
-
-                {withIcon && iconPosition === "right" && icon && (
-                    <span className="btn__icon btn__icon--right">{icon}</span>
-                )}
-
-                {withIcon && iconPosition === "center" && !children && icon && (
-                    <span className="btn__icon btn__icon--center">{icon}</span>
-                )}
-            </button>
-        );
-    }
-);
-
-Button.displayName = "Button";
 export { Button };

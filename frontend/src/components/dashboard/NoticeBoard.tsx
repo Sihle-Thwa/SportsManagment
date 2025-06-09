@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MoreHorizontal, Bell, Plus, Pencil, X } from "lucide-react";
 import { ScrollArea } from "../../components/ui/scroll-area";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
-import { Button } from "../common/Button";
+import { Button } from "../common/Button/Button";
 
 const NoticeBoard = ({ notices = [] }) => {
   const [selectedNotice, setSelectedNotice] = useState<number | null>(null);
@@ -31,7 +31,7 @@ const NoticeBoard = ({ notices = [] }) => {
   };
 
   return (
-    <Card className="card ">
+    <Card className="card flex max-w-full max-h-[345px] h-full justify-between overflow-hidden">
       <CardHeader className="card-header flex flex-row items-start justify-between">
         <CardTitle className="card-header-title ">
           Notice Board
@@ -67,38 +67,38 @@ const NoticeBoard = ({ notices = [] }) => {
         </CardContent>
       </ScrollArea>
 
-      <CardFooter className="card-footer gap-6 flex flex-row">
-        <Button
-          withIcon={true}
-          iconPosition="left"
-          icon={<Plus />}
-          fullWidth={true}
-          variant="primary"
-          size="sm"
-          className="btn-base"
-        >
-        </Button>
-        <Button
-          withIcon={true}
-          iconPosition="left"
-          icon={<Pencil />}
-          fullWidth={true}
-          variant="primary"
-          size="sm"
-          className="btn-base"
-        >
+      <CardFooter className="card-footer flex flex-row items-end justify-center">
+        <div className="flex flex-row w-fit h-fit gap-3">
+          <Button
+            variant="primary"
+            size="md"
+            fullWidth={false}
+            iconPosition="center"
+            className="btn--primary"
+          >
+            <Plus />
+          </Button>
+          <Button
+            variant="primary"
+            size="md"
+            fullWidth={false}
+            iconPosition="center"
+            className="btn--primary"
+          >
+            <Pencil />
+          </Button>
+          <Button
+            variant="primary"
+            size="md"
+            fullWidth={false}
+            iconPosition="center"
+            className="btn--primary"
 
-        </Button>
-        <Button
-          withIcon={true}
-          iconPosition="left"
-          icon={<X />}
-          fullWidth={true}
-          variant="primary"
-          size="sm"
-          className="btn-base"
-        >
-        </Button>
+          >
+            <X />
+          </Button>
+        </div>
+
       </CardFooter>
     </Card>
   );

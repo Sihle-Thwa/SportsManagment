@@ -9,9 +9,12 @@ export function CardCalendar() {
         <CalendarObject />
       </CardContent>
       <CardFooter className="card-footer">
-        <Button variant="primary"
+        <Button
+          variant="primary"
           size="md"
           withIcon={false}
+          fullWidth={true}
+          className="btn--primary"
         >
           Manage Calendar
         </Button>

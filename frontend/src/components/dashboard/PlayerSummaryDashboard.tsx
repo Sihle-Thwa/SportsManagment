@@ -13,24 +13,24 @@ const PlayerSummaryDashboard = () => {
           Players Summary
         </CardTitle>
         <Button className="btn-base btn-tertiary">
-          <MoreHorizontal className="icon-base icon-tertiary" />
+          <MoreHorizontal />
         </Button>
       </CardHeader>
       <CardContent className="card-body flex flex-col w-full overflow-y-auto">
         <ChartBar />
       </CardContent>
-      <CardFooter className="card-footer">
-
-        <Button className="btn-base btn-primary"
-          withIcon={true}
-          iconPosition="left"
-          icon={<Plus />}
-          fullWidth={true}
-          size="sm"
-          variant="primary"
-        >
-          <span>Add New Player</span>
-        </Button>
+      <CardFooter className="card-footer flex flex-row items-end justify-center">
+        <div className="flex flex-row w-fit h-fit gap-3">
+          <Button
+            variant="primary"
+            size="md"
+            withIcon={true}
+            fullWidth={false}
+          >
+            <Plus />
+            Add New Player
+          </Button>
+        </div>
       </CardFooter>
     </Card>
   )
