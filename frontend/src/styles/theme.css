@@ -73,6 +73,7 @@
     --color-warning-300: hsl(35, 75%, 75%);
     --color-warning-500: hsl(35, 85%, 55%);
     --color-warning-700: hsl(35, 90%, 25%);
+    --color-warning-900: hsl(35, 95%, 15%);
 
     --color-error: hsl(0, 75%, 40%);
     --color-error-100: hsl(0, 50%, 92%);
