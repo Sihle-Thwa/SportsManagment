@@ -52,14 +52,14 @@ export function TableBuilder<T>({
       />
 
       {/* Table Container */}
-      <div className="overflow-auto rounded-lg border border-border-muted">
-        <UITable className="table-primary w-full">
+      <div className="table-container ">
+        <UITable className="table w-full">
           <TableHeader columns={columns} sorting={sorting} onSort={onSort} actions={actions} />
           <TableBody data={data} columns={columns} actions={actions} />
         </UITable>
       </div>
       {/* Table Footer */}
-      <TableFooter className="bg-background border-t border-border-muted">
+      <TableFooter className="table-footer">
         <div className="flex items-end justify-end p-2">
           <span >
             {data.length} {data.length === 1 ? "item" : "items"} found

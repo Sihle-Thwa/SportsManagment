@@ -9,7 +9,7 @@ interface TableHeaderProps<T> {
 
 export function TableHeader<T>({ columns, onSort, sorting, actions }: TableHeaderProps<T> & { actions?: any }) {
   return (
-    <UITableHeader className="table-head">
+    <UITableHeader className="table-header">
       <TableRow className="table-row">
         {columns.map((column, index) => (
           <TableHead
@@ -19,7 +19,7 @@ export function TableHeader<T>({ columns, onSort, sorting, actions }: TableHeade
           >
             {column.header}
             {sorting?.column === column.accessorKey && (
-              <span className="ml-1">{sorting.direction === "asc" ? "↑" : "↓"}</span>
+              <span>{sorting.direction === "asc" ? "↑" : "↓"}</span>
             )}
           </TableHead>
         ))}

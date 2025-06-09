@@ -12,7 +12,7 @@ export function EmptyState({
     return (
         <div className={`text-center py-8 px-4 text-muted ${className}`}>
             {icon && <div className="mb-2 text-3xl">{icon}</div>}
-            <p className="text-sm font-medium">{message}</p>
-        </div>
+            <p >{message}</p>
+        </div >
     );
 }

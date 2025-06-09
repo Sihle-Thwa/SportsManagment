@@ -7,49 +7,42 @@
 
     /***** Section: Primary Color Palette *****/
     /* Primary Color Scale */
-    --color-primary: hsl(215, 36%, 18%);
-    --color-primary-50: hsl(210, 60%, 98%);
-    --color-primary-100: hsl(210, 60%, 96%);
-    --color-primary-200: hsl(214, 32%, 91%);
-    --color-primary-300: hsl(216, 28%, 85%);
-    --color-primary-400: hsl(217, 19%, 67%);
-    --color-primary-500: hsl(215, 19%, 46%);
-    --color-primary-600: hsl(215, 22%, 35%);
-    --color-primary-700: hsl(215, 25%, 27%);
-    --color-primary-800: hsl(210, 29%, 25%);
-    --color-primary-900: hsl(215, 36%, 18%);
-    --color-primary-950: hsl(222, 46%, 10%);
+    --color-primary: hsl(220, 100%, 10%);
+    --color-primary-500: hsl(220, 55%, 45%);
+    --color-primary-600: hsl(220, 65%, 35%);
+    --color-primary-700: hsl(220, 75%, 25%);
+    --color-primary-800: hsl(220, 85%, 15%);
+    --color-primary-900: hsl(220, 100%, 10%);
 
     /***** Section: Secondary Color Palette *****/
     /* Secondary Color Scale */
-    --color-secondary: hsl(211, 38%, 25%);
-    --color-secondary-50: hsl(211, 38%, 90%);
-    --color-secondary-100: hsl(211, 38%, 80%);
-    --color-secondary-200: hsl(211, 38%, 70%);
-    --color-secondary-300: hsl(211, 38%, 60%);
-    --color-secondary-400: hsl(211, 38%, 50%);
-    --color-secondary-500: hsl(211, 38%, 40%);
-    --color-secondary-600: hsl(211, 38%, 33%);
-    --color-secondary-700: hsl(211, 38%, 27%);
-    --color-secondary-800: hsl(211, 38%, 22%);
-    --color-secondary-900: hsl(211, 38%, 17%);
+    --color-secondary: hsl(210, 40%, 25%);
+    --color-secondary-100: hsl(210, 20%, 85%);
+    --color-secondary-300: hsl(210, 25%, 70%);
+    --color-secondary-700: hsl(210, 35%, 35%);
+    --color-secondary-900: hsl(210, 40%, 25%);
+
+    /***** End Section *****/
+
+    /***** Section: Section Colors *****/
+    /* Tertiary Colors Scale */
+    --color-tertiary: hsl(195, 85%, 25%);
+    --color-tertiary-100: hsl(195, 45%, 85%);
+    --color-tertiary-300: hsl(195, 55%, 70%);
+    --color-tertiary-500: hsl(195, 65%, 50%);
+    --color-tertiary-700: hsl(195, 75%, 35%);
+    --color-tertiary-900: hsl(195, 85%, 25%);
 
     /***** End Section *****/
 
     /***** Section: Accent Color Palette *****/
     /* Accent Color Scale */
-    --color-accent: hsl(36, 100%, 50%);
-    --color-accent-50: hsl(32, 100%, 97%);
-    --color-accent-100: hsl(33, 100%, 91%);
-    --color-accent-200: hsl(34, 97%, 83%);
-    --color-accent-300: hsl(32, 97%, 72%);
-    --color-accent-400: hsl(32, 96%, 61%);
-    --color-accent-500: hsl(36, 100%, 50%);
-    --color-accent-600: hsl(18, 85%, 47%);
-    --color-accent-700: hsl(17, 74%, 41%);
-    --color-accent-800: hsl(18, 73%, 33%);
-    --color-accent-900: hsl(17, 72%, 27%);
-    --color-accent-950: hsl(15, 66%, 14%);
+    --color-accent: hsl(36, 70%, 35%);
+    --color-accent-100: hsl(36, 40%, 90%);
+    --color-accent-300: hsl(36, 50%, 70%);
+    --color-accent-500: hsl(36, 60%, 50%);
+    --color-accent-700: hsl(36, 70%, 35%);
+
 
     /***** End Section *****/
 
@@ -147,21 +140,6 @@
     --border-disabled: var(--color-neutral-500);
     --border-error: var(--color-error-500);
 
-    /* Interactive Colors */
-    --interactive-primary: var(--color-primary-500);
-    --interactive-primary-hover: var(--color-primary-50);
-    --interactive-primary-active: var(--color-primary-900);
-    --interactive-primary-disabled: var(--color-neutral-300);
-
-    --interactive-secondary: var(--color-secondary-500);
-    --interactive-secondary-hover: var(--color-secondary-50);
-    --interactive-secondary-active: var(--color-secondary-900);
-    --interactive-secondary-disabled: var(--color-secondary-300);
-
-    --interactive-accent: var(--color-accent-500);
-    --interactive-accent-hover: var(--color-accent-50);
-    --interactive-accent-active: var(--color-accent-900);
-    --interactive-accent-disabled: var(--color-accent-300);
 
     /* Status Colors */
     --status-success: var(--color-success-500);
