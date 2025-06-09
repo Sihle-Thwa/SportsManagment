@@ -2,9 +2,10 @@
 
 /* Base UI Styles */
 @layer base {
-    * {
-        border-color: var(--border-default);
-        border-radius: var(--border-radius);
+
+    *,
+    *::before,
+    *::after {
         box-sizing: border-box;
     }
 
@@ -15,13 +16,5 @@
         line-height: var(--line-height-normal);
 
     }
-
-    body {
-
-        color: var(--text-primary);
-        --webkit-font-smoothing: var(--text-primary);
-        -moz-osx-font-smoothing: var(--text-primary);
-    }
-
 
 }

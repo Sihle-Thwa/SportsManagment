@@ -1,10 +1,8 @@
 // components/ui/Button.tsx
 import React from "react";
 import { cn } from "../../../lib/utils";
-import { Button as ShadButton } from "../../ui/button";
 
-
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     size?: "sm" | "md" | "lg" | "xl";
     variant?: "primary" | "secondary" | "tertiary" | "ghost";
     withIcon?: boolean;
@@ -12,8 +10,6 @@ interface ButtonProps {
     icon?: React.ReactNode;
     fullWidth?: boolean;
     className?: string;
-    disabled?: boolean;
-    children?: React.ReactNode;
 }
 
 const variantClasses = {
@@ -23,36 +19,56 @@ const variantClasses = {
     ghost: "btn--ghost",
 };
 
+const sizeClasses = {
+    sm: "btn--sm",
+    md: "btn--md",
+    lg: "btn--lg",
+    xl: "btn--xl",
+};
+
+const iconPositionClasses = {
+    left: "btn__icon--left",
+    right: "btn__icon--right",
+    center: "btn__icon--center",
+};
+
 const Button: React.FC<ButtonProps> = ({
     size = "md",
     variant = "primary",
     withIcon = false,
-    iconPosition = "left",
+    iconPosition = "center",
     icon,
     fullWidth = false,
     className,
-    disabled = false,
     children,
     ...rest
 }) => {
+    const isIconOnly = withIcon && icon && !children;
+
     return (
-        <ShadButton
+        <button
             className={cn(
                 "btn",
                 variantClasses[variant],
+                sizeClasses[size],
                 fullWidth && "w-full",
-                withIcon && `icon-${iconPosition}`,
+                isIconOnly ? "btn--icon-only" : "",
                 className
             )}
-            disabled={disabled}
             {...rest}
         >
             {withIcon && icon && (
-                <span className={`icon ${iconPosition}`}>{icon}</span>
+                <span className={cn(
+                    "btn__icon",
+                    iconPositionClasses[iconPosition]
+                )}>
+                    {icon}
+                </span>
             )}
             {children}
-        </ShadButton>
+        </button>
     );
 };
 
 export { Button };
+export type { ButtonProps };

@@ -69,8 +69,8 @@ const MessageDashboard = ({ messages = [] }) => {
         <CardTitle className="card-header-title">
           <h4>Messages</h4>
         </CardTitle>
-        <Button className="btn-base btn-tertiary">
-          <MoreHorizontal className="icon-base icon-tertiary" />
+        <Button className="btn btn--primary btn--icon-only">
+          <MoreHorizontal />
         </Button>
       </CardHeader>
       <ScrollArea className="flex w-full overflow-y-auto">
@@ -84,7 +84,7 @@ const MessageDashboard = ({ messages = [] }) => {
             >
               <div className="flex flex-col gap-3 items-start mb-3">
                 <div className="flex flex-row items-start gap-3 self-stretch">
-                  <Avatar className="w-[32px] h-[32px] object-cover bg-amber-100 rounded-full" >
+                  <Avatar className="w-[32px] h-[32px] object-cover bg-inherit">
                     <img
                       src={msg.sender.avatar}
                       alt={msg.sender.name}

@@ -12,7 +12,7 @@ const PlayerSummaryDashboard = () => {
         <CardTitle className="card-header-title">
           Players Summary
         </CardTitle>
-        <Button className="btn-base btn-tertiary">
+        <Button className="btn btn--primary btn--icon-only">
           <MoreHorizontal />
         </Button>
       </CardHeader>

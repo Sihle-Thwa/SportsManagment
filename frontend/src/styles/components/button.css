@@ -3,21 +3,49 @@
 
 @layer components {
     .btn {
-        display: inline-flex;
+        display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: var(--radius-md);
+        border-radius: var(--radius-lg);
         font-weight: var(--font-weight-medium);
         transition: var(--transition-fast);
         cursor: pointer;
         box-shadow: var(--shadow-sm);
-        border: 1px solid var(--border-color);
+        border: 1px solid var(--border-subtle);
+        color: var(--button-primary-text) !important;
+    }
+
+    /* === States === */
+    .btn:hover {
+        background-color: var(--button-primary-background-hover);
+        color: var(--button-primary-text);
+    }
+
+    .btn:focus {
+        outline: 2px solid var(--color-focus-ring);
+        outline-offset: 2px;
+        box-shadow: 0 0 0 3px var(--color-focus-ring);
+    }
+
+    .btn:active {
+        background-color: var(--button-primary-background-pressed);
+        color: var(--button-primary-text);
+        transform: scale(0.98);
+    }
+
+    .btn:disabled {
+        background-color: var(--button-primary-background-disabled);
+        color: var(--button-primary-text-disabled);
+        cursor: not-allowed;
+        opacity: 0.6;
     }
 
     /* === Variants === */
     .btn--primary {
         background-color: var(--button-primary-background);
         color: var(--button-primary-text);
+        border-color: var(--button-primary-border);
+
     }
 
     .btn--secondary {
@@ -61,6 +89,9 @@
     .btn__icon {
         display: inline-flex;
         align-items: center;
+        width: 1.5rem;
+        height: 1.5rem;
+        font-size: 1rem;
     }
 
     .btn__icon--left {
@@ -84,26 +115,67 @@
     }
 }
 
-/* === States === */
-.btn:hover {
-    background-color: var(--button-hover-background);
-    color: var(--button-hover-text);
+
+/* === Primary Button States === */
+
+.btn--primary:hover {
+    background-color: var(--button-primary-background-hover);
+    color: var(--button-primary-text-hover);
 }
 
-.btn:focus {
-    outline: none;
-    box-shadow: var(--focus-ring);
+.btn--primary:active {
+    background-color: var(--button-primary-background-pressed);
+    color: var(--button-primary-text-hover);
 }
 
-.btn:active {
-    transform: scale(0.98);
-    background-color: var(--button-active-background);
-    color: var(--button-active-text);
+.btn--primary:disabled {
+    background-color: var(--button-primary-background-disabled);
+    color: var(--button-primary-text-disabled);
+    border-color: var(--button-primary-border-disabled);
 }
 
-.btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    background-color: var(--button-disabled-background);
-    color: var(--button-disabled-text);
+/* === Secondary Button States === */
+.btn--secondary:hover {
+    background-color: var(--button-secondary-background-hover);
+    color: var(--button-secondary-text-hover);
+    border-color: var(--button-secondary-border-hover);
+}
+
+.btn--secondary:active {
+    background-color: var(--button-secondary-background-pressed);
+    color: var(--button-secondary-text-hover);
+}
+
+.btn--secondary:disabled {
+    background-color: var(--button-secondary-background-disabled);
+    color: var(--button-secondary-text-disabled);
+    border-color: var(--button-secondary-border-disabled);
+}
+
+/* === Tertiary Button States === */
+.btn--tertiary:hover {
+    background-color: var(--button-tertiary-background-hover);
+}
+
+.btn--tertiary:active {
+    background-color: var(--button-tertiary-background-pressed);
+}
+
+.btn--tertiary:disabled {
+    background-color: var(--button-tertiary-background-disabled);
+    color: var(--button-tertiary-text-disabled);
+}
+
+/* === Ghost Button States === */
+.btn--ghost:hover {
+    background-color: var(--button-ghost-background-hover);
+    color: var(--button-ghost-text-hover);
+}
+
+.btn--ghost:active {
+    background-color: var(--button-ghost-background-pressed);
+}
+
+.btn--ghost:disabled {
+    color: var(--button-ghost-text-disabled);
 }

@@ -36,16 +36,16 @@ const NoticeBoard = ({ notices = [] }) => {
         <CardTitle className="card-header-title ">
           Notice Board
         </CardTitle>
-        <Button className="btn-base btn-tertiary ">
-          <MoreHorizontal className="icon-base icon-tertiary" />
+        <Button className="btn btn--primary btn--icon-only">
+          <MoreHorizontal />
         </Button>
       </CardHeader>
       <ScrollArea className="flex w-full  overflow-y-auto ">
-        <CardContent className="card-body flex flex-col  w-full overflow-y-auto">
+        <CardContent className="card-body flex flex-col w-full overflow-y-auto">
           {noticeData.map((notice) => (
             <div
               key={notice.id}
-              className={`flex items-start mb-3 border-b  cursor-pointer" ${selectedNotice === notice.id ? "bg-slate-50" : ""
+              className={`flex items-start mb-3 border-b b-border-default  cursor-pointer" ${selectedNotice === notice.id ? "bg-interactive-selected" : ""
                 }`}
               onClick={() => setSelectedNotice(notice.id)}
             >
@@ -69,36 +69,18 @@ const NoticeBoard = ({ notices = [] }) => {
 
       <CardFooter className="card-footer flex flex-row items-end justify-center">
         <div className="flex flex-row w-fit h-fit gap-3">
-          <Button
-            variant="primary"
-            size="md"
-            fullWidth={false}
-            iconPosition="center"
-            className="btn--primary"
+          <Button className="btn btn--primary btn--icon-only"
           >
             <Plus />
           </Button>
-          <Button
-            variant="primary"
-            size="md"
-            fullWidth={false}
-            iconPosition="center"
-            className="btn--primary"
-          >
+
+          <Button className="btn btn--primary btn--icon-only">
             <Pencil />
           </Button>
-          <Button
-            variant="primary"
-            size="md"
-            fullWidth={false}
-            iconPosition="center"
-            className="btn--primary"
-
-          >
+          <Button className="btn btn--primary btn--icon-only">
             <X />
           </Button>
         </div>
-
       </CardFooter>
     </Card>
   );
