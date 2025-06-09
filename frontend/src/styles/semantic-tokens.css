@@ -6,10 +6,10 @@
 :root {
     /* Background */
     --background-canvas: var(--background-canvas-gradient);
-    --background-surface: var(--color-neutral-50);
-    --background-surface-secondary: var(--color-secondary-500);
-    --background-surface-tertiary: var(--color-neutral-50);
-    --background-surface-hover: var(--color-primary-50);
+    --background-surface: var(--color-neutral-100);
+    --background-surface-secondary: var(--color-secondary-300);
+    --background-surface-tertiary: var(--color-tertiary-300);
+    --background-surface-hover: var(--color-primary-500);
     --background-surface-pressed: var(--color-primary-100);
     --background-surface-focus: var(--color-primary-200);
     --background-surface-disabled: var(--color-neutral-200);
@@ -28,59 +28,150 @@
     --background-surface-tertiary-inverse: var(--color-neutral-100);
 
     /* Text Colors */
-    --text-primary: var(--color-primary-500);
-    --text-secondary: var(--color-secondary-500);
-    --text-tertiary: var(--color-accent-500);
-    --text-placeholder: var(--color-neutral-500);
-    --text-disabled: var(--color-neutral-300);
-    --text-inverse: var(--color-neutral);
+    --text-primary: var(--color-primary);
+    --text-secondary: var(--color-secondary);
+    --text-tertiary: var(--color-tertiary);
+    --text-placeholder: var(--color-neutral-700);
+    --text-disabled: var(--color-neutral-500);
 
     /* Border Colors */
-    --border-subtle: var(--color-neutral-200);
+    --border-subtle: var(--color-neutral-100);
     --border-default: var(--color-neutral-300);
-    --border-strong: var(--color-neutral-400);
-    --border-focus: var(--color-accent-500);
+    --border-strong: var(--color-neutral-900);
+    --border-focus: var(--color-primary);
     --border-disabled: var(--color-neutral-500);
-    --border-error: var(--color-error-500);
+    --border-error: var(--color-error);
 
-    /* Interactive Colors */
-    --interactive-primary: var(--color-primary-500);
-    --interactive-primary-hover: var(--color-primary-50);
+    /* Interactive Colors - Adapted for CRM Color Palette */
+
+    /* Primary Interactive States */
+    --interactive-primary: var(--color-primary);
+    /* Primary 500 - Main interactive state */
+    --interactive-primary-hover: var(--color-primary-700);
+    /* Primary 700 - Darker on hover for depth */
     --interactive-primary-active: var(--color-primary-900);
+    /* Primary 900 - Darkest for active/pressed */
     --interactive-primary-disabled: var(--color-neutral-300);
+    /* Neutral 300 - Muted for disabled state */
 
-    --interactive-secondary: var(--color-secondary-500);
-    --interactive-secondary-hover: var(--color-secondary-50);
+    /* Secondary Interactive States */
+    --interactive-secondary: var(--color-secondary);
+    /* Secondary 500 - Main secondary interactive */
+    --interactive-secondary-hover: var(--color-secondary-700);
+    /* Secondary 700 - Darker on hover */
     --interactive-secondary-active: var(--color-secondary-900);
+    /* Secondary 900 - Darkest for active */
     --interactive-secondary-disabled: var(--color-secondary-300);
+    /* Secondary 300 - Muted for disabled */
 
-    --interactive-accent: var(--color-accent-500);
-    --interactive-accent-hover: var(--color-accent-50);
-    --interactive-accent-active: var(--color-accent-900);
-    --interactive-accent-disabled: var(--color-accent-300);
+    /* Tertiary Interactive States (replaces generic accent) */
+    --interactive-tertiary: var(--color-tertiary-500);
+    /* Tertiary 500 - Teal accent interactions */
+    --interactive-tertiary-hover: var(--color-tertiary-700);
+    /* Tertiary 700 - Darker teal on hover */
+    --interactive-tertiary-active: var(--color-tertiary-900);
+    /* Tertiary 900 - Darkest teal for active */
+    --interactive-tertiary-disabled: var(--color-tertiary-300);
+    /* Tertiary 300 - Muted teal for disabled */
 
-    /* Status Colors */
+    /* Success Interactive States */
+    --interactive-success: var(--color-success-500);
+    /* Success 500 - Main success actions */
+    --interactive-success-hover: var(--color-success-700);
+    /* Success 700 - Darker green on hover */
+    --interactive-success-active: var(--color-success-900);
+    /* Success 900 - Darkest green for active */
+    --interactive-success-disabled: var(--color-success-300);
+    /* Success 300 - Muted green for disabled */
+
+    /* Warning Interactive States */
+    --interactive-warning: var(--color-warning-500);
+    /* Warning 500 - Main warning actions */
+    --interactive-warning-hover: var(--color-warning-700);
+    /* Warning 700 - Darker amber on hover */
+    --interactive-warning-active: var(--color-warning-900);
+    /* Warning 900 - Darkest amber for active */
+    --interactive-warning-disabled: var(--color-warning-300);
+    /* Warning 300 - Muted amber for disabled */
+
+    /* Error Interactive States */
+    --interactive-error: var(--color-error-500);
+    /* Error 500 - Main error actions */
+    --interactive-error-hover: var(--color-error-700);
+    /* Error 700 - Darker red on hover */
+    --interactive-error-active: var(--color-error-900);
+    /* Error 900 - Darkest red for active */
+    --interactive-error-disabled: var(--color-error-300);
+    /* Error 300 - Muted red for disabled */
+
+    /* Neutral Interactive States (for subtle actions) */
+    --interactive-neutral: var(--color-neutral-500);
+    /* Neutral 500 - Subtle interactions */
+    --interactive-neutral-hover: var(--color-neutral-700);
+    /* Neutral 700 - Darker gray on hover */
+    --interactive-neutral-active: var(--color-neutral-900);
+    /* Neutral 900 - Darkest gray for active */
+    --interactive-neutral-disabled: var(--color-neutral-300);
+    /* Neutral 300 - Muted gray for disabled */
+
+    /* Status Colors - Adapted for CRM Color Palette */
+
+    /* Success Status */
     --status-success: var(--color-success-500);
-    --status-success-background: var(--color-success-50);
-    --status-success-border: var(--color-success-100);
+    /* Success 500 - Main success text/icons */
+    --status-success-background: var(--color-success-100);
+    /* Success 100 - Light background */
+    --status-success-border: var(--color-success-300);
+    /* Success 300 - Subtle border */
 
+    /* Warning Status */
     --status-warning: var(--color-warning-500);
-    --status-warning-background: var(--color-warning-50);
-    --status-warning-border: var(--color-warning-100);
+    /* Warning 500 - Main warning text/icons */
+    --status-warning-background: var(--color-warning-100);
+    /* Warning 100 - Light background */
+    --status-warning-border: var(--color-warning-300);
+    /* Warning 300 - Subtle border */
 
+    /* Error Status */
     --status-error: var(--color-error-500);
-    --status-error-background: var(--color-error-50);
-    --status-error-border: var(--color-error-100);
+    /* Error 500 - Main error text/icons */
+    --status-error-background: var(--color-error-100);
+    /* Error 100 - Light background */
+    --status-error-border: var(--color-error-300);
+    /* Error 300 - Subtle border */
 
-    --status-info: var(--color-info-500);
-    --status-info-background: var(--color-info-50);
-    --status-info-border: var(--color-info-100);
+    /* Info Status (using Tertiary/Teal colors) */
+    --status-info: var(--color-tertiary-500);
+    /* Tertiary 500 - Main info text/icons */
+    --status-info-background: var(--color-tertiary-100);
+    /* Tertiary 100 - Light background */
+    --status-info-border: var(--color-tertiary-300);
+    /* Tertiary 300 - Subtle border */
+
+    /* Additional CRM-Specific Status Colors */
+
+    /* Primary Status (for brand-related status messages) */
+    --status-primary: var(--color-primary-500);
+    /* Primary 500 - Brand status text/icons */
+    --status-primary-background: var(--color-primary-100);
+    /* Light primary background */
+    --status-primary-border: var(--color-primary-300);
+    /* Subtle primary border */
+
+    /* Neutral Status (for general information) */
+    --status-neutral: var(--color-neutral-500);
+    /* Neutral 500 - Neutral status text */
+    --status-neutral-background: var(--color-neutral-100);
+    /* Neutral 50 - Light neutral background */
+    --status-neutral-border: var(--color-neutral-300);
+    /* Neutral 300 - Subtle neutral border */
+
 
     /* Component-Specific Colors */
-    --sidebar-background: var(--color-neutral-200);
+    --sidebar-background: var(--color-neutral-100);
     --sidebar-background-hover: var(--color-primary-500);
     --sidebar-border: var(--border-subtle);
-    --sidebar-text: var(--text-primary-600);
+    --sidebar-text: var(--text-primary);
     --sidebar-text-hover: var(--text-secondary);
     --sidebar-text-pressed: var(--text-tertiary);
     --sidebar-text-active: var(--interactive-primary);
@@ -93,133 +184,120 @@
 
     --input-background: var(--background-surface);
     --input-border: var(--border-default);
-    --input-border-hover: var(--border-strong);
+    --input-border-hover: var(--border-hover);
     --input-border-focus: var(--border-focus);
 
-    /*Button tokens*/
-    --button-primary-background: var(--color-primary);
-    --button-primary-background-hover: var(--color-neutral);
-    --button-primary-background-pressed: var(--color-primary-700);
-    --button-primary-text: var(--color-neutral);
 
-    --button-secondary-background: var(--color-secondary);
-    --button-secondary-background-hover: var(--color-neutral-200);
-    --button-secondary-background-pressed: var(--color-secondary-700);
-    --button-secondary-text: var(--color-neutral);
 
+    /* Button Tokens - Adapted for CRM Color Palette */
+
+    /* Primary Button (Main CTA - Navy Blue) */
+    --button-primary-background: var(--color-primary-900);
+    /* Primary 900 - Strong brand presence */
+    --button-primary-background-hover: var(--color-primary-700);
+    /* Primary 700 - Lighter on hover */
+    --button-primary-background-pressed: var(--color-primary-800);
+    /* Primary 800 - Slightly darker when pressed */
+    --button-primary-background-disabled: var(--color-primary-100);
+    /* Neutral 300 - Muted when disabled */
+    --button-primary-text: var(--color-neutral-100);
+    /* Pure white text for contrast */
+    --button-primary-text-disabled: var(--color-neutral-500);
+    /* Neutral 500 - Muted text when disabled */
+
+    /* Secondary Button (Outline/Ghost style) */
+    --button-secondary-background: transparent;
+    /* Transparent background */
+    --button-secondary-background-hover: var(--color-secondary-100);
+    /* Secondary 100 - Light fill on hover */
+    --button-secondary-background-pressed: var(--color-secondary-300);
+    /* Secondary 300 - Darker when pressed */
+    --button-secondary-background-disabled: transparent;
+    /* Stay transparent when disabled */
+    --button-secondary-text: var(--color-secondary-900);
+    /* Primary 900 - Dark text */
+    --button-secondary-text-hover: var(--color-secondary-700);
+    /* Secondary 900 - Darker on hover */
+    --button-secondary-text-disabled: var(--color-secondary-300);
+    /* Neutral 300 - Muted when disabled */
+    --button-secondary-border: var(--color-secondary-500);
+    /* Secondary 500 - Border color */
+    --button-secondary-border-hover: var(--color-secondary-700);
+    /* Secondary 700 - Darker border on hover */
+    --button-secondary-border-disabled: var(--color-secondary-300);
+    /* Neutral 300 - Muted border when disabled */
+
+    /* Tertiary Button (Teal Accent) */
     --button-tertiary-background: var(--color-tertiary-500);
-    --button-tertiary-background-hover: var(--color-neutral-300);
-    --button-tertiary-background-pressed: var(--color-tertiary-700);
-    --button-tertiary-text: var(--color-accent-100);
-    --button-tertiary-border: var(--border-strong);
+    /* Tertiary 500 - Teal background */
+    --button-tertiary-background-hover: var(--color-tertiary-700);
+    /* Tertiary 700 - Darker teal on hover */
+    --button-tertiary-background-pressed: var(--color-tertiary-900);
+    /* Tertiary 900 - Darkest teal when pressed */
+    --button-tertiary-background-disabled: var(--color-tertiary-100);
+    /* Tertiary 100 - Light teal when disabled */
+    --button-tertiary-text: var(--color-neutral-100);
+    /* White text for contrast */
+    --button-tertiary-text-disabled: var(--color-tertiary-900);
+    /* Tertiary 900 - Dark teal when disabled */
+    --button-tertiary-border: var(--color-tertiary-500);
+    /* Tertiary 500 - Same as background */
+
+    /* Success Button (Green - for positive actions) */
+    --button-success-background: var(--color-success-500);
+    /* Success 500 - Green background */
+    --button-success-background-hover: var(--color-success-700);
+    /* Success 700 - Darker green on hover */
+    --button-success-background-pressed: var(--color-success-900);
+    /* Success 900 - Darkest green when pressed */
+    --button-success-background-disabled: var(--color-success-100);
+    /* Success 100 - Light green when disabled */
+    --button-success-text: var(--color-neutral-100);
+    /* White text */
+    --button-success-text-disabled: var(--color-success-700);
+    /* Success 700 - Dark green when disabled */
+
+    /* Warning Button (Amber - for caution actions) */
+    --button-warning-background: var(--color-warning-500);
+    /* Warning 500 - Amber background */
+    --button-warning-background-hover: var(--color-warning-700);
+    /* Warning 700 - Darker amber on hover */
+    --button-warning-background-pressed: var(--color-warning-900);
+    /* Warning 900 - Darkest amber when pressed */
+    --button-warning-background-disabled: var(--color-warning-100);
+    /* Warning 100 - Light amber when disabled */
+    --button-warning-text: var(--color-neutral-100);
+    /* White text */
+    --button-warning-text-disabled: var(--color-warning-700);
+    /* Warning 700 - Dark amber when disabled */
+
+    /* Error Button (Red - for destructive actions) */
+    --button-error-background: var(--color-error-500);
+    /* Error 500 - Red background */
+    --button-error-background-hover: var(--color-error-700);
+    /* Error 700 - Darker red on hover */
+    --button-error-background-pressed: var(--color-error-900);
+    /* Error 900 - Darkest red when pressed */
+    --button-error-background-disabled: var(--color-error-100);
+    /* Error 100 - Light red when disabled */
+    --button-error-text: var(--color-neutral-100);
+    /* White text */
+    --button-error-text-disabled: var(--color-error-700);
+    /* Error 700 - Dark red when disabled */
+
+    /* Ghost Button (Minimal style) */
+    --button-ghost-background: transparent;
+    /* No background */
+    --button-ghost-background-hover: var(--color-neutral-500);
+    /* Neutral 500 - Very light on hover */
+    --button-ghost-background-pressed: var(--color-neutral-300);
+    /* Neutral 300 - Light gray when pressed */
+    --button-ghost-text: var(--color-neutral-500);
+    /* Neutral 500 - Medium gray text */
+    --button-ghost-text-hover: var(--color-neutral-900);
+    /* Neutral 900 - Dark text on hover */
+    --button-ghost-text-disabled: var(--color-neutral-300);
+    /* Neutral 300 - Light gray when disabled */
 }
 
-/* Dark Theme */
-@media (prefers-color-scheme: dark) {
-    :root {
-        /* Background */
-        --background-canvas: var(--color-neutral-900);
-        --background-surface: var(--color-neutral-950);
-        --background-surface-secondary: var(--color-secondary-700);
-        --background-surface-tertiary: var(--color-neutral-800);
-        --background-surface-hover: var(--color-primary-800);
-        --background-surface-pressed: var(--color-primary-700);
-        --background-surface-focus: var(--color-primary-600);
-        --background-surface-disabled: var(--color-neutral-700);
-        --background-surface-active: var(--color-primary-500);
-        --background-surface-selected: var(--color-primary-400);
-        --background-surface-inverse: var(--color-neutral-100);
-        --background-surface-secondary-hover: var(--color-secondary-600);
-        --background-surface-secondary-pressed: var(--color-secondary-500);
-        --background-surface-secondary-active: var(--color-secondary-400);
-        --background-surface-secondary-selected: var(--color-secondary-300);
-        --background-surface-secondary-inverse: var(--color-secondary-100);
-        --background-surface-tertiary-hover: var(--color-neutral-600);
-        --background-surface-tertiary-pressed: var(--color-neutral-500);
-        --background-surface-tertiary-active: var(--color-neutral-400);
-        --background-surface-tertiary-selected: var(--color-neutral-300);
-        --background-surface-tertiary-inverse: var(--color-neutral-200);
-
-        /* Text Colors */
-        --text-primary: var(--color-primary-300);
-        --text-secondary: var(--color-secondary-300);
-        --text-tertiary: var(--color-accent-400);
-        --text-placeholder: var(--color-neutral-400);
-        --text-disabled: var(--color-neutral-600);
-        --text-inverse: var(--color-neutral-950);
-
-        /* Border Colors */
-        --border-subtle: var(--color-neutral-700);
-        --border-default: var(--color-neutral-600);
-        --border-strong: var(--color-neutral-500);
-        --border-focus: var(--color-accent-400);
-        --border-disabled: var(--color-neutral-600);
-        --border-error: var(--color-error-400);
-
-        /* Interactive Colors */
-        --interactive-primary: var(--color-primary-300);
-        --interactive-primary-hover: var(--color-primary-200);
-        --interactive-primary-pressed: var(--color-primary-100);
-        --interactive-primary-disabled: var(--color-neutral-600);
-
-        --interactive-secondary: var(--color-secondary-300);
-        --interactive-secondary-hover: var(--color-secondary-200);
-        --interactive-secondary-pressed: var(--color-secondary-100);
-
-        --interactive-accent: var(--color-accent-400);
-        --interactive-accent-hover: var(--color-accent-300);
-        --interactive-accent-pressed: var(--color-accent-200);
-
-        /* Status Colors */
-        --status-success: var(--color-success-300);
-        --status-success-background: var(--color-success-900);
-        --status-success-border: var(--color-success-800);
-
-        --status-warning: var(--color-warning-300);
-        --status-warning-background: var(--color-warning-900);
-        --status-warning-border: var(--color-warning-800);
-
-        --status-error: var(--color-error-300);
-        --status-error-background: var(--color-error-900);
-        --status-error-border: var(--color-error-800);
-
-        --status-info: var(--color-info-300);
-        --status-info-background: var(--color-info-900);
-        --status-info-border: var(--color-info-800);
-
-        /* Component-Specific Colors */
-        --sidebar-background: var(--color-primary-700);
-        --sidebar-border: var(--border-subtle);
-        --sidebar-text: var(--text-primary);
-        --sidebar-text-active: var(--interactive-primary);
-
-        --card-background: var(--background-surface);
-        --card-border: var(--border-subtle);
-        --card-shadow: var(--shadow-lg);
-        --card-foreground: var(--text-primary);
-
-        --input-background: var(--background-surface);
-        --input-border: var(--border-default);
-        --input-border-hover: var(--border-strong);
-        --input-border-focus: var(--border-focus);
-
-        --button-primary-background: var(--interactive-primary);
-        --button-primary-background-hover: var(--interactive-primary-hover);
-        --button-primary-background-pressed: var(--interactive-primary-pressed);
-        --button-primary-text: var(--text-inverse);
-
-        --button-secondary-background: var(--background-surface-secondary);
-        --button-secondary-background-hover: var(--background-surface-tertiary);
-        --button-secondary-background-pressed: var(--color-secondary-600);
-        --button-secondary-text: var(--text-primary);
-        --button-secondary-border: var(--border-default);
-
-        --button-tertiary-background: var(--background-surface-tertiary);
-        --button-tertiary-background-hover: var(--background-surface-hover);
-        --button-tertiary-background-pressed: var(--background-surface-pressed);
-        --button-tertiary-text: var(--text-tertiary);
-        --button-tertiary-border: var(--border-subtle);
-    }
-}
-
-/* End of semantic-tokens.css */
+/* Dark Theme to work and improve accessibility */

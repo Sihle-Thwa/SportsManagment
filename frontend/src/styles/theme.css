@@ -113,20 +113,21 @@
 
 
     /* Text Colors */
-    --text-primary: var(--color-primary-500);
-    --text-secondary: var(--color-secondary-500);
-    --text-tertiary: var(--color-accent-500);
-    --text-placeholder: var(--color-neutral-500);
+    --text-primary: var(--color-primary);
+    --text-secondary: var(--color-secondary);
+    --text-tertiary: var(--color-accent);
+    --text-placeholder: var(--color-neutral);
     --text-disabled: var(--color-neutral-300);
     --text-inverse: var(--color-neutral);
 
     /* Border Colors */
-    --border-subtle: var(--color-neutral-200);
-    --border-default: var(--color-neutral-300);
-    --border-strong: var(--color-neutral-400);
+    --border-subtle: var(--color-neutral-100);
+    --border-default: var(--color-neutral-500);
+    --border-strong: var(--color-neutral-900);
     --border-focus: var(--color-accent-500);
+    --border-hover: var(--color-secondary-500);
     --border-disabled: var(--color-neutral-500);
-    --border-error: var(--color-error-500);
+    --border-error: var(--color-error);
 
 
     /* Status Colors */
