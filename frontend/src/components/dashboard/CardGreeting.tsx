@@ -24,7 +24,7 @@ export function CardGreeting() {
 						<img
 							src={greetingCardImg}
 							alt="standing-infront-of-dashboard"
-							className="w-full h-100 object-fill "
+							className="w-full h-100 object-fill"
 						/>
 					</div>
 				</div>
