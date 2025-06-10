@@ -7,7 +7,7 @@ import { TableColumn } from "../../components/common/Table/types";
 
 export interface Facility {
   id: string;
-  facilityName: string;
+  Name: string;
   address: string;
   city: string;
   country: string;
@@ -50,7 +50,7 @@ export function FacilitiesTable({
       cell: (facility) => (
         <div className="flex items-center gap-2">
           <Building size={16} className="text-gray-500" />
-          {facility.facilityName}
+          {facility.Name}
         </div>
       )
     },

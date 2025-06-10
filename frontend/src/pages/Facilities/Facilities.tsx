@@ -6,7 +6,7 @@ export default function Facilities() {
   const [facility] = useState<Facility[]>([
     {
       id: "1",
-      facilityName: "Main Sports Hall",
+      Name: "Main Sports Hall",
       name: "John",
       surname: "Doe",
       email: "john.doe@example.com",
@@ -30,7 +30,7 @@ export default function Facilities() {
     },
     {
       id: "2",
-      facilityName: "Secondary Gym",
+      Name: "Secondary Gym",
       name: "Jane",
       surname: "Smith",
       email: "jane.smith@example.com",
