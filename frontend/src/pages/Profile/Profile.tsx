@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { UserInfoForm } from "../../components/Form/UserInfoForm";
 import { FileUploadCard } from '../../components/FileUpload';
 
 
 const Profile: React.FC = () => {
 
-  const [formData, setFormData] = useState<unknown | null>(null);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
+  // Removed unused state: formData and isSubmitted
 
   const handleSubmit = (data: unknown) => {
     console.log('Form submitted with data:', data);
-    setFormData(data);
-    setIsSubmitted(true);
+    // Removed setFormData and setIsSubmitted as their state is no longer used
   };
-
 
 
   return (
@@ -41,3 +37,5 @@ const Profile: React.FC = () => {
 };
 
 export default Profile;
+// This code defines a Profile component that renders a user profile page with a form for user information and a file upload card for profile picture uploads. The form submission is handled by the handleSubmit function, which currently logs the submitted data to the console.
+// The component uses Tailwind CSS for styling and is structured to be responsive, adapting to different screen sizes with flexbox. The FileUploadCard component is used to allow users to upload a profile picture, while the UserInfoForm component collects user information such as name, email, and contact details.

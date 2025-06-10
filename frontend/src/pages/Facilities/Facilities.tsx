@@ -6,6 +6,7 @@ export default function Facilities() {
   const [facility] = useState<Facility[]>([
     {
       id: "1",
+      facilityName: "Main Sports Hall",
       name: "John",
       surname: "Doe",
       email: "john.doe@example.com",
@@ -29,6 +30,7 @@ export default function Facilities() {
     },
     {
       id: "2",
+      facilityName: "Secondary Gym",
       name: "Jane",
       surname: "Smith",
       email: "jane.smith@example.com",
@@ -69,10 +71,10 @@ export default function Facilities() {
   };
 
   return (
-    <div className="flex flex-col items-start justify-start min-h-screen p-6">
+    <div className="space-y-6 p-6 ">
       <div className="mb-6 ">
-        <h1 className="text-2xl font-bold">Facilities</h1>
-        <p className="text-gray-600">View and Manage all facilities of your organisation</p>
+        <h1 >Facilities</h1>
+        <p >View and Manage all facilities of your organisation</p>
       </div>
 
       <FacilitiesTable

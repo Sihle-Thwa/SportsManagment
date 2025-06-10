@@ -45,10 +45,10 @@ export default function Teams() {
   };
 
   return (
-    <div className="flex flex-col items-start justify-start min-h-screen p-6">
+    <div className="space-y-6 p-6 ">
       <div className="mb-6 ">
-        <h1 className="text-2xl font-bold">Teams</h1>
-        <p className="text-gray-600">View and Manage all teams of your organisation</p>
+        <h1>Teams</h1>
+        <p >View and Manage all teams of your organisation</p>
       </div>
 
       <TeamsTable

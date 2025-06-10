@@ -1,20 +1,20 @@
+import { useState } from "react";
 import { Building, MapPin, Pencil, Trash2, Calendar } from "lucide-react";
-import { Button } from "../../components/ui/button";
+import { Button } from "../../components/common/Button/Button";
 import { Table } from "../../components/common/Table/Table";
 import { TableColumn } from "../../components/common/Table/types";
 
 
-// Define the Facility interface
 export interface Facility {
   id: string;
-  name: string;
+  facilityName: string;
   address: string;
   city: string;
   country: string;
   capacity: number;
   status: 'operational' | 'maintenance' | 'closed';
   lastInspection: string;
-  [key: string]: unknown; // Add index signature to satisfy Record<string, unknown>
+  [key: string]: unknown;
 }
 
 interface FacilitiesTableProps {
@@ -32,20 +32,25 @@ export function FacilitiesTable({
   onAddNew,
   onScheduleInspection
 }: FacilitiesTableProps) {
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [searchTerm, setSearchTerm] = useState("");
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+
   // Define columns for the Facilities table
   const columns: TableColumn<Facility>[] = [
     {
       header: "ID",
       accessorKey: "id",
-      className: "w-20"
     },
     {
-      header: "Facility Name",
-      accessorKey: "name",
+      header: "Facility facilityName",
+      accessorKey: "facilityName",
       cell: (facility) => (
         <div className="flex items-center gap-2">
           <Building size={16} className="text-gray-500" />
-          {facility.name}
+          {facility.facilityName}
         </div>
       )
     },
@@ -96,24 +101,21 @@ export function FacilitiesTable({
     <div className="flex justify-end gap-2">
       <Button
         variant="ghost"
-        size="icon"
-        onClick={() => onScheduleInspection && onScheduleInspection(facility)}
+        onClick={() => onScheduleInspection?.(facility)}
         title="Schedule Inspection"
       >
         <Calendar size={16} className="text-blue-500" />
       </Button>
       <Button
         variant="ghost"
-        size="icon"
-        onClick={() => onEdit && onEdit(facility)}
+        onClick={() => onEdit?.(facility)}
         title="Edit Facility"
       >
         <Pencil size={16} className="text-gray-500" />
       </Button>
       <Button
         variant="ghost"
-        size="icon"
-        onClick={() => onDelete && onDelete(facility)}
+        onClick={() => onDelete?.(facility)}
         title="Delete Facility"
       >
         <Trash2 size={16} className="text-red-500" />
@@ -121,19 +123,33 @@ export function FacilitiesTable({
     </div>
   );
 
+  const paginatedData = data.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
   return (
     <Table<Facility>
-      data={data}
+      data={paginatedData}
       columns={columns}
       actions={renderActions}
       onAddNew={onAddNew}
       addNewLabel="Add New Facility"
-      itemsPerPage={10} currentPage={0} totalPages={0} onPageChange={function (_: number): void {
-        throw new Error("Function not implemented.");
-      }} onItemsPerPageChange={function (_: number): void {
-        throw new Error("Function not implemented.");
-      }} searchTerm={""} onSearchChange={function (_: string): void {
-        throw new Error("Function not implemented.");
-      }} />
+      currentPage={currentPage}
+      totalPages={totalPages}
+      onPageChange={setCurrentPage}
+      itemsPerPage={itemsPerPage}
+      onItemsPerPageChange={(value) => {
+        setItemsPerPage(value);
+        setCurrentPage(1);
+      }}
+      searchTerm={searchTerm}
+      onSearchChange={setSearchTerm}
+      searchPlaceholder="Search facilities..."
+      pageOptions={[5, 10, 20, 50]}
+    />
   );
 }
+
+// This code defines a FacilitiesTable component that displays a list of facilities in a paginated table format.
+// It includes columns for facility details such as ID, name, location, capacity, status, and last inspection date. 

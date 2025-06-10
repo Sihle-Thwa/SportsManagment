@@ -1,11 +1,11 @@
 // src/pages/members/MembersTable.tsx
-import { Button } from "../../components/common/Button/Button";
+import { useState } from "react";
 import { Pencil, Trash2, UserRound } from "lucide-react";
 import { Table } from "../../components/common/Table/Table";
 import { TableColumn } from "../../components/common/Table/types";
+import { Button } from "../../components/common/Button/Button";
 
-
-// Define the Member interface
+// Member type definition
 export interface Member {
   id: string;
   name: string;
@@ -24,12 +24,14 @@ interface MembersTableProps {
 }
 
 export function MembersTable({ data, onEdit, onDelete, onAddNew }: MembersTableProps) {
-  // Define columns for the Members table
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+
   const columns: TableColumn<Member>[] = [
-    {
-      header: "ID",
-      accessorKey: "id",
-    },
+    { header: "ID", accessorKey: "id" },
     {
       header: "Name",
       accessorKey: "name",
@@ -40,64 +42,49 @@ export function MembersTable({ data, onEdit, onDelete, onAddNew }: MembersTableP
         </div>
       )
     },
-    {
-      header: "Surname",
-      accessorKey: "surname"
-    },
-    {
-      header: "Email",
-      accessorKey: "email"
-    },
-    {
-      header: "Role",
-      accessorKey: "role"
-    },
-    {
-      header: "Contact",
-      accessorKey: "contact"
-    }
+    { header: "Surname", accessorKey: "surname" },
+    { header: "Email", accessorKey: "email" },
+    { header: "Role", accessorKey: "role" },
+    { header: "Contact", accessorKey: "contact" },
   ];
 
-  // Define action buttons for each row
   const renderActions = (member: Member) => (
     <div className="flex justify-end gap-3">
-      <Button
-        variant="ghost"
-        size="icon"
-        onClick={() => onEdit && onEdit(member)}
-      >
+      <Button variant="ghost" size="sm" onClick={() => onEdit?.(member)}>
         <Pencil />
       </Button>
-      <Button
-        variant="ghost"
-        size="icon"
-        onClick={() => onDelete && onDelete(member)}
-      >
+      <Button variant="ghost" size="sm" onClick={() => onDelete?.(member)}>
         <Trash2 className="text-red-500" />
       </Button>
     </div>
   );
 
+  const paginatedData = data.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
   return (
     <Table<Member>
-      data={data}
+      data={paginatedData}
       columns={columns}
       actions={renderActions}
       onAddNew={onAddNew}
       addNewLabel="Add New Member"
-      itemsPerPage={10}
-      currentPage={0}
-      totalPages={0}
-      onPageChange={function (page: number): void {
-        throw new Error("Function not implemented.");
+      currentPage={currentPage}
+      totalPages={totalPages}
+      onPageChange={setCurrentPage}
+      itemsPerPage={itemsPerPage}
+      onItemsPerPageChange={(value) => {
+        setItemsPerPage(value);
+        setCurrentPage(1);
       }}
-      onItemsPerPageChange={function (value: number): void {
-        throw new Error("Function not implemented.");
-      }}
-      searchTerm={""}
-      onSearchChange={function (value: string): void {
-        throw new Error("Function not implemented.");
-      }}
+      searchTerm={searchTerm}
+      onSearchChange={setSearchTerm}
+      searchPlaceholder="Search members..."
+      pageOptions={[5, 10, 20, 50]}
     />
   );
 }
+MembersTable.displayName = "MembersTable";
+export default MembersTable;

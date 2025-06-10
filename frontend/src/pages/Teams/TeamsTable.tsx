@@ -1,10 +1,9 @@
+import { useState } from "react";
 import { Users, Pencil, Trash2, UserPlus } from "lucide-react";
-import { Button } from "../../components/ui/button";
+import { Button } from "../../components/common/Button/Button";
 import { Table } from "../../components/common/Table/Table";
-
 import { TableColumn } from "../../components/common/Table/types";
 
-// Define the Team interface
 export interface Team {
   id: string;
   teamName: string;
@@ -12,6 +11,7 @@ export interface Team {
   ageGroup: string;
   code: string;
   sport: string;
+  gender: string;
   playerCount: number;
   tournaments: string[];
   [key: string]: unknown;
@@ -30,77 +30,61 @@ export function TeamsTable({
   onEdit,
   onDelete,
   onAddNew,
-  onManageMembers
+  onManageMembers,
 }: TeamsTableProps) {
-  // Define columns for the Teams table
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+
   const columns: TableColumn<Team>[] = [
-    {
-      header: "ID",
-      accessorKey: "id",
-      className: "w-20"
-    },
+    { header: "ID", accessorKey: "id", className: "w-20" },
     {
       header: "Team Name",
-      accessorKey: "name",
+      accessorKey: "teamName",
       cell: (team) => (
         <div className="flex items-center gap-2">
           <Users size={16} className="text-blue-500" />
           {team.teamName}
         </div>
-      )
+      ),
     },
-    {
-      header: "Team Code",
-      accessorKey: "code",
-    },
-    {
-      header: "Team Captain",
-      accessorKey: "teamCaptain"
-    },
-    {
-      header: "Gender",
-      accessorKey: "gender"
-    },
-    {
-      header: "Age Group",
-      accessorKey: "ageGroup"
-    },
+    { header: "Team Code", accessorKey: "code" },
+    { header: "Team Captain", accessorKey: "teamCaptain" },
+    { header: "Gender", accessorKey: "gender" },
+    { header: "Age Group", accessorKey: "ageGroup" },
     {
       header: "Players",
       accessorKey: "playerCount",
-      cell: (team) => `${team.playerCount} players`
+      cell: (team) => `${team.playerCount} players`,
     },
     {
       header: "Tournaments",
       accessorKey: "tournaments",
-      cell: (team) => `${team.tournaments.length} tournaments`
+      cell: (team) => `${team.tournaments.length} tournaments`,
     },
-
   ];
 
-  // Define action buttons for each row
   const renderActions = (team: Team) => (
     <div className="flex justify-end gap-2">
       <Button
         variant="ghost"
-        size="icon"
-        onClick={() => onManageMembers && onManageMembers(team)}
+        onClick={() => onManageMembers?.(team)}
         title="Manage Members"
       >
         <UserPlus size={16} className="text-blue-500" />
       </Button>
       <Button
         variant="ghost"
-        size="icon"
-        onClick={() => onEdit && onEdit(team)}
+        onClick={() => onEdit?.(team)}
         title="Edit Team"
       >
         <Pencil size={16} className="text-gray-500" />
       </Button>
       <Button
         variant="ghost"
-        size="icon"
-        onClick={() => onDelete && onDelete(team)}
+        onClick={() => onDelete?.(team)}
         title="Delete Team"
       >
         <Trash2 size={16} className="text-red-500" />
@@ -108,26 +92,32 @@ export function TeamsTable({
     </div>
   );
 
+  const paginatedData = data.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
   return (
     <Table<Team>
-      data={data}
+      data={paginatedData}
       columns={columns}
       actions={renderActions}
       onAddNew={onAddNew}
       addNewLabel="Create New Team"
-      itemsPerPage={10}
-      currentPage={0}
-      totalPages={0}
-      onPageChange={function (page: number): void {
-        throw new Error("Function not implemented.");
+      currentPage={currentPage}
+      totalPages={totalPages}
+      onPageChange={setCurrentPage}
+      itemsPerPage={itemsPerPage}
+      onItemsPerPageChange={(value) => {
+        setItemsPerPage(value);
+        setCurrentPage(1);
       }}
-      onItemsPerPageChange={function (value: number): void {
-        throw new Error("Function not implemented.");
-      }}
-      searchTerm={""}
-      onSearchChange={function (value: string): void {
-        throw new Error("Function not implemented.");
-      }}
+      searchTerm={searchTerm}
+      onSearchChange={setSearchTerm}
+      searchPlaceholder="Search teams..."
+      pageOptions={[5, 10, 20, 50]}
     />
   );
 }
+TeamsTable.displayName = "TeamsTable";
+export default TeamsTable;
