@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MoreHorizontal } from "lucide-react";
 import { Avatar } from "../../components/ui/avatar";
 import { ScrollArea } from "../../components/ui/scroll-area";
-import { Button } from "../../components/ui/button";
+import { Button } from "../../components/common/Button";
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 
 

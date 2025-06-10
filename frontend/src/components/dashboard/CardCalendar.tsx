@@ -4,18 +4,12 @@ import { Button } from "../common/Button/Button";
 
 export function CardCalendar() {
   return (
-    <Card className="card flex flex-col max-w-full max-h-[345px] items-center justify-center overflow-hidden">
-      <CardContent className="">
+    <Card className="card flex max-h-[345px] items-center justify-center">
+      <CardContent className="card-body w-fit h-fit flex overflow-y-auto">
         <CalendarObject />
       </CardContent>
       <CardFooter className="card-footer">
-        <Button
-          variant="primary"
-          size="md"
-          withIcon={false}
-          fullWidth={true}
-          className="btn--primary"
-        >
+        <Button className="btn btn--primary btn--icon-only w-fit">
           Manage Calendar
         </Button>
       </CardFooter>
