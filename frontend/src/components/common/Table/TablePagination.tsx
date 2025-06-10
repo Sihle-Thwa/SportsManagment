@@ -9,7 +9,6 @@ interface TablePaginationProps {
 export function TablePagination({
   currentPage,
   totalPages,
-
   onPageChange,
 }: TablePaginationProps) {
   const isFirst = currentPage <= 1;
@@ -19,23 +18,25 @@ export function TablePagination({
     <div className="table-pagination">
       <Button
         className="btn btn--primary"
-        disabled={isFirst}
         onClick={() => onPageChange(currentPage - 1)}
+        disabled={isFirst}
       >
         Previous
       </Button>
 
-      <span className="text-sm font-medium">
+      <span className="text-sm text-muted font-medium">
         Page {currentPage} of {totalPages}
       </span>
 
       <Button
         className="btn btn--primary"
-        disabled={isLast}
         onClick={() => onPageChange(currentPage + 1)}
+        disabled={isLast}
       >
         Next
       </Button>
     </div>
   );
 }
+TablePagination.displayName = "TablePagination";
+export default TablePagination;

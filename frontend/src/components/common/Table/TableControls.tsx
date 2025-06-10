@@ -1,5 +1,5 @@
-import { Button } from "../../common/Button";
-import { Input } from "../Input/input";
+import { Button } from "../../common/Button/Button";
+import { TableSearch } from "../Input/table-search";
 import { PageSelect } from "../Select/PageSelect";
 
 interface TableControlsProps {
@@ -9,11 +9,8 @@ interface TableControlsProps {
   onSearchChange: (value: string) => void;
   onAddNew?: () => void;
   addNewLabel?: string;
-
-  // Optional & Customizable Props
   pageOptions?: number[];
   searchPlaceholder?: string;
-  className?: string;
 }
 
 export function TableControls({
@@ -24,16 +21,11 @@ export function TableControls({
   onAddNew,
   addNewLabel = "Add New",
   pageOptions = [5, 10, 15, 20, 50],
-  searchPlaceholder = "Search...",
-  className
 }: TableControlsProps) {
   return (
-    <div
-      className={`flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 ${className}`}
-    >
-      {/* Page Selection */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2">
-        <label htmlFor="itemsPerPage" >
+    <div className="table-controls">
+      <div className="flex items-center gap-3">
+        <label htmlFor="itemsPerPage" className="text-sm text-muted">
           Show
         </label>
         <PageSelect
@@ -41,25 +33,17 @@ export function TableControls({
           onValueChange={onItemsPerPageChange}
           options={pageOptions}
         />
-
-        <span className="text-sm">entries</span>
+        <span className="text-sm text-muted">entries</span>
       </div>
 
-      {/* Search & Add */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
-        <Input
-          id="table-search"
-          placeholder={searchPlaceholder}
+      <div className="flex items-center gap-3 ml-auto">
+        <TableSearch
           value={searchTerm}
-          onChange={(e) => onSearchChange(e.target.value)}
-          className="input-base w-full sm:w-64"
+          onChange={onSearchChange}
           aria-label="Search table"
         />
         {onAddNew && (
-          <Button
-            className="btn-primary whitespace-nowrap"
-            onClick={onAddNew}
-          >
+          <Button className="btn btn--primary" onClick={onAddNew}>
             {addNewLabel}
           </Button>
         )}
@@ -67,5 +51,7 @@ export function TableControls({
     </div>
   );
 }
+
 TableControls.displayName = "TableControls";
 export type { TableControlsProps };
+export default TableControls;

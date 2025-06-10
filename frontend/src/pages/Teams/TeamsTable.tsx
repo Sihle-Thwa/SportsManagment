@@ -1,6 +1,8 @@
 import { Users, Pencil, Trash2, UserPlus } from "lucide-react";
 import { Button } from "../../components/ui/button";
-import { TableBuilder, TableColumn } from "../../components/common/Table";
+import { Table } from "../../components/common/Table/Table";
+
+import { TableColumn } from "../../components/common/Table/types";
 
 // Define the Team interface
 export interface Team {
@@ -107,13 +109,25 @@ export function TeamsTable({
   );
 
   return (
-    <TableBuilder<Team>
+    <Table<Team>
       data={data}
       columns={columns}
       actions={renderActions}
       onAddNew={onAddNew}
       addNewLabel="Create New Team"
       itemsPerPage={10}
+      currentPage={0}
+      totalPages={0}
+      onPageChange={function (page: number): void {
+        throw new Error("Function not implemented.");
+      }}
+      onItemsPerPageChange={function (value: number): void {
+        throw new Error("Function not implemented.");
+      }}
+      searchTerm={""}
+      onSearchChange={function (value: string): void {
+        throw new Error("Function not implemented.");
+      }}
     />
   );
 }

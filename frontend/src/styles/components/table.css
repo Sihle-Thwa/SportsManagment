@@ -1,51 +1,37 @@
 @import 'tailwindcss';
 
 @layer components {
-
     .table-wrapper {
         display: flex;
         flex-direction: column;
         width: 100%;
-        max-width: 100%;
         height: 100%;
-        overflow: hidden;
-        background-color: var(--background);
-    }
-
-    .table-container {
-        overflow: auto;
-        height: 100%;
-        display: flex;
-        width: 100%;
-        flex-direction: column;
-        overflow: auto;
-        max-height: 100%;
-        margin: var(--spacing-4);
-        padding: var(--spacing-4);
         background-color: var(--table-background);
         border-radius: var(--radius-lg);
         box-shadow: var(--shadow-lg);
+        border: 1px solid var(--border-subtle);
+        padding: var(--spacing-4);
+        overflow: hidden;
+    }
+
+    .table-controls {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-bottom: var(--spacing-4);
+    }
+
+    .table-container {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        width: 100%;
     }
 
     .table {
         width: 100%;
-        max-width: 100%;
         border-collapse: collapse;
-        margin: var(--spacing-4);
-        font-size: var(--font-size-base);
-        line-height: var(--line-height-normal);
-        font-weight: var(--font-weight-normal);
-        background-color: var(--table-background);
-        color: var(--text-primary);
-    }
-
-    .table-head {
-        background-color: var(--table-header-background);
-        color: var(--table-header-text);
-        font-size: var(--font-size-lg);
-        font-weight: var(--font-weight-semibold);
-        text-align: left;
-        padding: var(--spacing-3);
+        color: var(--table-text);
     }
 
     .table-head.sorted {
@@ -57,27 +43,20 @@
         background-color: var(--table-header-background);
         color: var(--table-header-text);
         font-weight: var(--font-weight-semibold);
+        font-size: var(--font-size-lg);
+        padding: var(--spacing-4);
         text-align: left;
-        padding: var(--spacing-3);
     }
-
-
 
     .table-body {
         background-color: var(--table-body-background);
-        color: var(--table-body-text);
+        color: var(--text-primary);
+        font-size: var(--font-size-base);
     }
 
     .table-row {
-        border-bottom: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--table-border);
         transition: var(--transition-fast);
-    }
-
-    .table-cell {
-        padding: var(--spacing-3);
-        text-align: left;
-        font-size: var(--font-size-base);
-        line-height: var(--line-height-normal);
     }
 
     .table-row:hover {
@@ -91,21 +70,33 @@
         color: var(--text-selected);
     }
 
+    .table-cell {
+        padding: var(--spacing-4);
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-normal);
+        text-align: left;
+    }
+
     .table-footer {
         background-color: var(--table-footer-background);
         color: var(--text-primary);
         font-size: var(--font-size-sm);
         font-weight: var(--font-weight-normal);
         border-top: 1px solid var(--border-light);
-
+        padding: var(--spacing-3);
     }
 
     .table-pagination {
         display: flex;
-        flex-direction: row;
-        gap: var(--spacing-3);
-        align-items: center;
-        padding: var(--spacing-3);
         justify-content: space-between;
+        align-items: center;
+        gap: var(--spacing-3);
+        padding: var(--spacing-3);
+    }
+
+    .table-empty-state {
+        text-align: center;
+        padding: var(--spacing-6) var(--spacing-4);
+        color: var(--text-muted);
     }
 }

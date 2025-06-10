@@ -1,4 +1,3 @@
-// Table.tsx
 import React from "react";
 import { Table as UITable } from "../../ui/table";
 import { TableHeader } from "./TableHeader";
@@ -42,7 +41,7 @@ export function Table<T>({
   searchPlaceholder,
 }: TableProps<T>) {
   return (
-    <div className="table-wrapper flex flex-col w-full h-full">
+    <div className="table-wrapper">
       <TableControls
         itemsPerPage={itemsPerPage}
         onItemsPerPageChange={onItemsPerPageChange}
@@ -53,7 +52,6 @@ export function Table<T>({
         pageOptions={pageOptions}
         searchPlaceholder={searchPlaceholder}
       />
-
       <div className="table-container">
         <UITable className="table">
           <TableHeader
@@ -65,7 +63,6 @@ export function Table<T>({
           <TableBody data={data} columns={columns} actions={actions} />
         </UITable>
       </div>
-
       <TableFooter
         currentPage={currentPage}
         totalPages={totalPages}
@@ -76,3 +73,5 @@ export function Table<T>({
 }
 
 Table.displayName = "Table";
+export default Table;
+export type { TableProps, SortConfig }; 

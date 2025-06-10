@@ -1,6 +1,8 @@
 import { Button } from "../../components/ui/button";
 import { Pencil, Trash2, UserRound } from "lucide-react";
-import { TableBuilder, TableColumn } from "../../components/common/Table";
+import { Table } from "../../components/common/Table/Table";
+import { TableColumn } from "../../components/common/Table/types";
+
 
 // Define the User interface
 export interface Player {
@@ -100,13 +102,24 @@ export function PlayersTable({ data, onEdit, onDelete, onAddNew }: PlayersTableP
   );
 
   return (
-    <TableBuilder<Player>
+    <Table<Player>
       data={data}
       columns={columns}
       actions={renderActions}
       onAddNew={onAddNew}
       addNewLabel="Add New Player"
       itemsPerPage={10}
-    />
+      currentPage={0}
+      totalPages={0}
+      onPageChange={function (page: number): void {
+        throw new Error("Function not implemented.");
+      }}
+      onItemsPerPageChange={function (value: number): void {
+        throw new Error("Function not implemented.");
+      }}
+      searchTerm={""}
+      onSearchChange={function (value: string): void {
+        throw new Error("Function not implemented.");
+      }} />
   );
 }

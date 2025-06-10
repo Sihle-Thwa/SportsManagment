@@ -254,7 +254,7 @@
     /* Neutral 50 - Alternate row background */
     --table-background-hover: var(--color-tertiary-100);
     /* Tertiary 100 - Light teal row hover */
-    --table-border: var(--border-muted);
+    --table-border: var(--border-subtle);
     /* Secondary 100 - Table borders */
     --table-header-background: var(--color-neutral-100);
     /* Neutral 100 - Header background */

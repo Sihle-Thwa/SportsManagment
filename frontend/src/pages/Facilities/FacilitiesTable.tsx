@@ -1,6 +1,8 @@
 import { Building, MapPin, Pencil, Trash2, Calendar } from "lucide-react";
 import { Button } from "../../components/ui/button";
-import { TableBuilder, TableColumn } from "../../components/common/Table/Table";
+import { Table } from "../../components/common/Table/Table";
+import { TableColumn } from "../../components/common/Table/types";
+
 
 // Define the Facility interface
 export interface Facility {
@@ -120,7 +122,7 @@ export function FacilitiesTable({
   );
 
   return (
-    <TableBuilder<Facility>
+    <Table<Facility>
       data={data}
       columns={columns}
       actions={renderActions}

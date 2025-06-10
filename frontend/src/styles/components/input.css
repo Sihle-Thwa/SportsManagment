@@ -4,21 +4,22 @@
 
     .input {
         font-family: var(--font-serif);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
+        max-width: 240px;
         width: 100%;
-        padding: var(--spacing-4);
+        display: flex;
+        align-items: center;
+        padding: var(--spacing-3) var(--spacing-4);
         border-radius: var(--radius-md);
         border: 1px solid var(--border-default);
         background-color: var(--input-background);
         color: var(--text-primary);
-        font-size: var(--font-size-lg);
+        font-size: var(--font-size-base);
+        line-height: var(--line-height-normal);
         font-weight: var(--font-weight-normal);
-        box-shadow: var(--shadow-sm);
+        box-shadow: var(--shadow-md);
         transition: var(--duration-fast);
         height: var(--space-12);
-
+        cursor: text;
     }
 
     .input:focus {

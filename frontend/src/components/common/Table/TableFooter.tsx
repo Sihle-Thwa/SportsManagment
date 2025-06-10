@@ -8,7 +8,7 @@ interface FooterProps {
 
 export function TableFooter({ currentPage, totalPages, onPageChange }: FooterProps) {
     return (
-        <div className="table-footer w-full flex items-center justify-between p-4 ">
+        <div className="table-footer">
             <TablePagination
                 currentPage={currentPage}
                 totalPages={totalPages}

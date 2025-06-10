@@ -7,12 +7,14 @@ interface EmptyStateProps {
 export function EmptyState({
     message = "No results found.",
     icon,
-    className = ""
+    className = "",
 }: EmptyStateProps) {
     return (
-        <div className={`text-center py-8 px-4 text-muted ${className}`}>
+        <div className={`table-empty-state ${className}`}>
             {icon && <div className="mb-2 text-3xl">{icon}</div>}
-            <p >{message}</p>
-        </div >
+            <p>{message}</p>
+        </div>
     );
 }
+EmptyState.displayName = "TableEmptyState";
+export default EmptyState;  

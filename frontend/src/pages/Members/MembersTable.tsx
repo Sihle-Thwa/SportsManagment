@@ -1,7 +1,9 @@
 // src/pages/members/MembersTable.tsx
-import { Button } from "../../components/ui/button";
+import { Button } from "../../components/common/Button/Button";
 import { Pencil, Trash2, UserRound } from "lucide-react";
-import { TableColumn, TableBuilder } from "../../components/common/Table";
+import { Table } from "../../components/common/Table/Table";
+import { TableColumn } from "../../components/common/Table/types";
+
 
 // Define the Member interface
 export interface Member {
@@ -27,14 +29,13 @@ export function MembersTable({ data, onEdit, onDelete, onAddNew }: MembersTableP
     {
       header: "ID",
       accessorKey: "id",
-      className: "w-20"
     },
     {
       header: "Name",
       accessorKey: "name",
       cell: (member) => (
         <div className="flex items-center gap-2">
-          <UserRound size={16} className="text-gray-500" />
+          <UserRound />
           {member.name}
         </div>
       )
@@ -59,32 +60,44 @@ export function MembersTable({ data, onEdit, onDelete, onAddNew }: MembersTableP
 
   // Define action buttons for each row
   const renderActions = (member: Member) => (
-    <div className="flex justify-end gap-0">
+    <div className="flex justify-end gap-3">
       <Button
         variant="ghost"
         size="icon"
         onClick={() => onEdit && onEdit(member)}
       >
-        <Pencil size={16} className="text-gray-500" />
+        <Pencil />
       </Button>
       <Button
         variant="ghost"
         size="icon"
         onClick={() => onDelete && onDelete(member)}
       >
-        <Trash2 size={16} className="text-red-500" />
+        <Trash2 className="text-red-500" />
       </Button>
     </div>
   );
 
   return (
-    <TableBuilder<Member>
+    <Table<Member>
       data={data}
       columns={columns}
       actions={renderActions}
       onAddNew={onAddNew}
       addNewLabel="Add New Member"
       itemsPerPage={10}
+      currentPage={0}
+      totalPages={0}
+      onPageChange={function (page: number): void {
+        throw new Error("Function not implemented.");
+      }}
+      onItemsPerPageChange={function (value: number): void {
+        throw new Error("Function not implemented.");
+      }}
+      searchTerm={""}
+      onSearchChange={function (value: string): void {
+        throw new Error("Function not implemented.");
+      }}
     />
   );
 }

@@ -10,9 +10,7 @@
         font-weight: var(--font-weight-medium);
         transition: var(--transition-fast);
         cursor: pointer;
-        box-shadow: var(--shadow-sm);
-        border: 1px solid var(--border-subtle);
-        color: var(--button-primary-text) !important;
+        color: var(--button-primary-text);
     }
 
     /* === States === */
