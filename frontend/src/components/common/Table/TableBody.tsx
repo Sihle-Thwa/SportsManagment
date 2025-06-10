@@ -1,3 +1,4 @@
+import { resolveCellValue } from "../../../lib/utils";
 import { TableBody as UITableBody, TableCell, TableRow } from "../../ui/table";
 import { EmptyState } from "./TableEmptyState";
 import { TableColumn } from "./types";
@@ -27,11 +28,9 @@ export function TableBody<T>({ data, columns, actions }: TableBodyProps<T>) {
         <TableRow key={rowIndex} className="table-row">
           {columns.map((column, colIndex) => (
             <TableCell key={colIndex} className={`table-cell ${column.className || ""}`}>
-              {column.cell
+              {typeof column.cell === "function"
                 ? column.cell(item)
-                : typeof column.accessorKey === 'string'
-                  ? (item[column.accessorKey as keyof T] as React.ReactNode)
-                  : ''}
+                : resolveCellValue(item, column.accessorKey as keyof T)}
             </TableCell>
 
           ))}
