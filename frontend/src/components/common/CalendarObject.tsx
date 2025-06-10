@@ -4,6 +4,10 @@ import { Calendar } from "../../components/ui/calendar"
 export function CalendarObject() {
 
   const [date, setDate] = React.useState<Date | undefined>(new Date())
+  // Initialize the date state with the current date
+  React.useEffect(() => {
+    setDate(new Date())
+  }, [])
 
   return (
     <Calendar
