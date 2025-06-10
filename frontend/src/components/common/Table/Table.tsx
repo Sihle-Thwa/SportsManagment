@@ -1,9 +1,10 @@
-import { Table as UITable, TableFooter } from "../../ui/table";
+import { Table as UITable } from "../../ui/table";
 import { TableHeader } from "./TableHeader";
 import { TableBody } from "./TableBody";
 import { TableControls, TableControlsProps } from "./TableControls";
 import { TableColumn } from "./types";
-import { TablePagination } from "./TablePagination";
+import React from "react";
+import { TableFooter } from "./TableFooter";
 
 interface TableProps<T> extends TableControlsProps {
   data: T[];
@@ -56,26 +57,14 @@ export function TableBuilder<T>({
         <UITable className="table w-full">
           <TableHeader columns={columns} sorting={sorting} onSort={onSort} actions={actions} />
           <TableBody data={data} columns={columns} actions={actions} />
+          {/* Table Footer */}
+          <TableFooter currentPage={currentPage} totalPages={totalPages} onPageChange={onPageChange} />
+
         </UITable>
       </div>
-      {/* Table Footer */}
-      <TableFooter className="table-footer">
-        <div className="flex items-end justify-end p-2">
-          <span >
-            {data.length} {data.length === 1 ? "item" : "items"} found
-          </span>
-        </div>
-      </TableFooter>
-      {data.length > 0 && (
-        <TablePagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={onPageChange}
-        />
-      )}
+
 
     </div>
   );
 }
 TableBuilder.displayName = "TableBuilder";
-export type { TableProps, TableColumn };

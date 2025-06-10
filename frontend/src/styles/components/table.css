@@ -76,9 +76,22 @@
 
     .table-footer {
         background-color: var(--table-footer-background);
-        color: var(--text-secondary);
+        color: var(--text-primary);
         padding: var(--spacing-3);
-        text-align: right;
         font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-normal);
+        border-top: 1px solid var(--border-light);
+        gap: var(--spacing-3);
+    }
+
+    .table-pagination {
+        display: flex;
+        flex-direction: row;
+        gap: var(--spacing-3);
+        align-items: center;
+        justify-content: end;
+        padding: var(--spacing-3);
+        background-color: var(--table-footer-background);
+        color: var(--text-primary);
     }
 }
