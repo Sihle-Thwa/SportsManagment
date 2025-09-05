@@ -7,9 +7,9 @@ function App() {
 	return (
 		<Router>
 			<ThemeProvider>
-				<div className="min-h-screen bg-[linear-gradient(135deg,_var(--color-accent-100)_35%,_var(--color-accent-300)_70%,_var(--color-accent-500)_100%)]"> {/* shadcn/tailwind v4 best practices */}
+				<div className="min-h-screen bg-[linear-gradient(135deg,_var(--color-accent-100)_35%,_var(--color-accent-300)_70%,_var(--color-accent-500)_100%)]"> {* Viable for SHADCN UI, or ipt for another ui template, rework */}
 					<Routes>
-						<Route path="/" element={<MainLayout />}>
+						<Route path="#Home" element={<MainLayout />}>
 							{routes.map((route) => (
 								<Route key={route.id} path={route.path} element={route.element} />
 							))}
