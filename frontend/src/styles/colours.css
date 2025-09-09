@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+/* 
+  This file contains the core colour palettes for your design system.
+  Includes: Primary, Secondary, Accent, Neutral, and Status colour.
+*/
+
+/* ---------------------------------- */
+/* Section: Primary colour Palette */
+/* ---------------------------------- */
+:root {
+	/***** Section: Primary colour Palette *****/
+	/* Primary colour Scale */
+	--colour-primary: hsl(220, 100%, 10%);
+	--colour-primary-500: hsl(220, 55%, 45%);
+	--colour-primary-600: hsl(220, 65%, 35%);
+	--colour-primary-700: hsl(220, 75%, 25%);
+	--colour-primary-800: hsl(220, 85%, 15%);
+	--colour-primary-900: hsl(220, 100%, 10%);
+
+	/***** Section: Secondary colour Palette *****/
+	/* Secondary colour Scale */
+	--colour-secondary: hsl(220, 40%, 25%);
+	--colour-secondary-100: hsl(220, 20%, 85%);
+	--colour-secondary-300: hsl(220, 25%, 70%);
+	--colour-secondary-700: hsl(220, 35%, 35%);
+	--colour-secondary-900: hsl(220, 40%, 25%);
+
+	/***** End Section *****/
+
+	/***** Section: Tertiary colour *****/
+	/* Tertiary colour Scale */
+	--colour-tertiary: hsl(195, 85%, 25%);
+	--colour-tertiary-100: hsl(195, 45%, 85%);
+	--colour-tertiary-300: hsl(195, 55%, 70%);
+	--colour-tertiary-500: hsl(195, 65%, 50%);
+	--colour-tertiary-700: hsl(195, 75%, 35%);
+	--colour-tertiary-900: hsl(195, 85%, 25%);
+
+	/***** End Section *****/
+
+	/***** Section: Accent colour Palette *****/
+	/* Accent colour Scale */
+	--colour-accent: hsl(36, 70%, 35%);
+	--colour-accent-100: hsl(36, 40%, 90%);
+	--colour-accent-300: hsl(36, 50%, 70%);
+	--colour-accent-500: hsl(36, 60%, 50%);
+	--colour-accent-700: hsl(36, 70%, 35%);
+	--colour-accent-900: hsl(36, 80%, 25%);
+
+	/***** End Section *****/
+
+	/***** Section: Neutral colour Palette *****/
+	/* Neutral colour Scale */
+	--colour-neutral: hsl(220, 15%, 15%);
+	--colour-neutral-100: hsl(220, 6%, 95%);
+	--colour-neutral-300: hsl(220, 8%, 75%);
+	--colour-neutral-500: hsl(220, 10%, 55%);
+	--colour-neutral-700: hsl(220, 12%, 35%);
+	--colour-neutral-900: hsl(220, 15%, 15%);
+
+	/***** End Section *****/
+
+	/***** Section: Status colour Palette *****/
+
+	/* Status colour */
+	--colour-success: hsl(160, 84%, 39%);
+	--colour-success-100: hsl(160, 84%, 95%);
+	--colour-success-300: hsl(160, 84%, 90%);
+	--colour-success-500: hsl(160, 84%, 39%);
+	--colour-success-700: hsl(160, 84%, 32%);
+	--colour-success-900: hsl(160, 84%, 20%);
+
+	--colour-warning: hsl(35, 90%, 25%);
+	--colour-warning-100: hsl(35, 65%, 92%);
+	--colour-warning-300: hsl(35, 75%, 75%);
+	--colour-warning-500: hsl(35, 85%, 55%);
+	--colour-warning-700: hsl(35, 90%, 25%);
+	--colour-warning-900: hsl(35, 95%, 15%);
+
+	--colour-error: hsl(0, 75%, 40%);
+	--colour-error-100: hsl(0, 50%, 92%);
+	--colour-error-300: hsl(0, 60%, 75%);
+	--colour-error-500: hsl(0, 70%, 55%);
+	--colour-error-700: hsl(0, 75%, 40%);
+	--colour-error-900: hsl(0, 80%, 30%);
+
+	/***** End Section *****/
+}

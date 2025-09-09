@@ -39,7 +39,7 @@
         cursor: default;
     }
 
-    .dropdown-seperator {
+    .dropdown-separator {
         height: 1px;
         background-color: var(--border-light);
         margin: var(--spacing-2) 0;

@@ -150,6 +150,3 @@ export function FacilitiesTable({
     />
   );
 }
-
-// This code defines a FacilitiesTable component that displays a list of facilities in a paginated table format.
-// It includes columns for facility details such as ID, name, location, capacity, status, and last inspection date. 

@@ -1,177 +1,80 @@
-@import 'tailwindcss';
-
+@import "tailwindcss";
 
 /***** Section: Typography Scale *****/
 
 /* Font Family */
 :root {
-    --font-sans: 'Inter', sans-serif;
-    --font-serif: 'Georgia', serif;
-    --font-mono: 'Courier New', monospace;
+	--font-sans: "Inter", sans-serif;
+	--font-serif: "Georgia", serif;
+	--font-mono: "Courier New", monospace;
 
-    /* Font Sizes */
-    --font-size-xs: 0.75rem;
-    /* 12px */
-    --font-size-sm: 0.875rem;
-    /* 14px */
-    --font-size-base: 1rem;
-    /* 16px */
-    --font-size-lg: 1.125rem;
-    /* 18px */
-    --font-size-xl: 1.25rem;
-    /* 20px */
-    --font-size-2xl: 1.5rem;
-    /* 24px */
-    --font-size-3xl: 1.875rem;
-    /* 30px */
-    --font-size-4xl: 2.25rem;
-    /* 36px */
-    --font-size-5xl: 3rem;
-    /* 48px */
-    --font-size-6xl: 3.75rem;
-    /* 60px */
-    --font-size-7xl: 4.5rem;
-    /* 72px */
-    --font-size-8xl: 6rem;
-    /* 96px */
+	/* Font Sizes */
 
-    /* Font Weights */
-    --font-weight-light: 300;
-    --font-weight-normal: 400;
-    --font-weight-medium: 500;
-    --font-weight-semibold: 600;
-    --font-weight-bold: 700;
-    --font-weight-extrabold: 800;
+	/* Display Sizes */
+	--display-size-lg: 72px;
+	--display-size-md: 60px;
+	--display-size-sm: 48px;
 
-    /* Line Heights */
-    --line-height-tight: 1.25;
-    --line-height-snug: 1.375;
-    --line-height-normal: 1.5;
-    --line-height-relaxed: 1.625;
-    --line-height-loose: 2;
+	/* Headline Sizes */
+	--headline-size-lg: 36px;
+	--headline-size-md: 34px;
+	--headline-size-sm: 32px;
 
-    /* Letter Spacing */
-    --letter-spacing-tight: -0.05em;
-    --letter-spacing-normal: 0;
-    --letter-spacing-wide: 0.05em;
-    --letter-spacing-wider: 0.1em;
+	/* Title Sizes */
+	--title-size-lg: 28px;
+	--title-size-md: 26px;
+	--title-size-sm: 24px;
+
+	/* Subtitle Sizes */
+	--subtitle-size-lg: 22px;
+	--subtitle-size-md: 20px;
+	--subtitle-size-sm: 18px;
+
+	/* Body Sizes */
+	--body-size-lg: 16px;
+	--body-size-md: 14px;
+	--body-size-sm: 12px;
+
+	/* Caption Sizes */
+	--caption-size-lg: 12px;
+	--caption-size-md: 12px;
+	--caption-size-sm: 12px;
+
+	/* Overline Sizes */
+	--overline-size-lg: 12px;
+	--overline-size-md: 12px;
+	--overline-size-sm: 12px;
+
+        /* Small Print Sizes */
+	--small-print-size-lg: 12px;
+	--small-print-size-md: 12px;
+	--small-print-size-sm: 12px;
 
 
+	/* Button Font Sizes */
+	--button-size-lg: 16px;
+	--button-size-md: 14px;
+
+	/* Font Weights */
+	--font-weight-light: 300;
+	--font-weight-normal: 400;
+	--font-weight-medium: 500;
+	--font-weight-semibold: 600;
+	--font-weight-bold: 700;
+	--font-weight-extrabold: 800;
+
+	/* Line Heights */
+	--line-height-tight: 1.25;
+	--line-height-snug: 1.375;
+	--line-height-normal: 1.5;
+	--line-height-relaxed: 1.625;
+	--line-height-loose: 2;
+
+	/* Letter Spacing */
+	--letter-spacing-tight: -0.05em;
+	--letter-spacing-normal: 0;
+	--letter-spacing-wide: 0.05em;
+	--letter-spacing-wider: 0.1em;
 }
-
-/* Typography Defaults */
-
-/* Headings */
-h1 {
-    font-size: var(--font-size-5xl);
-    /* 48px */
-    font-weight: var(--font-weight-bold);
-    margin-bottom: var(--spacing-4);
-}
-
-h2 {
-    font-size: var(--font-size-4xl);
-    /* 36px */
-    font-weight: var(--font-weight-semibold);
-    margin-bottom: var(--spacing-3);
-}
-
-h3 {
-    font-size: var(--font-size-3xl);
-    /* 30px */
-    font-weight: var(--font-weight-semibold);
-    margin-bottom: var(--spacing-3);
-}
-
-h4 {
-    font-size: var(--font-size-2xl);
-    /* 24px */
-    font-weight: var(--font-weight-medium);
-    margin-bottom: var(--spacing-2);
-}
-
-h5 {
-    font-size: var(--font-size-xl);
-    /* 20px */
-    font-weight: var(--font-weight-medium);
-    margin-bottom: var(--spacing-2);
-}
-
-h6 {
-    font-size: var(--font-size-lg);
-    /* 18px */
-    font-weight: var(--font-weight-medium);
-    margin-bottom: var(--spacing-1);
-}
-
-/* Paragraphs */
-p {
-    font-size: var(--font-size-base);
-    /* 16px */
-    font-weight: var(--font-weight-normal);
-    color: var(--text-secondary);
-    margin-bottom: var(--spacing-4);
-}
-
-/* Span */
-span {
-    font-size: var(--font-size-base);
-    color: var(--text-primary);
-}
-
-/* Small text */
-small {
-    font-size: var(--font-size-sm);
-    color: var(--text-muted);
-}
-
-/* Strong / Bold */
-strong {
-    font-weight: var(--font-weight-semibold);
-}
-
-/* Emphasis */
-em {
-    font-style: italic;
-}
-
-/* Label */
-label {
-    display: block;
-    font-size: var(--font-size-sm);
-    color: var(--text-secondary);
-    margin-bottom: var(--spacing-1);
-}
-
-/* Links */
-a {
-    color: var(--accent);
-    font-weight: var(--font-weight-medium);
-    transition: var(--duration-fast);
-}
-
-a:hover {
-    color: var(--accent-600);
-}
-
-/* Code & Pre */
-code {
-    font-family: 'Courier New', monospace;
-    background-color: var(--surface-soft);
-    color: var(--accent-700);
-    padding: 0.2em 0.4em;
-    border-radius: var(--radius-sm);
-    font-size: var(--font-size-sm);
-}
-
-pre {
-    font-family: 'Courier New', monospace;
-    background-color: var(--surface-soft);
-    padding: var(--spacing-4);
-    overflow-x: auto;
-    border-radius: var(--radius-base);
-    font-size: var(--font-size-sm);
-}
-
 
 /***** End Section *****/

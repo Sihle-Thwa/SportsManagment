@@ -4,8 +4,8 @@
 /* Import base styles */
 @import "./base.css";
 
-/* Import base colors (color palette) */
-@import "./colors.css";
+/* Import base colours (colour palette) */
+@import "./colours.css";
 
 /* Import semantic tokens with light/dark mode variables */
 @import "./semantic-tokens.css";

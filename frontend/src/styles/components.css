@@ -1,5 +1,4 @@
 @import 'tailwindcss';
-
 @import "./components/button.css";
 @import "./components/card.css";
 @import "./components/dropdown.css";
@@ -10,3 +9,4 @@
 @import "./components/select.css";
 @import "./components/sidebar.css";
 @import "./components/table.css";
+@import "./components/colours.css";

@@ -196,7 +196,7 @@
         font-size: var(--text-sm);
         font-weight: var(--font-medium);
         color: var(--text-secondary);
-        margin-bottom: 0.25rem;
+        margin-bottom: 4px;
     }
 
     /* --------------------------
