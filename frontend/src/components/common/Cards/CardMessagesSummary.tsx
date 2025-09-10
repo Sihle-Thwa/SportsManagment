@@ -1,13 +1,8 @@
 import { useState } from "react";
-import { MoreHorizontal } from "lucide-react";
-import { Avatar } from "../../components/ui/avatar";
-import { ScrollArea } from "../../components/ui/scroll-area";
-import {
-	Card,
-	CardContent,
-	CardHeader,
-	CardTitle,
-} from "../../components/ui/card";
+import { MoreVertical } from "lucide-react";
+import { Avatar } from "../../ui/avatar";
+import { ScrollArea } from "../../ui/scroll-area";
+import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";
 
 const MessageDashboard = ({ messages = [] }) => {
 	const [selectedConversation, setSelectedConversation] = useState<
@@ -72,33 +67,32 @@ const MessageDashboard = ({ messages = [] }) => {
 			  ];
 
 	return (
-		<Card className="card">
-			<CardHeader className="card-header flex flex-row items-start justify-between">
+		<Card className="card card-messages">
+			<CardHeader className="card-header">
 				<CardTitle className="card-header-title">
 					<h4>Messages</h4>
 				</CardTitle>
-				<button className="button button-primary button-icon-only">
-					<MoreHorizontal />
+				<button className="button button-ghost button-icon-only">
+					<MoreVertical />
 				</button>
 			</CardHeader>
 			<ScrollArea className="flex w-full overflow-y-auto">
-				<CardContent className="card-body flex flex-col  justify-around w-full">
+				<CardContent className="card-body">
 					{messageData.map((msg) => (
 						<div
 							key={msg.id}
-							className={`flex w-full items-start mb-3 border-b hover:bg-slate-50 cursor-pointer" ${
-								selectedConversation === msg.id ? "bg-slate-50" : ""
+							className={`message-item ${
+								selectedConversation === msg.id ? "selected" : ""
 							}`}
 							onClick={() => setSelectedConversation(msg.id)}
 						>
-							<div className="flex flex-col gap-3 items-start mb-3">
-								<div className="flex flex-row items-start gap-3 self-stretch">
-									<Avatar className="w-[32px] h-[32px] object-cover bg-inherit">
+							<div className="message-content">
+								<div className="message-header">
+									<Avatar className="avatar">
 										<img src={msg.sender.avatar} alt={msg.sender.name} />
 									</Avatar>
-
-									<div className="flex flex-col items-start self-stretch">
-										<div className="flex flex-row items-start justify-between self-stretch">
+									<div className="message-details">
+										<div className="message-info">
 											<h6>{msg.sender.name}</h6>
 											<span>{msg.timestamp}</span>
 										</div>

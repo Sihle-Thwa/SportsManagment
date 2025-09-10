@@ -1,7 +1,7 @@
 import React from "react";
 import "../../components/dashboard/cardstat.css";
 
-export const CardStat: React.FC<{
+export const CardStatistics: React.FC<{
 	title: string;
 	value: string;
 	icon: React.ReactNode;

@@ -1,20 +1,20 @@
-import { MoreHorizontal, Plus } from "lucide-react";
+import { MoreVertical, Plus } from "lucide-react";
 import {
 	Card,
 	CardContent,
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from "../ui/card";
-import { ChartBar } from "../common/Charts/ChartBar";
+} from "../../ui/card";
+import { ChartBar } from "../Charts/ChartBar";
 
 const PlayerSummaryDashboard = () => {
 	return (
 		<Card className="card">
 			<CardHeader className="card-header flex flex-row items-start justify-between">
 				<CardTitle className="card-header-title">Players Summary</CardTitle>
-				<button className="button button-primary button-icon-only">
-					<MoreHorizontal />
+				<button className="button button-ghost button-icon-only">
+					<MoreVertical />
 				</button>
 			</CardHeader>
 			<CardContent className="card-body flex flex-col w-full overflow-y-auto">
