@@ -1,15 +1,11 @@
 import { useState } from "react";
 import { MoreVertical } from "lucide-react";
-import { Avatar } from "../../ui/avatar";
-import { ScrollArea } from "../../ui/scroll-area";
-import { Card, CardContent, CardHeader, CardTitle } from "../../ui/card";
 
-const MessageDashboard = ({ messages = [] }) => {
+const CardMessagesSummary = ({ messages = [] }) => {
 	const [selectedConversation, setSelectedConversation] = useState<
 		number | null
 	>(null);
-
-	// If no messages provided, use sample data
+	// ** Sample data section (collapsible for devs)
 	const messageData =
 		messages.length > 0
 			? messages
@@ -66,18 +62,20 @@ const MessageDashboard = ({ messages = [] }) => {
 					},
 			  ];
 
+	// **End Section for sample data //
+
 	return (
-		<Card className="card card-messages">
-			<CardHeader className="card-header">
-				<CardTitle className="card-header-title">
+		<div className="card card-messages">
+			<div className="card-header">
+				<div className="card-header-title">
 					<h4>Messages</h4>
-				</CardTitle>
+				</div>
 				<button className="button button-ghost button-icon-only">
 					<MoreVertical />
 				</button>
-			</CardHeader>
-			<ScrollArea className="flex w-full overflow-y-auto">
-				<CardContent className="card-body">
+			</div>
+			<div className="flex w-full overflow-y-auto">
+				<div className="card-body">
 					{messageData.map((msg) => (
 						<div
 							key={msg.id}
@@ -88,9 +86,9 @@ const MessageDashboard = ({ messages = [] }) => {
 						>
 							<div className="message-content">
 								<div className="message-header">
-									<Avatar className="avatar">
+									<div className="avatar">
 										<img src={msg.sender.avatar} alt={msg.sender.name} />
-									</Avatar>
+									</div>
 									<div className="message-details">
 										<div className="message-info">
 											<h6>{msg.sender.name}</h6>
@@ -102,10 +100,10 @@ const MessageDashboard = ({ messages = [] }) => {
 							</div>
 						</div>
 					))}
-				</CardContent>
-			</ScrollArea>
-		</Card>
+				</div>
+			</div>
+		</div>
 	);
 };
 
-export default MessageDashboard;
+export default CardMessagesSummary;

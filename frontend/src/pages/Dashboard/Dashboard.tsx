@@ -1,5 +1,6 @@
 // src/pages/Dashboard.tsx
 import React from "react";
+import "./dashboard.css";
 import { CardGreeting } from "../../components/common/Cards/CardGreeting";
 
 const Dashboard: React.FC = () => {
