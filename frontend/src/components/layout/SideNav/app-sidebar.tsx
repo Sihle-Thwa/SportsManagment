@@ -13,6 +13,7 @@ import { NavUser } from "./nav-user";
 import { useState } from "react";
 import { House } from "lucide-react";
 
+
 interface AppSideBarProps {
 	currentPath: string;
 }

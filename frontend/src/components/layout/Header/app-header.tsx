@@ -7,7 +7,8 @@ import {
 	BreadcrumbPage,
 } from "../../ui/breadcrumb";
 import { Separator } from "../../ui/separator";
-import { SidebarTrigger, useSidebar } from "../../ui/sidebar";
+import { SidebarTrigger } from "../../ui/sidebar";
+import { useSidebar } from "../../ui/sidebar-context";
 
 const Header = () => {
 	const location = useLocation();
