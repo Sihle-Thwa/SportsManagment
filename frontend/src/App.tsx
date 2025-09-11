@@ -2,12 +2,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { MainLayout } from "./components/layout/MainLayout";
 import { routes } from "./routes";
 import { ThemeProvider } from "./components/theme-provider";
+import "./index.css";
 
 function App() {
 	return (
 		<Router>
 			<ThemeProvider>
-				<div className="min-h-screen bg-[linear-gradient(135deg,_var(--color-accent-100)_35%,_var(--color-accent-300)_70%,_var(--color-accent-500)_100%)]">
+				<div>
 					<Routes>
 						<Route path="/" element={<MainLayout />}>
 							{routes.map((route) => (

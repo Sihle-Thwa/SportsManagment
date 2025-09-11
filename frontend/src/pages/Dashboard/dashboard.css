@@ -1,0 +1,152 @@
+/* dashboard.css */
+/* Styles for the Dashboard page */
+
+:root {
+	--breakpoint-mobile: 425px;
+	--breakpoint-tablet: 768px;
+}
+
+.dashboard-container {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	max-width: 1440px;
+	width: 100%;
+	margin: 0 auto;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.dashboard-content {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	width: 100%;
+}
+
+.dashboard-content-header {
+	display: flex;
+	width: 100%;
+	margin: 0 auto;
+	align-items: center;
+}
+
+.dashboard-content-header-items {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 100%;
+	gap: 12px;
+}
+
+.dashboard-content-main {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 12px;
+	width: 100%;
+}
+
+.dashboard-content-main-items {
+	width: 100%;
+}
+
+.dashboard-content-secondary {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
+	gap: 12px;
+	flex-shrink: 0;
+	width: 100%;
+}
+.dashboard-content-secondary-items {
+	display: flex;
+	flex-direction: row;
+	gap: 12px;
+	width: 100%;
+}
+
+@media screen and (max-width: var(--breakpoint-mobile)) {
+	.dashboard-container {
+		padding: 8px;
+        max-width: 425px;
+        width: 100%;
+        
+	}
+
+	.dashboard-content {
+		gap: 8px;
+	}
+
+	.dashboard-content-header {
+		flex-direction: column;
+		gap: 8px;
+		align-items: stretch;
+	}
+
+	.dashboard-content-header-items {
+		flex-direction: column;
+		gap: 8px;
+		align-items: stretch;
+	}
+
+	.dashboard-content-main {
+		flex-direction: column;
+		gap: 8px;
+		align-items: stretch;
+	}
+
+	.dashboard-content-secondary {
+		flex-direction: column;
+		gap: 8px;
+		align-items: stretch;
+	}
+
+	.dashboard-content-secondary-items {
+		flex-direction: column;
+		gap: 8px;
+		align-items: stretch;
+	}
+}
+
+@media screen and (max-width: var(--breakpoint-tablet)) {
+	.dashboard-container {
+		padding: 10px;
+	}
+
+	.dashboard-content {
+		gap: 10px;
+	}
+
+	.dashboard-content-header {
+		flex-direction: column;
+		gap: 10px;
+		align-items: stretch;
+	}
+
+	.dashboard-content-header-items {
+		flex-direction: column;
+		gap: 10px;
+		align-items: stretch;
+	}
+
+	.dashboard-content-main {
+		flex-direction: column;
+		gap: 10px;
+		align-items: stretch;
+	}
+
+	.dashboard-content-secondary {
+		flex-direction: column;
+		gap: 10px;
+		align-items: stretch;
+	}
+
+	.dashboard-content-secondary-items {
+		flex-direction: column;
+		gap: 10px;
+		align-items: stretch;
+	}
+}

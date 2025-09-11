@@ -1,29 +1,25 @@
 @import "tailwindcss";
 
 @layer components {
-	.cardstat-wrapper {
+	.cardstat-container {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
+		max-width: 388px;
 		width: 100%;
-	}
-
-	.cardstat-container {
-		width: 100%;
-		margin: auto;
+		min-width: 288px;
+		border: 1px solid;
+		border-radius: var(--radius-lg);
+		border-color: var(--border-default);
 	}
 
 	.cardstat-content {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		gap: 8px;
+		justify-content: space-between;
 		width: 100%;
-		padding-inline: 12px;
-		border: 1px solid;
-		border-radius: var(--radius-lg);
-		border-color: var(--border-default);
 	}
 
 	.cardstat-body {
@@ -31,17 +27,16 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		flex: 1;
+		width: 100%;
 	}
 
 	.cardstat-icon {
 		color: var(--colour-accent);
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 		align-items: center;
-		justify-content: center;
-		width: 40px;
-		height: 40px;
+		max-width: 40px;
+		width: 100%;
 	}
 
 	.cardstat-title {
@@ -59,71 +54,102 @@
 }
 
 @media screen and (max-width: 425px) {
-	.cardstat-wrapper {
+	.cardstat-container {
+		max-width: 300px;
+		min-width: 200px;
 		width: 100%;
-		max-width: 400px;
-		min-width: 300px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+
+	}
+
+	.cardstat-content {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+	}
+
+	.cardstat-body {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-	}
-	.cardstat-container {
-		width: 100%;
-		gap: 8px;
-		align-items: center;
-		justify-content: center;
-		padding: auto;
-	}
-	.cardstat-content {
 		width: 100%;
 	}
+
 	.cardstat-icon {
-		width: 28px;
-		min-width: 28px;
-		height: 28px;
-		min-height: 28px;
+		color: var(--colour-accent);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		max-width: 28px;
+		width: 100%;
 	}
 
 	.cardstat-title {
-		font-size: var(--title-size-sm);
-		font-weight: var(--font-weight-light);
+		font-size: var(--caption-size-sm);
+		font-weight: var(--font-weight-medium);
 		color: var(--text-primary);
+		line-height: var(--line-height-normal);
 	}
 
 	.cardstat-value {
-		font-size: var(--headline-size-sm);
+		font-size: var(--title-size-sm);
 		font-weight: var(--font-weight-semibold);
 		color: var(--text-primary);
 	}
 }
 
 @media screen and (max-width: 768px) {
-	.cardstat-wrapper {
+	.cardstat-container {
+		max-width: 300px;
+		min-width: 200px;
 		width: 100%;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
+		justify-content: center;
+
 	}
-	.cardstat-container {
-		width: 100%;
-		max-width: 600px;
-		min-width: 400px;
+
+	.cardstat-content {
+		display: flex;
+		flex-direction: row;
 		align-items: center;
 		justify-content: center;
+		width: 100%;
 	}
-	.cardstat-content {
+
+	.cardstat-body {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+	}
+
+	.cardstat-icon {
+		color: var(--colour-accent);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		max-width: 28px;
 		width: 100%;
 	}
 
 	.cardstat-title {
-		font-size: var(--title-size-md);
-		font-weight: var(--font-weight-light);
+		font-size: var(--caption-size-sm);
+		font-weight: var(--font-weight-medium);
 		color: var(--text-primary);
+		line-height: var(--line-height-normal);
 	}
 
 	.cardstat-value {
-		font-size: var(--headline-size-md);
+		font-size: var(--title-size-sm);
 		font-weight: var(--font-weight-semibold);
 		color: var(--text-primary);
 	}
