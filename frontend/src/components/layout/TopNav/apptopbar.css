@@ -1,0 +1,127 @@
+/* Add this to your mainlayout.css or create a separate topbar.css file */
+
+/* ==========================================================================
+   TOPBAR COMPONENT STYLES
+   ========================================================================== */
+
+.app-topbar-inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	height: 100%;
+	padding: 0 24px;
+	gap: 24px;
+
+	/* Prevent content overflow */
+	min-width: 0;
+}
+
+.topbar-section {
+	display: flex;
+	align-items: center;
+	min-width: 0;
+}
+
+.topbar-left {
+	justify-content: flex-start;
+	flex: 0 1 auto;
+	min-width: 200px;
+}
+
+.topbar-center {
+	justify-content: center;
+	flex: 1 1 auto;
+	max-width: 600px;
+	min-width: 200px;
+}
+
+.topbar-right {
+	justify-content: flex-end;
+	flex: 0 1 auto;
+	gap: 12px;
+}
+
+/* ==========================================================================
+   RESPONSIVE TOPBAR
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+	.app-topbar-inner {
+		padding: 0 16px;
+		gap: 16px;
+	}
+
+	.topbar-left {
+		min-width: 150px;
+	}
+
+	.topbar-center {
+		min-width: 150px;
+		max-width: 400px;
+	}
+}
+
+@media (max-width: 640px) {
+	.app-topbar-inner {
+		padding: 0 12px;
+		gap: 12px;
+	}
+
+	.topbar-left {
+		min-width: 120px;
+		flex: 1;
+	}
+
+	.topbar-center {
+		display: none; /* Hide search on mobile */
+	}
+
+	.topbar-right {
+		flex: 0 0 auto;
+	}
+}
+
+/* ==========================================================================
+   TOPBAR INNER COMPONENTS
+   ========================================================================== */
+
+/* Navigation trigger and breadcrumb styling */
+.topbar-left .navigation-trigger {
+	padding: 8px;
+	border-radius: 6px;
+	border: 1px solid transparent;
+	background: transparent;
+	color: hsl(var(--foreground));
+	cursor: pointer;
+	transition: all 150ms ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+}
+
+.topbar-left .navigation-trigger:hover {
+	background: hsl(var(--accent));
+	border-color: hsl(var(--border));
+}
+
+.topbar-left .navigation-trigger:focus-visible {
+	outline: 2px solid hsl(var(--ring));
+	outline-offset: 2px;
+}
+
+/* Breadcrumb responsive behavior */
+@media (max-width: 480px) {
+	.topbar-left .navigation-content {
+		max-width: 120px;
+		overflow: hidden;
+	}
+
+	.topbar-left .navigation-content .navigation-item {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}

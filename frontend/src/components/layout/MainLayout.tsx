@@ -1,7 +1,6 @@
 // MainLayout.tsx
 import { useLocation, Outlet } from "react-router-dom";
 import AppTopBar from "../layout/TopNav/app-topbar";
-// ⬇️ unify these imports — SAME FILE for provider + hook
 import { useSidebar } from "../ui/sidebar-context";
 import { SidebarProvider } from "../ui/sidebar-context";
 import AppSideBar from "./SideNav/app-sidebar";
@@ -9,23 +8,28 @@ import "./mainlayout.css";
 
 function Shell() {
 	const location = useLocation();
-	const sidebar = useSidebar(); // now inside the SAME provider
-	const isCollapsed = !!(sidebar?.isCollapsed ?? sidebar?.isCollapsed ?? false);
+	const sidebar = useSidebar();
 
-	const containerClass = `main-container ${
-		isCollapsed ? "is-collapsed" : "is-expanded"
-	}`;
+	// Simplified state logic
+	const isCollapsed = sidebar?.isCollapsed ?? false;
 
 	return (
 		<div
-			className={containerClass}
+			className={`main-container ${
+				isCollapsed ? "is-collapsed" : "is-expanded"
+			}`}
 			id="app-shell"
-			data-sidebar-collapsed={isCollapsed ? "true" : "false"}
+			data-sidebar-collapsed={isCollapsed}
 		>
-			<a href="#main-content" className="sr-only focus:not-sr-only">
+			{/* Skip to main content for accessibility */}
+			<a
+				href="#main-content"
+				className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:no-underline focus:shadow-lg"
+			>
 				Skip to main content
 			</a>
 
+			{/* Sidebar */}
 			<aside
 				id="app-sidebar"
 				className="app-sidebar"
@@ -35,12 +39,21 @@ function Shell() {
 				<AppSideBar currentPath={location.pathname} />
 			</aside>
 
-			<header className="app-topbar">
+			{/* Top Navigation Bar */}
+			<header className="app-topbar" role="banner">
 				<AppTopBar />
 			</header>
 
-			<main className="app-content" id="main-content" tabIndex={-1} role="main">
-				<Outlet />
+			{/* Main Content Area */}
+			<main
+				className="app-content"
+				id="main-content"
+				role="main"
+				aria-label="Main content"
+			>
+				<div className="content-wrapper">
+					<Outlet />
+				</div>
 			</main>
 		</div>
 	);
@@ -53,4 +66,5 @@ export function MainLayout() {
 		</SidebarProvider>
 	);
 }
+
 export default MainLayout;

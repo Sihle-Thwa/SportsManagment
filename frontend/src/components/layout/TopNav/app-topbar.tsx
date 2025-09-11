@@ -2,18 +2,22 @@
 import { ModeToggle } from "../../mode-toggle";
 import { SearchInput } from "../../common/Input/search-input";
 import Header from "../Header/app-header";
-import "../../../styles/global.css";
-
+import "./apptopbar.css";
 const MainAppTopBar = () => {
 	return (
-		<div className="app-topbar-inner navigation p-4 flex items-center justify-between">
-			<div className="flex justify-start">
+		<div className="app-topbar-inner">
+			{/* Left section - Navigation controls and breadcrumbs */}
+			<div className="topbar-section topbar-left">
 				<Header />
 			</div>
-			<div className="flex justify-center">
+
+			{/* Center section - Search */}
+			<div className="topbar-section topbar-center">
 				<SearchInput />
 			</div>
-			<div className="flex justify-end">
+
+			{/* Right section - User controls */}
+			<div className="topbar-section topbar-right">
 				<ModeToggle />
 			</div>
 		</div>
