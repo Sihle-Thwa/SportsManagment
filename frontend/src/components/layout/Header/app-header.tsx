@@ -1,3 +1,4 @@
+// app-header.tsx
 import { useLocation } from "react-router-dom";
 import {
 	Breadcrumb,
@@ -6,16 +7,22 @@ import {
 	BreadcrumbPage,
 } from "../../ui/breadcrumb";
 import { Separator } from "../../ui/separator";
-import { SidebarTrigger } from "../../ui/sidebar";
+import { SidebarTrigger, useSidebar } from "../../ui/sidebar";
 
 const Header = () => {
 	const location = useLocation();
 	const pathSegments = location.pathname.split("/").filter(Boolean);
+	const sidebar = useSidebar(); // get the sidebar context
 
 	return (
-		<header className=" flex">
-			<SidebarTrigger className="navigation-trigger" />
-			<Separator orientation="vertical" className="color-primary" />
+		<header className="flex items-center gap-2">
+			<SidebarTrigger
+				className="navigation-trigger"
+				aria-controls="app-sidebar"
+				aria-expanded={sidebar?.open !== undefined ? sidebar.open : undefined}
+				aria-label="Toggle sidebar"
+			/>
+			<Separator orientation="vertical" className="mx-2 h-6 bg-border" />
 			<Breadcrumb className="navigation-content">
 				<BreadcrumbList className="navigation-list">
 					{pathSegments.length > 0 && (

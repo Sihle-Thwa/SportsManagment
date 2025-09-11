@@ -3,26 +3,33 @@ import AppTopBar from "../layout/TopNav/app-topbar";
 import { Outlet } from "react-router-dom";
 import { SidebarProvider } from "../ui/sidebar";
 import AppSideBar from "./SideNav/app-sidebar";
+import "./mainlayout.css";
 
-/**
- * MainLayout component serves as the primary layout for the application.
- * It includes a sidebar and a top navigation bar, with a main content area
- * that renders child routes using React Router's Outlet.
- */
 export function MainLayout() {
 	const location = useLocation();
 
 	return (
 		<SidebarProvider>
-			<div className="flex h-screen w-screen">
-				{/* Sidebar */}
-				<AppSideBar currentPath={location.pathname} />
-				<div className="flex-1/2 flex-col">
+			<div className="main-container" id="app-shell">
+				{/* Left rail */}
+				<aside className="app-sidebar" aria-label="Primary">
+					<AppSideBar currentPath={location.pathname} />
+				</aside>
+
+				{/* Top bar */}
+				<header className="app-topbar" role="banner">
 					<AppTopBar />
-					<main className="flex-1 p-1 overflow-y-auto">
-						<Outlet />
-					</main>
-				</div>
+				</header>
+
+				{/* Routed content */}
+				<main
+					className="app-content"
+					role="main"
+					id="main-content"
+					tabIndex={-1}
+				>
+					<Outlet />
+				</main>
 			</div>
 		</SidebarProvider>
 	);
