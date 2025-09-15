@@ -6,7 +6,7 @@ import { VariantProps, cva } from "class-variance-authority";
 import { PanelLeftIcon } from "lucide-react";
 import { cn } from "../../lib/utils";
 
-import { Button } from "../../components/ui/button";
+import { Button } from "../../components/common/Button/Button";
 import { Input } from "../../components/ui/input";
 import { Separator } from "../../components/ui/separator";
 import {
@@ -144,11 +144,10 @@ export function SidebarTrigger({
 }: React.ComponentProps<typeof Button>) {
 	const { toggleSidebar } = useSidebar();
 	return (
-		<Button
+		<button
 			data-sidebar="trigger"
 			data-slot="sidebar-trigger"
 			variant="ghost"
-			size="icon"
 			className={cn("size-7", className)}
 			onClick={(e) => {
 				onClick?.(e);
@@ -158,7 +157,7 @@ export function SidebarTrigger({
 		>
 			<PanelLeftIcon />
 			<span className="sr-only">Toggle Sidebar</span>
-		</Button>
+		</button>
 	);
 }
 

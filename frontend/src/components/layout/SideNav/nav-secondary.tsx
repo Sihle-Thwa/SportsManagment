@@ -3,26 +3,19 @@ import {
 	SidebarMenuButton,
 	SidebarMenu,
 } from "../../ui/sidebar";
-import { lazy, Suspense } from "react";
+import { HandHelping, Settings } from "lucide-react";
 import { cn } from "../../../lib/utils";
-
-const HandHelping = lazy(() =>
-	import("lucide-react").then((module) => ({ default: module.HandHelping }))
-);
-const Settings = lazy(() =>
-	import("lucide-react").then((module) => ({ default: module.Settings }))
-);
 
 const items = [
 	{
 		title: "Support",
-		url: "#",
+		url: "/support",
 		icon: HandHelping,
 		ariaLabel: "Get help and support",
 	},
 	{
 		title: "Settings",
-		url: "#",
+		url: "/settings",
 		icon: Settings,
 		ariaLabel: "App settings and preferences",
 	},
@@ -36,35 +29,32 @@ export function NavSecondary({ collapsed = false }: NavSecondaryProps) {
 	return (
 		<SidebarMenu className="sidebar-menu sidebar-menu-secondary">
 			{items.map((item) => (
-				<SidebarMenuItem
-					className="sidebar-menu-item"
-					key={item.title}
-				>
-					<SidebarMenuButton className="sidebar-menu-button" asChild>
+				<SidebarMenuItem className="sidebar-menu-item" key={item.title}>
+					<SidebarMenuButton
+						className="sidebar-menu-button"
+						asChild
+						size={collapsed ? "sm" : "default"}
+					>
 						<a
 							href={item.url}
 							className={cn(
 								"sidebar-menu-link sidebar-menu-link-secondary",
-								collapsed && "sidebar-menu-link-collapsed"
+								"sidebar-menu-link-hoverable",
+								collapsed && "sidebar-menu-link-collapsed",
 							)}
 							title={collapsed ? item.title : undefined}
 							aria-label={item.ariaLabel}
 						>
-							<Suspense fallback={
-								<span
-									className="sidebar-menu-icon-placeholder"
-									aria-hidden="true"
-								/>
-							}>
-								<item.icon
-									className="sidebar-menu-icon"
-									aria-hidden="true"
-								/>
-							</Suspense>
+							<item.icon
+								className={cn(
+									"sidebar-menu-icon",
+									collapsed && "sidebar-menu-icon-collapsed",
+								)}
+								aria-hidden="true"
+								size={16}
+							/>
 							{!collapsed && (
-								<span className="sidebar-menu-text">
-									{item.title}
-								</span>
+								<span className="sidebar-menu-text">{item.title}</span>
 							)}
 						</a>
 					</SidebarMenuButton>
