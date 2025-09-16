@@ -7,64 +7,53 @@ import {
 	SidebarMenuButton,
 	SidebarRail,
 } from "../../ui/sidebar";
-import { NavMain } from "./nav-main";
-import { NavSecondary } from "./nav-secondary";
-import { NavUser } from "./nav-user";
-import { useEffect, useState } from "react";
 import { House } from "lucide-react";
 import { useSidebar } from "../../ui/sidebar-context";
+import "./app-sidebar.css";
+import "./sidebar.css";
+import NavMain from "./nav-main";
+import NavSecondary from "./nav-secondary";
+import NavUser from "./nav-user";
 
-interface AppSideBarProps {
-	currentPath: string;
-}
-
-export function AppSideBar({ currentPath }: AppSideBarProps) {
-	const [activeRoute, setActiveRoute] = useState(currentPath);
-	const sidebar = useSidebar();
-	const isCollapsed = sidebar?.isCollapsed ?? false;
-
-	// Update active route when current path changes
-	useEffect(() => {
-		setActiveRoute(currentPath);
-	}, [currentPath]);
+export function AppSideBar() {
+	const { isCollapsed } = useSidebar();
 
 	return (
-		<Sidebar
-			collapsible="icon"
-			className={`sidebar ${
-				isCollapsed ? "sidebar-collapsed" : "sidebar-expanded"
-			}`}
+		<aside
+			id="app-sidebar"
+			className={[
+				"app-sidebar", // component namespace
+				"sidebar", // base block
+				isCollapsed ? "sidebar-collapsed" : "sidebar-expanded",
+			].join(" ")}
+			aria-label="Primary navigation"
+			aria-expanded={!isCollapsed}
 		>
-			<SidebarHeader className="sidebar-header">
-				<SidebarMenuButton
-					className="sidebar-menu-button sidebar-brand"
-					size="lg"
-				>
-					<House
-						className={`sidebar-brand-icon ${
-							isCollapsed ? "sidebar-brand-icon-collapsed" : ""
-						}`}
-						size={24}
-					/>
-					{!isCollapsed && <h5 className="sidebar-brand-text">U-Organise</h5>}
-				</SidebarMenuButton>
-			</SidebarHeader>
+			<Sidebar collapsible="icon" className="app-sidebar__inner">
+				<SidebarHeader className="sidebar-header">
+					<SidebarMenuButton className="sidebar-brand">
+						<House
+							className={[
+								"sidebar-brand-icon",
+								isCollapsed && "sidebar-brand-icon-collapsed",
+							].join(" ")}
+						/>
+						{!isCollapsed && <h5 className="sidebar-brand-text">U-Organise</h5>}
+					</SidebarMenuButton>
+				</SidebarHeader>
 
-			<SidebarContent className="sidebar-content">
-				<NavMain
-					activeRoute={activeRoute}
-					setActiveRoute={setActiveRoute}
-					collapsed={isCollapsed}
-				/>
-				<NavSecondary collapsed={isCollapsed} />
-			</SidebarContent>
+				<SidebarContent className="sidebar-content">
+					<NavMain collapsed={isCollapsed} />
+					<NavSecondary collapsed={isCollapsed} />
+				</SidebarContent>
 
-			<SidebarFooter className="sidebar-footer">
-				<NavUser collapsed={isCollapsed} />
-			</SidebarFooter>
+				<SidebarFooter className="sidebar-footer">
+					<NavUser collapsed={isCollapsed} />
+				</SidebarFooter>
 
-			<SidebarRail />
-		</Sidebar>
+				<SidebarRail />
+			</Sidebar>
+		</aside>
 	);
 }
 

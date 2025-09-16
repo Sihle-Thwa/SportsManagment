@@ -1,66 +1,75 @@
-import {
-	SidebarMenuItem,
-	SidebarMenuButton,
-	SidebarMenu,
-} from "../../ui/sidebar";
 import { NavLink, useLocation } from "react-router-dom";
-import { routes } from "../../../routes";
+import { SidebarMenu, SidebarMenuItem } from "../../ui/sidebar";
 import { cn } from "../../../lib/utils";
-import { useEffect } from "react";
+import { routes } from "../../../routes/index"; // keep your existing route source
+import "./nav-main.css";
 
-interface NavMainProps {
-	activeRoute: string;
-	setActiveRoute: (path: string) => void;
+export interface NavMainProps {
 	collapsed?: boolean;
 }
 
-export function NavMain({ setActiveRoute, collapsed = false }: NavMainProps) {
+export default function NavMain({ collapsed = false }: NavMainProps) {
 	const location = useLocation();
 
-	// Update active route when location changes
-	useEffect(() => {
-		setActiveRoute(location.pathname);
-	}, [location.pathname, setActiveRoute]);
-
 	return (
-		<SidebarMenu className="sidebar-menu">
-			{routes.map((route) => (
-				<SidebarMenuItem key={route.id} className="sidebar-menu-item">
-					<SidebarMenuButton
-						asChild
-						className="sidebar-menu-button"
-						size={collapsed ? "sm" : "default"}
-					>
-						<NavLink
-							to={route.path}
-							className={({ isActive }) =>
-								cn(
-									"sidebar-menu-link",
-									"sidebar-menu-link-hoverable",
-									isActive && "sidebar-menu-link-active",
-									collapsed && "sidebar-menu-link-collapsed",
-								)
-							}
-							onClick={() => setActiveRoute(route.path)}
-							title={collapsed ? route.title : undefined}
-							aria-label={route.title}
-						>
-							<span
-								className={cn(
-									"sidebar-menu-icon",
-									collapsed && "sidebar-menu-icon-collapsed",
-								)}
-								aria-hidden="true"
+		<nav
+			className={cn("nav-main", collapsed && "is-collapsed")}
+			aria-label="Primary"
+		>
+			<SidebarMenu className="nav-main__menu sidebar-menu">
+				{routes.map(
+					(route: {
+						id: string;
+						path: string;
+						title: string;
+						icon: React.ReactNode | undefined;
+					}) => {
+						const isActive = location.pathname === route.path;
+						return (
+							<SidebarMenuItem
+								key={route.id}
+								className="nav-main__item sidebar-menu-item"
 							>
-								{route.icon}
-							</span>
-							{!collapsed && (
-								<span className="sidebar-menu-text">{route.title}</span>
-							)}
-						</NavLink>
-					</SidebarMenuButton>
-				</SidebarMenuItem>
-			))}
-		</SidebarMenu>
+								<NavLink
+									to={route.path}
+									className={({ isActive }) =>
+										cn(
+											"nav-main__link sidebar-menu-link",
+											isActive && "is-active",
+											collapsed && "is-collapsed",
+										)
+									}
+									title={collapsed ? route.title : undefined}
+									aria-label={route.title}
+									aria-current={isActive ? "page" : undefined}
+								>
+									<span
+										className={cn(
+											"nav-main__icon sidebar-menu-icon",
+											collapsed && "sidebar-menu-icon-collapsed",
+										)}
+										aria-hidden
+									>
+										{route.icon ? (
+											route.icon
+										) : (
+											<span className="sidebar-menu-icon-placeholder" />
+										)}
+									</span>
+									{!collapsed && (
+										<span className="nav-main__labels">
+											<span className="nav-main__label sidebar-menu-text">
+												{route.title}
+											</span>
+											<span className="nav-main__path">{route.path}</span>
+										</span>
+									)}
+								</NavLink>
+							</SidebarMenuItem>
+						);
+					},
+				)}
+			</SidebarMenu>
+		</nav>
 	);
 }

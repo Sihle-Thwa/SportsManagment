@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
+   SIDEBAR — BASE / CONSTANTS ONLY
+   - Keep tokens and the bare container block.
+   - All behavior, states, and component-specific styles live
+     beside their TSX files.
+   ───────────────────────────────────────────────────────────── */
+@layer components {
+	/* Tokens (shared across all sidebar parts) */
+	:root {
+		/* Spacing */
+		--space-0: 0;
+		--space-1: 4px;
+		--space-2: 8px;
+		--space-3: 12px;
+		--space-4: 16px;
+		--space-6: 24px;
+
+		/* Icon sizing */
+		--icon-size: 20px;
+		--icon-size-sm: 16px;
+		--icon-size-lg: 24px;
+
+		/* Radii */
+		--radius-sm: 4px;
+		--radius-md: 6px;
+		--radius-lg: 8px;
+
+		/* Typography */
+		--font-size-xs: 12px;
+		--font-size-sm: 14px;
+		--font-size-md: 16px;
+		--font-size-lg: 18px;
+		--font-weight-normal: 400;
+		--font-weight-medium: 500;
+		--font-weight-semibold: 600;
+
+		/* Motion / Easing */
+		--duration-fast: 150ms;
+		--duration-normal: 250ms;
+		--easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+		/* Shadows */
+		--shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+		--shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+		--shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+
+		/* Optional width tokens (not applied here) */
+		--sidebar-width-expanded: 250px;
+		--sidebar-width-collapsed: 72px;
+	}
+
+	/* Base container only (no per-component rules here) */
+	.sidebar {
+		display: flex;
+		flex-direction: column;
+		inline-size: 100%;
+		block-size: 100%;
+		background-color: hsl(var(--card, 0 0% 100%));
+		color: hsl(var(--card-foreground, 222.2 84% 4.9%));
+		border-right: 1px solid hsl(var(--border, 214.3 31.8% 91.4%));
+		overflow: hidden;
+		position: relative;
+	}
+
+	/* These classes are allowed as semantic flags, but
+     no layout behavior lives here (kept for DX/queries). */
+	.sidebar-expanded {
+	}
+	.sidebar-collapsed {
+	}
+
+	/* Generic a11y/perf that doesn’t depend on component classes */
+	@media (prefers-reduced-motion: reduce) {
+		.sidebar {
+			transition: none;
+		}
+	}
+
+	@media print {
+		.sidebar {
+			display: none;
+		}
+	}
+}

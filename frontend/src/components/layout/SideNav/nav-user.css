@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@layer components {
+	.nav-user {
+		width: 100%;
+	}
+	.nav-user__trigger {
+		width: 100%;
+	}
+	.nav-user__avatar {
+		display: inline-flex;
+		width: 32px;
+		height: 32px;
+		overflow: hidden;
+		border-radius: var(--radius-md);
+	}
+	.nav-user__avatar-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	.nav-user__avatar-fallback {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+	}
+	.nav-user__info {
+		min-width: 0;
+	}
+	.nav-user__name,
+	.nav-user__email {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	/* Hide on tablet & down */
+	@media (max-width: 1024px) {
+		.nav-user {
+			display: none;
+		}
+	}
+}

@@ -1,65 +1,74 @@
-import {
-	SidebarMenuItem,
-	SidebarMenuButton,
-	SidebarMenu,
-} from "../../ui/sidebar";
-import { HandHelping, Settings } from "lucide-react";
+import * as React from "react";
+import { NavLink } from "react-router-dom";
+import { SidebarMenu, SidebarMenuItem } from "../../ui/sidebar";
 import { cn } from "../../../lib/utils";
+import "./nav-secondary.css";
 
-const items = [
-	{
-		title: "Support",
-		url: "/support",
-		icon: HandHelping,
-		ariaLabel: "Get help and support",
-	},
-	{
-		title: "Settings",
-		url: "/settings",
-		icon: Settings,
-		ariaLabel: "App settings and preferences",
-	},
-];
-
-interface NavSecondaryProps {
-	collapsed?: boolean;
+export interface SecondaryItem {
+	id: string;
+	title: string;
+	path: string;
+	icon?: React.ComponentType<{ size?: number }>;
 }
 
-export function NavSecondary({ collapsed = false }: NavSecondaryProps) {
+const SECONDARY: SecondaryItem[] = [
+	{ id: "settings", title: "Settings", path: "/settings" },
+	{ id: "help", title: "Help", path: "/help" },
+];
+
+export default function NavSecondary({
+	collapsed = false,
+}: {
+	collapsed?: boolean;
+}) {
 	return (
-		<SidebarMenu className="sidebar-menu sidebar-menu-secondary">
-			{items.map((item) => (
-				<SidebarMenuItem className="sidebar-menu-item" key={item.title}>
-					<SidebarMenuButton
-						className="sidebar-menu-button"
-						asChild
-						size={collapsed ? "sm" : "default"}
-					>
-						<a
-							href={item.url}
-							className={cn(
-								"sidebar-menu-link sidebar-menu-link-secondary",
-								"sidebar-menu-link-hoverable",
-								collapsed && "sidebar-menu-link-collapsed",
-							)}
-							title={collapsed ? item.title : undefined}
-							aria-label={item.ariaLabel}
+		<nav
+			className={cn("nav-secondary", collapsed && "is-collapsed")}
+			aria-label="Secondary"
+		>
+			<SidebarMenu className="nav-secondary__menu sidebar-menu sidebar-menu-secondary">
+				{SECONDARY.map((item) => {
+					const Icon = item.icon;
+					return (
+						<SidebarMenuItem
+							key={item.id}
+							className="nav-secondary__item sidebar-menu-item"
 						>
-							<item.icon
-								className={cn(
-									"sidebar-menu-icon",
-									collapsed && "sidebar-menu-icon-collapsed",
+							<NavLink
+								to={item.path}
+								className={({ isActive }) =>
+									cn(
+										"nav-secondary__link sidebar-menu-link sidebar-menu-link-secondary",
+										isActive && "is-active",
+										collapsed && "is-collapsed",
+									)
+								}
+								title={collapsed ? item.title : undefined}
+								aria-label={item.title}
+							>
+								<span
+									className={cn(
+										"nav-secondary__icon sidebar-menu-icon",
+										collapsed && "sidebar-menu-icon-collapsed",
+									)}
+									aria-hidden
+								>
+									{Icon ? (
+										<Icon size={16} />
+									) : (
+										<span className="sidebar-menu-icon-placeholder" />
+									)}
+								</span>
+								{!collapsed && (
+									<span className="nav-secondary__label sidebar-menu-text">
+										{item.title}
+									</span>
 								)}
-								aria-hidden="true"
-								size={16}
-							/>
-							{!collapsed && (
-								<span className="sidebar-menu-text">{item.title}</span>
-							)}
-						</a>
-					</SidebarMenuButton>
-				</SidebarMenuItem>
-			))}
-		</SidebarMenu>
+							</NavLink>
+						</SidebarMenuItem>
+					);
+				})}
+			</SidebarMenu>
+		</nav>
 	);
 }

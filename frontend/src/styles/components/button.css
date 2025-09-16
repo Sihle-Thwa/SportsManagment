@@ -213,8 +213,8 @@
 
 	/* ---------------- ICON UTILS ---------------- */
 	.button-icon {
-		inline-size: 20px; /* 20px */
-		block-size: 20px; /* 20px */
+		inline-size: 24px; /* 24px */
+		block-size: 24px; /* 24px */
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;

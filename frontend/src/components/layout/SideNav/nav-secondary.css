@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@layer components {
+	.nav-secondary {
+		display: none;
+	}
+	@media (min-width: 1024px) {
+		.nav-secondary {
+			display: block;
+		}
+	}
+
+	.nav-secondary__menu {
+		gap: var(--space-1);
+	}
+	.nav-secondary__item {
+		list-style: none;
+	}
+
+	.nav-secondary__link {
+		display: flex;
+		align-items: center;
+		gap: var(--space-3);
+		padding: var(--space-2) var(--space-3);
+		border-radius: var(--radius-md);
+		text-decoration: none;
+		min-height: 36px;
+		font-size: var(--font-size-sm);
+		color: hsl(var(--muted-foreground, 215.4 16.3% 46.9%) / 0.8);
+		background: transparent;
+		border: 1px solid transparent;
+		transition: all var(--duration-fast) var(--easing-smooth);
+	}
+	.nav-secondary__link:hover {
+		color: hsl(var(--muted-foreground, 215.4 16.3% 46.9%));
+		background: hsl(var(--accent, 210 40% 98%));
+		border-color: hsl(var(--border, 214.3 31.8% 91.4%));
+	}
+	.nav-secondary__link.is-active {
+		background: hsl(var(--primary, 222.2 47.4% 11.2%));
+		color: hsl(var(--primary-foreground, 210 40% 98%));
+		border-color: hsl(var(--primary));
+	}
+
+	.nav-secondary__icon {
+		display: inline-flex;
+		width: var(--icon-size);
+		height: var(--icon-size);
+	}
+	.nav-secondary__label {
+		line-height: 1.2;
+	}
+
+	.nav-secondary.is-collapsed .nav-secondary__label {
+		display: none;
+	}
+	.nav-secondary__link.is-collapsed {
+		justify-content: center;
+		padding-inline: var(--space-3);
+	}
+}
