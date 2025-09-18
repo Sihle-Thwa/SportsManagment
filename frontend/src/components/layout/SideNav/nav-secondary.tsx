@@ -3,17 +3,18 @@ import { NavLink } from "react-router-dom";
 import { SidebarMenu, SidebarMenuItem } from "../../ui/sidebar";
 import { cn } from "../../../lib/utils";
 import "./nav-secondary.css";
+import { HelpCircle, Settings } from "lucide-react";
 
 export interface SecondaryItem {
 	id: string;
 	title: string;
 	path: string;
-	icon?: React.ComponentType<{ size?: number }>;
+	icon: React.ElementType | null;
 }
 
 const SECONDARY: SecondaryItem[] = [
-	{ id: "settings", title: "Settings", path: "/settings" },
-	{ id: "help", title: "Help", path: "/help" },
+	{ id: "settings", title: "Settings", path: "/settings", icon: Settings },
+	{ id: "help", title: "Help", path: "/help", icon: HelpCircle },
 ];
 
 export default function NavSecondary({

@@ -16,16 +16,18 @@
 		--space-3: 12px;
 		--space-4: 16px;
 		--space-6: 24px;
+		--space-8: 32px;
+		--space-10: 40px;
 
 		/* Icon sizing */
-		--icon-size: 20px;
-		--icon-size-sm: 16px;
-		--icon-size-lg: 24px;
+		--icon-size-md: 28px;
+		--icon-size-lg: 32px;
 
 		/* Radii */
 		--radius-sm: 4px;
 		--radius-md: 6px;
 		--radius-lg: 8px;
+		--radius-full: 9999px;
 
 		/* Typography */
 		--font-size-xs: 12px;
@@ -35,6 +37,7 @@
 		--font-weight-normal: 400;
 		--font-weight-medium: 500;
 		--font-weight-semibold: 600;
+		--font-weight-bold: 700;
 
 		/* Motion / Easing */
 		--duration-fast: 150ms;
@@ -55,20 +58,10 @@
 	.sidebar {
 		display: flex;
 		flex-direction: column;
-		inline-size: 100%;
-		block-size: 100%;
-		background-color: hsl(var(--card, 0 0% 100%));
-		color: hsl(var(--card-foreground, 222.2 84% 4.9%));
-		border-right: 1px solid hsl(var(--border, 214.3 31.8% 91.4%));
-		overflow: hidden;
+		max-width: 250px;
+		min-width: 72px;
+		width: 100%;
 		position: relative;
-	}
-
-	/* These classes are allowed as semantic flags, but
-     no layout behavior lives here (kept for DX/queries). */
-	.sidebar-expanded {
-	}
-	.sidebar-collapsed {
 	}
 
 	/* Generic a11y/perf that doesn’t depend on component classes */

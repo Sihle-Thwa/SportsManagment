@@ -19,11 +19,10 @@ export function AppSideBar() {
 	const { isCollapsed } = useSidebar();
 
 	return (
-		<aside
+		<div
 			id="app-sidebar"
 			className={[
-				"app-sidebar", // component namespace
-				"sidebar", // base block
+				"app-sidebar",
 				isCollapsed ? "sidebar-collapsed" : "sidebar-expanded",
 			].join(" ")}
 			aria-label="Primary navigation"
@@ -38,7 +37,9 @@ export function AppSideBar() {
 								isCollapsed && "sidebar-brand-icon-collapsed",
 							].join(" ")}
 						/>
-						{!isCollapsed && <h5 className="sidebar-brand-text">U-Organise</h5>}
+						{!isCollapsed && (
+							<div className="sidebar-brand-text">U-Organise</div>
+						)}
 					</SidebarMenuButton>
 				</SidebarHeader>
 
@@ -53,7 +54,7 @@ export function AppSideBar() {
 
 				<SidebarRail />
 			</Sidebar>
-		</aside>
+		</div>
 	);
 }
 

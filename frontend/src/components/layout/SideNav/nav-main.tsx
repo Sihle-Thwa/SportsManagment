@@ -61,7 +61,6 @@ export default function NavMain({ collapsed = false }: NavMainProps) {
 											<span className="nav-main__label sidebar-menu-text">
 												{route.title}
 											</span>
-											<span className="nav-main__path">{route.path}</span>
 										</span>
 									)}
 								</NavLink>
