@@ -1,30 +1,30 @@
 // MainLayout.tsx
-import { useLocation, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import AppTopBar from "../layout/TopNav/app-topbar";
-import { useSidebar } from "../ui/sidebar-context";
-import { SidebarProvider } from "../ui/sidebar-context";
+import { SidebarProvider, useSidebar } from "../ui/sidebar-context";
 import AppSideBar from "./SideNav/app-sidebar";
 import "./mainlayout.css";
 
 function Shell() {
-	const location = useLocation();
-	const sidebar = useSidebar();
-
 	// Simplified state logic
-	const isCollapsed = sidebar?.isCollapsed ?? false;
+	const sidebar = useSidebar();
+	const isCollapsed = Boolean(sidebar?.isCollapsed ?? false);
+	const isExpanded = !isCollapsed;
 
 	return (
 		<div
+			id="app-shell"
 			className={`main-container ${
 				isCollapsed ? "is-collapsed" : "is-expanded"
 			}`}
-			id="app-shell"
-			data-sidebar-collapsed={isCollapsed}
+			data-sidebar-collapsed={isCollapsed ? "true" : "false"}
+			aria-hidden="false"
 		>
 			{/* Skip to main content for accessibility */}
 			<a
 				href="#main-content"
-				className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:no-underline focus:shadow-lg"
+				className="sr-only focus:not-sr-only"
+				aria-label="Skip to main content"
 			>
 				Skip to main content
 			</a>
@@ -34,9 +34,9 @@ function Shell() {
 				id="app-sidebar"
 				className="app-sidebar"
 				aria-label="Primary navigation"
-				aria-expanded={!isCollapsed}
+				aria-expanded={isExpanded}
 			>
-				<AppSideBar currentPath={location.pathname} />
+				<AppSideBar />
 			</aside>
 
 			{/* Top Navigation Bar */}
@@ -46,9 +46,10 @@ function Shell() {
 
 			{/* Main Content Area */}
 			<main
-				className="app-content"
 				id="main-content"
+				className="app-content"
 				role="main"
+				tabIndex={-1}
 				aria-label="Main content"
 			>
 				<div className="content-wrapper">

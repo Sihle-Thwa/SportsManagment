@@ -11,72 +11,62 @@
 	.app-sidebar {
 		display: flex;
 		flex-direction: column;
-		max-width: 250px;
-		min-width: 72px;
-		width: 100%;
-		overflow: hidden;
 		align-items: center;
-		background-color: var(--sidebar-background);
-		border-inline-end: 1px solid var(--color-border);
-		box-shadow: var(--shadow-md);
-		transition: inline-size var(--duration-normal) var(--easing-smooth);
+		height: 100vh;
+		max-width: var(--sidebar-width-expanded);
+		min-width: var(--sidebar-width-collapsed);
+		width: 100%;
+		position: relative;
 	}
 	.app-sidebar__inner {
-		width: 100%;
+		width:  100%;
 		height: 100%;
+		padding: 0;
+		margin: 0;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		justify-content: space-between;
+		overflow: hidden;
 	}
 
-	.sidebar-header{
-		display: flex;
-		flex-direction: row;
+	.sidebar-header {
 		width: 100%;
-		align-items: center;
-		justify-content: center;
-		
-	}
+		}
 
 	.sidebar-brand {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
+		justify-content: flex-start;
 		width: 100%;
-		height: 100%;
+
 	}
 
 	/* Ensure brand text truncates nicely */
 	.sidebar-brand-text {
-		display: block;
-		font-size: var(--font-size-lg);
-		font-weight: var(--font-weight-bold);
-		color: inherit;
-		white-space: nowrap;
 		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		font-size: var(--title-size-md);
 	}
 	.sidebar-brand-icon {
-		height: 40px;
-		width: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: var(--icon-size-lg);
+		height: var(--icon-size-lg);
 		color: inherit;
 		transition: color var(--duration-normal) var(--easing-smooth);
 	}
 	.sidebar-brand-icon-collapsed {
-		height: 32px;
-		width: 32px;
+		width: var(--icon-size-lg);
+		height: var(--icon-size-lg);
 		color: inherit;
 		transition: color var(--duration-normal) var(--easing-smooth);
-
 	}
 	.sidebar-content {
-		flex-grow: 1;
 		width: 100%;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		justify-content: flex-start;
-		gap: var(--space-4);
-		padding: var(--space-4) 0;
 	}
 }

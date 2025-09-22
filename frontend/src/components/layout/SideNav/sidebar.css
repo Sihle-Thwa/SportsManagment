@@ -53,27 +53,5 @@
 		--sidebar-width-expanded: 250px;
 		--sidebar-width-collapsed: 72px;
 	}
-
-	/* Base container only (no per-component rules here) */
-	.sidebar {
-		display: flex;
-		flex-direction: column;
-		max-width: 250px;
-		min-width: 72px;
-		width: 100%;
-		position: relative;
-	}
-
-	/* Generic a11y/perf that doesn’t depend on component classes */
-	@media (prefers-reduced-motion: reduce) {
-		.sidebar {
-			transition: none;
-		}
-	}
-
-	@media print {
-		.sidebar {
-			display: none;
-		}
-	}
+	
 }

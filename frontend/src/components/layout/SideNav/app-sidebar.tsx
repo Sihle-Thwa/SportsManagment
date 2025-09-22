@@ -23,6 +23,7 @@ export function AppSideBar() {
 			id="app-sidebar"
 			className={[
 				"app-sidebar",
+				"sidebar",
 				isCollapsed ? "sidebar-collapsed" : "sidebar-expanded",
 			].join(" ")}
 			aria-label="Primary navigation"
