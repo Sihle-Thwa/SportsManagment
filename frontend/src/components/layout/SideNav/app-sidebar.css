@@ -52,14 +52,16 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: var(--icon-size-lg);
-		height: var(--icon-size-lg);
+		max-width: var(--icon-size-lg);
+		width: 100%;
+		min-width: var(--icon-size-md);
 		color: inherit;
 		transition: color var(--duration-normal) var(--easing-smooth);
 	}
 	.sidebar-brand-icon-collapsed {
-		width: var(--icon-size-lg);
-		height: var(--icon-size-lg);
+		max-width: var(--icon-size-lg);
+		min-width: var(--icon-size-md);
+		width: 100%;
 		color: inherit;
 		transition: color var(--duration-normal) var(--easing-smooth);
 	}

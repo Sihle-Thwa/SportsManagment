@@ -10,7 +10,6 @@ import {
 import { House } from "lucide-react";
 import { useSidebar } from "../../ui/sidebar-context";
 import "./app-sidebar.css";
-import "./sidebar.css";
 import NavMain from "./nav-main";
 import NavSecondary from "./nav-secondary";
 import NavUser from "./nav-user";
