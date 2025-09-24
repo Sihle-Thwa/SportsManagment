@@ -1,15 +1,37 @@
+/* src/index.css */
 @import "../src/styles/global.css";
 
-/* Base Reset */
+/* Base Reset & app container */
 @layer base {
-	html {
-		box-sizing: border-box;
-		scroll-behavior: smooth;
-	}
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 
-	.app-root {
-		min-height: 100vh;
-		display: flex;
-		flex-direction: column;
-	}
+  html {
+    scroll-behavior: smooth;
+    font-size: var(--font-size-base, 16px);
+    font-family: var(--font-sans, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial);
+    line-height: var(--line-height-normal, 1.5);
+  }
+
+  body {
+    margin: 0;
+    height: 100%;
+    background: var(--background-surface);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .app-root {
+	height: 100%;
+	width: 100%;
+    display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	
+  }
 }

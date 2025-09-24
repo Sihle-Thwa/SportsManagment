@@ -1,0 +1,108 @@
+@import "tailwindcss";
+@layer components {
+	.input-wrapper {
+		position: relative;
+		width: 100%;
+		display: inline-flex;
+		align-items: center;
+	}
+
+	.input {
+		width: 100%;
+		padding: 10px 12px;
+		border-radius: 8px;
+		border: 1px solid var(--input-border, hsl(var(--border, 214.3 31.8% 91.4%)));
+		background: var(--input-background, hsl(var(--card, 0 0% 100%)));
+		color: var(--input-text, hsl(var(--text-on-background, 222.2 84% 4.9%)));
+		font-size: var(--font-size-sm);
+		height: 40px;
+		box-sizing: border-box;
+		transition: border-color var(--duration-fast),
+			box-shadow var(--duration-fast);
+	}
+
+	.input--with-start {
+		padding-left: 40px;
+	}
+	.input--with-end {
+		padding-right: 48px;
+	}
+
+	.input__icon {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		pointer-events: none;
+		color: var(--input-text);
+		opacity: 0.9;
+	}
+	.input__icon--start {
+		left: 10px;
+	}
+	.input__icon--end {
+		right: 10px;
+	}
+	.input__icon-svg {
+		width: var(--icon-size-sm, 16px);
+		height: var(--icon-size-sm, 16px);
+	}
+
+	.input__clear {
+		position: absolute;
+		right: 8px;
+		top: 50%;
+		transform: translateY(-50%);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		background: transparent;
+		border: none;
+		padding: 6px;
+		border-radius: 6px;
+		cursor: pointer;
+	}
+	.input__clear:hover {
+		background: hsl(var(--accent, 210 40% 98%));
+	}
+	.input__clear:focus-visible {
+		outline: 2px solid hsl(var(--ring, 221.2 83% 53.3%));
+		outline-offset: 2px;
+	}
+
+	.input__clear-icon {
+		width: 14px;
+		height: 14px;
+	}
+
+	.input:focus {
+		outline: none;
+		border-color: var(
+			--input-border-focus,
+			hsl(var(--input-border-focus, 59 84% 53%))
+		);
+		box-shadow: 0 0 0 4px
+			color-mix(
+				in srgb,
+				var(--input-border-focus, rgba(59, 130, 246, 0.12)),
+				transparent
+			);
+	}
+
+	/* Disabled */
+	.input:disabled {
+		background: var(--input-background-disabled, var(--input-background));
+		cursor: not-allowed;
+		opacity: 0.9;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.input,
+		.input-wrapper,
+		.input__clear {
+			transition: none !important;
+		}
+	}
+}

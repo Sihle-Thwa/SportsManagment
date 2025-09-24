@@ -1,12 +1,14 @@
-// MainLayout.tsx
 import { Outlet } from "react-router-dom";
 import AppTopBar from "../layout/TopNav/app-topbar";
 import { SidebarProvider, useSidebar } from "../ui/sidebar-context";
 import AppSideBar from "./SideNav/app-sidebar";
 import "./mainlayout.css";
 
-function Shell() {
-	// Simplified state logic
+/**
+ * InnerShell uses useSidebar() — it must be rendered inside SidebarProvider.
+ * We define it here and render it as a child of SidebarProvider to avoid hook errors.
+ */
+function InnerShell() {
 	const sidebar = useSidebar();
 	const isCollapsed = Boolean(sidebar?.isCollapsed ?? false);
 	const isExpanded = !isCollapsed;
@@ -20,7 +22,7 @@ function Shell() {
 			data-sidebar-collapsed={isCollapsed ? "true" : "false"}
 			aria-hidden="false"
 		>
-			{/* Skip to main content for accessibility */}
+			{/* Accessibility: skip link */}
 			<a
 				href="#main-content"
 				className="sr-only focus:not-sr-only"
@@ -29,7 +31,7 @@ function Shell() {
 				Skip to main content
 			</a>
 
-			{/* Sidebar */}
+			{/* Sidebar column placeholder (keeps grid alignment even if sidebar uses fixed internals) */}
 			<aside
 				id="app-sidebar"
 				className="app-sidebar"
@@ -39,12 +41,12 @@ function Shell() {
 				<AppSideBar />
 			</aside>
 
-			{/* Top Navigation Bar */}
+			{/* Topbar spanning the second column */}
 			<header className="app-topbar" role="banner">
 				<AppTopBar />
 			</header>
 
-			{/* Main Content Area */}
+			{/* Main content */}
 			<main
 				id="main-content"
 				className="app-content"
@@ -63,7 +65,7 @@ function Shell() {
 export function MainLayout() {
 	return (
 		<SidebarProvider>
-			<Shell />
+			<InnerShell />
 		</SidebarProvider>
 	);
 }

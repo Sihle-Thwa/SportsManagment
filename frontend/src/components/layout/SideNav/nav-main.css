@@ -5,7 +5,7 @@
 	.nav-main {
 		display: none;
 	}
-	@media (min-width: 1024px) {
+	@media (min-width: 768px) {
 		.nav-main {
 			display: block;
 		}
@@ -30,6 +30,7 @@
 		padding: var(--space-2) var(--space-3);
 		border-radius: var(--radius-md);
 		text-decoration: none;
+		height: 100%;
 		min-height: 32px;
 		font-size: var(--font-size-sm);
 		color: hsl(var(--sidebar-text, 215.4 16.3% 46.9%));
@@ -69,7 +70,9 @@
 	.nav-main__labels {
 		display: flex;
 		flex-direction: column;
-		min-width: 0;
+		overflow: hidden;
+		white-space: nowrap;
+		width: 100%;
 	}
 	.nav-main__label {
 		color: inherit;

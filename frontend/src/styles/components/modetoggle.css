@@ -1,0 +1,36 @@
+@import "tailwindcss";
+@layer components {
+	.mode-toggle__button {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 6px 10px;
+		border-radius: var(--radius-md);
+		background: transparent;
+		border: 1px solid transparent;
+		cursor: pointer;
+		transition: all var(--duration-fast);
+		color: var(--header-icon);
+	}
+	.mode-toggle__button:hover {
+		background: var(--header-icon-hover);
+		border-color: var(--header-border);
+	}
+	.mode-toggle__icon {
+		width: 18px;
+		height: 18px;
+	}
+	.mode-toggle__label {
+		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-medium);
+	}
+	.mode-toggle__menu {
+		min-width: 160px;
+	}
+	.mode-toggle__menu-icon {
+		width: 16px;
+		height: 16px;
+		margin-right: 8px;
+		vertical-align: middle;
+	}
+}

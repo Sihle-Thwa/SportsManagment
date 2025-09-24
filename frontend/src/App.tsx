@@ -1,3 +1,4 @@
+// src/App.tsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { MainLayout } from "./components/layout/MainLayout";
 import { routes } from "./routes";
@@ -10,9 +11,9 @@ function App() {
 			<Router>
 				<div className="app-root">
 					<Routes>
-						{/* Main layout wraps all routes */}
+						{/* Main layout wraps all routes (MainLayout contains SidebarProvider) */}
 						<Route path="/" element={<MainLayout />}>
-							{/* Dynamic routes from your routes configuration */}
+							{/* Dynamic route list (each route object should provide id, path, element) */}
 							{routes.map((route) => (
 								<Route
 									key={route.id}
@@ -20,7 +21,8 @@ function App() {
 									element={route.element}
 								/>
 							))}
-							{/* Fallback route */}
+
+							{/* Fallback (404) */}
 							<Route
 								path="*"
 								element={

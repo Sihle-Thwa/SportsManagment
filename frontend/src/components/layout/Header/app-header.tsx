@@ -1,44 +1,27 @@
 // app-header.tsx
 import { useLocation } from "react-router-dom";
-import {
-	Breadcrumb,
-	BreadcrumbItem,
-	BreadcrumbList,
-	BreadcrumbPage,
-} from "../../ui/breadcrumb";
-import { Separator } from "../../ui/separator";
 import { SidebarTrigger } from "../../ui/sidebar";
 import { useSidebar } from "../../ui/sidebar-context";
+import "./appheader.css";
 
-const Header = () => {
+export default function Header() {
 	const location = useLocation();
-	const pathSegments = location.pathname.split("/").filter(Boolean);
-	const sidebar = useSidebar(); // get the sidebar context
+	const sidebar = useSidebar();
 
 	return (
-		<header className="flex items-center gap-2">
+		<div className="app-header" role="banner" aria-label="Page title">
 			<SidebarTrigger
-				className="navigation-trigger"
+				className="app-header__trigger"
 				aria-controls="app-sidebar"
-				aria-expanded={sidebar?.open !== undefined ? sidebar.open : undefined}
+				aria-expanded={sidebar ? !!sidebar.open : undefined}
 				aria-label="Toggle sidebar"
 			/>
-			<Separator orientation="vertical" className="mx-2 h-6 bg-border" />
-			<Breadcrumb className="navigation-content">
-				<BreadcrumbList className="navigation-list">
-					{pathSegments.length > 0 && (
-						<BreadcrumbItem className="navigation-item">
-							<BreadcrumbPage className="h-full flex items-start justify-start">
-								{pathSegments[pathSegments.length - 1]
-									.replace(/-/g, " ")
-									.replace(/\b\w/g, (c) => c.toUpperCase())}
-							</BreadcrumbPage>
-						</BreadcrumbItem>
-					)}
-				</BreadcrumbList>
-			</Breadcrumb>
-		</header>
+			<div aria-label="Breadcrumb" className="app-breadcrumb-item">
+				{location.pathname
+					.split("/")
+					.filter(Boolean)
+					.map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))}
+			</div>
+		</div>
 	);
-};
-
-export default Header;
+}

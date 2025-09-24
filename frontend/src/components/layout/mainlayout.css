@@ -2,12 +2,13 @@
 
 /* --------------------------------------------------------------------------
    Grid shell — variables and defaults (first column = sidebar width)
+   Uses semantic tokens from semantic-tokens.css where applicable.
    -------------------------------------------------------------------------- */
 .main-container {
 	/* sidebar sizes (toggle via state classes or data-attribute) */
-	--sidebar-width: 250px;
-	--sidebar-width-collapsed: 72px;
-	--topbar-height: 72px;
+	--sidebar-width: var(--sidebar-width, 250px);
+	--sidebar-width-collapsed: var(--sidebar-width-collapsed, 72px);
+	--topbar-height: var(--topbar-height, 72px);
 
 	display: grid;
 	grid-template-columns: var(--sidebar-width) 1fr;
@@ -16,9 +17,10 @@
 		"sidebar header"
 		"sidebar content";
 
-	height: 100vh;
+	min-height: 100vh;
 	width: 100%;
-	background: var(--colour-neutral-100);
+	background: var(--background, var(--colour-neutral-100));
+	color: var(--foreground, var(--colour-neutral-900));
 	transition: grid-template-columns 200ms
 		var(--easing-smooth, cubic-bezier(0.4, 0, 0.2, 1));
 	overflow: hidden;
@@ -34,43 +36,57 @@
 	padding: 0 16px;
 	width: 100%;
 	z-index: 40;
-	background: var(--colour-neutral-100);
-	border-bottom: 1px solid var(--colour-neutral-100);
+	background: var(--header-background, var(--colour-neutral-100));
+	border-bottom: 1px solid var(--header-border, var(--colour-neutral-200));
 	display: flex;
 	align-items: center;
 	position: sticky;
 	top: 0;
-		
 }
 
+/* Sidebar column wrapper (keeps grid slot reserved).
+   The internal visual sidebar may use a fixed container for animation —
+   override its left/right so it sits flush with the grid column. */
 .app-sidebar {
 	z-index: 50;
 	grid-area: sidebar;
-	border-right: 1px solid var(--colour-neutral-200);
+	border-right: 1px solid var(--sidebar-border, var(--colour-neutral-200));
 	padding: 0;
 	width: var(--sidebar-width);
 	min-width: var(--sidebar-width-collapsed);
+	box-sizing: border-box;
 }
 
+/* Align any fixed inner sidebar container to the left edge of the grid column.
+   shadcn/sidebar implementation renders a fixed element with data-slot="sidebar-container" —
+   this ensures it aligns with the grid column and the topbar visually. */
+.app-sidebar [data-slot="sidebar-container"] {
+	left: 0 !important;
+	right: auto !important;
+}
+
+/* Content region */
 .app-content {
 	grid-area: content;
 	position: relative;
 	height: calc(100vh - var(--topbar-height));
-	background: var(--colour-neutral-100);
+	background: var(--content-background, var(--colour-neutral-50));
 	scroll-behavior: smooth;
 	overflow-y: auto;
 	-webkit-overflow-scrolling: touch; /* momentum scroll on iOS */
 	transition: height 200ms var(--easing-smooth, cubic-bezier(0.4, 0, 0.2, 1));
-	
 }
 
-/* wrapper used by routes/pages */
+/* Route page wrapper */
 .content-wrapper {
 	width: 100%;
 	margin: 0 auto;
 	padding: 24px;
 	display: flex;
+	flex-direction: column;
 	gap: 24px;
+	box-sizing: border-box;
+	max-width: 1400px; /* keep content readable on wide screens */
 }
 
 /* --------------------------------------------------------------------------
@@ -84,21 +100,12 @@
 	grid-template-columns: var(--sidebar-width) 1fr;
 }
 
-/* data attribute parity (programmatic control) */
+/* programmatic parity */
 .main-container[data-sidebar-collapsed="true"] {
 	grid-template-columns: var(--sidebar-width-collapsed) 1fr;
 }
 
-/* align the inner fixed sidebar container (if the Sidebar component uses fixed)
-   many sidebar implementations create a fixed inner container like:
-     <div data-slot="sidebar-container" style="left: 0; position: fixed; ... />
-   Overriding the left/right ensures the fixed element sits flush with the grid column. */
-.app-sidebar [data-slot="sidebar-container"] {
-	left: 0 !important;
-	right: auto !important;
-}
-
-/* When collapsed we nudge the aside's inline size (defensive) */
+/* nudge aside width (defensive) */
 .main-container.is-collapsed .app-sidebar {
 	width: var(--sidebar-width-collapsed);
 }
@@ -109,12 +116,12 @@
 /* --------------------------------------------------------------------------
    Mobile / Tablet responsive layout
    -------------------------------------------------------------------------- */
-/* On tablet and mobile, the grid should collapse to a single column (topbar + content)
-   the actual sidebar becomes off-canvas (component CSS handles visibility & animation) */
+/* On tablet and mobile, the grid collapses to a single column (header + content).
+   The actual sidebar should be off-canvas and is controlled by the Sidebar component. */
 @media (max-width: 1024px) {
 	.main-container {
-		--sidebar-width: 250px;
-		--sidebar-width-collapsed: 72px;
+		--sidebar-width: 280px;
+		--sidebar-width-collapsed: 0px;
 		grid-template-columns: 1fr;
 		grid-template-rows: var(--topbar-height) 1fr;
 		grid-template-areas:
@@ -122,23 +129,22 @@
 			"content";
 	}
 
-	/* When the app requests the sidebar open (is-expanded), we show an overlay */
+	/* When sidebar is requested open, render an overlay using modal-overlay token */
 	.main-container.is-expanded::before {
 		content: "";
 		position: fixed;
 		inset: 0;
 		z-index: 45;
+		background: var(--modal-overlay, rgba(0, 0, 0, 0.45));
 		pointer-events: auto;
-		width: 100%;
 	}
 
-	/* Ensure content still fills */
 	.app-content {
 		height: calc(100vh - var(--topbar-height));
 	}
 }
 
-/* Mobile specifics */
+/* mobile specifics */
 @media (max-width: 640px) {
 	:root {
 		--sidebar-width: 100vw;
@@ -149,9 +155,12 @@
 		gap: 16px;
 	}
 
-
 	.main-container {
 		grid-template-rows: 64px 1fr;
+	}
+
+	.app-topbar {
+		height: 64px;
 	}
 
 	.app-content {
@@ -160,7 +169,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   Small accessibility & performance helpers
+   Accessibility & performance helpers
    -------------------------------------------------------------------------- */
 /* Skip link helpers */
 .sr-only {
@@ -205,19 +214,19 @@
 	}
 }
 
-/* Scrollbar */
+/* Scrollbar (small, non-essential visuals) */
 .app-content::-webkit-scrollbar {
 	width: 8px;
 }
 .app-content::-webkit-scrollbar-track {
-	background: hsl(var(--muted, 210 40% 98%));
+	background: var(--scrollbar-track, var(--colour-neutral-50));
 }
 .app-content::-webkit-scrollbar-thumb {
-	background: hsl(var(--muted-foreground, 215.4 16.3% 46.9%));
+	background: var(--scrollbar-thumb, var(--colour-neutral-400));
 	border-radius: 4px;
 }
 .app-content::-webkit-scrollbar-thumb:hover {
-	background: hsl(var(--accent-foreground, 210 40% 8%));
+	background: var(--scrollbar-thumb-hover, var(--colour-neutral-500));
 }
 
 /* Print */

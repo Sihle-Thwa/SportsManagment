@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @layer components {
-	/* Hide entire sidebar on tablet & smaller (<= 1024px) */
-	@media (max-width: 1024px) {
+	/* Hide entire sidebar on tablet & smaller (<= 768px) */
+	@media (max-width: 768px) {
 		.app-sidebar {
 			display: none !important;
 		}

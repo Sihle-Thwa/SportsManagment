@@ -1,9 +1,6 @@
 /* global/index.css */
 @import "tailwindcss";
 
-/* Import base styles */
-@import "./base.css";
-
 /* Import base colours (colour palette) */
 @import "./colours.css";
 
@@ -20,8 +17,6 @@
 /* Import typography styles */
 @import "./typography.css";
 
-/* Import utility classes */
-@import "./utilities.css";
 
 /* Import component styles */
 @import "./components/navigation.css";

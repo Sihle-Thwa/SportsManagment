@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@layer components {
+	.app-header {
+		display: flex;
+    flex-direction: row;
+		align-items: center;
+		gap: 12px;
+    width: 100%;
+	}
+
+	.app-header__trigger {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		max-width: var(--icon-lg);
+    min-width: var(--icon-md);
+    width: 100%;
+		
+	}
+	
+	.app-breadcrumb-item {
+		display: inline-flex;
+		gap: 8px;
+		align-items: center;
+		white-space: nowrap;
+		overflow: hidden;
+	}
+	
+	
+	@media (max-width: 768px) {
+		
+		.app-breadcrumb-item {
+      width: 100%;
+      white-space: nowrap;
+			overflow: hidden;
+		}
+	}
+
+  @media (min-width: 767px) {
+    .app-header__trigger {
+      display: none;
+    }
+  }
+}

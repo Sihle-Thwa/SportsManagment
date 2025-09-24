@@ -1,46 +1,74 @@
 import * as React from "react";
-
 import { cn } from "../../../lib/utils";
-import { LucideIcon } from "lucide-react";
+import { X, type LucideIcon } from "lucide-react";
+import "./input.css";
 
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
-  startIcon?: LucideIcon;
-  endIcon?: LucideIcon;
+	extends React.InputHTMLAttributes<HTMLInputElement> {
+	startIcon?: LucideIcon;
+	endIcon?: LucideIcon;
+	onClear?: () => void;
+	value: string; // make controlled
+	setValue: (v: string) => void;
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, startIcon, endIcon, ...props }, ref) => {
-    const StartIcon = startIcon;
-    const EndIcon = endIcon;
+	(
+		{
+			startIcon: StartIcon,
+			endIcon: EndIcon,
+			onClear,
+			value,
+			setValue,
+			className,
+			...props
+		},
+		ref,
+	) => {
+		return (
+			<div className={cn("input-wrapper", className)}>
+				{StartIcon && (
+					<div className="input__icon input__icon--start" aria-hidden>
+						<StartIcon className="input__icon-svg" />
+					</div>
+				)}
 
-    return (
-      <div className="relative flex w-full items-center h-lg ">
-        {StartIcon && (
-          <div className="absolute left-1.5 top-1/2 transform -translate-y-1/2">
-            <StartIcon className="icon-base" />
-          </div>
-        )}
-        <input
-          type={type}
-          className={cn(
-            "input",
-            startIcon ? "pl-12" : "",
-            endIcon ? "pr-12" : "",
-            className
-          )}
-          ref={ref}
-          {...props}
-        />
-        {EndIcon && (
-          <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-            <EndIcon className="icon-base" />
-          </div>
-        )}
-      </div>
-    );
-  }
+				<input
+					ref={ref}
+					value={value}
+					onChange={(e) => setValue(e.target.value)}
+					className={cn(
+						"input",
+						StartIcon ? "input--with-start" : "",
+						EndIcon ? "input--with-end" : "",
+					)}
+					{...props}
+				/>
+
+				{/* clear button (visible when value present) */}
+				{value && (
+					<button
+						type="button"
+						className="input__clear"
+						aria-label="Clear"
+						onClick={() => {
+							setValue("");
+							onClear?.();
+						}}
+					>
+						<X className="input__clear-icon" />
+					</button>
+				)}
+
+				{EndIcon && (
+					<div className="input__icon input__icon--end" aria-hidden>
+						<EndIcon className="input__icon-svg" />
+					</div>
+				)}
+			</div>
+		);
+	},
 );
-Input.displayName = "Input";
 
+Input.displayName = "Input";
 export { Input };
