@@ -16,7 +16,7 @@ export default function NavMain({ collapsed = false }: NavMainProps) {
 			className={cn("nav-main", collapsed && "is-collapsed")}
 			aria-label="Primary"
 		>
-			<SidebarMenu className="nav-main__menu sidebar-menu">
+			<SidebarMenu className="nav-main__menu">
 				{routes.map(
 					(route: {
 						id: string;
@@ -26,15 +26,12 @@ export default function NavMain({ collapsed = false }: NavMainProps) {
 					}) => {
 						const isActive = location.pathname === route.path;
 						return (
-							<SidebarMenuItem
-								key={route.id}
-								className="nav-main__item sidebar-menu-item"
-							>
+							<SidebarMenuItem key={route.id} className="nav-main__item">
 								<NavLink
 									to={route.path}
 									className={({ isActive }) =>
 										cn(
-											"nav-main__link sidebar-menu-link",
+											"nav-main__link ",
 											isActive && "is-active",
 											collapsed && "is-collapsed",
 										)
@@ -44,10 +41,7 @@ export default function NavMain({ collapsed = false }: NavMainProps) {
 									aria-current={isActive ? "page" : undefined}
 								>
 									<span
-										className={cn(
-											"nav-main__icon sidebar-menu-icon",
-											collapsed && "sidebar-menu-icon-collapsed",
-										)}
+										className={cn("nav-main__icon", collapsed && "")}
 										aria-hidden
 									>
 										{route.icon ? (

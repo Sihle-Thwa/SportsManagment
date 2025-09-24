@@ -3,46 +3,54 @@
 @layer components {
 	/* Hide on tablet & down; show from laptop (>=1024px) */
 	.nav-main {
-		display: none;
+		display: block;
+		text-align: start;
+		width: inherit;
 	}
-	@media (min-width: 768px) {
+	@media (max-width: 768px) {
 		.nav-main {
-			display: block;
+			display: none !important;
 		}
 	}
 
 	.nav-main__menu {
-		display: flex;
+		display: block;
 		flex-direction: column;
-		padding: var(--space-4) var(--space-3);
-		overflow: hidden;
+		text-align: start;
+		margin: 0;
+		padding: 0;
+		height: 100%;
 		width: 100%;
 	}
 	.nav-main__item {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
 		list-style: none;
+		text-align: left;
+		width: 100%;
+		gap: 8px;
 	}
 
 	/* Clickable area (default state) */
 	.nav-main__link {
 		display: flex;
 		align-items: center;
-		gap: var(--space-3);
-		padding: var(--space-2) var(--space-3);
-		border-radius: var(--radius-md);
+		justify-content: center;
+		text-align: left;
 		text-decoration: none;
-		height: 100%;
-		min-height: 32px;
-		font-size: var(--font-size-sm);
-		color: hsl(var(--sidebar-text, 215.4 16.3% 46.9%));
-		background: var(--sidebar-background);
-		border: 1px solid transparent;
-		transition: all var(--duration-fast) var(--easing-smooth);
+		transition: all 0.2s;
+		margin-top: 4px;
+		margin-bottom: 4px;
+		padding-left: 8px;
+		gap: 8px;
+		width: 100%;
 	}
 	/* Hover */
 	.nav-main__link:hover {
-		background: hsl(var(--accent, 210 40% 98%));
-		color: hsl(var(--accent-foreground, 222.2 84% 4.9%));
-		border-color: hsl(var(--border, 214.3 31.8% 91.4%));
+		background: var(--interactive-primary-hover);
+		color: var(--text-on-primary);
+		border-color: 1px solid var(--border-default);
 	}
 	/* Active */
 	.nav-main__link.is-active {
@@ -77,7 +85,6 @@
 	.nav-main__label {
 		color: inherit;
 	}
-	
 
 	/* Collapsed */
 	.nav-main.is-collapsed .nav-main__labels {
