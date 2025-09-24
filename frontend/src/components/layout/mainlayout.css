@@ -1,56 +1,29 @@
 @import "tailwindcss";
 
-/* --------------------------------------------------------------------------
-   Grid shell — variables and defaults (first column = sidebar width)
-   Uses semantic tokens from semantic-tokens.css where applicable.
-   -------------------------------------------------------------------------- */
 .main-container {
 	/* sidebar sizes (toggle via state classes or data-attribute) */
-	--sidebar-width: var(--sidebar-width-expanded);
-	--sidebar-width-collapsed: var(--sidebar-width-collapsed);
-	
+	--sidebar-width-expanded: 250px;
+	--sidebar-width-collapsed: 72px;
+
 	display: flex;
-	flex-grow: 1;
-	flex-shrink: 1;
-	flex-basis: 0%;
 	height: 100vh;
 	width: 100%;
 	padding-top: 72px;
-	position: relative;
-	text-align: start;
-	transform: none;
-	transition: all 200ms var(--easing-smooth, cubic-bezier(0.4, 0, 0.2, 1));
+	transition: var(--duration-fast) var(--ease-in);
 	z-index: 10;
-}
-
-/* ----------------------------
-   Regions
-   ---------------------------- */
-
-/* Sidebar column wrapper (keeps grid slot reserved).
-   The internal visual sidebar may use a fixed container for animation —
-   override its left/right so it sits flush with the grid column. */
-.app-sidebar {
-}
-
-/* Align any fixed inner sidebar container to the left edge of the grid column.
-   shadcn/sidebar implementation renders a fixed element with data-slot="sidebar-container" —
-   this ensures it aligns with the grid column and the topbar visually. */
-.app-sidebar [data-slot="sidebar-container"] {
-	left: 0 !important;
-	right: auto !important;
 }
 
 /* Content region */
 .app-content {
-	grid-area: content;
-	position: relative;
+	display: flex;
+	flex-direction: column;
 	height: calc(100vh - var(--topbar-height));
-	background: var(--content-background, var(--colour-neutral-50));
+	width: 100%;
+	background: var(--colour-neutral-50);
 	scroll-behavior: smooth;
 	overflow-y: auto;
 	-webkit-overflow-scrolling: touch; /* momentum scroll on iOS */
-	transition: height 200ms var(--easing-smooth, cubic-bezier(0.4, 0, 0.2, 1));
+	transition: var(--duration-fast) var(--ease-in);
 }
 
 /* Route page wrapper */
@@ -61,7 +34,6 @@
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
-	box-sizing: border-box;
 	max-width: 1400px; /* keep content readable on wide screens */
 }
 
@@ -89,11 +61,6 @@
 	width: var(--sidebar-width);
 }
 
-/* --------------------------------------------------------------------------
-   Mobile / Tablet responsive layout
-   -------------------------------------------------------------------------- */
-/* On tablet and mobile, the grid collapses to a single column (header + content).
-   The actual sidebar should be off-canvas and is controlled by the Sidebar component. */
 @media (max-width: 1024px) {
 	.main-container {
 		--sidebar-width: 280px;
@@ -144,10 +111,6 @@
 	}
 }
 
-/* --------------------------------------------------------------------------
-   Accessibility & performance helpers
-   -------------------------------------------------------------------------- */
-/* Skip link helpers */
 .sr-only {
 	position: absolute;
 	width: 1px;
@@ -168,18 +131,6 @@
 	overflow: visible;
 	clip: auto;
 	white-space: normal;
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-	.main-container,
-	.app-sidebar,
-	.content-wrapper {
-		transition: none !important;
-	}
-	.app-content {
-		scroll-behavior: auto;
-	}
 }
 
 /* High contrast */
@@ -203,23 +154,4 @@
 }
 .app-content::-webkit-scrollbar-thumb:hover {
 	background: var(--scrollbar-thumb-hover, var(--colour-neutral-500));
-}
-
-/* Print */
-@media print {
-	.main-container {
-		grid-template-columns: 1fr;
-		grid-template-areas: "content";
-	}
-	.app-sidebar,
-	.app-topbar {
-		display: none;
-	}
-	.app-content {
-		height: auto;
-		overflow: visible;
-	}
-	.content-wrapper {
-		padding: 0;
-	}
 }

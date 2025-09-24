@@ -28,7 +28,7 @@
 		font-size: var(--font-size-sm);
 		color: var(--sidebar-background-active);
 		background: transparent;
-		transition: all var(--duration-fast) var(--easing-smooth);
+			transition: var(--duration-fast) var(--ease-in);
 	}
 	.nav-secondary__link:hover {
 		color: var(--sidebar-text-hover);

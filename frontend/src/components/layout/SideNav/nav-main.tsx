@@ -44,18 +44,10 @@ export default function NavMain({ collapsed = false }: NavMainProps) {
 										className={cn("nav-main__icon", collapsed && "")}
 										aria-hidden
 									>
-										{route.icon ? (
-											route.icon
-										) : (
-											<span className="sidebar-menu-icon-placeholder" />
-										)}
+										{route.icon}
 									</span>
 									{!collapsed && (
-										<span className="nav-main__labels">
-											<span className="nav-main__label sidebar-menu-text">
-												{route.title}
-											</span>
-										</span>
+										<span className="nav-main__label">{route.title}</span>
 									)}
 								</NavLink>
 							</SidebarMenuItem>

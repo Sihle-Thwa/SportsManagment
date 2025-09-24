@@ -35,7 +35,7 @@ export function AppSideBar() {
 							className={[
 								"sidebar-brand-icon",
 								isCollapsed && "sidebar-brand-icon-collapsed",
-							].join(" ")}
+							].join("")}
 						/>
 						{!isCollapsed && (
 							<div className="sidebar-brand-text">U-Organise</div>

@@ -7,41 +7,37 @@
   *::before,
   *::after {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    
   }
 
   html {
-    box-sizing: border-box;
     display: block;
     height: 100vh;
-    scroll-behavior: smooth;
-    view-transition-name: root;
     width: 100vw;
   }
 
   body {
-    box-sizing: border-box;
     display: block;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
     font-family: var(--font-sans);
     background: var(--background-surface);
     color: var(--text-primary);
-    margin: 0;
-    overflow-x: hidden;
-    text-align: start;
-    text-size-adjust: 100%;
-  }
+   
+     }
 
   .app-root {
-    box-sizing: inherit;
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    min-height: 878px;
-    opacity: 1;
-    position: relative;
-    text-align: start;
-    text-size-adjust: 100%;
-    width: 100vw;
-    min-width: 320px;
-    transition: opacity 0.3s ease-in-out;
+    height: 100%;
+    width: 100%;
+
   }
 }

@@ -22,15 +22,6 @@ function InnerShell() {
 			data-sidebar-collapsed={isCollapsed ? "true" : "false"}
 			aria-hidden="false"
 		>
-			{/* Accessibility: skip link */}
-			<a
-				href="#main-content"
-				className="sr-only focus:not-sr-only"
-				aria-label="Skip to main content"
-			>
-				Skip to main content
-			</a>
-
 			{/* Sidebar column placeholder (keeps grid alignment even if sidebar uses fixed internals) */}
 			<aside
 				id="app-sidebar"
