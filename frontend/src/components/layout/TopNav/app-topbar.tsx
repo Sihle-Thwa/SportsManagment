@@ -13,7 +13,7 @@ const AppTopBar: React.FC = () => {
 	return (
 		<div className="app-topbar-inner" role="region" aria-label="Top navigation">
 			{/* Left: navigation trigger (mobile) + breadcrumbs/header */}
-			<div className="topbar-section topbar-left">
+			<div className="topbar-left">
 				{/* Mobile: show a compact menu trigger that toggles the sidebar sheet */}
 				<button
 					type="button"
@@ -32,12 +32,12 @@ const AppTopBar: React.FC = () => {
 			</div>
 
 			{/* Center: search (hidden on small screens) */}
-			<div className="topbar-section topbar-center" aria-hidden={isMobile}>
+			<div className="topbar-center" aria-hidden={isMobile}>
 				<SearchInput />
 			</div>
 
 			{/* Right: utilities (theme toggle, other actions) */}
-			<div className="topbar-section topbar-right">
+			<div className="topbar-right">
 				<ModeToggle />
 			</div>
 		</div>

@@ -3,43 +3,37 @@
 @layer components {
 	.app-header {
 		display: flex;
-    flex-direction: row;
 		align-items: center;
-		gap: 12px;
-    width: 100%;
+		align-content: center;
+		justify-content: center	;
+		width: 100%;
+		height: var(--header-height);
+		padding: 0 16px;
+		gap: 16px;
+				
 	}
 
 	.app-header__trigger {
-		display: inline-flex;
+		display: flex;
 		align-items: center;
-		justify-content: center;
 		max-width: var(--icon-lg);
-    min-width: var(--icon-md);
-    width: 100%;
-		
-	}
-	
-	.app-breadcrumb-item {
-		display: inline-flex;
-		gap: 8px;
-		align-items: center;
-		white-space: nowrap;
-		overflow: hidden;
-	}
-	
-	
-	@media (max-width: 768px) {
-		
-		.app-breadcrumb-item {
-      width: 100%;
-      white-space: nowrap;
-			overflow: hidden;
-		}
+		min-width: var(--icon-md);
+		width: 100%;
+		max-height: var(--icon-lg);
+		min-height: var(--icon-md);
+		height: 100%;
+		transition: background-color 0.3s;
 	}
 
-  @media (min-width: 767px) {
-    .app-header__trigger {
-      display: none;
-    }
-  }
+	.app-breadcrumb-item {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		width: auto;
+		height: auto;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
 }

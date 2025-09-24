@@ -6,55 +6,31 @@
    -------------------------------------------------------------------------- */
 .main-container {
 	/* sidebar sizes (toggle via state classes or data-attribute) */
-	--sidebar-width: var(--sidebar-width, 250px);
-	--sidebar-width-collapsed: var(--sidebar-width-collapsed, 72px);
-	--topbar-height: var(--topbar-height, 72px);
-
-	display: grid;
-	grid-template-columns: var(--sidebar-width) 1fr;
-	grid-template-rows: var(--topbar-height) 1fr;
-	grid-template-areas:
-		"sidebar header"
-		"sidebar content";
-
-	min-height: 100vh;
+	--sidebar-width: var(--sidebar-width-expanded);
+	--sidebar-width-collapsed: var(--sidebar-width-collapsed);
+	
+	display: flex;
+	flex-grow: 1;
+	flex-shrink: 1;
+	flex-basis: 0%;
+	height: 100vh;
 	width: 100%;
-	background: var(--background, var(--colour-neutral-100));
-	color: var(--foreground, var(--colour-neutral-900));
-	transition: grid-template-columns 200ms
-		var(--easing-smooth, cubic-bezier(0.4, 0, 0.2, 1));
-	overflow: hidden;
-	box-sizing: border-box;
+	padding-top: 72px;
+	position: relative;
+	text-align: start;
+	transform: none;
+	transition: all 200ms var(--easing-smooth, cubic-bezier(0.4, 0, 0.2, 1));
+	z-index: 10;
 }
 
 /* ----------------------------
    Regions
    ---------------------------- */
-.app-topbar {
-	grid-area: header;
-	height: var(--topbar-height);
-	padding: 0 16px;
-	width: 100%;
-	z-index: 40;
-	background: var(--header-background, var(--colour-neutral-100));
-	border-bottom: 1px solid var(--header-border, var(--colour-neutral-200));
-	display: flex;
-	align-items: center;
-	position: sticky;
-	top: 0;
-}
 
 /* Sidebar column wrapper (keeps grid slot reserved).
    The internal visual sidebar may use a fixed container for animation —
    override its left/right so it sits flush with the grid column. */
 .app-sidebar {
-	z-index: 50;
-	grid-area: sidebar;
-	border-right: 1px solid var(--sidebar-border, var(--colour-neutral-200));
-	padding: 0;
-	width: var(--sidebar-width);
-	min-width: var(--sidebar-width-collapsed);
-	box-sizing: border-box;
 }
 
 /* Align any fixed inner sidebar container to the left edge of the grid column.

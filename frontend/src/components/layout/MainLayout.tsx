@@ -34,7 +34,6 @@ function InnerShell() {
 			{/* Sidebar column placeholder (keeps grid alignment even if sidebar uses fixed internals) */}
 			<aside
 				id="app-sidebar"
-				className="app-sidebar"
 				aria-label="Primary navigation"
 				aria-expanded={isExpanded}
 			>
@@ -42,9 +41,9 @@ function InnerShell() {
 			</aside>
 
 			{/* Topbar spanning the second column */}
-			<header className="app-topbar" role="banner">
+			<div role="banner">
 				<AppTopBar />
-			</header>
+			</div>
 
 			{/* Main content */}
 			<main
