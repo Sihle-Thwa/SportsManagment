@@ -11,49 +11,41 @@
 	/* Font Sizes */
 
 	/* Display Sizes */
-	--display-size-lg: 72px;
-	--display-size-md: 60px;
-	--display-size-sm: 48px;
+	--display-size-lg: 80px;
+	--display-size-md: 72px;
+	--display-size-sm: 60px;
 
 	/* Headline Sizes */
 	--headline-size-lg: 36px;
-	--headline-size-md: 34px;
-	--headline-size-sm: 32px;
+	--headline-size-md: 32px;
+	--headline-size-sm: 30px;
 
 	/* Title Sizes */
 	--title-size-lg: 28px;
-	--title-size-md: 26px;
-	--title-size-sm: 24px;
+	--title-size-default: 24px;
 
 	/* Subtitle Sizes */
-	--subtitle-size-lg: 22px;
-	--subtitle-size-md: 20px;
-	--subtitle-size-sm: 18px;
+	--subtitle-size-default: 18px;
 
 	/* Body Sizes */
 	--body-size-lg: 16px;
-	--body-size-md: 14px;
+	--body-size-default: 14px;
 	--body-size-sm: 12px;
 
 	/* Caption Sizes */
-	--caption-size-lg: 12px;
-	--caption-size-md: 12px;
-	--caption-size-sm: 12px;
+	--caption-size-default: 12px;
 
 	/* Overline Sizes */
-	--overline-size-lg: 12px;
-	--overline-size-md: 12px;
-	--overline-size-sm: 12px;
+	--overline-size-default: 12px;
+	--overline-size-sm: 10px;
 
         /* Small Print Sizes */
-	--small-print-size-lg: 12px;
-	--small-print-size-md: 12px;
-	--small-print-size-sm: 12px;
+	--small-print-size-default: 12px;
 
 
 	/* Button Font Sizes */
-	--button-size-lg: 16px;
-	--button-size-md: 14px;
+	--button-size-default: 16px;
+	--button-size-sm: 14px;
 
 	/* Font Weights */
 	--font-weight-light: 300;

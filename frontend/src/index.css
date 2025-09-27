@@ -11,14 +11,14 @@
     padding: 0;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    
+    -moz-osx-font-smoothing: grayscale;    
   }
 
   html {
     display: block;
     height: 100vh;
     width: 100vw;
+    overflow: hidden;
   }
 
   body {
@@ -30,14 +30,15 @@
     font-family: var(--font-sans);
     background: var(--background-surface);
     color: var(--text-primary);
-   
-     }
+}
 
   .app-root {
     display: flex;
     flex-direction: column;
     height: 100%;
     width: 100%;
+    overflow: hidden;
+    background: var(--background-surface);
 
   }
 }

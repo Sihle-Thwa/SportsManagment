@@ -4,10 +4,6 @@ import { SidebarProvider, useSidebar } from "../ui/sidebar-context";
 import AppSideBar from "./SideNav/app-sidebar";
 import "./mainlayout.css";
 
-/**
- * InnerShell uses useSidebar() — it must be rendered inside SidebarProvider.
- * We define it here and render it as a child of SidebarProvider to avoid hook errors.
- */
 function InnerShell() {
 	const sidebar = useSidebar();
 	const isCollapsed = Boolean(sidebar?.isCollapsed ?? false);
@@ -22,7 +18,6 @@ function InnerShell() {
 			data-sidebar-collapsed={isCollapsed ? "true" : "false"}
 			aria-hidden="false"
 		>
-			{/* Sidebar column placeholder (keeps grid alignment even if sidebar uses fixed internals) */}
 			<aside
 				id="app-sidebar"
 				aria-label="Primary navigation"
@@ -31,7 +26,6 @@ function InnerShell() {
 				<AppSideBar />
 			</aside>
 
-			{/* Topbar spanning the second column */}
 			<div role="banner">
 				<AppTopBar />
 			</div>

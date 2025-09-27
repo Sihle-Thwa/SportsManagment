@@ -5,16 +5,14 @@ import Header from "../Header/app-header";
 import "./apptopbar.css";
 import { useSidebar } from "../../ui/sidebar-context";
 import { Menu } from "lucide-react";
-import "./apptopbar.css";
 
 const AppTopBar: React.FC = () => {
-	const { toggleSidebar, isMobile } = useSidebar();
+	const { toggleSidebar } = useSidebar();
 
 	return (
 		<div className="app-topbar-inner" role="region" aria-label="Top navigation">
 			{/* Left: navigation trigger (mobile) + breadcrumbs/header */}
 			<div className="topbar-left">
-				{/* Mobile: show a compact menu trigger that toggles the sidebar sheet */}
 				<button
 					type="button"
 					aria-label="Toggle sidebar"
@@ -32,7 +30,7 @@ const AppTopBar: React.FC = () => {
 			</div>
 
 			{/* Center: search (hidden on small screens) */}
-			<div className="topbar-center" aria-hidden={isMobile}>
+			<div className="topbar-center" aria-label="Search">
 				<SearchInput />
 			</div>
 

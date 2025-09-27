@@ -13,9 +13,6 @@
 /* Import theme styles */
 @import "./theme.css";
 
-/* Import typography styles */
-@import "./typography.css";
-
 /* Import component styles */
 @import "./components/card.css";
 @import "./components/dropdown.css";

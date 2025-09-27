@@ -2,128 +2,57 @@
 
 /* Topbar inner layout */
 .app-topbar-inner {
-  display: flex;
-		align-content: center;
-		align-items: center;
-		margin-left: 0;
-		opacity: 1;
-		position: fixed;
-		text-align: start;
-		top: 0;
-    transition: all var(--duration-medium) var(--easing-smooth);
-		width: 100%;
-		z-index: 100;
-    border-bottom: 1px solid var(--border-default);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: fixed;
+	max-width: 100vw;
+	width: 100%;
+	top: 0;
+	transition: var(--duration-fast) var(--easing-smooth);
+	z-index: 50;
+	border-bottom: 1px solid var(--border-default);
 }
 
-/* Left: contains mobile toggle + breadcrumbs/header */
-.topbar-left {
-  display: flex;
-  align-items: center;
-  text-align: start;
-  width: auto;
-}
-
-/* The breadcrumbs wrapper (Header component may include its own markup) */
-.topbar-breadcrumbs {
-  display: flex;
-  align-items: center;
-  text-align: start;
-  
-}
-
-/* Mobile toggle: visible on small screens, hidden on desktop */
-.topbar-mobile-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  padding: 6px;
-  border-radius: var(--radius-md);
-  background: transparent;
-  border: 1px solid transparent;
-  color: hsl(var(--foreground));
-  cursor: pointer;
-  transition: all var(--duration-fast) var(--easing-smooth);
-}
-
-/* give the icon sensible size */
-.topbar-mobile-toggle svg {
-  width: var(--icon-size-sm);
-  height: var(--icon-size-sm);
-}
-
-/* Hover & focus */
-.topbar-mobile-toggle:hover {
-  background: hsl(var(--accent, 210 40% 98%));
-  border-color: hsl(var(--border, 214.3 31.8% 91.4%));
-}
-.topbar-mobile-toggle:focus-visible {
-  outline: 2px solid hsl(var(--ring, 221.2 83% 53.3%));
-  outline-offset: 2px;
-}
-
-/* Center: search area (hidden on very small screens) */
 .topbar-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+		
+}
+
+.topbar-left {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	
 }
 
 /* Right: controls (theme toggle etc) */
 .topbar-right {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-left: auto;
-  width: auto;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
 }
 
-/* =====================================================================
-   Responsive rules
-   ===================================================================== */
-
-/* Hide the center search on small screens */
-@media (max-width: 640px) {
-  .topbar-center {
-  }
-
-  /* make the left section flex-grow a little to avoid overflow */
-  .topbar-left {
-  }
-
-  /* ensure mobile toggle is visible on phones */
-  .topbar-mobile-toggle {
-  }
-}
 
 /* On tablet widths show search but keep the mobile toggle visible */
 @media (min-width: 641px) and (max-width: 768px) {
-  .topbar-center {
-  }
-
-  /* show mobile toggle on tablet too (if using off-canvas sidebar) */
-  .topbar-mobile-toggle {
-  }
-
-  .app-topbar-inner {
-  }
 }
 
 /* Desktop: hide the mobile toggle as sidebar is persistent */
 @media (min-width: 768px) {
-  .topbar-mobile-toggle {
-  }
-
-  .app-topbar-inner {
-  }
 }
 
 /* Breadcrumbs responsive truncation */
-.topbar-breadcrumbs {
-}
 
 /* Accessibility helpers (rely on existing tokens) */
-.app-topbar-inner :focus {
-}
+/* Breadcrumbs responsive truncation */
+
+/* Accessibility helpers (rely on existing tokens) */
+/* Breadcrumbs responsive truncation */
+
+/* Accessibility helpers (rely on existing tokens) */
+/* Breadcrumbs responsive truncation */
+
+/* Accessibility helpers (rely on existing tokens) */

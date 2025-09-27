@@ -6,9 +6,10 @@
 		flex-direction: row;
 		align-items: center;
 		align-content: center;
-		justify-content: center;
-		width: 200px;
+		width: 340px;
 		height: 72px;
+		padding: 0 16px;
+		gap: 8px;
 		
 	}
 
@@ -17,7 +18,7 @@
 		align-items: center;
 		justify-content: center;
 		width: 100%;
-		font-size: var(--title-size-md);
+		font-size: var(--title-size-lg);
 		font-weight: var(--font-weight-semibold);
 		overflow: hidden;
 		white-space: nowrap;

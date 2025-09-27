@@ -1,36 +1,32 @@
 @import "tailwindcss";
 @layer components {
 	.mode-toggle__button {
-		display: inline-flex;
+		display: flex;
 		align-items: center;
-		gap: 8px;
-		padding: 6px 10px;
-		border-radius: var(--radius-md);
+		justify-content: center;
+		width: 100%;
+		height: 100%;
 		background: transparent;
-		border: 1px solid transparent;
 		cursor: pointer;
-		transition: all var(--duration-fast);
-		color: var(--header-icon);
+
 	}
 	.mode-toggle__button:hover {
-		background: var(--header-icon-hover);
-		border-color: var(--header-border);
+		background-color: var(--badge-primary-background);
+		color: var(--badge-primary-text);
+		opacity: 1;
 	}
 	.mode-toggle__icon {
-		width: 18px;
-		height: 18px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		max-width: var(--icon-size-md);
+		max-height: var(--icon-size-md);
+		width: 100%;
 	}
 	.mode-toggle__label {
-		font-size: var(--font-size-sm);
-		font-weight: var(--font-weight-medium);
 	}
 	.mode-toggle__menu {
-		min-width: 160px;
 	}
 	.mode-toggle__menu-icon {
-		width: 16px;
-		height: 16px;
-		margin-right: 8px;
-		vertical-align: middle;
 	}
 }
