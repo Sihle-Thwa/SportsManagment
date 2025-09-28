@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Menu, X } from "lucide-react";
+import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { useSidebar } from "../../ui/sidebar-context";
 import SearchInput from "./search-input";
 import ModeToggle from "../../mode-toggle";
@@ -39,9 +39,9 @@ export default function AppTopBar() {
 						onClick={handleToggle}
 					>
 						{menuOpen ? (
-							<X className="topbar-toggle__icon" />
+							<ArrowLeftIcon className="topbar-toggle__icon" />
 						) : (
-							<Menu className="topbar-toggle__icon" />
+							<ArrowRightIcon className="topbar-toggle__icon" />
 						)}
 					</button>
 				</div>
