@@ -2,7 +2,7 @@
 import React from "react";
 import { MoreVertical } from "lucide-react";
 import { Skeleton } from "../../Skeleton/Skeleton";
-import "./cardmessagessummary.css";
+import "./messagessummary.css";
 
 type Message = {
 	id: number;
@@ -11,7 +11,7 @@ type Message = {
 	timestamp?: string;
 };
 
-export const CardMessagesSummary: React.FC<{
+export const MessagesSummary: React.FC<{
 	messages?: Message[];
 	loading?: boolean;
 }> = ({ messages = [], loading = false }) => {
@@ -51,14 +51,14 @@ export const CardMessagesSummary: React.FC<{
 
 	if (loading) {
 		return (
-			<div className="card card-messages">
-				<div className="card-header">
-					<div className="card-header-title">Messages</div>
-					<div className="card-header-actions">
+			<div className="card-messages">
+				<div className="card-messages-header">
+					<div className="card-messages-header-title">Messages</div>
+					<div className="card-messages-header-actions">
 						<Skeleton className="skeleton-icon" />
 					</div>
 				</div>
-				<div className="card-body messages-list-container">
+				<div className="messages-list-container">
 					{Array.from({ length: 4 }).map((_, i) => (
 						<div key={i} className="message-item">
 							<Skeleton className="skeleton-avatar" />
@@ -74,12 +74,12 @@ export const CardMessagesSummary: React.FC<{
 	}
 
 	return (
-		<div className="card card-messages" aria-labelledby="messages-heading">
-			<div className="card-header">
-				<div className="card-header-title" id="messages-heading">
+		<div className="card-messages" aria-labelledby="messages-heading">
+			<div className="card-messages-header">
+				<div className="card-messages-header-title" id="messages-heading">
 					Messages
 				</div>
-				<div className="card-header-actions">
+				<div className="card-messages-header-actions">
 					<button
 						className="button button-ghost button-icon-only"
 						aria-label="More actions"
@@ -89,7 +89,7 @@ export const CardMessagesSummary: React.FC<{
 				</div>
 			</div>
 
-			<div className="card-body messages-list-container" role="list">
+			<div className="messages-list-container" role="list">
 				{messageData.map((msg) => (
 					<button
 						key={msg.id}

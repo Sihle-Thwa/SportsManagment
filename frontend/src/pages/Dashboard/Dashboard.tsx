@@ -4,7 +4,7 @@ import CardGreeting from "../../components/common/Cards/Greetings/CardGreeting";
 import { CardStatistics } from "../../components/common/Cards//CardStatistics";
 import { CalendarObject } from "../../components/common/Cards/Calendar/CalendarObject";
 import { CardNotices } from "../../components/common/Cards/Notices/CardNotices";
-import { CardMessagesSummary } from "../../components/common/Cards/Messages/CardMessagesSummary";
+import { MessagesSummary } from "../../components/common/Cards/Messages/MessagesSummary";
 import { CardPlayerSummary } from "../../components/common/Cards/Users/CardPlayerSummary";
 import "./dashboard.css";
 
@@ -28,7 +28,7 @@ export default function DashboardPage() {
 				</div>
 
 				<div className="grid-col messages-col">
-					<CardMessagesSummary loading={loading} />
+					<MessagesSummary loading={loading} />
 				</div>
 
 				<div className="grid-col players-col">

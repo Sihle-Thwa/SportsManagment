@@ -1,0 +1,176 @@
+/* calendarobject.module.css */
+@import "tailwindcss";
+
+/* Basic card styling (scoped to module) */
+.cardCalendar {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	max-height: 320px;
+	padding: 0;
+	overflow: hidden;
+	border: 1px solid var(--border-default, rgba(0, 0, 0, 0.06));
+	border-radius: var(--radius-lg);
+	box-shadow: var(--shadow-md);
+}
+
+/* header/body module classes (used instead of global names) */
+.cardHeader {
+	padding: 8px 12px;
+	border-bottom: 1px solid var(--border-default);
+	display: flex;
+	align-items: center;
+}
+.cardHeaderTitle {
+	font-size: var(--title-size-default);
+	font-weight: var(--font-weight-semibold);
+	color: var(--card-foreground, var(--colour-neutral-900));
+}
+.cardBody {
+	display: flex;
+	flex-direction: column;
+	padding: 8px;
+	overflow: auto;
+}
+
+/* skeleton helper */
+.skeletonCalendar {
+	height: 320px;
+	border-radius: var(--radius-lg);
+}
+
+/* ------------ DayPicker / Tailwind overrides for this component only ------------
+   We map DayPicker keys to these class names in CalendarObject.tsx and can style them
+   here. Because we're using CSS Modules those class names are unique to this file.
+   --------------------------------------------------------------------------- */
+
+/* top-level months container (maps to 'months' key) */
+.months {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: start;
+}
+
+/* single month wrapper */
+.month {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+}
+
+/* caption (month label and nav) */
+.caption {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.caption_label {
+	font-size: var(--subtitle-size-default);
+	font-weight: var(--font-weight-medium);
+	color: var(--card-foreground, var(--colour-neutral-900));
+}
+
+/* nav buttons */
+.nav {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+.nav_button {
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	transition: var(--transition-fast);
+}
+
+/* table / grid */
+.table {
+	width: 100%;
+	table-layout: fixed;
+	border-collapse: collapse;
+}
+.head_row {
+	display: flex;
+	justify-content: space-between;
+	gap: 8px;
+}
+.head_cell {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	flex: 1 1 0;
+	font-size: var(--overline-size-default);
+	color: var(--card-foreground-secondary);
+	padding: 4px 0;
+}
+
+/* rows/cells */
+.row {
+	display: flex;
+	gap: 8px;
+}
+.cell {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	flex: 1 1 0;
+	padding: 4px 0;
+}
+
+/* day button (maps to 'day' key you pass) */
+.day {
+	width: var(--icon-size-default);
+	height: var(--icon-size-default);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: var(--transition-fast), color 150ms, transform 120ms;
+	color: var(--card-foreground, var(--colour-neutral-900));
+	font-weight: var(--font-weight-medium);
+	background: transparent;
+}
+.day:hover {
+	background: var(--background-surface-hover, rgba(0, 0, 0, 0.04));
+}
+
+/* selected day */
+.day_selected {
+	background: var(--interactive-primary, var(--colour-primary-500));
+	color: var(--text-on-primary, var(--colour-neutral-900));
+}
+
+/* today marker */
+.day_today {
+	border: 1px solid var(--border-default);
+	color: var(--text-on-primary, var(--colour-neutral-900));
+}
+
+/* outside days & disabled */
+.day_outside {
+	color: var(--card-foreground-disabled, rgba(0, 0, 0, 0.35));
+	opacity: 0.6;
+}
+.day_disabled {
+	color: var(--card-foreground-disabled, rgba(0, 0, 0, 0.35));
+	pointer-events: none;
+	opacity: 0.5;
+}
+
+/* small responsive tweaks */
+@media (max-width: 640px) {
+	.day {
+		width: var(--icon-size-sm);
+		height: var(--icon-size-sm);
+	}
+	.caption_label {
+		font-size: var(--body-size-sm);
+	}
+	.cardBody {
+		padding: 8px;
+	}
+}

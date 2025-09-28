@@ -98,6 +98,20 @@
     --z-toast: 1070;
     --z-tooltip: 1080;
     /***** End Section *****/
+
+    /***** Section: Icon Sizes *****/
+    --icon-size-sm: 16px;
+    --icon-size-default: 24px;
+    --icon-size-md: var(--icon-size-default);
+    --icon-size-lg: 32px;
+    --icon-size-xl: 48px;
+
+    /***** End Section *****/
+
+    /***** Section: Avatar Sizes *****/
+    --avatar-size-sm: 24px;
+    --avatar-size-md: 32px;
+    --avatar-size-lg: 40px;
 }
 
 /***** End Section *****/

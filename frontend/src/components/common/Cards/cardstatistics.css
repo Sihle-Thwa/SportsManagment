@@ -3,6 +3,7 @@
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		gap: 12px;
+		padding: 8px 0;
 	}
 	@media (min-width: 768px) {
 		.stats-grid {
@@ -11,28 +12,42 @@
 	}
 	.card-stat {
 		display: flex;
+		flex-direction: row;
 		align-items: center;
-		padding: 12px;
-		min-height: 80px;
-		gap: 12px;
+		border: 1px solid var(--border-default);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-md);
+		width: 100%;
 	}
+
+	.cardstat-body {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 8px;
+		width: 100%;
+	}
+
 	.cardstat-icon {
-		width: 46px;
-		height: 46px;
-		border-radius: 8px;
-		background: var(--interactive-neutral);
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		width: var(--icon-size-lg);
+		height: var(--icon-size-lg);
 		color: var(--interactive-primary);
-		flex-shrink: 0;
+		overflow: hidden;
 	}
 	.cardstat-value {
-		font-size: 1.1rem;
-		font-weight: 700;
+		font-size: var(--title-size-default);
+		font-weight: var(--font-weight-semibold);
 		color: var(--card-foreground);
 	}
 	.cardstat-title {
 		font-size: 0.85rem;
 		color: var(--card-foreground-secondary);
+	}
+
+	.cardstat-copy {
+		display: flex;
+		flex-direction: column;
 	}

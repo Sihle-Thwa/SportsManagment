@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@layer components {
+  
+    .card-player {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 320px;
+      padding: 0;
+      overflow: hidden;
+      border: 1px solid var(--border-default);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+    }
+    .card-player-header {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border-default);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .card-player-header-title {
+      font-size: var(--title-size-default);
+      font-weight: var(--font-weight-semibold);
+      color: var(--card-foreground, var(--colour-neutral-900));
+    }
+    
+    .card-player-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-player-body {
+      display: flex;
+      flex-direction: column;
+      padding: 8px;
+      overflow: auto;
+    }
+
+    .chart-body {
+      flex: 1;
+    }
+
+    .card-player-footer {
+      padding: 8px 12px;
+      border-top: 1px solid var(--border-default);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .players-cta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+}

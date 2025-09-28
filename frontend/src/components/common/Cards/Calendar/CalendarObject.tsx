@@ -1,7 +1,9 @@
+// CalendarObject.tsx
 "use client";
 import React from "react";
 import { Calendar } from "../../../ui/calendar";
 import { Skeleton } from "../../Skeleton/Skeleton";
+import "./calendarobject.css"; // CSS module import
 
 export function CalendarObject({ loading = false }: { loading?: boolean }) {
 	const [date, setDate] = React.useState<Date | undefined>(new Date());
@@ -9,27 +11,66 @@ export function CalendarObject({ loading = false }: { loading?: boolean }) {
 		setDate(new Date());
 	}, []);
 
+	// Map DayPicker class keys to module classes (only keys you want to override)
+	const classNames = {
+		// container level
+		months: "months",
+		month: "month",
+		caption: "caption",
+		caption_label: "caption_label",
+		nav: "nav",
+		nav_button: "nav_button",
+		nav_button_previous: "nav_button_previous",
+		nav_button_next: "nav_button_next",
+		table: "table",
+		head_row: "head_row",
+		head_cell: "head_cell",
+		row: "row",
+		cell: "cell",
+		// day specific
+		day: "day",
+		day_selected: "day_selected",
+		day_today: "day_today",
+		day_outside: "day_outside",
+		day_disabled: "day_disabled",
+		day_range_middle: "day_range_middle",
+		// extend or override other keys as necessary
+	};
+
 	if (loading) {
 		return (
-			<div className="card card-calendar">
-				<div className="card-header">
-					<div className="card-header-title">Calendar</div>
+			<div className="cardCalendar" aria-label="Calendar loading">
+				<div className="cardHeader">
+					<div className="cardHeaderTitle">Calendar</div>
 				</div>
-				<div className="card-body">
-					<Skeleton className="skeleton-calendar" />
+				<div className="cardBody">
+					<Skeleton className="skeletonCalendar" />
 				</div>
 			</div>
 		);
 	}
 
 	return (
-		<div className="card card-calendar" aria-label="Calendar">
-			<div className="card-header">
-				<div className="card-header-title">Calendar</div>
+		<div
+			className="cardCalendar"
+			aria-label="Calendar"
+			data-component="dashboard-calendar"
+		>
+			<div className="cardHeader">
+				<div className="cardHeaderTitle">Calendar</div>
 			</div>
-			<div className="card-body">
-				<Calendar mode="single" selected={date} onSelect={setDate} />
+
+			<div className="cardBody">
+				<Calendar
+					mode="single"
+					selected={date}
+					onSelect={setDate}
+					className="calendarRoot"
+					classNames={classNames}
+				/>
 			</div>
 		</div>
 	);
 }
+
+export default CalendarObject;

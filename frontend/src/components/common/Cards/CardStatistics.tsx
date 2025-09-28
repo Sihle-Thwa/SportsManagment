@@ -12,8 +12,8 @@ export const CardStatistics: React.FC<{ loading?: boolean }> = ({
 		return (
 			<div className="stats-grid" role="list" aria-label="Statistics">
 				{Array.from({ length: 4 }).map((_, i) => (
-					<div key={i} className="card card-stat">
-						<div className="card-body cardstat-body">
+					<div key={i} className="card-stat">
+						<div className="cardstat-body">
 							<Skeleton className="skeleton-stat-icon" />
 							<div className="cardstat-copy">
 								<Skeleton className="skeleton-stat-value" />
@@ -29,8 +29,8 @@ export const CardStatistics: React.FC<{ loading?: boolean }> = ({
 	return (
 		<div className="stats-grid" role="list" aria-label="Statistics">
 			{statsdata.map((item, idx) => (
-				<div key={item.title ?? idx} className="card card-stat" role="listitem">
-					<div className="card-body cardstat-body">
+				<div key={item.title ?? idx} className="card-stat" role="listitem">
+					<div className="cardstat-body">
 						<div className="cardstat-icon" aria-hidden>
 							{item.icon ? <item.icon /> : <div className="icon-placeholder" />}
 						</div>

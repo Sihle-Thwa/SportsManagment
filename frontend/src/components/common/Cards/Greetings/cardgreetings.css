@@ -1,36 +1,66 @@
 @import "tailwindcss";
 
-
-	/* Greeting */
+/* Greeting */
+.greeting-content {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 16px;
+	align-items: center;
+	max-height: 320px;
+	overflow: hidden;
+	padding: 0;
+	
+}
+@media (min-width: 992px) {
 	.greeting-content {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 16px;
-		align-items: center;
+		grid-template-columns: 1fr 320px;
 	}
-	@media (min-width: 992px) {
-		.greeting-content {
-			grid-template-columns: 1fr 360px;
-		}
-	}
-	.greeting-heading {
-		margin: 0 0 8px 0;
-		font-size: 1.6rem;
-		font-weight: 700;
-	}
-	.greeting-lead {
-		margin: 0 0 16px 0;
-		color: var(--card-foreground-secondary);
-		line-height: 1.45;
-	}
-	.greeting-actions {
-		display: flex;
-		gap: 12px;
-	}
+}
+.card-greeting {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 12px;
+	background: var(--card-background, var(--colour-white));
+	border: 1px solid var(--border-default, rgba(0, 0, 0, 0.06));
+	border-radius: var(--radius-lg);
+	box-shadow: var(--shadow-md);
+}
 
-	.greeting-image img {
-		width: 100%;
-		height: auto;
-		display: block;
-		object-fit: contain;
-	}
+.card-greeting-body {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	width: 100%;
+	height: 100%;}
+
+.greeting-heading {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 8px;
+	font-size: var(--headline-size-lg);
+	font-weight: var(--font-weight-bold);
+}
+.greeting-lead {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 8px;
+	color: var(--card-foreground-secondary);
+	
+}
+.greeting-actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-top: 8px;
+}
+
+.greeting-image img {
+	width: 100%;
+	height: auto;
+	display: block;
+	object-fit: contain;
+}

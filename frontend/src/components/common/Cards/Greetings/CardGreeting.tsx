@@ -9,11 +9,8 @@ export const CardGreeting: React.FC<{ loading?: boolean }> = ({
 }) => {
 	if (loading) {
 		return (
-			<section
-				className="card card-greeting"
-				aria-labelledby="greeting-heading"
-			>
-				<div className="card-body">
+			<section className="card-greeting" aria-labelledby="greeting-heading">
+				<div className="card-greeting-body">
 					<div className="greeting-content">
 						<div className="greeting-text">
 							<Skeleton className="skeleton-heading" />
@@ -33,17 +30,17 @@ export const CardGreeting: React.FC<{ loading?: boolean }> = ({
 	}
 
 	return (
-		<section className="card card-greeting" aria-labelledby="greeting-heading">
-			<div className="card-body">
+		<section className="card-greeting" aria-labelledby="greeting-heading">
+			<div className="card-greeting-body">
 				<div className="greeting-content">
 					<div className="greeting-text">
-						<h1 id="greeting-heading" className="greeting-heading">
+						<div id="greeting-heading" className="greeting-heading">
 							Welcome, Laurel Higher Secondary School Team!
-						</h1>
-						<p className="greeting-lead">
+						</div>
+						<div className="greeting-lead">
 							We’re thrilled to have you. Manage events, players, members and
 							more — all in one place.
-						</p>
+						</div>
 						<div className="greeting-actions">
 							<button className="button button-primary">Get Started</button>
 							<button className="button button-ghost">Learn More</button>
