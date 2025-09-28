@@ -11,7 +11,8 @@
     padding: 0;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;    
+    -moz-osx-font-smoothing: grayscale;   
+    text-rendering: optimizeLegibility; 
   }
 
   html {

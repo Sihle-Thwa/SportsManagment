@@ -1,6 +1,7 @@
-// app-sidebar.tsx
+// src/components/layout/SideNav/app-sidebar.tsx
+"use client";
+
 import {
-	Sidebar,
 	SidebarContent,
 	SidebarFooter,
 	SidebarHeader,
@@ -28,14 +29,14 @@ export function AppSideBar() {
 			aria-label="Primary navigation"
 			aria-expanded={!isCollapsed}
 		>
-			<Sidebar collapsible="icon" className="app-sidebar__inner">
+			<div className="app-sidebar__inner">
 				<SidebarHeader className="sidebar-header">
-					<SidebarMenuButton className="sidebar-brand">
+					<SidebarMenuButton className="sidebar-brand" aria-label="Go to home">
 						<House
 							className={[
 								"sidebar-brand-icon",
 								isCollapsed && "sidebar-brand-icon-collapsed",
-							].join("")}
+							].join(" ")}
 						/>
 						{!isCollapsed && (
 							<div className="sidebar-brand-text">U-Organise</div>
@@ -53,7 +54,7 @@ export function AppSideBar() {
 				</SidebarFooter>
 
 				<SidebarRail />
-			</Sidebar>
+			</div>
 		</div>
 	);
 }

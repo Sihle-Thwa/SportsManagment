@@ -1,3 +1,6 @@
+// src/components/layout/SideNav/nav-secondary.tsx
+"use client";
+
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 import { SidebarMenu, SidebarMenuItem } from "../../ui/sidebar";
@@ -27,19 +30,16 @@ export default function NavSecondary({
 			className={cn("nav-secondary", collapsed && "is-collapsed")}
 			aria-label="Secondary"
 		>
-			<SidebarMenu className="nav-secondary__menu sidebar-menu sidebar-menu-secondary">
+			<SidebarMenu className="nav-secondary__menu">
 				{SECONDARY.map((item) => {
 					const Icon = item.icon;
 					return (
-						<SidebarMenuItem
-							key={item.id}
-							className="nav-secondary__item sidebar-menu-item"
-						>
+						<SidebarMenuItem key={item.id} className="nav-secondary__item">
 							<NavLink
 								to={item.path}
 								className={({ isActive }) =>
 									cn(
-										"nav-secondary__link sidebar-menu-link sidebar-menu-link-secondary",
+										"nav-secondary__link",
 										isActive && "is-active",
 										collapsed && "is-collapsed",
 									)
@@ -47,13 +47,7 @@ export default function NavSecondary({
 								title={collapsed ? item.title : undefined}
 								aria-label={item.title}
 							>
-								<span
-									className={cn(
-										"nav-secondary__icon sidebar-menu-icon",
-										collapsed && "sidebar-menu-icon-collapsed",
-									)}
-									aria-hidden
-								>
+								<span className="nav-secondary__icon" aria-hidden>
 									{Icon ? (
 										<Icon size={16} />
 									) : (
@@ -61,9 +55,7 @@ export default function NavSecondary({
 									)}
 								</span>
 								{!collapsed && (
-									<span className="nav-secondary__label sidebar-menu-text">
-										{item.title}
-									</span>
+									<span className="nav-secondary__label">{item.title}</span>
 								)}
 							</NavLink>
 						</SidebarMenuItem>

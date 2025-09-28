@@ -2,28 +2,24 @@
 
 /* --------------------------------------------------------------------------
    App shell (grid) — uses semantic tokens where available
-   - first column follows sidebar width (expanded / collapsed)
-   - topbar sits flush with sidebar (no gap)
    -------------------------------------------------------------------------- */
 
 :root {
-	/* fallback tokens (can be overridden by your semantic-tokens.css) */
-	--sidebar-width-expanded: 250px;
+	--sidebar-width: 250px;
 	--sidebar-width-collapsed: 72px;
 	--topbar-height: 72px;
 }
 
-/* Shell grid: column 1 = sidebar, column 2 = content */
+/* Grid shell */
 .main-container {
 	display: grid;
-	grid-template-columns: var(--sidebar-width-expanded) 1fr;
+	grid-template-columns: var(--sidebar-width) 1fr;
 	grid-template-rows: var(--topbar-height) 1fr;
 	grid-template-areas:
 		"sidebar header"
 		"sidebar content";
 	min-height: 100vh;
 	width: 100%;
-	box-sizing: border-box;
 	background: var(--background, var(--colour-neutral-100));
 	color: var(--foreground, var(--colour-neutral-900));
 	transition: grid-template-columns var(--transition-fast)
@@ -34,49 +30,52 @@
 /* --------------------------------------------------------------------------
    Regions
    -------------------------------------------------------------------------- */
+
+/* NOTE: AppSideBar now renders the element with class .app-sidebar itself,
+   so these rules target that element directly. */
 .app-sidebar {
 	grid-area: sidebar;
 	position: relative;
-	z-index: 50;
-	width: var(--sidebar-width-expanded);
+	z-index: 50; /* lower than topbar so topbar overlays the top edge for seamlessness */
+	width: var(--sidebar-width);
 	min-width: var(--sidebar-width-collapsed);
-	box-sizing: border-box;
-	/* visual border between sidebar and content */
-	border-right: 1px solid var(--sidebar-border, var(--colour-neutral-200));
-	background: var(--sidebar-background, var(--colour-neutral-100));
+	border-right: 1px solid var(--border-default, var(--colour-neutral-200));
 }
 
-/* Ensure any fixed inner sidebar container (shadcn style) sits flush to the grid column */
+/* Align any fixed inner sidebar container to the left/top of the column so it is flush
+   with the topbar and doesn't create a visible gap. The app-sidebar CSS also sets
+   top:0; left:0 on the inner container — this preserves that behavior. */
 .app-sidebar [data-slot="sidebar-container"] {
 	left: 0 !important;
 	right: auto !important;
+	top: 0 !important;
 }
 
-/* Topbar spans the header area of the grid. Keep it sticky to top. */
+/* Topbar must sit above sidebar visually to avoid a horizontal gap.
+   When the sidebar uses a fixed inner container starting at top:0, the topbar overlays it. */
 .app-topbar {
 	grid-area: header;
 	height: var(--topbar-height);
 	min-height: var(--topbar-height);
 	display: flex;
 	align-items: center;
-	z-index: 40;
+	z-index: 60; /* higher than .app-sidebar z-index so topbar overlays the sidebar top */
 	position: sticky;
 	top: 0;
 }
 
-/* Content region occupies the remaining grid area */
+/* Content region */
 .app-content {
 	grid-area: content;
 	position: relative;
 	height: calc(100vh - var(--topbar-height));
 	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
-	background: var(--colour-neutral-50);
 	transition: height var(--transition-fast)
 		var(--easing-smooth, cubic-bezier(0.4, 0, 0.2, 1));
 }
 
-/* Constrain content width and provide page padding */
+/* Page wrapper */
 .content-wrapper {
 	width: 100%;
 	max-width: 1440px;
@@ -89,17 +88,13 @@
 
 /* --------------------------------------------------------------------------
    Sidebar collapse / expand bindings
-   - toggled by class on .main-container or data-sidebar-collapsed attribute
    -------------------------------------------------------------------------- */
 .main-container.is-collapsed {
 	grid-template-columns: var(--sidebar-width-collapsed) 1fr;
 }
-
 .main-container.is-expanded {
-	grid-template-columns: var(--sidebar-width-expanded) 1fr;
+	grid-template-columns: var(--sidebar-width) 1fr;
 }
-
-/* data attribute parity (useful for JS/third-party observers) */
 .main-container[data-sidebar-collapsed="true"] {
 	grid-template-columns: var(--sidebar-width-collapsed) 1fr;
 }
@@ -109,17 +104,15 @@
 	width: var(--sidebar-width-collapsed);
 }
 .main-container.is-expanded .app-sidebar {
-	width: var(--sidebar-width-expanded);
+	width: var(--sidebar-width);
 }
 
 /* --------------------------------------------------------------------------
-   Responsive behavior
-   - On tablet and smaller we collapse grid to one column and let sidebar
-     become off-canvas; the Sidebar component is responsible for that UI.
+   Responsive (tablet/mobile)
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
 	.main-container {
-		--sidebar-width: var(--sidebar-width-expanded);
+		--sidebar-width: 280px;
 		--sidebar-width-collapsed: 0px;
 		grid-template-columns: 1fr;
 		grid-template-rows: var(--topbar-height) 1fr;
@@ -128,18 +121,18 @@
 			"content";
 	}
 
-	/* When sidebar is open, show overlay using modal token */
+	/* show overlay when provider marks sidebar expanded */
 	.main-container.is-expanded::before {
 		content: "";
 		position: fixed;
 		inset: 0;
-		z-index: 45;
+		z-index: 55;
 		background: var(--modal-overlay, rgba(0, 0, 0, 0.45));
 		pointer-events: auto;
 	}
 
+	/* on small screens the placeholder column should not consume width */
 	.app-sidebar {
-		/* ensure the placeholder column doesn't take layout space on small screens */
 		width: 0;
 		min-width: 0;
 		border-right: none;
@@ -150,32 +143,27 @@
 	}
 }
 
-/* Mobile specifics */
 @media (max-width: 640px) {
 	:root {
 		--sidebar-width: 100vw;
 	}
-
 	.content-wrapper {
 		padding: 16px;
 		gap: 16px;
 	}
-
 	.main-container {
 		grid-template-rows: 64px 1fr;
 	}
-
 	.app-topbar {
 		height: 64px;
 	}
-
 	.app-content {
 		height: calc(100vh - 64px);
 	}
 }
 
 /* --------------------------------------------------------------------------
-   Accessibility & performance helpers
+   Accessibility & perf helpers
    -------------------------------------------------------------------------- */
 .sr-only {
 	position: absolute;
@@ -188,7 +176,6 @@
 	white-space: nowrap;
 	border: 0;
 }
-
 .focus\:not-sr-only:focus {
 	position: static;
 	width: auto;
@@ -200,7 +187,6 @@
 	white-space: normal;
 }
 
-/* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
 	.main-container,
 	.app-sidebar,
@@ -212,7 +198,6 @@
 	}
 }
 
-/* High contrast */
 @media (prefers-contrast: high) {
 	.app-sidebar,
 	.app-topbar {
@@ -220,7 +205,7 @@
 	}
 }
 
-/* Scrollbar styling (non-essential) */
+/* Scrollbar */
 .app-content::-webkit-scrollbar {
 	width: 8px;
 }

@@ -1,103 +1,137 @@
+/* src/components/layout/SideNav/app-sidebar.css */
 @import "tailwindcss";
 
 @layer components {
-	/* Hide entire sidebar on tablet & smaller (<= 768px) */
-	@media (max-width: 768px) {
-		.app-sidebar {
-			display: none !important;
-		}
-	}
-
 	.app-sidebar {
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		position: sticky;
-		height: 100vh;
-		max-width: var(--sidebar-width-expanded);
-		min-width: var(--sidebar-width-collapsed);
-		width: 100%;
-		
-		transition: var(--duration-fast) var(--ease-in);
+		grid-area: sidebar;
+		--sidebar-w: var(--sidebar-width, 250px);
+		--sidebar-collapsed-w: var(--sidebar-width-collapsed, 72px);
+		width: var(--sidebar-w);
+		min-width: var(--sidebar-collapsed-w);
+		height: 100%;
+		transition: var(--transition-fast);
+		z-index: 50;
+		position: relative;
+		overflow: visible;
+		border: none;
 	}
+
+	/* When the outer container has a fixed inner container (shadcn style),
+     ensure the fixed container aligns to the grid column and top — this
+     eliminates any visual gap between topbar and sidebar. */
+	.app-sidebar [data-slot="sidebar-container"] {
+		left: 0 !important;
+		right: auto !important;
+		top: 0 !important; /* sit at very top so it sits under topbar visually */
+		height: 100vh !important;
+		transition: width var(--transition-fast) var(--easing-smooth);
+		will-change: width, transform;
+	}
+
+	/* inner visual wrapper (if used) */
 	.app-sidebar__inner {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		justify-content: center;
 		height: 100%;
 		width: 100%;
-		padding: 0;
-		margin: 0;
 	}
 
 	.sidebar-header {
 		display: flex;
-		flex-direction: row;
 		align-items: center;
 		justify-content: center;
-		width: 100%;
+		padding: 12px;
 		height: 72px;
-		transition: var(--duration-fast) var(--ease-in);
+		border-bottom: 1px solid var(--border-default);
 	}
 
 	.sidebar-brand {
 		display: flex;
-		flex-direction: row;
 		align-items: center;
-		justify-content: center;
-		}
-
-	
-	.sidebar-brand-icon {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		overflow: hidden;
-		max-width: var(--icon-size-lg) !important;
-		min-width: var(--icon-size-md) !important;
+		gap: 8px;
+		padding: 12px;
 		width: 100%;
-		max-height: var(--icon-size-lg);
-		min-height: var(--icon-size-md);
-		height: 100%;
-		transition: var(--duration-fast) var(--ease-in);
+		border: none;
+		cursor: pointer;
+		text-decoration: none;
+		color: inherit;
 	}
-
+	/* Center icon when collapsed */
+	.sidebar-brand-icon {
+		width: var(--icon-size-lg);
+		height: var(--icon-size-lg);
+	}
 	.sidebar-brand-icon-collapsed {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
+		margin: 0 auto;
 		justify-content: center;
-		overflow: hidden;
-		width: var(--icon-size-md);
-		height: var(--icon-size-md);
-		
+		display: flex;
 	}
 
 	.sidebar-brand-text {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
+		font-weight: var(--font-weight-semibold);
+		font-size: var(--title-size-default);
 		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		font-size: var(--title-size-sm);
-		width: 100%;
-		transition: var(--duration-fast) var(--ease-in);
 	}
 
 	.sidebar-content {
-		flex-grow: 1;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		justify-content: flex-start;
-		width: 100%;
-		overflow-y: auto;
-		scroll-behavior: smooth;
-		-webkit-overflow-scrolling: touch; /* momentum scroll on iOS */
+		gap: 18px;
+		padding: 12px;
+		overflow: auto;
+		height: calc(100% - 72px - 72px); /* header + footer space */
+	}
+
+	.sidebar-footer {
+		padding: 12px;
+		border-top: 1px solid var(--border-default);
+		background: transparent;
+	}
+
+	/* Collapsed vs expanded helpers */
+	.sidebar-collapsed {
+		width: var(--sidebar-collapsed-w);
+	}
+	.sidebar-expanded {
+		width: var(--sidebar-w);
+	}
+
+	/* Make transitions smooth for the fixed inner container too, if present */
+	.sidebar-collapsed [data-slot="sidebar-container"],
+	.sidebar-expanded [data-slot="sidebar-container"] {
+		width: inherit;
+	}
+
+	/* Hide rail when collapsed to avoid stray lines */
+	.sidebar-rail {
+		opacity: 0;
+		transition: opacity 150ms;
+		pointer-events: none;
+	}
+	.app-sidebar:hover .sidebar-rail {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	/* Mobile overlay support: controlled by .is-expanded on .main-container */
+	@media (max-width: 1024px) {
+		.app-sidebar {
+			position: fixed;
+			left: 0;
+			top: 0;
+			height: 100vh;
+			transform: translateX(-100%);
+			transition: transform var(--transition-fast) var(--easing-smooth),
+				width var(--transition-fast) var(--easing-smooth);
+			box-shadow: var(--shadow-md);
+			width: var(--sidebar-w);
+		}
+
+		/* When the provider state indicates expanded, slide in */
+		.main-container.is-expanded .app-sidebar {
+			transform: translateX(0);
+		}
 	}
 }

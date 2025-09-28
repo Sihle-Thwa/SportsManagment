@@ -1,62 +1,54 @@
+/* src/components/layout/SideNav/nav-secondary.css */
 @import "tailwindcss";
-
 @layer components {
-	.nav-secondary {
-		display: none;
-	}
-	@media (min-width: 1024px) {
-		.nav-secondary {
-			display: block;
-			margin-top: auto;
-		}
-	}
-
 	.nav-secondary__menu {
-		gap: var(--space-1);
-	}
-	.nav-secondary__item {
-		list-style: none;
-	}
-
-	.nav-secondary__link {
 		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		width: 100%;
+		height: 100%;
+		margin-top: auto;
+		
+	}
+	.nav-secondary__link {
+		display: inline-flex;
 		align-items: center;
-		gap: var(--space-3);
-		padding: var(--space-2) var(--space-3);
-		border-radius: var(--radius-md);
+		gap: 12px;
+		width: 100%;
+		padding: 8px 12px;
+		color: var(--sidebar-text);
 		text-decoration: none;
-		font-size: var(--font-size-sm);
-		color: var(--sidebar-background-active);
-		background: transparent;
-			transition: var(--duration-fast) var(--ease-in);
+		transition: background 150ms var(--easing-smooth), color 150ms;
 	}
 	.nav-secondary__link:hover {
+		background: var(--sidebar-background-hover);
 		color: var(--sidebar-text-hover);
-		background: hsl(var(--background-hover) / 0.8);
-		border: 1px solid hsl(var(--border-focus, 214.3 31.8% 91.4%) / 0.8);
 	}
 	.nav-secondary__link.is-active {
-		background: var(--sidebar-background-active);
+		background: var(--interactive-neutral);
 		color: var(--sidebar-text-active);
-		border-color: var(--border-focus);
 	}
 
 	.nav-secondary__icon {
-		display: flex;
+		width: var(--icon-size-md);
+		height: var(--icon-size-md);
+		display: inline-flex;
 		align-items: center;
-		
-		width: var(--icon-size-lg);
-		height: var(--icon-size-lg);
+		justify-content: center;
+		color: var(--sidebar-icon);
 	}
 	.nav-secondary__label {
-		line-height: 1.2;
+		font-size: var(--font-size-md);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
+	.nav-secondary.is-collapsed .nav-secondary__link {
+		justify-content: center;
+		padding: 12px;
+	}
 	.nav-secondary.is-collapsed .nav-secondary__label {
 		display: none;
-	}
-	.nav-secondary__link.is-collapsed {
-		justify-content: center;
-		padding-inline: var(--space-3);
 	}
 }

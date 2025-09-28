@@ -1,3 +1,6 @@
+// src/components/layout/SideNav/nav-user.tsx
+"use client";
+
 import * as React from "react";
 import { ChevronDown, LogOut, Settings } from "lucide-react";
 import { cn } from "../../../lib/utils";
@@ -93,7 +96,6 @@ export default function NavUser({
 				)}
 			</button>
 
-			{/* Dropdown menu (basic accessible implementation) */}
 			{open && (
 				<div
 					ref={menuRef}

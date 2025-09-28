@@ -1,105 +1,78 @@
+/* src/components/layout/SideNav/nav-main.css */
 @import "tailwindcss";
-
 @layer components {
-	/* Hide on tablet & down; show from laptop (>=1024px) */
 	.nav-main {
-		display: flex;
-		flex-direction: column;
-		align-items: stretch;
-		justify-content: flex-start;
-		gap: 0;
-		padding-top: 0;
-		padding-left: 24px;
-		padding-right: 0;
-		padding-bottom: 24px;
 		width: 100%;
 	}
-	@media (max-width: 768px) {
-		.nav-main {
-			display: none !important;
-		}
-	}
-
 	.nav-main__menu {
 		display: flex;
 		flex-direction: column;
-		align-items: stretch;
-		justify-content: flex-start;
-	}
-	.nav-main__item {
-		display: flex;
-		align-items: center;
-		justify-content: flex-start;
-		width: 100%;
-		height: 36px;
-		margin-bottom: 12px;
-	}
-
-	/* Clickable area (default state) */
-	.nav-main__link {
-		display: flex;
-		align-items: center;
-		justify-content: flex-start;
 		gap: 8px;
 		width: 100%;
-		height: 100%;
 	}
-	/* Hover */
+	.nav-main__item {
+		width: 100%;
+	}
+
+	.nav-main__link {
+		display: inline-flex;
+		align-items: center;
+		gap: 12px;
+		width: 100%;
+		padding: 8px 12px;
+		border: 1px solid transparent;
+		border-radius: var(--radius-md);
+		color: var(--sidebar-text, var(--colour-neutral-900));
+		text-decoration: none;
+		transition: background var(--transition-fast) var(--easing-smooth),
+			color var(--transition-fast) var(--easing-smooth),;
+	}
+
 	.nav-main__link:hover {
-		background: var(--interactive-primary-hover);
-		color: var(--text-on-primary);
-		border: 1px solid;
-		border-color: var(--border-subtle);
-		border-radius: 8px 0px 0px 8px;
+		background: var(
+			--sidebar-background-hover,
+			var(--background-surface-hover)
+		);
+		color: var(--sidebar-text-hover, var(--colour-neutral-100));
 	}
-	/* Active */
+
 	.nav-main__link.is-active {
-		background: var(--interactive-primary-active);
-		color: var(--text-on-primary);
-		border: 1px solid;
-		border-color: var(--border-subtle);
-		border-radius: 8px 0px 0px 8px;
-		overflow: hidden;
+		background: var(--interactive-primary, var(--colour-primary-500));
+		color: var(--sidebar-text-active, var(--text-on-primary));
 	}
 
 	.nav-main__icon {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		overflow: hidden;
+		flex: 0 0 auto;
 		width: var(--icon-size-lg);
 		height: var(--icon-size-lg);
-		flex-shrink: 0;
-		margin-right: 0;
-		margin-left: 4px;
-	}
-	.nav-main__label {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
+		display: inline-flex;
+		align-items: center;
 		justify-content: center;
-		font-size: var(--button-size-lg);
-		font-weight: var(--font-weight-bold);		
-		width: 100%;
+		color: var(--sidebar-icon);
+		transition: color var(--transition-fast) var(--easing-smooth);
 	}
 
-	/* Collapsed */
-	.nav-main.is-collapsed {
+	.nav-main__link:hover .nav-main__icon,
+	.nav-main__link.is-active .nav-main__icon {
+		color: var(--sidebar-icon-hover, var(--text-on-primary));
+	}
+
+	.nav-main__label {
+		white-space: nowrap;
 		overflow: hidden;
-		padding-top: 0;
-		padding-left: 0;
-		width: var(--sidebar-width-collapsed);
-
+		text-overflow: ellipsis;
+		font-size: var(--font-size-sm);
 	}
 
+	/* collapsed state: center icons, hide text */
+	.nav-main.is-collapsed .nav-main__link {
+		justify-content: center;
+		padding: 8px;
+	}
 	.nav-main.is-collapsed .nav-main__label {
 		display: none;
 	}
-	.nav-main__link.is-collapsed {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		width: var(--sidebar-width-collapsed);
+	.nav-main.is-collapsed .nav-main__icon {
+		margin: 0;
 	}
 }

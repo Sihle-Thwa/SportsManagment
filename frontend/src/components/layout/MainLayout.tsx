@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Outlet } from "react-router-dom";
 import AppTopBar from "../layout/TopNav/app-topbar";
 import { SidebarProvider, useSidebar } from "../ui/sidebar-context";
@@ -6,12 +5,14 @@ import AppSideBar from "./SideNav/app-sidebar";
 import "./mainlayout.css";
 
 /**
- * InnerShell uses useSidebar() — must be rendered inside SidebarProvider.
+ * InnerShell uses useSidebar() (must be rendered inside SidebarProvider).
+ * Important: we do NOT wrap <AppSideBar /> in another aside — AppSideBar
+ * already renders the sidebar root element (class/id), so duplicating the
+ * wrapper created duplicate IDs and CSS targeting issues.
  */
 function InnerShell() {
 	const sidebar = useSidebar();
 	const isCollapsed = Boolean(sidebar?.isCollapsed ?? false);
-	const isExpanded = !isCollapsed;
 
 	return (
 		<div
@@ -20,31 +21,17 @@ function InnerShell() {
 				isCollapsed ? "is-collapsed" : "is-expanded"
 			}`}
 			data-sidebar-collapsed={isCollapsed ? "true" : "false"}
-			aria-hidden="false"
 		>
-			{/* Sidebar grid column (keeps slot reserved even if internal sidebar uses fixed positioning) */}
-			<aside
-				id="app-sidebar"
-				className="app-sidebar"
-				aria-label="Primary navigation"
-				aria-expanded={isExpanded}
-			>
-				<AppSideBar />
-			</aside>
+			{/* Sidebar component itself renders the element with .app-sidebar */}
+			<AppSideBar />
 
-			{/* Topbar (spans top across the content column) */}
+			{/* Topbar — header spans header area of grid */}
 			<header className="app-topbar" role="banner">
 				<AppTopBar />
 			</header>
 
-			{/* Main content */}
-			<main
-				id="main-content"
-				className="app-content"
-				role="main"
-				tabIndex={-1}
-				aria-label="Main content"
-			>
+			{/* Main content area */}
+			<main id="main-content" className="app-content" role="main" tabIndex={-1}>
 				<div className="content-wrapper">
 					<Outlet />
 				</div>

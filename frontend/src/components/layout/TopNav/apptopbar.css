@@ -4,20 +4,23 @@
 	.app-topbar-inner {
 		display: flex;
 		align-items: center;
+		overflow: hidden;
 		justify-content: space-between;
 		height: var(--topbar-height, 72px);
 		width: 100%;
-		padding: 0 16px;
+		padding: 0px 16px;
 		background: var(--sidebar-background, var(--colour-neutral-100));
-			border-bottom: 1px solid var(--border-default);
-
+		border-bottom: 1px solid var(--border-default);
 	}
 
 	.topbar-section {
 		display: flex;
 		align-items: center;
+		height: 100%;
 		justify-content: center;
-	}
+		min-width: 0;
+		overflow: hidden;
+		}
 
 	/* LEFT */
 	.topbar-left {
@@ -25,6 +28,7 @@
 		flex-direction: row;
 		justify-content: flex-start;
 		width: 100%;
+		
 	}
 
 	.topbar-brand-group {
@@ -34,8 +38,8 @@
 	}
 
 	@media (min-width: 1024px) {
-		.topbar-home__text {
-			display: inline-block;
+		.topbar-brand-group {
+			gap: 16px;
 		}
 	}
 
