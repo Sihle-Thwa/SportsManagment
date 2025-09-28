@@ -1,58 +1,104 @@
 @import "tailwindcss";
 
-/* Topbar inner layout */
-.app-topbar-inner {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	position: fixed;
-	max-width: 100vw;
-	width: 100%;
-	top: 0;
-	transition: var(--duration-fast) var(--easing-smooth);
-	z-index: 50;
-	border-bottom: 1px solid var(--border-default);
+@layer components {
+	.app-topbar-inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: var(--topbar-height, 72px);
+		width: 100%;
+		padding: 0 16px;
+		background: var(--sidebar-background, var(--colour-neutral-100));
+			border-bottom: 1px solid var(--border-default);
+
+	}
+
+	.topbar-section {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	/* LEFT */
+	.topbar-left {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		width: 100%;
+	}
+
+	.topbar-brand-group {
+		display: flex;
+		gap: 8px;
+		align-items: center;
+	}
+
+	@media (min-width: 1024px) {
+		.topbar-home__text {
+			display: inline-block;
+		}
+	}
+
+	.topbar-toggle {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 40px;
+		height: 40px;
+	}
+	.topbar-toggle:hover {
+		background: var(--sidebar-background-hover, var(--colour-neutral-500));
+	}
+	.topbar-toggle__icon {
+		width: var(--icon-size-md);
+		height: var(--icon-size-md);
+	}
+
+	/* header area */
+	.topbar-header {
+		display: flex;
+		align-items: center;
+		min-width: 0;
+		padding-left: 8px;
+	}
+	.topbar-header__title {
+		display: inline-flex;
+		font-size: var(--title-size-default);
+		font-weight: var(--font-weight-normal);
+		color: var(--text-primary);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		width: 200px;
+	}
+
+	/* CENTER */
+	.topbar-center {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		width: 100%;
+	}
+	@media (max-width: 640px) {
+		.topbar-center {
+			display: none;
+		}
+	}
+
+	/* RIGHT */
+	.topbar-right {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		align-items: center;
+		width: 100%;
+		gap: 8px;
+	}
+
+	/* small screens adjustments */
+	@media (max-width: 1024px) {
+		.app-topbar-inner {
+			padding: 0 8px;
+		}
+	}
 }
-
-.topbar-center {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-		
-}
-
-.topbar-left {
-	display: flex;
-	align-items: center;
-	justify-content: flex-start;
-	
-}
-
-/* Right: controls (theme toggle etc) */
-.topbar-right {
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-}
-
-
-/* On tablet widths show search but keep the mobile toggle visible */
-@media (min-width: 641px) and (max-width: 768px) {
-}
-
-/* Desktop: hide the mobile toggle as sidebar is persistent */
-@media (min-width: 768px) {
-}
-
-/* Breadcrumbs responsive truncation */
-
-/* Accessibility helpers (rely on existing tokens) */
-/* Breadcrumbs responsive truncation */
-
-/* Accessibility helpers (rely on existing tokens) */
-/* Breadcrumbs responsive truncation */
-
-/* Accessibility helpers (rely on existing tokens) */
-/* Breadcrumbs responsive truncation */
-
-/* Accessibility helpers (rely on existing tokens) */

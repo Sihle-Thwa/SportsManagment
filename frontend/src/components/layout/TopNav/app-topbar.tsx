@@ -1,45 +1,74 @@
-// app-topbar.tsx
-import { ModeToggle } from "../../mode-toggle";
-import { SearchInput } from "../../common/Input/search-input";
-import Header from "../Header/app-header";
-import "./apptopbar.css";
-import { useSidebar } from "../../ui/sidebar-context";
-import { Menu } from "lucide-react";
+"use client";
 
-const AppTopBar: React.FC = () => {
-	const { toggleSidebar } = useSidebar();
+import * as React from "react";
+import { Menu, X } from "lucide-react";
+import { useSidebar } from "../../ui/sidebar-context";
+import SearchInput from "./search-input";
+import ModeToggle from "../../mode-toggle";
+import "./apptopbar.css";
+import { useLocation } from "react-router-dom";
+
+export default function AppTopBar() {
+	const { toggleSidebar, isCollapsed } = useSidebar();
+	const location = useLocation();
+	const pathname = location.pathname;
+
+	// local UI state to animate button (the sidebar provider also ultimately controls layout)
+	const [menuOpen, setMenuOpen] = React.useState<boolean>(!isCollapsed);
+
+	React.useEffect(() => {
+		// Keep the local icon state in sync when provider changes
+		setMenuOpen(!isCollapsed);
+	}, [isCollapsed]);
+
+	const handleToggle = () => {
+		toggleSidebar();
+		setMenuOpen((s) => !s);
+	};
 
 	return (
 		<div className="app-topbar-inner" role="region" aria-label="Top navigation">
-			{/* Left: navigation trigger (mobile) + breadcrumbs/header */}
-			<div className="topbar-left">
-				<button
-					type="button"
-					aria-label="Toggle sidebar"
-					className="topbar-mobile-toggle"
-					onClick={() => toggleSidebar()}
-					title="Toggle sidebar"
-				>
-					<Menu />
-				</button>
+			{/* LEFT: Brand/Home + menu toggle + page title (Header) */}
+			<div className="topbar-section topbar-left">
+				<div className="topbar-brand-group">
+					<button
+						type="button"
+						aria-label={menuOpen ? "Close sidebar" : "Open sidebar"}
+						aria-pressed={menuOpen}
+						className="topbar-toggle"
+						onClick={handleToggle}
+					>
+						{menuOpen ? (
+							<X className="topbar-toggle__icon" />
+						) : (
+							<Menu className="topbar-toggle__icon" />
+						)}
+					</button>
+				</div>
 
-				{/* Breadcrumbs / page title (kept in Header component) */}
-				<div className="topbar-breadcrumbs">
-					<Header />
+				{/* inline header (page title / breadcrumb) */}
+				<div className="topbar-header">
+					<div className="topbar-header__title" title={pathname ?? "/"}>
+						{/* lightweight title from pathname; for richer header use app-header */}
+						{pathname
+							.split("/")
+							.filter(Boolean)
+							.map(
+								(segment) => segment.charAt(0).toUpperCase() + segment.slice(1),
+							)}
+					</div>
 				</div>
 			</div>
 
-			{/* Center: search (hidden on small screens) */}
-			<div className="topbar-center" aria-label="Search">
+			{/* CENTER: search (hidden on small screens) */}
+			<div className="topbar-section topbar-center" aria-label="Site search">
 				<SearchInput />
 			</div>
 
-			{/* Right: utilities (theme toggle, other actions) */}
-			<div className="topbar-right">
+			{/* RIGHT: controls */}
+			<div className="topbar-section topbar-right">
 				<ModeToggle />
 			</div>
 		</div>
 	);
-};
-
-export default AppTopBar;
+}

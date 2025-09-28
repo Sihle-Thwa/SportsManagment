@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@layer components {
+	.mode-toggle__button {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 6px 12px;
+		border-radius: var(--radius-md);
+		background: transparent;
+		border: 1px solid transparent;
+		color: var(--text-primary);
+	}
+	.mode-toggle__button:hover {
+		background: var(--surface-background-hover);
+	}
+	.mode-toggle__icon {
+		width: var(--icon-size-sm);
+		height: var(--icon-size-sm);
+	}
+}

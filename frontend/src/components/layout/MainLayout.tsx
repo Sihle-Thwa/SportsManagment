@@ -1,9 +1,13 @@
+import * as React from "react";
 import { Outlet } from "react-router-dom";
 import AppTopBar from "../layout/TopNav/app-topbar";
 import { SidebarProvider, useSidebar } from "../ui/sidebar-context";
 import AppSideBar from "./SideNav/app-sidebar";
 import "./mainlayout.css";
 
+/**
+ * InnerShell uses useSidebar() — must be rendered inside SidebarProvider.
+ */
 function InnerShell() {
 	const sidebar = useSidebar();
 	const isCollapsed = Boolean(sidebar?.isCollapsed ?? false);
@@ -18,17 +22,20 @@ function InnerShell() {
 			data-sidebar-collapsed={isCollapsed ? "true" : "false"}
 			aria-hidden="false"
 		>
+			{/* Sidebar grid column (keeps slot reserved even if internal sidebar uses fixed positioning) */}
 			<aside
 				id="app-sidebar"
+				className="app-sidebar"
 				aria-label="Primary navigation"
 				aria-expanded={isExpanded}
 			>
 				<AppSideBar />
 			</aside>
 
-			<div role="banner">
+			{/* Topbar (spans top across the content column) */}
+			<header className="app-topbar" role="banner">
 				<AppTopBar />
-			</div>
+			</header>
 
 			{/* Main content */}
 			<main

@@ -18,7 +18,7 @@
 		align-items: center;
 		justify-content: center;
 		width: 100%;
-		font-size: var(--title-size-lg);
+		font-size: var(--title-size-default);
 		font-weight: var(--font-weight-semibold);
 		overflow: hidden;
 		white-space: nowrap;
