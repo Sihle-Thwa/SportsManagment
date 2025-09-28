@@ -1,154 +1,38 @@
-@import "tailwindcss";
-
-@layer components {
-	.cardstat-container {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		max-width: 320px;
-		width: 100%;
-		min-width: 220px;
-		border: 1px solid;
-		border-radius: var(--radius-lg);
-		border-color: var(--border-default);
+/* Stats */
+	.stats-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
 	}
-
-	.cardstat-content {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-between;
-		width: 100%;
+	@media (min-width: 768px) {
+		.stats-grid {
+			grid-template-columns: repeat(4, 1fr);
+		}
 	}
-
-	.cardstat-body {
+	.card-stat {
 		display: flex;
-		flex-direction: column;
 		align-items: center;
-		justify-content: center;
-		width: 100%;
+		padding: 12px;
+		min-height: 80px;
+		gap: 12px;
 	}
-
 	.cardstat-icon {
-		color: var(--colour-accent);
+		width: 46px;
+		height: 46px;
+		border-radius: 8px;
+		background: var(--interactive-neutral);
 		display: flex;
-		flex-direction: column;
 		align-items: center;
-		max-width: 40px;
-		width: 100%;
+		justify-content: center;
+		color: var(--interactive-primary);
+		flex-shrink: 0;
 	}
-
-	.cardstat-title {
-		font-size: var(--caption-size-md);
-		font-weight: var(--font-weight-medium);
-		color: var(--text-primary);
-		line-height: var(--line-height-normal);
-	}
-
 	.cardstat-value {
-		font-size: var(--title-size-md);
-		font-weight: var(--font-weight-semibold);
-		color: var(--text-primary);
+		font-size: 1.1rem;
+		font-weight: 700;
+		color: var(--card-foreground);
 	}
-}
-
-@media screen and (max-width: 425px) {
-	.cardstat-container {
-		max-width: 288px;
-		width: 100%;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-
-	}
-
-	.cardstat-content {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-	}
-
-	.cardstat-body {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-	}
-
-	.cardstat-icon {
-		color: var(--colour-accent);
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		max-width: 28px;
-		width: 100%;
-	}
-
 	.cardstat-title {
-		font-size: var(--caption-size-sm);
-		font-weight: var(--font-weight-medium);
-		color: var(--text-primary);
-		line-height: var(--line-height-normal);
+		font-size: 0.85rem;
+		color: var(--card-foreground-secondary);
 	}
-
-	.cardstat-value {
-		font-size: var(--title-size-sm);
-		font-weight: var(--font-weight-semibold);
-		color: var(--text-primary);
-	}
-}
-
-@media screen and (max-width: 768px) {
-	.cardstat-container {
-		max-width: 288px;
-		width: 100%;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-
-	}
-
-	.cardstat-content {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-	}
-
-	.cardstat-body {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-	}
-
-	.cardstat-icon {
-		color: var(--colour-accent);
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		max-width: 28px;
-		width: 100%;
-	}
-
-	.cardstat-title {
-		font-size: var(--caption-size-sm);
-		font-weight: var(--font-weight-medium);
-		color: var(--text-primary);
-		line-height: var(--line-height-normal);
-	}
-
-	.cardstat-value {
-		font-size: var(--title-size-sm);
-		font-weight: var(--font-weight-semibold);
-		color: var(--text-primary);
-	}
-}

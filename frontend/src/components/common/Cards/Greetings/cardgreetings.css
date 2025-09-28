@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+
+	/* Greeting */
+	.greeting-content {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 16px;
+		align-items: center;
+	}
+	@media (min-width: 992px) {
+		.greeting-content {
+			grid-template-columns: 1fr 360px;
+		}
+	}
+	.greeting-heading {
+		margin: 0 0 8px 0;
+		font-size: 1.6rem;
+		font-weight: 700;
+	}
+	.greeting-lead {
+		margin: 0 0 16px 0;
+		color: var(--card-foreground-secondary);
+		line-height: 1.45;
+	}
+	.greeting-actions {
+		display: flex;
+		gap: 12px;
+	}
+
+	.greeting-image img {
+		width: 100%;
+		height: auto;
+		display: block;
+		object-fit: contain;
+	}

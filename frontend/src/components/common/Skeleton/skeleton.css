@@ -1,0 +1,101 @@
+@import "tailwindcss";
+/* ---------------------------
+     Skeleton + shimmer
+     --------------------------- */
+.skeleton {
+	background: linear-gradient(
+		90deg,
+		rgba(255, 255, 255, 0.03) 0%,
+		rgba(0, 0, 0, 0.03) 25%,
+		rgba(255, 255, 255, 0.03) 50%
+	);
+	border-radius: 6px;
+	overflow: hidden;
+	position: relative;
+	isolation: isolate;
+}
+
+.skeleton::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		90deg,
+		rgba(255, 255, 255, 0.03) 0%,
+		rgba(255, 255, 255, 0.12) 50%,
+		rgba(255, 255, 255, 0.03) 100%
+	);
+	transform: translateX(-100%);
+	animation: shimmer 1200ms linear infinite;
+	opacity: 0.9;
+}
+
+@keyframes shimmer {
+	100% {
+		transform: translateX(100%);
+	}
+}
+
+/* skeleton variations */
+.skeleton-heading {
+	height: 28px;
+	width: 60%;
+	border-radius: 8px;
+	margin-bottom: 10px;
+}
+.skeleton-line {
+	height: 12px;
+	width: 100%;
+	border-radius: 6px;
+	margin-bottom: 8px;
+}
+.skeleton-small-line {
+	height: 10px;
+	width: 70%;
+	border-radius: 6px;
+	margin-bottom: 8px;
+}
+.skeleton-image {
+	height: 160px;
+	width: 100%;
+	border-radius: 8px;
+}
+.skeleton-stat-icon {
+	width: 46px;
+	height: 46px;
+	border-radius: 8px;
+	margin-right: 12px;
+}
+.skeleton-stat-value {
+	height: 18px;
+	width: 60%;
+	border-radius: 8px;
+}
+.skeleton-avatar {
+	width: 44px;
+	height: 44px;
+	border-radius: 8px;
+	margin-right: 12px;
+}
+.skeleton-line.short {
+	width: 50%;
+}
+.skeleton-icon {
+	width: 36px;
+	height: 36px;
+	border-radius: 8px;
+}
+.skeleton-chart {
+	height: 180px;
+	width: 100%;
+	border-radius: 8px;
+}
+.skeleton-button {
+	height: 36px;
+	width: 120px;
+	border-radius: 8px;
+}
+.skeleton-button.small {
+	height: 36px;
+	width: 88px;
+}

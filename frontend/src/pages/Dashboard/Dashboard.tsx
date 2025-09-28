@@ -1,22 +1,48 @@
-// src/pages/Dashboard.tsx
+"use client";
 import React from "react";
+import CardGreeting from "../../components/common/Cards/Greetings/CardGreeting";
+import { CardStatistics } from "../../components/common/Cards//CardStatistics";
+import { CalendarObject } from "../../components/common/Cards/Calendar/CalendarObject";
+import { CardNotices } from "../../components/common/Cards/Notices/CardNotices";
+import { CardMessagesSummary } from "../../components/common/Cards/Messages/CardMessagesSummary";
+import { CardPlayerSummary } from "../../components/common/Cards/Users/CardPlayerSummary";
 import "./dashboard.css";
-import { CardStatistics } from "../../components/common/Cards/CardStatistics";
 
-const Dashboard: React.FC = () => {
+export default function DashboardPage() {
+	// simulate loading for demo; replace with real data flow flags
+	const [loading, setLoading] = React.useState(true);
+	React.useEffect(() => {
+		const t = setTimeout(() => setLoading(false), 900);
+		return () => clearTimeout(t);
+	}, []);
+
 	return (
-		<div className="dashboard-container">
-			<div className="dashboard-content">
-				<div className="dashboard-content-header">
-					<div className="dashboard-content-header-items">
-						<CardStatistics />
-					</div>
+		<div className="dashboard">
+			<div className="dashboard-grid">
+				<div className="grid-col greeting-col">
+					<CardGreeting loading={loading} />
 				</div>
-				<div className="dashboard-content-main"></div>
-				<div className="dashboard-content-secondary"></div>
+
+				<div className="grid-col stats-col">
+					<CardStatistics loading={loading} />
+				</div>
+
+				<div className="grid-col messages-col">
+					<CardMessagesSummary loading={loading} />
+				</div>
+
+				<div className="grid-col players-col">
+					<CardPlayerSummary loading={loading} />
+				</div>
+
+				<div className="grid-col calendar-col">
+					<CalendarObject loading={loading} />
+				</div>
+
+				<div className="grid-col notices-col">
+					<CardNotices loading={loading} />
+				</div>
 			</div>
 		</div>
 	);
-};
-
-export default Dashboard;
+}

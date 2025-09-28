@@ -1,21 +1,35 @@
-import * as React from "react";
+"use client";
+import React from "react";
 import { Calendar } from "../../../ui/calendar";
+import { Skeleton } from "../../Skeleton/Skeleton";
 
-export function CalendarObject() {
+export function CalendarObject({ loading = false }: { loading?: boolean }) {
 	const [date, setDate] = React.useState<Date | undefined>(new Date());
-	// Initialize the date state with the current date
 	React.useEffect(() => {
 		setDate(new Date());
 	}, []);
 
-	return (
-		<Calendar
-			mode="single"
-			selected={date}
-			onSelect={setDate}
-			className="w-full h-full "
+	if (loading) {
+		return (
+			<div className="card card-calendar">
+				<div className="card-header">
+					<div className="card-header-title">Calendar</div>
+				</div>
+				<div className="card-body">
+					<Skeleton className="skeleton-calendar" />
+				</div>
+			</div>
+		);
+	}
 
-			/*Fix Calendar Date Styling to match branding */
-		/>
+	return (
+		<div className="card card-calendar" aria-label="Calendar">
+			<div className="card-header">
+				<div className="card-header-title">Calendar</div>
+			</div>
+			<div className="card-body">
+				<Calendar mode="single" selected={date} onSelect={setDate} />
+			</div>
+		</div>
 	);
 }
