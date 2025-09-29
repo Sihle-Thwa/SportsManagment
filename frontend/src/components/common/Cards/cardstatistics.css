@@ -2,7 +2,7 @@
 	.stats-grid {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		gap: 12px;
+		gap: 8px;
 		padding: 8px 0;
 	}
 	@media (min-width: 768px) {
@@ -17,7 +17,8 @@
 		border: 1px solid var(--border-default);
 		border-radius: var(--radius-lg);
 		box-shadow: var(--shadow-md);
-		width: 100%;
+		overflow: hidden;
+		
 	}
 
 	.cardstat-body {

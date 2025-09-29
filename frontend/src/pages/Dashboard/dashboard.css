@@ -23,11 +23,14 @@
 
 	@media (min-width: 1200px) {
 		.dashboard-grid {
-			grid-template-columns: 1.6fr 1fr 420px;
-			gap: 24px;
+			grid-template-columns: 1fr 1fr 1fr;
+			gap: 12px;
 		}
 		.greeting-col {
-			grid-column: 1 / span 3;
+			grid-column: 1 / span 2;
+		}
+		.calendar-col {
+			grid-column: 3 / span 1;
 		}
 		.stats-col {
 			grid-column: 1 / span 3;
@@ -38,19 +41,14 @@
 		.players-col {
 			grid-column: 2 / span 1;
 		}
-		.calendar-col {
-			grid-column: 3 / span 1;
-		}
+		
 		.notices-col {
 			grid-column: 3 / span 1;
 		}
 	}
 
 	/* Chart & footer CTA */
-	.chart-body {
-		padding: 12px 16px;
-		min-height: 220px;
-	}
+	
 	.players-cta {
 		display: flex;
 		gap: 8px;

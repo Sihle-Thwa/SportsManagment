@@ -22,6 +22,9 @@ export default function DashboardPage() {
 				<div className="grid-col greeting-col">
 					<CardGreeting loading={loading} />
 				</div>
+				<div className="grid-col calendar-col">
+					<CalendarObject loading={loading} />
+				</div>
 
 				<div className="grid-col stats-col">
 					<CardStatistics loading={loading} />
@@ -33,10 +36,6 @@ export default function DashboardPage() {
 
 				<div className="grid-col players-col">
 					<CardPlayerSummary loading={loading} />
-				</div>
-
-				<div className="grid-col calendar-col">
-					<CalendarObject loading={loading} />
 				</div>
 
 				<div className="grid-col notices-col">

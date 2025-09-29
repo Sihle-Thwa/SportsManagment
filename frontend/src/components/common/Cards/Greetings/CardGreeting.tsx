@@ -30,7 +30,7 @@ export const CardGreeting: React.FC<{ loading?: boolean }> = ({
 	}
 
 	return (
-		<section className="card-greeting" aria-labelledby="greeting-heading">
+		<div className="card-greeting" aria-labelledby="greeting-heading">
 			<div className="card-greeting-body">
 				<div className="greeting-content">
 					<div className="greeting-text">
@@ -38,12 +38,9 @@ export const CardGreeting: React.FC<{ loading?: boolean }> = ({
 							Welcome, Laurel Higher Secondary School Team!
 						</div>
 						<div className="greeting-lead">
-							We’re thrilled to have you. Manage events, players, members and
-							more — all in one place.
-						</div>
-						<div className="greeting-actions">
-							<button className="button button-primary">Get Started</button>
-							<button className="button button-ghost">Learn More</button>
+							Manage your teams operations with ease. Stay updated on events,
+							players, members, and more - all in one place. Let’s keep shaping
+							a brighter future together!
 						</div>
 					</div>
 
@@ -55,7 +52,7 @@ export const CardGreeting: React.FC<{ loading?: boolean }> = ({
 					</div>
 				</div>
 			</div>
-		</section>
+		</div>
 	);
 };
 
