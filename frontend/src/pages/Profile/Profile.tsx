@@ -1,41 +1,45 @@
-import React from 'react';
+// src/pages/profile/Profile.tsx
+"use client";
+import React from "react";
 import { UserInfoForm } from "../../components/Form/UserInfoForm";
-import { FileUploadCard } from '../../components/FileUpload';
-
+import { FileUploadCard } from "../../components/FileUpload";
+import "./profile.css";
 
 const Profile: React.FC = () => {
+	const handleSubmit = (data: unknown) => {
+		console.log("Form submitted with data:", data);
+	};
 
-  // Removed unused state: formData and isSubmitted
+	return (
+		<div className="profileRoot">
+			<header className="profileHeader" aria-labelledby="profile-title">
+				<div>
+					<h1 id="profile-title" className="profileTitle">
+						User Profile
+					</h1>
+					<p className="profileSubtitle">
+						View and manage members of your organisation. Update personal
+						details, upload a profile photo, and adjust contact information.
+					</p>
+				</div>
+			</header>
 
-  const handleSubmit = (data: unknown) => {
-    console.log('Form submitted with data:', data);
-    // Removed setFormData and setIsSubmitted as their state is no longer used
-  };
+			<section className="profileGrid" aria-label="Profile editor">
+				<div className={`profileColumn uploadCol`}>
+					<FileUploadCard
+						description="Upload a picture for your profile (max 800×400, JPG/PNG/SVG/GIF)"
+						onFileSelect={(file: File) => {
+							console.log("File selected:", file.name);
+						}}
+					/>
+				</div>
 
-
-  return (
-    <div className="space-y-6 p-6 ">
-      <div className="mb-6">
-        <h1 >User Profile</h1>
-        <p >View and Manage all members of your organisation</p>
-      </div>
-      <div className="flex gap-6 md:flex-row flex-col">
-        <div className="lg:flex-9/12 md:flex-3/4 flex-1/2">
-          <FileUploadCard description={'Upload a picture for your profile picture'} onFileSelect={function (): void {
-            throw new Error('Function not implemented.');
-          }} />
-        </div>
-        <div className="lg:flex-9/12 md:flex-3/4 flex-1/2">
-          <UserInfoForm onSubmit={handleSubmit} />
-        </div>
-
-      </div>
-
-
-    </div>
-  );
+				<div className={`profileColumn formCol`}>
+					<UserInfoForm onSubmit={handleSubmit} />
+				</div>
+			</section>
+		</div>
+	);
 };
 
 export default Profile;
-// This code defines a Profile component that renders a user profile page with a form for user information and a file upload card for profile picture uploads. The form submission is handled by the handleSubmit function, which currently logs the submitted data to the console.
-// The component uses Tailwind CSS for styling and is structured to be responsive, adapting to different screen sizes with flexbox. The FileUploadCard component is used to allow users to upload a profile picture, while the UserInfoForm component collects user information such as name, email, and contact details.
