@@ -14,161 +14,75 @@
 
 .profileRoot {
 	width: 100%;
-	box-sizing: border-box;
-	padding: 24px;
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-	background: var(--background-canvas, var(--colour-neutral-50));
-	color: var(--text-on-background, var(--colour-neutral-900));
-	min-height: 100%;
+	max-width: 1440px;
+	margin: 0 auto;
 }
 
 .profileHeader {
 	display: flex;
-	align-items: flex-start;
-	gap: 12px;
+	align-items: start;
+	border-bottom: 1px solid var(--border-default);
 }
 
 .profileTitle {
 	margin: 0;
-	font-size: 1.6rem;
-	font-weight: 700;
-	color: var(--card-foreground);
+	font-size: var(--title-size-default);
+	font-weight: var(--font-weight-normal);
+	color: var(--text-primary);
 }
 
 .profileSubtitle {
 	margin-top: 6px;
+	margin-bottom: 6px;
 	color: var(--card-foreground-secondary);
-	font-size: 0.95rem;
-	line-height: 1.4;
-	max-width: 80ch;
+	font-size: var(--subtitle-size-default);
+	font-weight: var(--font-weight-light);
 }
 
 /* Grid */
 .profileGrid {
 	display: grid;
 	grid-template-columns: 1fr;
-	gap: 20px;
+	gap: 12px;
 	align-items: start;
-	width: 100%;
 }
 
 @media (min-width: 768px) {
 	.profileGrid {
-		grid-template-columns: 380px 1fr;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 	}
 }
+	@media (min-width: 1200px) {
+		.profileGrid {
+			grid-template-columns: 1fr 1fr 1fr;
+			gap: 12px;
+		}
+		
+		.uploadCol {
+			grid-column: 1 / span 1;
+		}
+		.formCol {
+			grid-column: 2 / span 1;
+		}
+
+	}
 
 .profileColumn {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	gap: 16px;
+	overflow: hidden;
+	gap: 12px;
+
 }
 .uploadCol {
-	align-self: start;
+	align-self: stretch;
+	width: 100%;
+
 }
 .formCol {
 	align-self: stretch;
-}
-
-/* Card helpers (kept local to profile module) */
-.cardBase {
-	background: var(--card-background);
-	border: 1px solid var(--card-border);
-	border-radius: 12px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-	overflow: hidden;
-	display: flex;
-	flex-direction: column;
 	width: 100%;
-}
-
-.cardHeader {
-	padding: 16px;
-	border-bottom: 1px solid var(--card-border);
-}
-.cardTitle {
-	font-size: 1rem;
-	font-weight: 600;
-	color: var(--card-foreground);
-	margin-bottom: 6px;
-}
-.cardDescription {
-	font-size: 0.875rem;
-	color: var(--card-foreground-secondary);
-	margin: 0;
-}
-
-.cardBody {
-	padding: 16px;
-}
-
-/* File upload / dropzone */
-.fileDropzone {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 12px;
-	border-radius: 10px;
-	border: 2px dashed var(--border-default, var(--card-border));
-	padding: 18px;
-	min-height: 140px;
-	transition: background 150ms var(--easing-smooth),
-		border-color 150ms var(--easing-smooth);
-	background: transparent;
-}
-
-.fileDropzone:focus-within,
-.fileDropzone:hover {
-	background: var(--background-surface-hover, rgba(0, 0, 0, 0.03));
-	border-color: var(--interactive-primary);
-}
-
-.filePreview {
-	width: 100%;
-	max-height: 240px;
-	overflow: hidden;
-	border-radius: 8px;
-}
-.filePreview img {
-	width: 100%;
-	height: auto;
-	object-fit: cover;
-	display: block;
-}
-
-.fileMeta {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 12px;
-	margin-top: 8px;
-}
-.fileError {
-	color: var(--interactive-error);
-	font-size: 0.875rem;
-	margin-top: 8px;
-	white-space: pre-wrap;
-}
-
-/* Buttons helpers (local) */
-.btnBase {
-	background: var(--interactive-primary);
-	color: var(--text-on-primary, #fff);
-	border: 1px solid transparent;
-	padding: 8px 12px;
-	border-radius: 8px;
-	cursor: pointer;
-	font-weight: 600;
-	transition: background 150ms;
-}
-
-.btnGhost {
-	background: transparent;
-	color: var(--card-foreground);
-	border: 1px solid var(--card-border);
 }
 
 /* Small screens */
@@ -180,11 +94,5 @@
 	.profileTitle {
 		font-size: 1.25rem;
 	}
-	.cardBody {
-		padding: 12px;
-	}
-	.fileDropzone {
-		min-height: 120px;
-		padding: 14px;
-	}
+	
 }

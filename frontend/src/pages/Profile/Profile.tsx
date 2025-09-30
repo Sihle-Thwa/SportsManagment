@@ -12,17 +12,17 @@ const Profile: React.FC = () => {
 
 	return (
 		<div className="profileRoot">
-			<header className="profileHeader" aria-labelledby="profile-title">
+			<div className="profileHeader" aria-labelledby="profile-title">
 				<div>
-					<h1 id="profile-title" className="profileTitle">
+					<div id="profile-title" className="profileTitle">
 						User Profile
-					</h1>
-					<p className="profileSubtitle">
+					</div>
+					<div className="profileSubtitle">
 						View and manage members of your organisation. Update personal
 						details, upload a profile photo, and adjust contact information.
-					</p>
+					</div>
 				</div>
-			</header>
+			</div>
 
 			<section className="profileGrid" aria-label="Profile editor">
 				<div className={`profileColumn uploadCol`}>

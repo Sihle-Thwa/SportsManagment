@@ -1,0 +1,116 @@
+/* fileuploadcard.css */
+@import "tailwindcss";
+
+@layer components {
+	.cardBase {
+		background: var(--card-background);
+		border: 1px solid var(--border-default);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-default);
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	.cardHeader {
+		padding: 12px;
+		border-bottom: 1px solid var(--card-border);
+	}
+	.cardHeader-content {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 0 auto;
+	}
+	.cardHeader-icon {
+		width: var(--icon-size-lg);
+		height: var(--icon-size-lg);
+	}
+	.cardTitle {
+		font-size: 1rem;
+		font-weight: 600;
+		color: var(--card-foreground);
+		margin-bottom: 6px;
+	}
+	.cardDescription {
+		font-size: 0.875rem;
+		color: var(--card-foreground-secondary);
+		margin: 0;
+	}
+	.cardBody {
+		padding: 16px;
+	}
+
+	.fileDropzone {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 12px;
+		border-radius: var(--radius-md);
+		border: 2px dashed var(--border-default);
+		padding: 18px;
+		min-height: 280px;
+		transition: var(--transition-fast) var(--easing-smooth);
+	}
+	.fileDropzone:focus-within,
+	.fileDropzone:hover {
+		background: var(--background-surface-hover, rgba(0, 0, 0, 0.03));
+		border-color: var(--interactive-primary);
+	}
+
+	.filePreview {
+		width: 100%;
+		max-height: 240px;
+		overflow: hidden;
+		border-radius: 8px;
+	}
+	.filePreview img {
+		width: 100%;
+		height: auto;
+		object-fit: cover;
+		display: block;
+	}
+
+	.fileMeta {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		margin-top: 8px;
+	}
+	.fileError {
+		color: var(--interactive-error);
+		font-size: 0.875rem;
+		margin-top: 8px;
+		white-space: pre-wrap;
+	}
+
+	.btnBase {
+		background: var(--interactive-primary);
+		color: var(--text-on-primary, #fff);
+		border: 1px solid transparent;
+		padding: 8px 12px;
+		border-radius: 8px;
+		cursor: pointer;
+		font-weight: 600;
+	}
+	.btnGhost {
+		background: transparent;
+		color: var(--card-foreground);
+		border: 1px solid var(--card-border);
+	}
+
+	@media (max-width: 640px) {
+		.cardBody {
+			padding: 12px;
+		}
+		.fileDropzone {
+			min-height: 120px;
+			padding: 14px;
+		}
+		.cardHeader {
+			padding: 12px;
+		}
+	}
+}
