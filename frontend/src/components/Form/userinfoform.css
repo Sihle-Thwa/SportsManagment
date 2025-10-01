@@ -1,7 +1,7 @@
-/* userinfoform.css */
+/* userinfoform.module.css */
 @import "tailwindcss";
 
-.cardBase {
+.cardBase_userInfo {
 	background: var(--card-background);
 	border: 1px solid var(--card-border);
 	border-radius: 12px;
@@ -9,19 +9,19 @@
 	display: flex;
 	flex-direction: column;
 }
-.cardHeader {
+.cardHeader_userInfo {
 	padding: 16px;
 	border-bottom: 1px solid var(--card-border);
 }
-.cardTitle {
+.cardTitle_userInfo {
 	font-size: 1rem;
 	font-weight: 600;
 	color: var(--card-foreground);
 }
-.cardBody {
+.cardBody_userInfo {
 	padding: 16px;
 }
-.cardFooter {
+.cardFooter_userInfo {
 	padding: 12px 16px;
 	border-top: 1px solid var(--card-border);
 	display: flex;
@@ -30,10 +30,10 @@
 }
 
 @media (max-width: 640px) {
-	.cardBody {
+	.cardBody_userInfo {
 		padding: 12px;
 	}
-	.cardHeader {
+	.cardHeader_userInfo {
 		padding: 12px;
 	}
 }

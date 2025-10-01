@@ -1,17 +1,9 @@
 // src/components/FileUpload/FileUploadCard.tsx
 "use client";
 import React, { useState } from "react";
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from "../../components/ui/card";
-import { Button } from "../common/Button/Button";
 import { Upload } from "lucide-react";
-import "./fileuploadcard.css";
 import { cn } from "../../lib/utils";
+import "./fileuploadcard.css";
 
 export interface FileUploadCardProps {
 	title?: string;
@@ -112,20 +104,22 @@ export const FileUploadCard: React.FC<FileUploadCardProps> = ({
 		e.preventDefault();
 
 	return (
-		<Card className="cardBase" role="region" aria-labelledby="upload-title">
-			<CardHeader className="cardHeader">
-				<div className="flex items-center justify-center mb-2">
-					<Upload className="h-10 w-10" />
+		<div
+			className="cardBase_fileUpload"
+			role="region"
+			aria-labelledby="upload-title"
+		>
+			<div className="cardHeader_fileUpload">
+				<div className="cardHeader-content_fileUpload">
+					<Upload className="cardHeader-icon_fileUpload" />
 				</div>
-				<CardTitle id="upload-title" className="cardTitle">
+				<div id="upload-title" className="cardTitle_fileUpload">
 					{title}
-				</CardTitle>
-				<CardDescription className="cardDescription">
-					{description}
-				</CardDescription>
-			</CardHeader>
+				</div>
+				<div className="cardDescription_fileUpload">{description}</div>
+			</div>
 
-			<CardContent className="cardBody">
+			<div className="cardBody_fileUpload">
 				{selectedFile ? (
 					<div>
 						{preview && (
@@ -136,19 +130,19 @@ export const FileUploadCard: React.FC<FileUploadCardProps> = ({
 
 						<div className="fileMeta" aria-live="polite">
 							<div>
-								<div className="text-sm font-medium">{selectedFile.name}</div>
-								<div className="text-sm text-muted">
+								<div className="fileMeta-name">{selectedFile.name}</div>
+								<div className="fileMeta-size">
 									{(selectedFile.size / 1024).toFixed(2)} KB
 								</div>
 							</div>
 
 							<div style={{ display: "flex", gap: 8 }}>
-								<Button
+								<button
 									className={cn("btnBase", "btnGhost")}
 									onClick={handleRemove}
 								>
 									Remove
-								</Button>
+								</button>
 							</div>
 						</div>
 					</div>
@@ -174,14 +168,10 @@ export const FileUploadCard: React.FC<FileUploadCardProps> = ({
 							onChange={handleFileChange}
 						/>
 						<div style={{ textAlign: "center" }}>
-							<div className="mb-2" aria-hidden>
-								<Upload className="h-6 w-6" />
+							<div className="acceptedFile-info">
+								Click to upload or drag and drop
 							</div>
-							<div className="text-sm">Click to upload or drag and drop</div>
-							<div
-								className="text-xs"
-								style={{ color: "var(--card-foreground-secondary)" }}
-							>
+							<div className="acceptedFile-types">
 								{acceptedFileTypes.replace(/\./g, "").toUpperCase()} • max{" "}
 								{maxDimensions.width}×{maxDimensions.height}px
 							</div>
@@ -199,16 +189,16 @@ export const FileUploadCard: React.FC<FileUploadCardProps> = ({
 					style={{ marginTop: 12, display: "flex", justifyContent: "center" }}
 				>
 					{!selectedFile && (
-						<Button
+						<button
 							className="btnBase"
 							onClick={() => document.getElementById("file-upload")?.click()}
 						>
 							Add Photo
-						</Button>
+						</button>
 					)}
 				</div>
-			</CardContent>
-		</Card>
+			</div>
+		</div>
 	);
 };
 

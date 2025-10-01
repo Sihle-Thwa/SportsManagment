@@ -1,116 +1,156 @@
 /* fileuploadcard.css */
 @import "tailwindcss";
 
-:root {
-	--card-background: var(--colour-neutral-100);
-	--card-border: var(--colour-neutral-200);
-	--card-foreground: var(--colour-neutral-900);
-	--card-foreground-secondary: var(--colour-neutral-600);
-	--interactive-primary: var(--colour-primary-500);
-	--interactive-error: var(--colour-error-500);
-	--easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-}
+@layer components {
+	.cardBase_fileUpload {
+		background: var(--card-background);
+		border: 1px solid var(--border-default);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-default);
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
 
-.cardBase {
-	background: var(--card-background);
-	border: 1px solid var(--card-border);
-	border-radius: 12px;
-	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-	overflow: hidden;
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-}
-
-.cardHeader {
-	padding: 16px;
-	border-bottom: 1px solid var(--card-border);
-}
-.cardTitle {
-	font-size: 1rem;
-	font-weight: 600;
-	color: var(--card-foreground);
-	margin-bottom: 6px;
-}
-.cardDescription {
-	font-size: 0.875rem;
-	color: var(--card-foreground-secondary);
-	margin: 0;
-}
-.cardBody {
-	padding: 16px;
-}
-
-.fileDropzone {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 12px;
-	border-radius: 10px;
-	border: 2px dashed var(--card-border);
-	padding: 18px;
-	min-height: 140px;
-	transition: background 150ms var(--easing-smooth),
-		border-color 150ms var(--easing-smooth);
-	background: transparent;
-}
-.fileDropzone:focus-within,
-.fileDropzone:hover {
-	background: var(--background-surface-hover, rgba(0, 0, 0, 0.03));
-	border-color: var(--interactive-primary);
-}
-
-.filePreview {
-	width: 100%;
-	max-height: 240px;
-	overflow: hidden;
-	border-radius: 8px;
-}
-.filePreview img {
-	width: 100%;
-	height: auto;
-	object-fit: cover;
-	display: block;
-}
-
-.fileMeta {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 12px;
-	margin-top: 8px;
-}
-.fileError {
-	color: var(--interactive-error);
-	font-size: 0.875rem;
-	margin-top: 8px;
-	white-space: pre-wrap;
-}
-
-.btnBase {
-	background: var(--interactive-primary);
-	color: var(--text-on-primary, #fff);
-	border: 1px solid transparent;
-	padding: 8px 12px;
-	border-radius: 8px;
-	cursor: pointer;
-	font-weight: 600;
-}
-.btnGhost {
-	background: transparent;
-	color: var(--card-foreground);
-	border: 1px solid var(--card-border);
-}
-
-@media (max-width: 640px) {
-	.cardBody {
+	.cardHeader_fileUpload {
+		padding: 12px;
+		border-bottom: 1px solid var(--card-border);
+	}
+	.cardHeader-content_fileUpload {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 0 auto;
+	}
+	.cardHeader-icon_fileUpload {
+		width: var(--icon-size-lg);
+		height: var(--icon-size-lg);
+	}
+	.cardTitle_fileUpload {
+		font-size: var(--title-size-default);
+		font-weight: var(--font-weight-semibold);
+		color: var(--card-foreground);
+		margin-bottom: 6px;
+	}
+	.cardDescription_fileUpload {
+		font-size: var(--caption-size-default);
+		color: var(--card-foreground-secondary);
+		margin: 0;
+	}
+	.cardBody_fileUpload {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 		padding: 12px;
 	}
+
 	.fileDropzone {
-		min-height: 120px;
-		padding: 14px;
-	}
-	.cardHeader {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 180px;
+		min-height: 180px;
+		gap: 12px;
+		border-radius: var(--radius-md);
+		border: 2px dashed var(--border-default);
 		padding: 12px;
+		transition: var(--transition-fast) var(--easing-smooth);
+	}
+	.fileDropzone:focus-within,
+	.fileDropzone:hover {
+		background: var(--background-surface-hover, rgba(0, 0, 0, 0.03));
+		border-color: var(--interactive-primary);
+	}
+
+	.filePreview {
+		width: 100%;
+		max-width: 180px;
+		min-width: auto;
+		height: 180px;
+		border-radius: 8px;
+	}
+	.filePreview img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+		border-radius: 8px;
+		border: 1px solid var(--border-default);
+	}
+
+	.fileMeta {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		margin-top: 8px;
+	}
+	.fileMeta-name {
+		font-size: var(--overline-size-default);
+		color: var(--text-primary);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		flex: 1;
+	}
+	.fileMeta-size {
+		font-size: var(--caption-size-default);
+		color: var(--text-secondary);
+	}
+
+	.acceptedFile-info {
+		font-size: 0.75rem;
+		color: var(--text-secondary);
+		margin-top: 8px;
+		text-align: center;
+	}
+	.acceptedFile-types {
+		font-size: 0.625rem;
+		color: var(--text-secondary);
+		margin-top: 4px;
+		text-align: center;
+	}	
+
+	.fileError {
+		color: var(--interactive-error);
+		font-size: 0.875rem;
+		margin-top: 8px;
+		white-space: pre-wrap;
+	}
+
+	.btnBase {
+		background: var(--interactive-primary);
+		color: var(--text-on-primary, #fff);
+		border: 1px solid transparent;
+		padding: 8px 12px;
+		border-radius: 8px;
+		cursor: pointer;
+		font-weight: 600;
+	}
+	.btnGhost {
+		background: transparent;
+		color: var(--card-foreground);
+		border: 1px solid var(--card-border);
+	}
+
+	@media (max-width: 640px) {
+		.cardBody_fileUpload {
+			padding: 12px;
+		}
+		.fileDropzone {
+			min-height: 120px;
+			padding: 14px;
+		}
+		.cardHeader_fileUpload {
+			padding: 12px;
+		}
+		.cardTitle_fileUpload {
+			font-size: 0.875rem;
+		}
+		.cardDescription_fileUpload {
+			font-size: 0.75rem;
+		}
 	}
 }

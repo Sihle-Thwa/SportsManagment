@@ -1,0 +1,53 @@
+/* formfield.css */
+@import "tailwindcss";
+
+:root {
+	--ff-label-color: var(--card-foreground, var(--colour-neutral-900));
+	--ff-desc-color: var(--card-foreground-secondary, var(--colour-neutral-600));
+	--ff-error-color: var(--interactive-error, var(--colour-error-500));
+	--ff-focus: var(--interactive-primary, var(--colour-primary-500));
+}
+
+.formItem {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	margin-bottom: 12px;
+}
+
+.formLabel {
+	font-size: 0.95rem;
+	font-weight: 600;
+	color: var(--ff-label-color);
+	line-height: 1.2;
+	margin: 0;
+}
+
+.formDescription {
+	margin: 0;
+	font-size: 0.875rem;
+	color: var(--ff-desc-color);
+}
+
+.formMessage {
+	margin-top: 4px;
+	font-size: 0.78rem;
+	color: var(--ff-error-color);
+}
+
+/* focus-within gives the whole field a visible ring for keyboard users */
+.formItem:focus-within {
+	outline: 2px solid var(--ff-focus);
+	outline-offset: 2px;
+	border-radius: 8px;
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+	.formItem,
+	.formLabel,
+	.formDescription,
+	.formMessage {
+		transition: none !important;
+	}
+}
