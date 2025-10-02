@@ -1,71 +1,55 @@
-// src/components/Form/UserInfoForm.tsx
 "use client";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
-import { Calendar as CalendarIcon } from "lucide-react";
-import {
-	validateUserInfo,
-	UserInfoFormDefaultValues,
-	GENDER_OPTIONS,
-	COUNTRY_OPTIONS,
-	PROVINCE_OPTIONS,
-} from "../../utils/validators";
+import { Calendar as CalendarIcon, ChevronDown } from "lucide-react";
+import { useForm } from "react-hook-form";
 
-import { Button } from "../common/Button/Button";
-import { Calendar } from "../../components/ui/calendar";
-import { Form, FormControl } from "../../components/ui/form";
 import { Input } from "../../components/ui/input";
 import {
 	Select,
-	SelectContent,
-	SelectItem,
 	SelectTrigger,
 	SelectValue,
+	SelectContent,
+	SelectItem,
 } from "../../components/ui/select";
 import {
 	Popover,
-	PopoverContent,
 	PopoverTrigger,
+	PopoverContent,
 } from "../../components/ui/popover";
-import {
-	Card,
-	CardContent,
-	CardFooter,
-	CardHeader,
-	CardTitle,
-} from "../../components/ui/card";
-import { cn } from "../../lib/utils";
-import { useForm } from "react-hook-form";
+import { Calendar } from "../../components/ui/calendar";
+
 import { FormField } from "./FormField";
 import "./userinfoform.css";
+import { cn } from "../../lib/utils";
+import {
+	UserInfoFormDefaultValues,
+	validateUserInfo,
+	GENDER_OPTIONS,
+	PROVINCE_OPTIONS,
+	COUNTRY_OPTIONS,
+} from "../../utils/validators";
 
+/**
+ * NOTE: FormValues type derived from your default values constant.
+ * Adjust if your project shapes differ.
+ */
 type FormValues = typeof UserInfoFormDefaultValues;
-
-interface UserInfoFormProps {
-	defaultValues?: typeof UserInfoFormDefaultValues;
-	onSubmit: (formData: typeof UserInfoFormDefaultValues) => void;
-	formTitle?: string;
-}
 
 export function UserInfoForm({
 	defaultValues = UserInfoFormDefaultValues,
 	onSubmit,
 	formTitle = "User Information",
-}: UserInfoFormProps) {
-	const form = useForm<FormValues>({ defaultValues });
+}: {
+	defaultValues?: FormValues;
+	onSubmit: (data: FormValues) => void;
+	formTitle?: string;
+}) {
+	const form = useForm<FormValues>({ defaultValues, mode: "onBlur" });
+	const { handleSubmit, control } = form;
 	const [validationErrors, setValidationErrors] = useState<
 		Record<string, string>
 	>({});
-
-	const handleSubmit = (data: FormValues) => {
-		const errors = validateUserInfo(data);
-		if (Object.keys(errors).length === 0) {
-			onSubmit(data);
-			setValidationErrors({});
-		} else {
-			setValidationErrors(errors);
-		}
-	};
 
 	useEffect(() => {
 		Object.entries(validationErrors).forEach(([field, message]) => {
@@ -73,204 +57,225 @@ export function UserInfoForm({
 		});
 	}, [validationErrors, form]);
 
+	function submit(data: FormValues) {
+		const errors = validateUserInfo(data);
+		if (Object.keys(errors).length > 0) {
+			setValidationErrors(errors);
+			return;
+		}
+		setValidationErrors({});
+		onSubmit(data);
+	}
+
+	// small Icon wrapper for input adornments
+	const IconWrapper = ({ children }: { children: React.ReactNode }) => (
+		<div className="inputIcon_userInfo">{children}</div>
+	);
+
 	return (
-		<Card className="cardBase">
-			<CardHeader className="cardHeader">
-				<CardTitle className="cardTitle">{formTitle}</CardTitle>
-			</CardHeader>
+		<div
+			className="cardBase_userInfo"
+			role="region"
+			aria-labelledby="user-info-title"
+		>
+			<div className="cardHeader_userInfo">
+				<div>
+					<div id="user-info-title" className="title_userInfo">
+						{formTitle}
+					</div>
+					<div className="accentLine_userInfo" aria-hidden />
+				</div>
+			</div>
 
-			<CardContent className="cardBody">
-				<Form {...form}>
-					<form
-						onSubmit={form.handleSubmit(handleSubmit)}
-						className="space-y-6"
+			<div className="cardBody_userInfo">
+				<form
+					onSubmit={handleSubmit(submit)}
+					className="formGrid_userInfo"
+					noValidate
+				>
+					{/* First Name */}
+					<FormField name="firstName" label="First Name" control={control}>
+						<Input placeholder="First name" className="input_userInfo" />
+					</FormField>
+
+					{/* Address Line 1 */}
+					<FormField
+						name="addressLine1"
+						label="Address Line 1"
+						control={control}
 					>
-						<div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-							{/* First Name */}
-							<FormField
-								control={form.control}
-								name="firstName"
-								label="First Name"
-								className=""
+						<Input placeholder="address 1" className="input_userInfo" />
+					</FormField>
+
+					{/* Last Name */}
+					<FormField name="lastName" label="Last Name" control={control}>
+						<Input placeholder="Last name" className="input_userInfo" />
+					</FormField>
+
+					{/* Address Line 2 */}
+					<FormField
+						name="addressLine2"
+						label="Address Line 2"
+						control={control}
+					>
+						<Input placeholder="address 2" className="input_userInfo" />
+					</FormField>
+
+					{/* Gender (radio group horizontal) */}
+					<FormField name="gender" label="Gender" control={control}>
+						{({ field, id, describedById }) => (
+							<div
+								role="radiogroup"
+								aria-labelledby={`${id}-label`}
+								aria-describedby={describedById ?? undefined}
+								className="radioGroup_userInfo"
 							>
-								<Input placeholder="First Name" />
-							</FormField>
-
-							{/* Last Name */}
-							<FormField
-								control={form.control}
-								name="lastName"
-								label="Last Name"
-							>
-								<Input placeholder="Last Name" />
-							</FormField>
-
-							{/* Gender */}
-							<FormField control={form.control} name="gender" label="Gender">
-								<Select
-									onValueChange={(val) => form.setValue("gender", val)}
-									defaultValue={form.getValues().gender}
-								>
-									<FormControl>
-										<SelectTrigger
-											className={cn(
-												validationErrors.gender && "border-red-500",
-											)}
-										>
-											<SelectValue placeholder="Select gender" />
-										</SelectTrigger>
-									</FormControl>
-									<SelectContent>
-										{GENDER_OPTIONS.map((option) => (
-											<SelectItem key={option.value} value={option.value}>
-												{option.label}
-											</SelectItem>
-										))}
-									</SelectContent>
-								</Select>
-							</FormField>
-
-							{/* Date of Birth */}
-							<FormField
-								control={form.control}
-								name="dateOfBirth"
-								label="Date of Birth"
-							>
-								<Popover>
-									<PopoverTrigger asChild>
-										<Button
-											variant="ghost"
-											className={cn(
-												"pl-3 text-left font-normal w-full justify-between",
-												!form.getValues().dateOfBirth &&
-													"text-muted-foreground",
-												validationErrors.dateOfBirth && "border-red-500",
-											)}
-										>
-											{form.getValues().dateOfBirth ? (
-												format(form.getValues().dateOfBirth, "PPP")
-											) : (
-												<span>Select date</span>
-											)}
-											<CalendarIcon className="ml-2 h-4 w-4" />
-										</Button>
-									</PopoverTrigger>
-
-									<PopoverContent className="w-auto p-0" align="start">
-										<Calendar
-											mode="single"
-											selected={form.getValues().dateOfBirth}
-											onSelect={(d) => {
-												if (d) form.setValue("dateOfBirth", d);
-											}}
+								{GENDER_OPTIONS.map((g) => (
+									<label key={g.value} className="radioItem_userInfo">
+										<input
+											type="radio"
+											name={field.name}
+											value={g.value}
+											checked={field.value === g.value}
+											onChange={() => field.onChange(g.value)}
+											onBlur={field.onBlur}
+											aria-checked={field.value === g.value}
 										/>
-									</PopoverContent>
-								</Popover>
-							</FormField>
-
-							{/* Phone */}
-							<FormField control={form.control} name="phone" label="Phone">
-								<Input type="tel" placeholder="Phone Number" />
-							</FormField>
-
-							{/* Email */}
-							<FormField control={form.control} name="email" label="Email">
-								<Input type="email" placeholder="Email Address" />
-							</FormField>
-
-							{/* Address Line 1 */}
-							<FormField
-								control={form.control}
-								name="addressLine1"
-								label="Address Line 1"
-							>
-								<Input placeholder="Address Line 1" />
-							</FormField>
-
-							{/* Address Line 2 */}
-							<FormField
-								control={form.control}
-								name="addressLine2"
-								label="Address Line 2 (Optional)"
-							>
-								<Input placeholder="Address Line 2" />
-							</FormField>
-
-							{/* City */}
-							<FormField control={form.control} name="city" label="City">
-								<Input placeholder="City" />
-							</FormField>
-
-							{/* Province */}
-							<FormField
-								control={form.control}
-								name="province"
-								label="Province"
-							>
-								<Select
-									onValueChange={(val) => form.setValue("province", val)}
-									defaultValue={form.getValues().province}
-								>
-									<FormControl>
-										<SelectTrigger>
-											<SelectValue placeholder="Select Province" />
-										</SelectTrigger>
-									</FormControl>
-									<SelectContent>
-										{PROVINCE_OPTIONS.map((option) => (
-											<SelectItem key={option.value} value={option.value}>
-												{option.label}
-											</SelectItem>
-										))}
-									</SelectContent>
-								</Select>
-							</FormField>
-
-							{/* Post Code */}
-							<FormField
-								control={form.control}
-								name="postCode"
-								label="Postal Code"
-							>
-								<Input placeholder="Postal Code" />
-							</FormField>
-
-							{/* Country */}
-							<FormField control={form.control} name="country" label="Country">
-								<Select
-									onValueChange={(val) => form.setValue("country", val)}
-									defaultValue={form.getValues().country}
-								>
-									<FormControl>
-										<SelectTrigger>
-											<SelectValue placeholder="Select country" />
-										</SelectTrigger>
-									</FormControl>
-									<SelectContent>
-										{COUNTRY_OPTIONS.map((option) => (
-											<SelectItem key={option.value} value={option.value}>
-												{option.label}
-											</SelectItem>
-										))}
-									</SelectContent>
-								</Select>
-							</FormField>
-						</div>
-
-						<CardFooter className="cardFooter">
-							<div style={{ display: "flex", gap: 12 }}>
-								<Button variant="primary" size="md">
-									Submit
-								</Button>
-								<Button variant="tertiary" size="md">
-									Reset
-								</Button>
+										<span>{g.label}</span>
+									</label>
+								))}
 							</div>
-						</CardFooter>
-					</form>
-				</Form>
-			</CardContent>
-		</Card>
+						)}
+					</FormField>
+
+					{/* Town/City */}
+					<FormField name="city" label="Town/City" control={control}>
+						<Input placeholder="durban" className="input_userInfo" />
+					</FormField>
+
+					{/* Date of Birth (Date picker) */}
+					<FormField name="dateOfBirth" label="Date of Birth" control={control}>
+						{({ field, id, describedById }) => (
+							<Popover>
+								<PopoverTrigger asChild>
+									<button
+										id={id}
+										aria-describedby={describedById ?? undefined}
+										className={cn("input_userInfo", "dateTrigger_userInfo")}
+										type="button"
+									>
+										<IconWrapper>
+											<CalendarIcon />
+										</IconWrapper>
+										<span className="dateText_userInfo">
+											{field.value
+												? format(field.value as Date, "dd/MMM/yyyy")
+												: "dd/MMM/yyyy"}
+										</span>
+										<ChevronDown className="chevron_userInfo" />
+									</button>
+								</PopoverTrigger>
+
+								<PopoverContent
+									className="popoverContent_userInfo"
+									align="start"
+								>
+									<Calendar
+										mode="single"
+										selected={field.value as Date | undefined}
+										onSelect={(d) => field.onChange(d)}
+										className="calendar_userInfo"
+									/>
+								</PopoverContent>
+							</Popover>
+						)}
+					</FormField>
+
+					{/* Province/State (Select) */}
+					<FormField name="province" label="Province/State" control={control}>
+						{({ field, id, describedById }) => (
+							<Select
+								value={typeof field.value === "string" ? field.value : ""}
+								onValueChange={(val) => field.onChange(val)}
+								aria-describedby={describedById ?? undefined}
+							>
+								<SelectTrigger id={id} className="selectTrigger_userInfo">
+									<SelectValue placeholder="Select province" />
+									<ChevronDown />
+								</SelectTrigger>
+								<SelectContent>
+									{PROVINCE_OPTIONS.map((p) => (
+										<SelectItem key={p.value} value={p.value}>
+											{p.label}
+										</SelectItem>
+									))}
+								</SelectContent>
+							</Select>
+						)}
+					</FormField>
+
+					{/* Phone */}
+					<FormField name="phone" label="Phone" control={control}>
+						<Input placeholder="071 123 4567" className="input_userInfo" />
+					</FormField>
+
+					{/* Post Code */}
+					<FormField name="postCode" label="Post Code" control={control}>
+						<Input placeholder="1234" className="input_userInfo" />
+					</FormField>
+
+					{/* Email */}
+					<FormField name="email" label="Email" control={control}>
+						<Input placeholder="jrose@email.com" className="input_userInfo" />
+					</FormField>
+
+					{/* Country (Select) */}
+					<FormField name="country" label="Country" control={control}>
+						{({ field, id, describedById }) => (
+							<Select
+								value={typeof field.value === "string" ? field.value : ""}
+								onValueChange={(val) => field.onChange(val)}
+								aria-describedby={describedById ?? undefined}
+							>
+								<SelectTrigger id={id} className="selectTrigger_userInfo">
+									<SelectValue placeholder="Select country" />
+									<ChevronDown />
+								</SelectTrigger>
+								<SelectContent>
+									{COUNTRY_OPTIONS.map((c) => (
+										<SelectItem key={c.value} value={c.value}>
+											{c.label}
+										</SelectItem>
+									))}
+								</SelectContent>
+							</Select>
+						)}
+					</FormField>
+
+					{/* footer buttons full width span 2 columns on desktop */}
+					<div className="footerWrap_userInfo">
+						<div className="footerActions_userInfo">
+							<button type="submit" className="primary">
+								Save
+							</button>
+							<button
+								type="button"
+								className="ghost"
+								onClick={() => {
+									form.reset(defaultValues);
+								}}
+							>
+								Reset
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div className="cardFooter_userInfo" aria-hidden>
+				{/* optional small helper text */}
+			</div>
+		</div>
 	);
 }
 

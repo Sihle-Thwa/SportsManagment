@@ -1,39 +1,210 @@
-/* userinfoform.module.css */
+/* userinfoform.module.css
+   Scoped visual styles to match the provided Figma layout.
+   Uses semantic tokens (ensure semantic-tokens.css is loaded globally).
+*/
 @import "tailwindcss";
 
-.cardBase_userInfo {
-	background: var(--card-background);
-	border: 1px solid var(--card-border);
-	border-radius: 12px;
-	overflow: hidden;
-	display: flex;
-	flex-direction: column;
-}
-.cardHeader_userInfo {
-	padding: 16px;
-	border-bottom: 1px solid var(--card-border);
-}
-.cardTitle_userInfo {
-	font-size: 1rem;
-	font-weight: 600;
-	color: var(--card-foreground);
-}
-.cardBody_userInfo {
-	padding: 16px;
-}
-.cardFooter_userInfo {
-	padding: 12px 16px;
-	border-top: 1px solid var(--card-border);
-	display: flex;
-	justify-content: flex-end;
-	gap: 12px;
+:root {
+  --bg: var(--sidebar-background, var(--colour-neutral-100));
+  --card-bg: var(--card-background, var(--colour-neutral-100));
+  --card-border: var(--card-border, var(--colour-neutral-200));
+  --text: var(--card-foreground, var(--colour-neutral-900));
+  --muted: var(--card-foreground-secondary, var(--colour-neutral-600));
+  --accent: var(--interactive-primary, var(--colour-primary-500));
+  --accent-weak: color-mix(in srgb, var(--accent) 30%, white);
+  --radius: 10px;
 }
 
+/* Card base similar to Figma: rounded with soft shadow */
+.cardBase_userInfo {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(16, 24, 40, 0.06);
+  overflow: hidden;
+}
+
+/* Header */
+.cardHeader_userInfo {
+  padding: 20px 24px;
+}
+
+.title_userInfo {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Accent line under the title — gold in your Figma */
+.accentLine_userInfo {
+  height: 3px;
+  width: 100%;
+  margin-top: 12px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #f2c94c, #f2994a); /* warm accent similar to figma */
+  max-width: 100%;
+}
+
+/* Card body / form grid */
+.cardBody_userInfo {
+  padding: 16px 20px 24px 20px;
+}
+
+.formGrid_userInfo {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px 24px; /* row gap, column gap */
+}
+
+/* two columns from md upward */
+@media (min-width: 768px) {
+  .formGrid_userInfo {
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 28px;
+  }
+}
+
+/* A field wrapper — label above control like in figma */
+.formItem_userInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Label styling */
+.formLabel_userInfo {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* Input base — used as className for your Input component to style appearance */
+.input_userInfo {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  padding: 6px 12px;
+  background: white;
+  color: var(--text);
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: box-shadow 150ms ease, border-color 150ms ease;
+}
+
+/* input focus */
+.input_userInfo:focus,
+.input_userInfo:focus-within {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.08); /* faint focus ring */
+}
+
+/* small helper for input adornments (calendar icon left) */
+.inputIcon_userInfo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  color: var(--muted);
+}
+
+/* Date trigger (we reuse input visual for popover trigger) */
+.dateTrigger_userInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 12px;
+  width: 100%;
+  text-align: left;
+  min-height: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  background: #fff;
+}
+
+/* date text muted */
+.dateText_userInfo {
+  color: var(--muted);
+  flex: 1;
+  text-align: left;
+  font-size: 14px;
+}
+
+/* Chevron on date */
+.chevron_userInfo {
+  color: var(--muted);
+  margin-left: 8px;
+}
+
+/* Select trigger */
+.selectTrigger_userInfo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--card-border);
+  min-height: 40px;
+  background: #fff;
+}
+
+/* radio group horizontal */
+.radioGroup_userInfo {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.radioItem_userInfo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* footer wrapper spans two columns on larger screens */
+.footerWrap_userInfo {
+  grid-column: 1 / -1; /* span full width */
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 8px;
+}
+
+/* action buttons */
+.footerActions_userInfo {
+  display: flex;
+  gap: 12px;
+}
+
+/* popover content small tweak */
+.popoverContent_userInfo {
+  padding: 8px;
+}
+
+/* small calendar tweaks */
+.calendar_userInfo {
+  width: 320px;
+  max-width: 100%;
+}
+
+/* card footer reserved */
+.cardFooter_userInfo {
+  padding: 12px 20px;
+  border-top: 1px solid var(--card-border);
+}
+
+/* responsiveness: single column on small screens with full-width buttons */
 @media (max-width: 640px) {
-	.cardBody_userInfo {
-		padding: 12px;
-	}
-	.cardHeader_userInfo {
-		padding: 12px;
-	}
+  .formGrid_userInfo { grid-template-columns: 1fr; }
+  .footerWrap_userInfo { justify-content: stretch; }
+  .footerActions_userInfo { width: 100%; justify-content: space-between; }
 }
