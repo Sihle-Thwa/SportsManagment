@@ -20,6 +20,7 @@ import {
 import { Calendar } from "../../components/ui/calendar";
 
 import { FormField } from "./FormField";
+
 import "./userinfoform.css";
 import { cn } from "../../lib/utils";
 import {
@@ -36,7 +37,14 @@ import {
  */
 type FormValues = typeof UserInfoFormDefaultValues;
 
-export function UserInfoForm({
+/**
+ * Helper to ensure select value is always a string (for controlled Select components).
+ */
+function getSelectStringValue(value: unknown): string {
+	return typeof value === "string" ? value : "";
+}
+
+function UserInfoForm({
 	defaultValues = UserInfoFormDefaultValues,
 	onSubmit,
 	formTitle = "User Information",
@@ -122,11 +130,16 @@ export function UserInfoForm({
 					</FormField>
 
 					{/* Gender (radio group horizontal) */}
-					<FormField name="gender" label="Gender" control={control}>
+					<FormField
+						name="gender"
+						label="Gender"
+						control={control}
+						className={cn(form.formState.errors.gender && "form-field--error")}
+					>
 						{({ field, id, describedById }) => (
 							<div
 								role="radiogroup"
-								aria-labelledby={`${id}-label`}
+								aria-labelledby={`${id}-label`} // <-- uses FormLabel id
 								aria-describedby={describedById ?? undefined}
 								className="radioGroup_userInfo"
 							>
@@ -168,9 +181,21 @@ export function UserInfoForm({
 											<CalendarIcon />
 										</IconWrapper>
 										<span className="dateText_userInfo">
-											{field.value
-												? format(field.value as Date, "dd/MMM/yyyy")
-												: "dd/MMM/yyyy"}
+											{(() => {
+												let date: Date | null = null;
+												if (
+													field.value instanceof Date &&
+													!isNaN(field.value.getTime())
+												) {
+													date = field.value;
+												} else if (typeof field.value === "string") {
+													const parsed = new Date(field.value);
+													if (!isNaN(parsed.getTime())) date = parsed;
+												}
+												return date
+													? format(date, "dd/MMM/yyyy")
+													: "dd/MMM/yyyy";
+											})()}
 										</span>
 										<ChevronDown className="chevron_userInfo" />
 									</button>
@@ -195,7 +220,7 @@ export function UserInfoForm({
 					<FormField name="province" label="Province/State" control={control}>
 						{({ field, id, describedById }) => (
 							<Select
-								value={typeof field.value === "string" ? field.value : ""}
+								value={getSelectStringValue(field.value)}
 								onValueChange={(val) => field.onChange(val)}
 								aria-describedby={describedById ?? undefined}
 							>
@@ -231,11 +256,14 @@ export function UserInfoForm({
 
 					{/* Country (Select) */}
 					<FormField name="country" label="Country" control={control}>
-						{({ field, id, describedById }) => (
+						{({ id, field }) => (
 							<Select
-								value={typeof field.value === "string" ? field.value : ""}
-								onValueChange={(val) => field.onChange(val)}
-								aria-describedby={describedById ?? undefined}
+								value={getSelectStringValue(field.value)}
+								onValueChange={(val) => {
+									field.onChange(val);
+									form.reset({ ...defaultValues, country: val });
+									setValidationErrors({});
+								}}
 							>
 								<SelectTrigger id={id} className="selectTrigger_userInfo">
 									<SelectValue placeholder="Select country" />

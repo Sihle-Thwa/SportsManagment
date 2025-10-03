@@ -1,4 +1,4 @@
-// FormField.tsx
+// src/components/Form/FormField.tsx
 import React from "react";
 import {
 	FormField as ShadcnFormField,
@@ -9,8 +9,8 @@ import {
 	FormMessage,
 } from "../../components/ui/form";
 import { Control, FieldValues, Path } from "react-hook-form";
-import "./formfield.css";
 import { cn } from "../../lib/utils";
+import "./formfield.css";
 
 type RenderCallbackProps = {
 	field: {
@@ -20,8 +20,8 @@ type RenderCallbackProps = {
 		name: string;
 		ref?: unknown;
 	};
-	id: string; // id for the input
-	describedById: string | null; // id for aria-describedby (desc + message)
+	id: string;
+	describedById?: string;
 };
 
 interface FormFieldProps<T extends FieldValues = FieldValues> {
@@ -30,91 +30,102 @@ interface FormFieldProps<T extends FieldValues = FieldValues> {
 	description?: string;
 	control: Control<T>;
 	className?: string;
-	/**
-	 * children may be:
-	 *  - a React element — we will clone and inject {...field}
-	 *  - a render function: ({ field, id, describedById }) => ReactNode
-	 */
 	children: React.ReactNode | ((props: RenderCallbackProps) => React.ReactNode);
 }
 
-export const FormField = <T extends FieldValues = FieldValues>({
+/**
+ * FormField wrapper:
+ * - supports both simple element children (cloned) and render-callback pattern
+ * - provides deterministic ids for label/description/message
+ * - ensures aria wiring and accessible structure
+ */
+export function FormField<T extends FieldValues = FieldValues>({
 	name,
 	label,
 	description,
 	control,
 	children,
 	className,
-}: FormFieldProps<T>) => {
-	// create stable ids for label/description/message
-	const id = `field-${String(name)}`;
-	const descId = description ? `field-${String(name)}-desc` : null;
-	const msgId = `field-${String(name)}-msg`;
-	const describedById = [descId, msgId].filter(Boolean).join(" ") || null;
+}: FormFieldProps<T>) {
+	const baseId = `fld-${String(name)}`;
+	const labelId = `${baseId}-label`;
+	const descId = description ? `${baseId}-desc` : undefined;
+	const msgId = `${baseId}-msg`;
+	const describedBy = [descId, msgId].filter(Boolean).join(" ") || undefined;
 
 	return (
 		<ShadcnFormField
 			control={control}
 			name={name}
 			render={({ field }) => {
-				// field: { value, onChange, onBlur, name, ref }
 				const renderProps: RenderCallbackProps = {
 					field,
-					id,
-					describedById,
+					id: baseId,
+					describedById: describedBy,
 				};
 
-				// If children is a function (render callback) let it control rendering.
+				// Render callback pattern (recommended for Select / Calendar / complex controls)
 				if (typeof children === "function") {
 					return (
-						<FormItem className="formItem">
+						<FormItem className={cn("form-field", className)}>
 							{label && (
-								<FormLabel htmlFor={id} className="formLabel">
+								<FormLabel
+									id={labelId}
+									htmlFor={baseId}
+									className="form-field__label"
+								>
 									{label}
 								</FormLabel>
 							)}
 
-							<FormControl>
-								{/* children is function */}
-								{children(renderProps)}
-							</FormControl>
+							<FormControl>{children(renderProps)}</FormControl>
 
 							{description && (
 								<FormDescription
-									id={descId ?? undefined}
-									className="formDescription"
+									id={descId}
+									className="form-field__description"
 								>
 									{description}
 								</FormDescription>
 							)}
 
-							<FormMessage id={msgId} className="formMessage" />
+							<FormMessage id={msgId} className="form-field__message" />
 						</FormItem>
 					);
 				}
 
-				// Otherwise, if children is an element, cloneElement and inject standard field props
+				// Child is an element (simple cloning path) — inject form props
 				const childElement = React.isValidElement(children)
-					? React.cloneElement(children as React.ReactElement, {
-							id,
-							name: field.name,
-							value: field.value,
-							onChange: field.onChange,
-							onBlur: field.onBlur,
-							// Only pass ref if the element is a DOM element (type is string)
-							...(typeof (children as React.ReactElement).type === "string"
+					? React.cloneElement(children as React.ReactElement<unknown>, {
+							...(children.props || {}),
+							...(typeof children.type === "string"
 								? {
+										id: baseId,
+										name: field.name,
+										value: field.value,
+										onChange: field.onChange,
+										onBlur: field.onBlur,
 										ref: field.ref,
-										"aria-describedby": describedById ?? undefined,
+										"aria-describedby": describedBy,
 								  }
-								: {}),
+								: {
+										id: baseId,
+										onChange: field.onChange,
+										onBlur: field.onBlur,
+										ref: field.ref,
+										"aria-describedby": describedBy,
+								  }),
 					  })
 					: children;
 
 				return (
-					<FormItem className={cn("formItem", className)}>
+					<FormItem className={cn("form-field", className)}>
 						{label && (
-							<FormLabel htmlFor={id} className="formLabel">
+							<FormLabel
+								id={labelId}
+								htmlFor={baseId}
+								className="form-field__label"
+							>
 								{label}
 							</FormLabel>
 						)}
@@ -122,20 +133,17 @@ export const FormField = <T extends FieldValues = FieldValues>({
 						<FormControl>{childElement}</FormControl>
 
 						{description && (
-							<FormDescription
-								id={descId ?? undefined}
-								className="formDescription"
-							>
+							<FormDescription id={descId} className="form-field__description">
 								{description}
 							</FormDescription>
 						)}
 
-						<FormMessage id={msgId} className="formMessage" />
+						<FormMessage id={msgId} className="form-field__message" />
 					</FormItem>
 				);
 			}}
 		/>
 	);
-};
+}
 
 export default FormField;
