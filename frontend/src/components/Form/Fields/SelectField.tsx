@@ -8,7 +8,7 @@ import {
 	SelectItem,
 } from "../../ui/select";
 import { ChevronDown } from "lucide-react";
-import "../formfields.css";
+import "../formfield.css";
 import { cn } from "../../../lib/utils";
 
 export interface Option {
