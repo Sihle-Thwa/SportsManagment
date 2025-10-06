@@ -1,83 +1,136 @@
-/* src/components/Form/formfield.css */
-@import "tailwindcss";
+/* src/components/Form/formfields.css */
+@import 'tailwindcss';
 
-/* Semantic token fallbacks (ensure your semantic-tokens.css is loaded globally) */
-:root {
-  --ff-label-color: var(--card-foreground, var(--colour-neutral-900));
-  --ff-desc-color: var(--card-foreground-secondary, var(--colour-neutral-600));
-  --ff-error-color: var(--interactive-error, #ef4444);
-  --ff-focus: var(--interactive-primary, #f2c94c);
-  --ff-border: var(--card-border, #e6e9ee);
+/* Semantic tokens expected to be loaded globally (semantic-tokens.css) */
+:root{
+  --ff-bg: var(--card-background, var(--colour-neutral-100));
+  --ff-border: var(--card-border, var(--colour-neutral-200));
+  --ff-foreground: var(--card-foreground, var(--colour-neutral-900));
+  --ff-muted: var(--card-foreground-secondary, var(--colour-neutral-500));
+  --ff-accent: var(--interactive-primary, var(--colour-primary-500));
+  --radius: 10px;
+  --field-height: 40px;
 }
 
-/* BEM-like classes used by the JSX */
-.form-field {
+/* Field wrapper */
+.field {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  margin: 0 0 12px 0;
-}
-
-.form-field__label {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--ff-label-color);
-  line-height: 1.25;
+  width: 100%;
   margin: 0;
 }
 
-.form-field__description {
-  margin: 0;
+/* Label */
+.field__label {
   font-size: 0.875rem;
-  color: var(--ff-desc-color);
+  font-weight: 600;
+  color: var(--ff-foreground);
+  margin: 0;
 }
 
-.form-field__message {
-  margin-top: 4px;
-  font-size: 0.78rem;
-  color: var(--ff-error-color);
+/* Description text */
+.field__desc {
+  font-size: 0.8125rem;
+  color: var(--ff-muted);
 }
 
-/* Focus-within for keyboard users — visible ring but not aggressive */
-.form-field:focus-within {
-  outline: none;
-}
-
-/* Apply a subtle focus ring to the control inside (input/select/popover trigger) */
-.form-field:focus-within .input,
-.form-field:focus-within .selectTrigger,
-.form-field:focus-within .dateTrigger {
-  border-color: var(--ff-focus);
-  box-shadow: 0 0 0 6px rgba(242, 201, 76, 0.08);
-}
-
-/* Error modifier — add this class on the FormItem when the field has a validation error */
-.form-field--error .input,
-.form-field--error .selectTrigger,
-.form-field--error .dateTrigger {
-  border-color: var(--ff-error-color);
-  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.06);
-}
-
-/* Radio group and small helpers */
-.form-field .radio-group {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-
-.form-field .radio-item {
+/* Base input */
+.field__input,
+.field__select-trigger,
+.field__date-trigger {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--ff-desc-color);
-  font-weight: 500;
+  height: var(--field-height);
+  width: 100%;
+  padding: 0 12px;
+  border-radius: 8px;
+  border: 1px solid var(--ff-border);
+  background: #fff;
+  color: var(--ff-foreground);
+  font-size: 0.9375rem;
+  box-sizing: border-box;
+  transition: box-shadow 150ms ease, border-color 150ms ease;
 }
 
-/* reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .form-field,
-  .form-field * {
-    transition: none !important;
+/* Focus state */
+.field__input:focus,
+.field__select-trigger:focus,
+.field__date-trigger:focus,
+.field__input:focus-within {
+  outline: none;
+  border-color: var(--ff-accent);
+  box-shadow: 0 0 0 4px rgba(59,130,246,0.06);
+}
+
+/* Disabled */
+.field__input[disabled],
+.field__select-trigger[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Error state */
+.field__input.error,
+.field__select-trigger.error,
+.field__date-trigger.error {
+  border-color: var(--interactive-error, var(--colour-error-500));
+  box-shadow: 0 0 0 3px rgba(220,38,38,0.06);
+}
+
+/* small inline icon (left) */
+.field__icon-left {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ff-muted);
+}
+
+/* date text placeholder */
+.field__date-text {
+  flex: 1;
+  text-align: left;
+  color: var(--ff-muted);
+}
+
+/* radio group */
+.radioGroup {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.radioItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: var(--ff-foreground);
+}
+.radioItem input[type="radio"] {
+  width: 16px;
+  height: 16px;
+}
+
+/* error message */
+.field__error {
+  margin-top: 6px;
+  color: var(--interactive-error, var(--colour-error-500));
+  font-size: 0.8125rem;
+}
+
+/* small helper text */
+.field__helper {
+  font-size: 0.8125rem;
+  color: var(--ff-muted);
+}
+
+/* responsive grid helpers (used by form) */
+@media (min-width: 768px) {
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 28px;
   }
 }

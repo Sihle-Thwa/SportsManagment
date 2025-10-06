@@ -1,7 +1,7 @@
 // src/pages/profile/Profile.tsx
 "use client";
 import React from "react";
-import { UserInfoForm } from "../../components/Form/UserInfoForm";
+import UserInfoForm from "../../components/Form/UserInfoForm";
 import { FileUploadCard } from "../../components/FileUpload";
 import "./profile.css";
 
