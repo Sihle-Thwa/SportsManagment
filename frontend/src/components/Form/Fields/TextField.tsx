@@ -20,7 +20,6 @@ export const TextField: React.FC<TextFieldProps> = ({
 	placeholder,
 	description,
 	type = "text",
-	className,
 	rules,
 	disabled = false,
 }) => {
@@ -32,7 +31,7 @@ export const TextField: React.FC<TextFieldProps> = ({
 	const err = errors[name];
 
 	return (
-		<div className={cn("field", className)} data-field-name={name}>
+		<div className="field" data-field-name={name}>
 			{label && (
 				<label className="field__label" htmlFor={name}>
 					{label}

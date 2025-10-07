@@ -63,26 +63,31 @@ export function UserInfoForm({
 							name="firstName"
 							label="First name"
 							placeholder="First name"
+							className="formItem_userInfo"
 						/>
 						<TextField
 							name="lastName"
 							label="Last name"
 							placeholder="Last name"
+							className="formItem_userInfo"
 						/>
 						<TextField
 							name="addressLine1"
 							label="Address line 1"
 							placeholder="Address 1"
+							className="formItem_userInfo"
 						/>
 						<TextField
 							name="addressLine2"
 							label="Address line 2"
 							placeholder="Address 2"
+							className="formItem_userInfo"
 						/>
 
 						<RadioGroupField
 							name="gender"
 							label="Gender"
+							className="formItem_userInfo"
 							options={GENDER_OPTIONS.map((g) => ({
 								value: g.value,
 								label: g.label,
@@ -94,11 +99,17 @@ export function UserInfoForm({
 							name="city"
 							label="Town / City"
 							placeholder="Town / City"
+							className="formItem_userInfo"
 						/>
 
-						<DateField name="dateOfBirth" label="Date of birth" />
+						<DateField
+							className="formItem_userInfo"
+							name="dateOfBirth"
+							label="Date of birth"
+						/>
 
 						<SelectField
+							className="formItem_userInfo"
 							name="province"
 							label="Province / State"
 							options={PROVINCE_OPTIONS.map((p) => ({
@@ -108,13 +119,20 @@ export function UserInfoForm({
 							placeholder="Select province"
 						/>
 
-						<TextField name="phone" label="Phone" placeholder="071 123 4567" />
 						<TextField
+							className="formItem_userInfo"
+							name="phone"
+							label="Phone"
+							placeholder="071 123 4567"
+						/>
+						<TextField
+							className="formItem_userInfo"
 							name="postCode"
 							label="Postal code"
 							placeholder="Postal code"
 						/>
 						<TextField
+							className="formItem_userInfo"
 							name="email"
 							label="Email"
 							placeholder="you@email.com"
@@ -122,6 +140,7 @@ export function UserInfoForm({
 						/>
 
 						<SelectField
+							className="formItem_userInfo"
 							name="country"
 							label="Country"
 							options={COUNTRY_OPTIONS.map((c) => ({
@@ -131,7 +150,7 @@ export function UserInfoForm({
 							placeholder="Select country"
 						/>
 
-						<div className="footerWrap_userInfo">
+						<div className="cardFooter_userInfo" aria-hidden>
 							<div className="footerActions_userInfo">
 								<button
 									type="submit"
@@ -151,8 +170,6 @@ export function UserInfoForm({
 						</div>
 					</form>
 				</div>
-
-				<div className="cardFooter_userInfo" aria-hidden />
 			</div>
 		</FormProvider>
 	);
