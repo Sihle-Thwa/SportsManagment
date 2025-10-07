@@ -9,7 +9,6 @@ import {
 } from "../../ui/select";
 import { ChevronDown } from "lucide-react";
 import "../formfield.css";
-import { cn } from "../../../lib/utils";
 
 export interface Option {
 	value: string;
@@ -30,14 +29,13 @@ export const SelectField: React.FC<SelectFieldProps> = ({
 	label,
 	options,
 	placeholder,
-	className,
 	defaultValue = "",
 }) => {
 	const { control, formState } = useFormContext();
 	const err = formState.errors[name];
 
 	return (
-		<div className={cn("field", className)} data-field-name={name}>
+		<div className="field" data-field-name={name}>
 			{label && (
 				<label className="field__label" htmlFor={name}>
 					{label}
@@ -58,7 +56,7 @@ export const SelectField: React.FC<SelectFieldProps> = ({
 							>
 								<SelectTrigger
 									id={name}
-									className={cn("field__select-trigger", err && "error")}
+									className={`field__select-trigger ${err && "error"}`}
 								>
 									<SelectValue placeholder={placeholder} />
 									<ChevronDown />

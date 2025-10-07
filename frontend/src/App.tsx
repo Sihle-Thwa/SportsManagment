@@ -9,11 +9,9 @@ function App() {
 	return (
 		<ThemeProvider defaultTheme="system" storageKey="ui-theme">
 			<Router>
-				<div className="app-root">
+				<div className="body">
 					<Routes>
-						{/* Main layout wraps all routes (MainLayout contains SidebarProvider) */}
 						<Route path="/" element={<MainLayout />}>
-							{/* Dynamic route list (each route object should provide id, path, element) */}
 							{routes.map((route) => (
 								<Route
 									key={route.id}

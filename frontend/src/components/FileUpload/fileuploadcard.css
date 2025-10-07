@@ -3,19 +3,23 @@
 
 @layer components {
 	.cardBase_fileUpload {
-		background: var(--card-background);
-		border: 1px solid var(--border-default);
-		border-radius: var(--radius-lg);
-		box-shadow: var(--shadow-default);
-		overflow: hidden;
 		display: flex;
 		flex-direction: column;
+		gap: 8px;
+		max-width: 360px;
 		width: 100%;
+		min-width: 280px;
+		max-height: 540px;
+		height: 100%;
+		min-height: 320px;
+		border: 1px solid var(--border-default);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-base);
+		overflow: hidden;
 	}
 
 	.cardHeader_fileUpload {
-		padding: 12px;
-		border-bottom: 1px solid var(--card-border);
+		padding: 8px 12px;
 	}
 	.cardHeader-content_fileUpload {
 		display: flex;
@@ -87,7 +91,6 @@
 		width: 100%;
 		gap: 12px;
 		margin-top: 8px;
-		
 	}
 	.fileMeta-name {
 		font-size: var(--body-size-lg);
@@ -113,7 +116,7 @@
 		color: var(--text-secondary);
 		margin-top: 4px;
 		text-align: center;
-	}	
+	}
 
 	.fileError {
 		color: var(--interactive-error);

@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-/* --------------------------------------------------------------------------
-   App shell (grid) — uses semantic tokens where available
-   -------------------------------------------------------------------------- */
-
 :root {
 	--sidebar-width: 250px;
 	--sidebar-width-collapsed: 72px;
@@ -18,48 +14,37 @@
 	grid-template-areas:
 		"sidebar header"
 		"sidebar content";
-	min-height: 100vh;
-	width: 100%;
+	height: 100vh;
+	width: 100vw;
 	background: var(--background, var(--colour-neutral-100));
 	color: var(--foreground, var(--colour-neutral-900));
 	transition: grid-template-columns var(--transition-fast)
 		var(--easing-smooth, cubic-bezier(0.4, 0, 0.2, 1));
 	overflow: hidden;
 }
-
-/* --------------------------------------------------------------------------
-   Regions
-   -------------------------------------------------------------------------- */
-
-/* NOTE: AppSideBar now renders the element with class .app-sidebar itself,
-   so these rules target that element directly. */
+/* Sidebar */
 .app-sidebar {
 	grid-area: sidebar;
 	position: relative;
-	z-index: 50; /* lower than topbar so topbar overlays the top edge for seamlessness */
+	z-index: 50;
 	width: var(--sidebar-width);
 	min-width: var(--sidebar-width-collapsed);
 	border-right: 1px solid var(--border-default, var(--colour-neutral-200));
 }
 
-/* Align any fixed inner sidebar container to the left/top of the column so it is flush
-   with the topbar and doesn't create a visible gap. The app-sidebar CSS also sets
-   top:0; left:0 on the inner container — this preserves that behavior. */
 .app-sidebar [data-slot="sidebar-container"] {
 	left: 0 !important;
 	right: auto !important;
 	top: 0 !important;
 }
 
-/* Topbar must sit above sidebar visually to avoid a horizontal gap.
-   When the sidebar uses a fixed inner container starting at top:0, the topbar overlays it. */
 .app-topbar {
 	grid-area: header;
 	height: var(--topbar-height);
 	min-height: var(--topbar-height);
 	display: flex;
 	align-items: center;
-	z-index: 60; /* higher than .app-sidebar z-index so topbar overlays the sidebar top */
+	z-index: 60;
 	position: sticky;
 	top: 0;
 }
@@ -68,8 +53,9 @@
 .app-content {
 	grid-area: content;
 	position: relative;
-	height: calc(100vh - var(--topbar-height));
 	overflow-y: auto;
+	overflow-x: hidden;
+	height: calc(100vh - var(--topbar-height));
 	-webkit-overflow-scrolling: touch;
 	transition: height var(--transition-fast)
 		var(--easing-smooth, cubic-bezier(0.4, 0, 0.2, 1));
@@ -77,13 +63,12 @@
 
 /* Page wrapper */
 .content-wrapper {
-	width: 100%;
-	max-width: 1440px;
-	margin: 0 auto;
-	padding: 24px;
 	display: flex;
 	flex-direction: column;
-	gap: 24px;
+	width: 100%;
+	padding: 8px;
+	overflow: hidden;
+		
 }
 
 /* --------------------------------------------------------------------------
@@ -101,15 +86,14 @@
 
 /* Defensive: nudge aside width to match state */
 .main-container.is-collapsed .app-sidebar {
+	overflow: hidden;
 	width: var(--sidebar-width-collapsed);
 }
 .main-container.is-expanded .app-sidebar {
+	overflow: hidden;
 	width: var(--sidebar-width);
 }
 
-/* --------------------------------------------------------------------------
-   Responsive (tablet/mobile)
-   -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
 	.main-container {
 		--sidebar-width: 280px;
@@ -146,25 +130,32 @@
 @media (max-width: 640px) {
 	:root {
 		--sidebar-width: 100vw;
+		--sidebar-width-collapsed: 0px;
 	}
 	.content-wrapper {
-		padding: 16px;
-		gap: 16px;
+		overflow: hidden;
+		padding: 8px 4px;
+		gap: 8px;
 	}
 	.main-container {
+		--sidebar-width: 100vw;
+		--sidebar-width-collapsed: 0px;
 		grid-template-rows: 64px 1fr;
 	}
 	.app-topbar {
-		height: 64px;
+		--topbar-height: 64px;
+		min-height: 64px;
+		height: 100%;
 	}
 	.app-content {
-		height: calc(100vh - 64px);
+		overflow: hidden;
+		height: calc(100vh - var(--topbar-height));
 	}
 }
 
-/* --------------------------------------------------------------------------
+/* --------------------------------------------------
    Accessibility & perf helpers
-   -------------------------------------------------------------------------- */
+   ---------------------------------------------------- */
 .sr-only {
 	position: absolute;
 	width: 1px;
@@ -187,54 +178,48 @@
 	white-space: normal;
 }
 
-@media (prefers-reduced-motion: reduce) {
-	.main-container,
-	.app-sidebar,
-	.content-wrapper {
-		transition: none !important;
-	}
-	.app-content {
-		scroll-behavior: auto;
-	}
-}
-
-@media (prefers-contrast: high) {
-	.app-sidebar,
-	.app-topbar {
-		border-width: 2px;
-	}
-}
 
 /* Scrollbar */
 .app-content::-webkit-scrollbar {
 	width: 8px;
 }
 .app-content::-webkit-scrollbar-track {
-	background: var(--scrollbar-track, var(--colour-neutral-50));
+	background: var(--scrollbar-track, var(--colour-neutral-100));
 }
 .app-content::-webkit-scrollbar-thumb {
-	background: var(--scrollbar-thumb, var(--colour-neutral-400));
+	background: var(--scrollbar-thumb, var(--colour-primary-600));
 	border-radius: 4px;
 }
 .app-content::-webkit-scrollbar-thumb:hover {
-	background: var(--scrollbar-thumb-hover, var(--colour-neutral-500));
+	background: var(--scrollbar-thumb-hover, var(--colour-primary-600));
 }
 
 /* Print */
 @media print {
 	.main-container {
+		--sidebar-width: 0px;
+		--sidebar-width-collapsed: 0px;
 		grid-template-columns: 1fr;
-		grid-template-areas: "content";
+		grid-template-rows: auto;
+		--topbar-height: 0px;
+		grid-template-areas:
+			"content";
 	}
 	.app-sidebar,
 	.app-topbar {
 		display: none;
+		visibility: hidden;
+		height: 0;
+		min-height: 0;
 	}
 	.app-content {
 		height: auto;
 		overflow: visible;
+		clip: auto;
+
 	}
 	.content-wrapper {
 		padding: 0;
+		overflow: visible;
 	}
 }

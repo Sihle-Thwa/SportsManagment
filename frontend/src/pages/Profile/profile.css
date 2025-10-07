@@ -13,86 +13,76 @@
 }
 
 .profileRoot {
+	display: flex;
+	flex-direction: column;
+	max-width: 1280px;
 	width: 100%;
-	max-width: 1440px;
-	margin: 0 auto;
+	height: 100%;
+	overflow: hidden;
 }
 
 .profileHeader {
 	display: flex;
+	flex-direction: row;
 	align-items: start;
-	border-bottom: 1px solid var(--border-default);
+	box-shadow: var(--shadow-base);
+	width: 100%;
 }
 
 .profileTitle {
-	margin: 0;
+	display: flex;
+	flex-direction: column;
 	font-size: var(--title-size-default);
 	font-weight: var(--font-weight-normal);
 	color: var(--text-primary);
 }
 
 .profileSubtitle {
-	margin-top: 6px;
-	margin-bottom: 6px;
+	display: flex;
+	flex-direction: column;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	width: 100%;
 	color: var(--card-foreground-secondary);
-	font-size: var(--subtitle-size-default);
+	font-size: var(--subtitle-size-sm);
 	font-weight: var(--font-weight-light);
 }
 
-/* Grid */
-.profileGrid {
-	display: grid;
-	grid-template-columns: 1fr;
-	gap: 12px;
-	align-items: start;
-}
-
-@media (min-width: 768px) {
-	.profileGrid {
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-	}
-}
-	@media (min-width: 1200px) {
-		.profileGrid {
-			grid-template-columns: 1fr 1fr 1fr;
-			gap: 12px;
-		}
-		
-		.uploadCol {
-			grid-column: 1 / span 1;
-		}
-		.formCol {
-			grid-column: 2 / span 1;
-		}
-
-	}
-
-.profileColumn {
-	width: 100%;
+/* Container */
+.profileContainer {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-start;
 	overflow: hidden;
-	gap: 12px;
-
-}
-.uploadCol {
-	align-self: stretch;
-	width: 100%;
-
-}
-.formCol {
-	align-self: stretch;
+	padding: 24px;
+	gap: 24px;
 	width: 100%;
 }
 
-/* Small screens */
-@media (max-width: 640px) {
-	.profileRoot {
-		padding: 16px;
-		gap: 12px;
-	}
-	.profileTitle {
-		font-size: 1.25rem;
-	}
+.profileContent {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 	
 }
+.uploadCol {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+.formCol {
+	display: flex;
+	flex-direction: column;
+	align-items: center;	
+	width: 100%;
+}
+
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 1024px) {
+}
+

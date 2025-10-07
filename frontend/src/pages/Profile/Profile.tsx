@@ -24,18 +24,19 @@ const Profile: React.FC = () => {
 				</div>
 			</div>
 
-			<section className="profileGrid" aria-label="Profile editor">
-				<div className={`profileColumn uploadCol`}>
-					<FileUploadCard
-						description="Upload a picture for your profile (max 800×400, JPG/PNG/SVG/GIF)"
-						onFileSelect={(file: File) => {
-							console.log("File selected:", file.name);
-						}}
-					/>
-				</div>
-
-				<div className={`profileColumn formCol`}>
-					<UserInfoForm onSubmit={handleSubmit} />
+			<section className="profileContainer" aria-label="Profile editor">
+				<div className={`profileContent`}>
+					<div className="uploadCol">
+						<FileUploadCard
+							description="Upload a picture for your profile (max 800×400, JPG/PNG/SVG/GIF)"
+							onFileSelect={(file: File) => {
+								console.log("File selected:", file.name);
+							}}
+						/>
+					</div>
+					<div className={`formCol`}>
+						<UserInfoForm onSubmit={handleSubmit} />
+					</div>
 				</div>
 			</section>
 		</div>
