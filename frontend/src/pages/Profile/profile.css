@@ -15,8 +15,10 @@
 .profileRoot {
 	display: flex;
 	flex-direction: column;
-	max-width: 1280px;
+	justify-content: flex-start;
+	max-width: 100vw;
 	width: 100%;
+	min-width: 320px;
 	height: 100%;
 	overflow: hidden;
 }
@@ -24,9 +26,9 @@
 .profileHeader {
 	display: flex;
 	flex-direction: row;
-	align-items: start;
 	box-shadow: var(--shadow-base);
 	width: 100%;
+	min-width: 320px;
 }
 
 .profileTitle {
@@ -35,14 +37,14 @@
 	font-size: var(--title-size-default);
 	font-weight: var(--font-weight-normal);
 	color: var(--text-primary);
+	margin: 0;
 }
 
 .profileSubtitle {
 	display: flex;
 	flex-direction: column;
-	margin-top: 8px;
+	margin-top: 4px;
 	margin-bottom: 8px;
-	width: 100%;
 	color: var(--card-foreground-secondary);
 	font-size: var(--subtitle-size-sm);
 	font-weight: var(--font-weight-light);

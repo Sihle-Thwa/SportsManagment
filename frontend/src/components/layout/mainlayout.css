@@ -16,7 +16,7 @@
 		"sidebar content";
 	height: 100vh;
 	width: 100vw;
-	background: var(--background, var(--colour-neutral-100));
+	background: var(--background-canvas);
 	color: var(--foreground, var(--colour-neutral-900));
 	transition: grid-template-columns var(--transition-fast)
 		var(--easing-smooth, cubic-bezier(0.4, 0, 0.2, 1));

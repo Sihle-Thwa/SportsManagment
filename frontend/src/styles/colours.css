@@ -9,6 +9,14 @@
 /* Section: Primary colour Palette */
 /* ---------------------------------- */
 :root {
+	--background-canvas-gradient: radial-gradient(
+		at bottom right,
+		#fef08a  0%,   /* bright soft yellow center */
+      rgba(255, 240, 163, 0.25) 25%, 
+      rgba(255, 240, 163, 0.08) 50%, 
+      rgba(255, 255, 255, 1) 100%    /* fade to white */
+	);
+
 	/***** Section: Primary colour Palette *****/
 	/* Primary colour Scale */
 	--colour-primary: hsl(220, 100%, 10%);

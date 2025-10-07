@@ -1,8 +1,10 @@
 @import 'tailwindcss';
-
+@import './colours.css';
 /* semantic-tokens.css */
 
 /* Light Theme (default) */
+
+
 :root {
     /* Background */
     --background-canvas: var(--background-canvas-gradient);
