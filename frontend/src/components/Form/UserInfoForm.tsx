@@ -132,21 +132,25 @@ export function UserInfoForm({
 							/>
 						</div>
 					</div>
-					<div className="cardFooter_userInfo" aria-hidden>
-						<div className="footerActions_userInfo">
-							<button type="submit" className="primary" disabled={isSubmitting}>
-								Save
-							</button>
-							<button
-								type="button"
-								className="ghost"
-								onClick={() => reset(defaultValues)}
-							>
-								Reset
-							</button>
-						</div>
-					</div>
 				</form>
+				<div className="cardFooter_userInfo" aria-hidden>
+					<div className="footerActions_userInfo">
+						<button
+							type="submit"
+							className="button-primary button-lg buttonPrimary_userInfo"
+							disabled={isSubmitting}
+						>
+							Save
+						</button>
+						<button
+							type="button"
+							className="button-secondary button-lg buttonSecondary_userInfo"
+							onClick={() => reset(defaultValues)}
+						>
+							Reset
+						</button>
+					</div>
+				</div>
 			</div>
 		</FormProvider>
 	);
