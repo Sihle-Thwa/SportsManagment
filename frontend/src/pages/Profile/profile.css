@@ -1,43 +1,51 @@
 /* profile.css */
 @import "tailwindcss";
 
+/* Use semantic tokens from semantic-tokens.css */
 :root {
-	/* Fallback tokens only — your global semantic-tokens.css should define the real ones */
-	--card-background: var(--colour-neutral-100);
-	--card-border: var(--colour-neutral-200);
-	--card-foreground: var(--colour-neutral-900);
-	--card-foreground-secondary: var(--colour-neutral-600);
-	--interactive-primary: var(--colour-primary-500);
-	--interactive-error: var(--colour-error-500);
+	/* These should be defined in semantic-tokens.css and imported globally */
+	--card-background: var(--background-surface);
+	--card-border: var(--border-default);
+	--card-foreground: var(--text-primary);
+	--card-foreground-secondary: var(--text-secondary);
+	--interactive-primary: var(--accent-primary);
+	--interactive-error: var(--accent-error);
 	--easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+	--focus-outline: var(--focus-outline, #2563eb);
 }
 
 .profileRoot {
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	max-width: 100vw;
+	align-items: center;
 	width: 100%;
-	min-width: 320px;
-	height: 100%;
-	overflow: hidden;
+	padding: 0;
+	margin: 0;
 }
 
 .profileHeader {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
 	box-shadow: var(--shadow-base);
 	width: 100%;
 	min-width: 320px;
+	top: 0;
+	padding: 8px 16px;
+	background-color: var(--card-background);
+	border-bottom: 1px solid var(--card-border);
 }
 
 .profileTitle {
 	display: flex;
 	flex-direction: column;
-	font-size: var(--title-size-default);
-	font-weight: var(--font-weight-normal);
-	color: var(--text-primary);
-	margin: 0;
+	font-size: var(--font-size-title, 1.5rem);
+	font-weight: var(--font-weight-bold, 700);
+	color: var(--card-foreground);
+	letter-spacing: var(--letter-spacing-tight, -0.01em);
+	/* Accessibility: Ensure heading is readable */
 }
 
 .profileSubtitle {
@@ -46,45 +54,52 @@
 	margin-top: 4px;
 	margin-bottom: 8px;
 	color: var(--card-foreground-secondary);
-	font-size: var(--subtitle-size-sm);
-	font-weight: var(--font-weight-light);
+	font-size: var(--font-size-subtitle, 1rem);
+	font-weight: var(--font-weight-normal, 400);
 }
 
 /* Container */
 .profileContainer {
 	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: flex-start;
-	overflow: hidden;
-	padding: 24px;
-	gap: 24px;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
 	width: 100%;
 }
 
 .profileContent {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	
-}
-.uploadCol {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 16px;
+	padding: 16px;
 	width: 100%;
 }
+.uploadCol,
 .formCol {
 	display: flex;
 	flex-direction: column;
-	align-items: center;	
+	align-items: center;
+	justify-content: center;
 	width: 100%;
 }
 
+/* Accessibility: Add focus styles for interactive elements */
+.profileHeader:focus-within,
+.profileTitle:focus,
+.profileSubtitle:focus {
+	outline: 2px solid var(--focus-outline);
+	outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+	.profileContent {
+		grid-template-columns: 1fr;
+	}
+}
 
 @media (min-width: 768px) {
 }
 
 @media (min-width: 1024px) {
 }
-
