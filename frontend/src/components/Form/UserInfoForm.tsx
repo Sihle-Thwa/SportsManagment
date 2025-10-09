@@ -40,7 +40,7 @@ export function UserInfoForm({
 			);
 			return;
 		}
-		await onSubmit(data);
+		onSubmit(data);
 	}
 
 	return (
@@ -53,123 +53,100 @@ export function UserInfoForm({
 					<div className="accentLine_userInfo" aria-hidden />
 				</div>
 
-				<div className="cardBody_userInfo">
-					<form
-						onSubmit={handleSubmit(submit)}
-						className="formGrid_userInfo"
-						noValidate
-					>
-						<TextField
-							name="firstName"
-							label="First name"
-							placeholder="First name"
-							className="formItem_userInfo"
-						/>
-						<TextField
-							name="lastName"
-							label="Last name"
-							placeholder="Last name"
-							className="formItem_userInfo"
-						/>
-						<TextField
-							name="addressLine1"
-							label="Address line 1"
-							placeholder="Address 1"
-							className="formItem_userInfo"
-						/>
-						<TextField
-							name="addressLine2"
-							label="Address line 2"
-							placeholder="Address 2"
-							className="formItem_userInfo"
-						/>
+				<form className="cardBody_userInfo" onSubmit={handleSubmit(submit)}>
+					<div className="formColumns_userInfo">
+						<div className="personalInfoColumn_userInfo">
+							<TextField
+								name="firstName"
+								label="First name"
+								placeholder="First name"
+							/>
+							<TextField
+								name="lastName"
+								label="Last name"
+								placeholder="Last name"
+							/>
+							<RadioGroupField
+								name="gender"
+								label="Gender"
+								options={GENDER_OPTIONS.map((g) => ({
+									value: g.value,
+									label: g.label,
+								}))}
+								defaultValue={defaultValues.gender}
+							/>
+							<DateField name="dateOfBirth" label="Date of birth" />
 
-						<RadioGroupField
-							name="gender"
-							label="Gender"
-							className="formItem_userInfo"
-							options={GENDER_OPTIONS.map((g) => ({
-								value: g.value,
-								label: g.label,
-							}))}
-							defaultValue={defaultValues.gender}
-						/>
-
-						<TextField
-							name="city"
-							label="Town / City"
-							placeholder="Town / City"
-							className="formItem_userInfo"
-						/>
-
-						<DateField
-							className="formItem_userInfo"
-							name="dateOfBirth"
-							label="Date of birth"
-						/>
-
-						<SelectField
-							className="formItem_userInfo"
-							name="province"
-							label="Province / State"
-							options={PROVINCE_OPTIONS.map((p) => ({
-								value: p.value,
-								label: p.label,
-							}))}
-							placeholder="Select province"
-						/>
-
-						<TextField
-							className="formItem_userInfo"
-							name="phone"
-							label="Phone"
-							placeholder="071 123 4567"
-						/>
-						<TextField
-							className="formItem_userInfo"
-							name="postCode"
-							label="Postal code"
-							placeholder="Postal code"
-						/>
-						<TextField
-							className="formItem_userInfo"
-							name="email"
-							label="Email"
-							placeholder="you@email.com"
-							type="email"
-						/>
-
-						<SelectField
-							className="formItem_userInfo"
-							name="country"
-							label="Country"
-							options={COUNTRY_OPTIONS.map((c) => ({
-								value: c.value,
-								label: c.label,
-							}))}
-							placeholder="Select country"
-						/>
-
-						<div className="cardFooter_userInfo" aria-hidden>
-							<div className="footerActions_userInfo">
-								<button
-									type="submit"
-									className="primary"
-									disabled={isSubmitting}
-								>
-									Save
-								</button>
-								<button
-									type="button"
-									className="ghost"
-									onClick={() => reset(defaultValues)}
-								>
-									Reset
-								</button>
-							</div>
+							<TextField
+								name="phone"
+								label="Phone"
+								placeholder="071 123 4567"
+							/>
+							<TextField
+								name="email"
+								label="Email"
+								placeholder="you@email.com"
+								type="email"
+							/>
 						</div>
-					</form>
-				</div>
+						<div className="addressInfoColumn_userInfo">
+							<TextField
+								name="addressLine1"
+								label="Address line 1"
+								placeholder="Address 1"
+							/>
+							<TextField
+								name="addressLine2"
+								label="Address line 2"
+								placeholder="Address 2"
+							/>
+							<TextField
+								name="city"
+								label="Town / City"
+								placeholder="Town / City"
+							/>
+
+							<SelectField
+								name="province"
+								label="Province / State"
+								options={PROVINCE_OPTIONS.map((p) => ({
+									value: p.value,
+									label: p.label,
+								}))}
+								placeholder="Select province"
+							/>
+
+							<TextField
+								name="postCode"
+								label="Postal code"
+								placeholder="Postal code"
+							/>
+							<SelectField
+								name="country"
+								label="Country"
+								options={COUNTRY_OPTIONS.map((c) => ({
+									value: c.value,
+									label: c.label,
+								}))}
+								placeholder="Select country"
+							/>
+						</div>
+					</div>
+					<div className="cardFooter_userInfo" aria-hidden>
+						<div className="footerActions_userInfo">
+							<button type="submit" className="primary" disabled={isSubmitting}>
+								Save
+							</button>
+							<button
+								type="button"
+								className="ghost"
+								onClick={() => reset(defaultValues)}
+							>
+								Reset
+							</button>
+						</div>
+					</div>
+				</form>
 			</div>
 		</FormProvider>
 	);

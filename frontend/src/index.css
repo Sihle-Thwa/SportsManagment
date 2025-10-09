@@ -21,7 +21,7 @@
 		-ms-user-select: none;
 		user-select: none;
 		scrollbar-width: thin;
-		scrollbar-color: var(--scrollbar-thumb, var(--colour-neutral-400))
+		scrollbar-color: var(--scrollbar-thumb, var(--colour-neutral-300))
 			var(--scrollbar-track, var(--colour-neutral-50));
 		-webkit-overflow-scrolling: touch;
 	}

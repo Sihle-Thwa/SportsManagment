@@ -4,8 +4,13 @@
 
 /* Light Theme (default) */
 
-
 :root {
+    /* Background */
+    --background-canvas: var(--background-canvas-gradient);
+
+    /* Additional border variable for muted borders */
+    --border-muted: var(--colour-neutral-300);
+
     /* Background */
     --background-canvas: var(--background-canvas-gradient);
     --background-surface: var(--colour-neutral-100);
@@ -211,7 +216,7 @@
     /* Pure white background */
     --card-background-hover: var(--colour-neutral-100);
     /* Neutral 100 - Light hover state */
-    --card-border: var(--border-subtle);
+    --card-border: var(--border-default);
     /* Secondary 100 - Subtle border */
     --card-border-hover: var(--border-muted);
     /* Secondary 300 - Slightly darker on hover */
@@ -355,8 +360,6 @@
     /* Neutral 700 - Tooltip border */
     --tooltip-shadow: 0 4px 12px hsla(220, 15%, 15%, 0.25);
     /* Tooltip shadow */
-    --tooltip-shadow: 0 4px 12px hsla(220, 15%, 15%, 0.25);
-
 
     
 }

@@ -1,203 +1,68 @@
 @import "tailwindcss";
-
+@import "../../styles/semantic-tokens.css";
 
 .cardBase_userInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  max-width: 750px;
-  width: 100%;
-  min-width: 320px;
-  max-width: 100%;
+  background-color: var(--card-background, var(--colour-neutral-100));
+  border: 1px solid;
+  border-color: var(--card-border);
+  border-radius: 8px;
   height: 100%;
-  border: 1px solid var(--border-default);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-base);
-  overflow: hidden;
+  position: relative;
+  width: 750px;
 }
 
 /* Header */
 .cardHeader_userInfo {
-  padding: 8px 12px;
-  
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  left: 24px;
+  top: 12px;
+  width: 100%;
+  position: absolute;
+    
 }
 
 .cardTitle_userInfo {
   font-size: var(--title-size-default);
   font-weight: var(--font-weight-semibold);
   color: var(--card-foreground, var(--colour-neutral-900));
+  margin-top: -1px; /* slight visual tweak to align with icon */
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
 }
 
 /* Accent line under the title — gold in your Figma */
 .accentLine_userInfo {
-  height: 3px;
-  width: 100%;
+  height: 2px;
+  top: 36px; /* position just below the header */
+  position: absolute;
+  width: 700px;
   margin-top: 4px;
   border-radius: 2px;
   background: linear-gradient(90deg, #f2c94c, #f2994a); /* warm accent similar to figma */
-  max-width: 100%;
 }
 
 /* Card body / form grid */
 .cardBody_userInfo {
-  display: flex;
-  flex-direction: column;
-  padding: 8px 12px;
-}
-
-.formGrid_userInfo {
-  display: grid;
-  grid-template-columns: 1fr;
-  padding: 8px;
-}
-
-/* two columns from md upward */
-@media (min-width: 768px) {
-  .formGrid_userInfo {
-    grid-template-columns: 1fr 1fr;
-    gap: 18px 28px;
-  }
-}
-
-/* A field wrapper — label above control like in figma */
-.formItem_userInfo {
-  display: flex;
-  flex-direction: row;
+  /* Card body is a container for the form grid */
   align-items: flex-start;
-  padding: 4px 0;
-}
-
-/* Label styling */
-.formLabel_userInfo {
-  font-size: var(--body-size-default);
-  font-weight: var(--font-weight-medium);
-  color: var(--text-primary);
-}
-
-/* Input base — used as className for your Input component to style appearance */
-.input_userInfo {
   display: inline-flex;
-  align-items: center;
-  height: 40px;
-  width: 100%;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--input-border);
-  padding: 0 12px;
-  background: var(--input-background);
-  color: var(--text);
-  font-size: var(--body-size-default);
-  transition: var(--transition-fast) ease, var(--transition-fast) ease;
-}
-
-/* input focus */
-.input_userInfo:focus,
-.input_userInfo:focus-within {
-  outline: none;
-  border-color: var(--input-border-focus);
-  box-shadow: var(--input-shadow-focus);
-}
-
-/* small helper for input adornments (calendar icon left) */
-.inputIcon_userInfo {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 8px;
-  color: var(--muted); /* comeback to create */
-}
-
-/* Date trigger (we reuse input visual for popover trigger) */
-.dateTrigger_userInfo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  justify-content: space-between;
-  padding-left: 10px;
-  padding-right: 12px;
-  width: 100%;
-  text-align: left;
-  min-height: 40px;
-  border-radius: 8px;
-  border: 1px solid var(--card-border);
-  background: #fff;
-}
-
-/* date text muted */
-.dateText_userInfo {
-  color: var(--muted);
-  flex: 1;
-  text-align: left;
-  font-size: 14px;
-}
-
-/* Chevron on date */
-.chevron_userInfo {
-  color: var(--muted);
-  margin-left: 8px;
-}
-
-/* Select trigger */
-.selectTrigger_userInfo {
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid var(--card-border);
-  min-height: 40px;
-  background: #fff;
-}
-
-/* radio group horizontal */
-.radioGroup_userInfo {
-  display: flex;
-  gap: 18px;
-  align-items: center;
-}
-
-.radioItem_userInfo {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--muted);
-  font-weight: 500;
-  font-size: 14px;
-}
-
-/* footer wrapper spans two columns on larger screens */
-.footerWrap_userInfo {
-  grid-column: 1 / -1; /* span full width */
-  display: flex;
-  justify-content: flex-end;
-  padding-top: 8px;
-}
-
-/* action buttons */
-.footerActions_userInfo {
-  display: flex;
+  flex-direction: column;
   gap: 12px;
+  padding: 64px 24px 24px 24px; /* top padding to avoid header overlap */
+  position: relative;
+  width: 100%;
 }
 
-/* popover content small tweak */
-.popoverContent_userInfo {
-  padding: 8px;
+/* Make formColumns_userInfo a grid with two columns */
+.formColumns_userInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* two columns side by side */
+  grid-auto-flow: column; /* fill by columns */
+  align-items: center;
+  gap: 12px 24px; /* vertical and horizontal gaps */
+  width: 100%;
 }
 
-/* small calendar tweaks */
-.calendar_userInfo {
-  width: 320px;
-  max-width: 100%;
-}
-
-/* card footer reserved */
-.cardFooter_userInfo {
-  padding: 8px 12px;
-}
-
-/* responsiveness: single column on small screens with full-width buttons */
-@media (max-width: 640px) {
-  .formGrid_userInfo { grid-template-columns: 1fr; }
-  .cardFooter_userInfo { justify-content: stretch; }
-  .footerActions_userInfo { width: 100%; justify-content: space-between; }
-}
