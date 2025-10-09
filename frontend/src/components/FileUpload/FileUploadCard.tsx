@@ -1,7 +1,6 @@
-// src/components/FileUpload/FileUploadCard.tsx
 "use client";
 import React, { useState } from "react";
-import { Upload } from "lucide-react";
+import { User } from "lucide-react";
 import { cn } from "../../lib/utils";
 import "./fileuploadcard.css";
 
@@ -111,7 +110,7 @@ export const FileUploadCard: React.FC<FileUploadCardProps> = ({
 		>
 			<div className="cardHeader_fileUpload">
 				<div className="cardHeader-content_fileUpload">
-					<Upload className="cardHeader-icon_fileUpload" />
+					<User />
 				</div>
 				<div id="upload-title" className="cardTitle_fileUpload">
 					{title}
