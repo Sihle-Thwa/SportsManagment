@@ -1,42 +1,40 @@
-import { Button } from "../../common/Button/Button";
-
 interface TablePaginationProps {
-  currentPage: number;
-  totalPages: number;
-  onPageChange: (page: number) => void;
+	currentPage: number;
+	totalPages: number;
+	onPageChange: (page: number) => void;
 }
 
 export function TablePagination({
-  currentPage,
-  totalPages,
-  onPageChange,
+	currentPage,
+	totalPages,
+	onPageChange,
 }: TablePaginationProps) {
-  const isFirst = currentPage <= 1;
-  const isLast = currentPage >= totalPages;
+	const isFirst = currentPage <= 1;
+	const isLast = currentPage >= totalPages;
 
-  return (
-    <div className="table-pagination">
-      <Button
-        className="btn btn--primary"
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={isFirst}
-      >
-        Previous
-      </Button>
+	return (
+		<div className="table-pagination">
+			<button
+				className="btn btn--primary"
+				onClick={() => onPageChange(currentPage - 1)}
+				disabled={isFirst}
+			>
+				Previous
+			</button>
 
-      <span className="text-sm text-muted font-medium">
-        Page {currentPage} of {totalPages}
-      </span>
+			<span className="text-sm text-muted font-medium">
+				Page {currentPage} of {totalPages}
+			</span>
 
-      <Button
-        className="btn btn--primary"
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={isLast}
-      >
-        Next
-      </Button>
-    </div>
-  );
+			<button
+				className="btn btn--primary"
+				onClick={() => onPageChange(currentPage + 1)}
+				disabled={isLast}
+			>
+				Next
+			</button>
+		</div>
+	);
 }
 TablePagination.displayName = "TablePagination";
 export default TablePagination;

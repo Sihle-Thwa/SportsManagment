@@ -1,0 +1,355 @@
+/* src/components/Table/table.css */
+
+/* Base */
+.members-table {
+	width: 100%;
+	color: var(--sidebar-text, var(--card-foreground));
+	font-family: var(
+		--font-sans,
+		system-ui,
+		-apple-system,
+		"Segoe UI",
+		Roboto,
+		"Helvetica Neue"
+	);
+}
+
+.members-table__inner {
+	max-width: 1200px;
+	margin-inline: auto;
+	padding: 20px;
+}
+
+/* header */
+.table-header {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	justify-content: space-between;
+	margin-bottom: 18px;
+}
+
+/* left */
+.table-header__left,
+.table-header__right {
+	display: flex;
+	gap: 12px;
+	align-items: center;
+}
+
+.table-header__label {
+	font-size: 0.95rem;
+	color: var(--text-on-background, var(--text-primary));
+}
+
+/* select */
+.select-wrapper select.table-header__select {
+	appearance: none;
+	border: 1px solid var(--sidebar-border);
+	background: var(--card-background);
+	padding: 8px 10px;
+	border-radius: 8px;
+	min-width: 56px;
+}
+
+/* search center */
+.table-header__center {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+}
+
+.search-control {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	max-width: 560px;
+	border-radius: 12px;
+	padding: 6px 12px;
+	background: var(--card-background);
+	border: 1px solid var(--sidebar-border);
+}
+
+.search-input {
+	width: 100%;
+	border: none;
+	background: transparent;
+	padding: 8px 6px;
+	font-size: 0.95rem;
+	outline: none;
+}
+
+/* CTA */
+.button {
+	padding: 8px 12px;
+	border-radius: 8px;
+	border: 1px solid transparent;
+	font-weight: 600;
+	cursor: pointer;
+}
+.button--primary {
+	background: var(--interactive-primary);
+	color: var(--text-on-primary, #fff);
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+.button--ghost {
+	background: transparent;
+	color: var(--sidebar-text);
+	border: 1px solid var(--card-border);
+}
+
+/* table core */
+.table-wrap {
+	width: 100%;
+	border-radius: 12px;
+	overflow: hidden;
+	border: 1px solid var(--card-border);
+	background: var(--card-background);
+}
+
+/* head */
+.table-head {
+	background: transparent;
+	border-bottom: 1px solid var(--card-border);
+}
+.table-row {
+	display: grid;
+	grid-template-columns: 110px 1fr 1fr 1.5fr 140px 140px 120px; /* columns as seen in design */
+	gap: 12px;
+	align-items: center;
+	padding: 12px 18px;
+}
+.table-row--head {
+	font-weight: 600;
+	color: var(--text-on-background);
+	font-size: 0.95rem;
+}
+.table-cell {
+	padding: 6px 0;
+	font-size: 0.95rem;
+	color: var(--text-on-background);
+}
+.table-cell--head {
+	display: flex;
+	align-items: center;
+}
+.table-header-button {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	background: transparent;
+	border: none;
+	font-weight: 600;
+	cursor: pointer;
+	color: var(--sidebar-text);
+}
+.table-header-button:focus {
+	outline: 2px solid color-mix(in srgb, var(--interactive-primary) 50%, white);
+	border-radius: 6px;
+}
+.sort-indicator {
+	font-size: 0.7rem;
+	opacity: 0.6;
+}
+.sort-indicator.active {
+	opacity: 1;
+}
+
+/* body */
+.table-body {
+	background: var(--card-background);
+}
+.table-row:nth-child(even) {
+	background: transparent;
+}
+.table-row:hover {
+	background: color-mix(in srgb, var(--interactive-primary) 7%, white);
+}
+
+/* user cell */
+.user-cell {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+.avatar-placeholder {
+	width: 36px;
+	height: 36px;
+	border-radius: 8px;
+	background: color-mix(in srgb, var(--sidebar-border) 20%, white);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+.user-name {
+	font-weight: 500;
+}
+
+/* actions */
+.action-buttons {
+	display: flex;
+	gap: 8px;
+	justify-self: end;
+}
+.icon-btn {
+	background: transparent;
+	border: 1px solid transparent;
+	padding: 6px;
+	border-radius: 6px;
+	cursor: pointer;
+}
+.icon-btn:focus {
+	outline: 2px solid var(--interactive-primary);
+}
+.icon-btn.destructive {
+	color: var(--interactive-error);
+}
+
+/* skeleton */
+.skeleton {
+	background: linear-gradient(
+		90deg,
+		rgba(0, 0, 0, 0.06) 25%,
+		rgba(0, 0, 0, 0.04) 37%,
+		rgba(0, 0, 0, 0.06) 63%
+	);
+	background-size: 400% 100%;
+	animation: shimmer 1.4s infinite linear;
+	border-radius: 6px;
+	min-height: 16px;
+}
+.skeleton-text {
+	height: 14px;
+	width: 100%;
+}
+.skeleton-icon {
+	width: 24px;
+	height: 24px;
+	border-radius: 6px;
+}
+
+@keyframes shimmer {
+	0% {
+		background-position: 200% 0;
+	}
+	100% {
+		background-position: -200% 0;
+	}
+}
+
+/* empty state */
+.table-empty {
+	padding: 40px;
+	text-align: center;
+}
+.table-empty__content {
+	color: var(--text-on-background-secondary, var(--colour-neutral-500));
+}
+
+/* footer */
+.table-footer {
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	justify-content: space-between;
+	padding: 18px 6px;
+}
+.table-footer__center {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+.pager-link {
+	background: transparent;
+	border: none;
+	color: var(--sidebar-text);
+}
+.pager-pages {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+.pager-page {
+	background: var(--interactive-primary);
+	color: var(--text-on-primary);
+	border-radius: 6px;
+	padding: 6px 10px;
+	border: none;
+	cursor: pointer;
+}
+.pager-page:not(.active) {
+	background: color-mix(in srgb, var(--interactive-primary) 10%, white);
+	color: var(--interactive-primary);
+}
+.pager-page.active {
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* responsive */
+@media (max-width: 1024px) {
+	.table-row {
+		grid-template-columns: 90px 1fr 1fr auto;
+	}
+	.table-cell[data-label="Email"] {
+		display: none;
+	}
+	.table-cell[data-label="Contact"] {
+		display: none;
+	}
+}
+
+@media (max-width: 640px) {
+	.members-table__inner {
+		padding: 12px;
+	}
+	.table-row {
+		grid-template-columns: 1fr;
+		gap: 6px;
+		padding: 12px;
+	}
+	.table-row--head {
+		display: none;
+	}
+	.table-cell {
+		padding: 8px 0;
+	}
+	.action-buttons {
+		justify-content: flex-start;
+	}
+	.table-header__center {
+		display: none;
+	}
+}
+/* selection column & bulk actions */
+.select-col {
+	width: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* danger style for destructive bulk actions */
+.button--danger {
+	background: transparent;
+	color: var(--interactive-error);
+	border: 1px solid color-mix(in srgb, var(--interactive-error) 10%, white);
+	padding: 6px 10px;
+	border-radius: 8px;
+	display: inline-flex;
+	gap: 8px;
+	align-items: center;
+	font-weight: 600;
+}
+.button--danger:hover {
+	background: color-mix(in srgb, var(--interactive-error) 8%, white);
+}
+
+/* smaller icon buttons spacing */
+.icon-btn {
+	width: 36px;
+	height: 36px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
