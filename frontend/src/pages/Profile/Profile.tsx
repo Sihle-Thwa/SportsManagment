@@ -1,9 +1,8 @@
-// src/pages/profile/Profile.tsx
 "use client";
 import React from "react";
 import UserInfoForm from "../../components/Form/UserInfoForm";
-import { FileUploadCard } from "../../components/FileUpload";
 import "./profile.css";
+import FileUploadCard from "../../components/FileUpload/FileUploadCard";
 
 const Profile: React.FC = () => {
 	const handleSubmit = (data: unknown) => {
@@ -27,12 +26,7 @@ const Profile: React.FC = () => {
 			<section className="profileContainer" aria-label="Profile editor">
 				<div className={`profileContent`}>
 					<div className="uploadCol">
-						<FileUploadCard
-							description="Upload a picture for your profile (max 800×400, JPG/PNG/SVG/GIF)"
-							onFileSelect={(file: File) => {
-								console.log("File selected:", file.name);
-							}}
-						/>
+						<FileUploadCard />
 					</div>
 					<div className={`formCol`}>
 						<UserInfoForm onSubmit={handleSubmit} />
