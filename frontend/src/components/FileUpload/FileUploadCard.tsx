@@ -161,19 +161,12 @@ const UploadAttachment: React.FC<UploadAttachmentProps> = ({
 							</div>
 						)}
 
-						<div
-							style={{
-								display: "flex",
-								gap: "12px",
-								width: "100%",
-								marginTop: "8px",
-							}}
-						>
-							<button className="btnBase btnGhost" onClick={handleRemove}>
+						<div className="footerActions_fileUpload">
+							<button className="buttonGhost_fileUpload" onClick={handleRemove}>
 								Remove
 							</button>
 							<button
-								className="btnBase"
+								className="buttonPrimary_fileUpload"
 								onClick={() => document.getElementById("file-upload")?.click()}
 							>
 								Add Photo

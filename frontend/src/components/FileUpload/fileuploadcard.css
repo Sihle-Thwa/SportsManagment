@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "../../styles/semantic-tokens.css";
+
 
 .cardBase_fileUpload {
   align-items: center;
@@ -7,23 +9,23 @@
   border-color: var(--card-border);
   border-radius: 8px;
   box-shadow: var(--card-shadow);
-  display: flex;
-  flex-direction: column;
   gap: 12px;
-  overflow: hidden;
   padding: 32px 24px 24px;
   position: relative;
   max-width: 400px;
   width: 100%;
+  height: 100%;
 }
 
 .cardHeader_fileUpload {
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex: 0 0 auto;
   position: relative;
   margin-bottom: 12px;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .cardHeader-content_fileUpload_Icon {
@@ -34,8 +36,8 @@
   height: 120px;
   background: linear-gradient(135deg, #e8eaf6 0%, #f3e5f5 100%);
   border-radius: 50%;
-  color: #546e7a;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-lg);
 }
 
 .cardBody_fileUpload {
@@ -156,42 +158,45 @@
   text-align: center;
 }
 
-.btnBase {
-  background: var(--interactive-primary);
-  color: var(--text-on-primary);
-  border: 1px solid transparent;
-  padding: 10px 20px;
-  border-radius: 8px;
+.footerActions_fileUpload {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+}
+
+.buttonPrimary_fileUpload {
+  background-color: var(--button-bg);
+  color: var(--button-fg);
+  border: 1px solid var(--button-bd);
+  border-radius: var(--button-radius);
+  padding: 8px 16px;
+  font-size: var(--button-font-size);
   cursor: pointer;
-  font-weight: var(--font-weight-semibold);
-  font-size: var(--body-size-default);
-  flex: 1;
-  transition: all 0.2s ease;
-  font-family: inherit;
 }
 
-.btnBase:hover {
-  background: var(--interactive-primary-hover);
+.buttonPrimary_fileUpload:hover {
+
+  background-color: var(--button-bg-hover);
+  color: var(--button-fg-hover);
+  border: 1px solid var(--button-bd-hover);
+  box-shadow: var(--button-shadow);
 }
 
-.btnBase:active {
-  background: var(--interactive-primary-active);
-  transform: translateY(1px);
+.buttonGhost_fileUpload {
+ background-color: var(--button-bg);
+  color: var(--button-fg);
+  border: 1px solid var(--button-bd);
+  border-radius: var(--button-radius);
+  padding: 8px 16px;
+  font-size: var(--button-font-size);
+  cursor: pointer;
 }
-
-.btnGhost {
-  background: transparent;
-  color: var(--card-foreground);
-  border: 1px solid var(--card-border);
-}
-
-.btnGhost:hover {
-  background: var(--background-surface-hover, rgba(0, 0, 0, 0.02));
-  border-color: var(--border-default);
-}
-
-.btnGhost:active {
-  background: var(--background-surface-pressed, rgba(0, 0, 0, 0.05));
+.buttonGhost_fileUpload:hover {
+ background-color: var(--button-bg-hover);
+  color: var(--button-fg-hover);
+  border: 1px solid var(--button-bd-hover);
+  box-shadow: var(--button-shadow);
 }
 
 @media (max-width: 640px) {
