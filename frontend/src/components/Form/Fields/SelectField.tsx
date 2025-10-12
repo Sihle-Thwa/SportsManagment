@@ -7,7 +7,6 @@ import {
 	SelectContent,
 	SelectItem,
 } from "../../ui/select";
-import { ChevronDown } from "lucide-react";
 import "../formfield.css";
 
 export interface Option {
@@ -59,7 +58,6 @@ export const SelectField: React.FC<SelectFieldProps> = ({
 									className={`field__select-trigger ${err && "error"}`}
 								>
 									<SelectValue placeholder={placeholder} />
-									<ChevronDown />
 								</SelectTrigger>
 								<SelectContent>
 									{options.map((o) => (
