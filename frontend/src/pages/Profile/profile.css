@@ -74,7 +74,12 @@
 	padding: 16px;
 	width: 100%;
 }
-.uploadCol,
+.uploadCol {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
 .formCol {
 	display: flex;
 	flex-direction: column;

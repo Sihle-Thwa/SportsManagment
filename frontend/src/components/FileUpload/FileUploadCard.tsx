@@ -111,8 +111,8 @@ const UploadAttachment: React.FC<UploadAttachmentProps> = ({
 			</div>
 
 			<div className="cardBody_fileUpload">
-				<h2 className="cardBodyTitle_fileUpload">{title}</h2>
-				<p className="cardBodyDescription_fileUpload">{description}</p>
+				<div className="cardBodyTitle_fileUpload">{title}</div>
+				<div className="cardBodyDescription_fileUpload">{description}</div>
 
 				{!selectedFile ? (
 					<>
@@ -162,11 +162,14 @@ const UploadAttachment: React.FC<UploadAttachmentProps> = ({
 						)}
 
 						<div className="footerActions_fileUpload">
-							<button className="buttonGhost_fileUpload" onClick={handleRemove}>
+							<button
+								className="button-secondary buttonGhost_fileUpload"
+								onClick={handleRemove}
+							>
 								Remove
 							</button>
 							<button
-								className="buttonPrimary_fileUpload"
+								className="button-primary buttonPrimary_fileUpload"
 								onClick={() => document.getElementById("file-upload")?.click()}
 							>
 								Add Photo
@@ -196,8 +199,8 @@ const UploadAttachment: React.FC<UploadAttachmentProps> = ({
 							</div>
 						)}
 
-						<div style={{ display: "flex", gap: "12px", width: "100%" }}>
-							<button className="btnBase btnGhost" onClick={handleRemove}>
+						<div className="footerActions_fileUpload">
+							<button className="buttonGhost_fileUpload" onClick={handleRemove}>
 								Remove
 							</button>
 						</div>
