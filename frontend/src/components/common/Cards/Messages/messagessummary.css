@@ -11,6 +11,7 @@
 	border: 1px solid var(--border-default);
 	border-radius: var(--radius-lg);
 	box-shadow: var(--shadow-md);
+	background: var(--card-background);
 }
 
 .card-messages-header {

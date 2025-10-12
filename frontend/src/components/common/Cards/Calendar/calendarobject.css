@@ -9,6 +9,7 @@
 	max-height: 320px;
 	padding: 0;
 	overflow: hidden;
+	background-color: var(--card-background);
 	border: 1px solid var(--border-default);
 	border-radius: var(--radius-lg);
 	box-shadow: var(--shadow-md);

@@ -18,6 +18,8 @@
 		border-radius: var(--radius-lg);
 		box-shadow: var(--shadow-md);
 		overflow: hidden;
+		padding: 12px;
+		background-color: var(--card-background);
 		
 	}
 

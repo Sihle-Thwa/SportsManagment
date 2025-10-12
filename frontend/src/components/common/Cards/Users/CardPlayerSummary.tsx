@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { MoreVertical, Plus } from "lucide-react";
+import { MoreVertical } from "lucide-react";
 import { ChartBar } from "../../Charts/ChartBar";
 import { Skeleton } from "../../Skeleton/Skeleton";
 import "./cardplayersummary.css";
@@ -43,16 +43,7 @@ export const CardPlayerSummary: React.FC<{ loading?: boolean }> = ({
 			<div className="card-player-body chart-body">
 				<ChartBar />
 			</div>
-			<div className="card-player-footer">
-				<div className="players-cta">
-					<button className="button button-secondary button-icon-left">
-						<span className="btn-icon">
-							<Plus />
-						</span>
-						Add New Player
-					</button>
-				</div>
-			</div>
+			{/* Add Options to add a new player in the vertical button as a modal */}
 		</div>
 	);
 };

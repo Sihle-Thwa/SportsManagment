@@ -12,6 +12,7 @@
       border: 1px solid var(--border-default);
       border-radius: var(--radius-lg);
       box-shadow: var(--shadow-md);
+      background-color: var(--card-background);
     }
     .card-player-header {
       padding: 8px 12px;

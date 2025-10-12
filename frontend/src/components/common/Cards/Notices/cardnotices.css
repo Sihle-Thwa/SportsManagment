@@ -13,6 +13,7 @@
 		border: 1px solid var(--border-default);
 		border-radius: var(--radius-lg);
 		box-shadow: var(--shadow-md);
+        background: var(--background-surface);
 	}
 	.card-notices-header {
 		padding: 8px 12px;
