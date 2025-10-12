@@ -1,4 +1,3 @@
-// src/components/Table/MembersTable.tsx
 import React, { useMemo, useState } from "react";
 import TableHeader from "./TableHeader";
 import TableBody from "./TableBody";
