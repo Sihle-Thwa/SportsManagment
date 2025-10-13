@@ -1,7 +1,7 @@
 import { useState } from "react";
 import MembersTable from "../../components/Table/MembersTable";
-import "./members.css";
 import { Member } from "@/types/member.types";
+import "./members.css";
 
 export default function Members() {
 	const [members] = useState<Member[]>([
@@ -26,8 +26,10 @@ export default function Members() {
 
 	return (
 		<div className="membersRoot">
-			<div className="membersHeader">
-				<div className="membersTitle">Members</div>
+			<div className="membersHeader" aria-labelledby="members-header">
+				<div className="membersTitle" id="members-title">
+					Members
+				</div>
 				<div className="membersSubtitle">
 					View and Manage all members of your organisation
 				</div>

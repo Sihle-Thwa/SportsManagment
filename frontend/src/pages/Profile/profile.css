@@ -19,7 +19,6 @@
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	max-width: fit-content;
 	width: 100%;
 	padding: 0;
 	margin: 0;
@@ -45,7 +44,7 @@
 	font-size: var(--font-size-title, 1.5rem);
 	font-weight: var(--font-weight-bold, 700);
 	color: var(--card-foreground);
-	letter-spacing: var(--letter-spacing-tight, -0.01em);
+	letter-spacing: var(--letter-spacing-normal);
 	/* Accessibility: Ensure heading is readable */
 }
 

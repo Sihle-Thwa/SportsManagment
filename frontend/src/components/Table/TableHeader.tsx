@@ -1,4 +1,3 @@
-// src/components/Table/TableHeader.tsx
 import { useEffect, useState } from "react";
 import { Search, Trash2, Plus } from "lucide-react";
 

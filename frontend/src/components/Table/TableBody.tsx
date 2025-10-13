@@ -1,4 +1,3 @@
-// src/components/Table/TableBody.tsx
 import React from "react";
 import type { ColumnDef } from "./types";
 

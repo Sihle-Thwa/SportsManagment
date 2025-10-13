@@ -12,12 +12,11 @@ const columns: ColumnDef<Member>[] = [
 		render: (row) => (
 			<div className="flex items-center gap-2">
 				<User className="text-primary-600 w-4 h-4" aria-hidden />
-				<span className="font-medium text-sm">
-					{row.firstName} {row.lastName}
-				</span>
+				<span className="font-medium text-sm">{row.firstName}</span>
 			</div>
 		),
 	},
+	{ key: "lastName", header: "Last Name", sortable: true },
 	{ key: "email", header: "Email", sortable: true },
 	{ key: "role", header: "Role", sortable: true },
 	{ key: "contact", header: "Contact", sortable: false },

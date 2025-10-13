@@ -11,7 +11,7 @@ const Profile: React.FC = () => {
 
 	return (
 		<div className="profileRoot">
-			<div className="profileHeader" aria-labelledby="profile-title">
+			<div className="profileHeader" aria-labelledby="profile-header">
 				<div>
 					<div id="profile-title" className="profileTitle">
 						User Profile
