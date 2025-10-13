@@ -1,9 +1,7 @@
-// src/pages/members/MembersPage.tsx
 import { useState } from "react";
-import MembersTable, {
-	Member,
-} from "../../components/common/Table/MembersTable";
+import MembersTable from "../../components/Table/MembersTable";
 import "./members.css";
+import { Member } from "@/types/member.types";
 
 export default function Members() {
 	const [members] = useState<Member[]>([

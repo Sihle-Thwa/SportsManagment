@@ -1,4 +1,4 @@
-import { PageSelect } from "../../common/Select/PageSelect";
+import { PageSelect } from "../common/Select/PageSelect";
 
 interface TableControlsProps {
 	itemsPerPage: number;
