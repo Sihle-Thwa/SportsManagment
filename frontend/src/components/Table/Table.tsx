@@ -178,11 +178,15 @@ export default function Table<T>({
 					/>
 
 					{/* semantic table */}
-					<table className="tableBody_tbody" role="table" aria-label="Members">
-						<thead className="tableHeader_thead" role="rowgroup">
-							<tr role="row" className="tableHeader_thead-row">
+					<table
+						className="tableBody_tbody"
+						role="table"
+						aria-label="table-data"
+					>
+						<thead className="tableBody_thead" role="rowgroup">
+							<tr role="row" className="tableBody_thead-row">
 								<th
-									className="tableHeader_thead-cell-checkbox"
+									className="tableBody_thead-cell-checkbox"
 									role="columnheader"
 								>
 									<input
@@ -201,7 +205,7 @@ export default function Table<T>({
 											key={col.id}
 											scope="col"
 											role="columnheader"
-											className="tableHeader_thead-cell"
+											className="tableBody_thead-cell"
 											style={{ width: col.width }}
 											aria-sort={
 												isSorted
@@ -213,7 +217,7 @@ export default function Table<T>({
 										>
 											<button
 												type="button"
-												className="tableHeader_thead-cell-sortable"
+												className="tableBody_thead-cell-sortable"
 												onClick={() => toggleSort(col.id, col.sortable)}
 												aria-label={
 													col.sortable ? `${col.header} sortable` : col.header
@@ -237,7 +241,7 @@ export default function Table<T>({
 								})}
 
 								<th
-									className="tableHeader_thead-cell-actions"
+									className="tableBody_thead-cell-actions"
 									role="columnheader"
 								>
 									Action

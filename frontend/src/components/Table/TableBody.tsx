@@ -27,7 +27,7 @@ export default function TableBody<T>({
 						<td className="tableBody_tbody-cell-checkbox" role="cell">
 							<div
 								className="shimmer"
-								style={{ width: 20, height: 20, borderRadius: 4 }}
+								style={{ width: 16, height: 16, borderRadius: 4 }}
 							/>
 						</td>
 						{columns.map((col) => (
