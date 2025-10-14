@@ -1,0 +1,73 @@
+.playersPageTable {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 420px;
+	align-items: center;
+	box-shadow: var(--card-shadow);
+	border-radius: 8px;
+	background-color: var(--table-background);
+	overflow-y: auto;
+}
+
+.playersPageTable_tableHeader {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	width: 100%;
+	padding: 8px 12px;
+	border-bottom: 2px solid var(--border-default);
+	font-weight: var(--font-weight-semibold);
+	color: var(--text-on-background);
+	width: 100%;
+}
+
+.playersPageTable_tableHeader-row {
+	display: inline-flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+	width: 100%;
+}
+
+.playersPageTable_tableHeader-cell {
+	display: inline-flex;
+	text-align: center;
+    flex: 1 1 80px;
+	font-weight: var(--font-weight-semibold);
+	color: var(--text-primary);
+    font-size: 16px;
+}
+.playersPageTable_tableHeader-cell-sortable {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	cursor: pointer;
+}
+
+.playersPageTable_tableBody {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.playersPageTable_tableBody-row {
+	display: inline-flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+	width: 100%;
+	padding: 8px 12px;
+	color: var(--text-on-primary);
+	border-bottom: 1px solid var(--border-default);
+	cursor: pointer;
+	font-size: 14px;
+	color: var(--text-on-background-primary);
+}
+.playersPageTable_tableBody-cell {
+	flex: 1 1 80px;
+	min-width: 80px;
+	width: 100%;
+	display: inline-flex;
+	align-items: center;
+}

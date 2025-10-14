@@ -1,10 +1,8 @@
 import type { Players } from "../types/players.types";
 
-// Helper for random ID numbers by country
 function generateIdentificationNumber(nationality: string): string {
     switch (nationality) {
         case "South African":
-            // South African ID: YYMMDDXXXXXX8
             return (
                 Math.floor(60 + Math.random() * 40).toString().padStart(2, "0") +
                 Math.floor(1 + Math.random() * 12).toString().padStart(2, "0") +
@@ -26,16 +24,15 @@ function generateIdentificationNumber(nationality: string): string {
 
 function padId(num: number, size = 3): string {
     return "P" + num.toString().padStart(size, "0");
-} 
+}
 
 function generateAge(dob: string): number {
     const birthDate = new Date(dob);
     const today = new Date();
-
-    const age = today.getFullYear() - birthDate.getFullYear();
+    let age = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth();
     if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-        return age - 1;
+        age -= 1;
     }
     return age;
 }
@@ -43,6 +40,7 @@ function generateAge(dob: string): number {
 function randomEmail(firstName: string, lastName: string): string {
     return `${firstName.toLowerCase()}.${lastName.toLowerCase()}@example.com`;
 }
+
 
 const firstNames = [
     "Thabo", "Lerato", "Petrus", "Tendai", "Keitumetse",
@@ -57,9 +55,9 @@ const middleNames = [
 ];
 
 const preferredNames = [
-    "Thabs", "Pete", "Pete", "Tendy", "Kei",
-    "Carl", "Noks", "Vas", "Boity", "Simba",
-    "Lena", "Lindo", "Aish", "KJ", "Fati",
+    "Thabs", "Pete", "Tendy", "Kei", "Carl",
+    "Noks", "Vas", "Boity", "Simba", "Lena",
+    "Lindo", "Aish", "KJ", "Fati", "Mo",
 ];
 
 const lastNames = [
@@ -86,17 +84,19 @@ const contacts = [
     "+264 85 622 3411", "+27 73 100 8875", "+27 71 234 5678", "+233 24 123 4567", "+221 77 123 4567",
 ];
 
+const statusOptions = ["Active", "Injured", "Suspended", "Retired"];
 
 
-/**
- * Optional generator to produce larger sample sets.
- */
+
 export function generateMockPlayers(count = 20): Players[] {
     const players: Players[] = [];
+
     for (let i = 0; i < count; i++) {
         const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
         const middleName = middleNames[Math.floor(Math.random() * middleNames.length)];
         const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+        const nationality = nationalities[Math.floor(Math.random() * nationalities.length)];
+        const dob = dateOfBirths[Math.floor(Math.random() * dateOfBirths.length)];
 
         players.push({
             id: padId(i),
@@ -104,17 +104,72 @@ export function generateMockPlayers(count = 20): Players[] {
             middleName,
             preferredName: preferredNames[Math.floor(Math.random() * preferredNames.length)],
             lastName,
-            nationality: nationalities[Math.floor(Math.random() * nationalities.length)],
-            dateOfBirth: dateOfBirths[Math.floor(Math.random() * dateOfBirths.length)],
-            age: generateAge(dateOfBirths[Math.floor(Math.random() * dateOfBirths.length)]),
+            nationality,
+            dateOfBirth: dob,
+            age: generateAge(dob),
             gender: genders[Math.floor(Math.random() * genders.length)],
             contact: contacts[Math.floor(Math.random() * contacts.length)],
             email: randomEmail(firstName, lastName),
-            identificationNumber: generateIdentificationNumber(nationalities[Math.floor(Math.random() * nationalities.length)]),
+            identificationNumber: generateIdentificationNumber(nationality),
+            status: statusOptions[Math.floor(Math.random() * statusOptions.length)],
         });
     }
+
     return players;
 }
+
+// Single generated dataset (so both functions use same base data)
 const mockPlayers = generateMockPlayers(20);
+
+/**
+ * ✅ PlayersTable Data:
+ * Returns minimal view optimized for table rendering.
+ */
+export function getPlayersTableData() {
+    return mockPlayers.map((p) => ({
+        id: p.id,
+        firstName: p.firstName,
+        lastName: p.lastName,
+        status: p.status,
+    }));
+}
+
+/**
+ * ✅ PlayersForm Data:
+ * Returns the detailed player profiles for forms or detail views.
+ */
+export function getPlayersFormData() {
+    return mockPlayers.map(
+        ({
+            id,
+            firstName,
+            middleName,
+            preferredName,
+            lastName,
+            nationality,
+            dateOfBirth,
+            age,
+            gender,
+            contact,
+            email,
+            identificationNumber,
+            status,
+        }) => ({
+            id,
+            firstName,
+            middleName,
+            preferredName,
+            lastName,
+            nationality,
+            dateOfBirth,
+            age,
+            gender,
+            contact,
+            email,
+            identificationNumber,
+            status,
+        }),
+    );
+}
 
 export default mockPlayers;

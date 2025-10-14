@@ -1,11 +1,8 @@
-import { useState } from "react";
-import  playersmockdata  from "../../routes/playersmockdata";
 import "./players.css";
-import PlayersTable from "../../components/Table/PlayersTable";
+import PlayersPageTable from "./PlayersPageTable";
+//import PlayersPageForm from "./PlayersPageForm";
 
 export default function Players() {
-	const [players] = useState(playersmockdata);
-
 	return (
 		<div className="playersRoot">
 			<div className="playersHeader" aria-labelledby="players-header">
@@ -20,11 +17,9 @@ export default function Players() {
 			<section className="playersContainer" aria-label="players editor">
 				<div className="playersContent">
 					<div className="playersContent_table">
-						<PlayersTable data={players} />
+						<PlayersPageTable />{" "}
 					</div>
-					<div className="playersContent_form">
-						{/* <PlayersForm /> */}
-					</div>
+					<div className="playersContent_form"></div>
 				</div>
 			</section>
 		</div>
