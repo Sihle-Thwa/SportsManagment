@@ -1,14 +1,13 @@
-import { lazy, Suspense } from 'react';
-import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { lazy, Suspense } from "react";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 
 // Lazy load MainLayout
-const MainLayout = lazy(() => import('../components/layout/MainLayout'));
+const MainLayout = lazy(() => import("../components/layout/MainLayout"));
 
-// Other imports remain the same
-import Planner from '../pages/Calendar/Planner';
-import Dashboard from '../pages/Dashboard/Dashboard';
-import Facilities from '../pages/Facilities/Facilities';
-import Members from '../pages/Members/Members';
+import Planner from "../pages/Calendar/Planner";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import Facilities from "../pages/Facilities/Facilities";
+import Members from "../pages/Members/Members";
 import Players from "../pages/Users/Users";
 import Profile from "../pages/Profile/Profile";
 import Report from "../pages/Reports/Report";
@@ -23,7 +22,6 @@ import {
 	ClipboardList,
 } from "lucide-react";
 
-// Define route configuration
 export const routes = [
 	{
 		id: "dashboard",
@@ -77,24 +75,24 @@ export const routes = [
 ];
 
 const router = createBrowserRouter([
-  {
-    path: '/',
-    element: (
-      <Suspense fallback={<div>Loading...</div>}>
-        <MainLayout />
-      </Suspense>
-    ),
-    children: [
-      {
-        index: true,
-        element: <Navigate to="/dashboard" replace />,
-      },
-      ...routes.map(item => ({
-        path: item.path,
-        element: item.element,
-      })),
-    ],
-  },
+	{
+		path: "/",
+		element: (
+			<Suspense fallback={<div>Loading...</div>}>
+				<MainLayout />
+			</Suspense>
+		),
+		children: [
+			{
+				index: true,
+				element: <Navigate to="/dashboard" replace />,
+			},
+			...routes.map((item) => ({
+				path: item.path,
+				element: item.element,
+			})),
+		],
+	},
 ]);
 
 export default router;

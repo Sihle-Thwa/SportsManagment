@@ -1,41 +1,26 @@
 import { useState } from "react";
 import FacilitiesTable from "../../components/Table/FacilitiesTable";
-import { Facility } from "@/types/facility.types";
+import facilitiesmockdata from "../../routes/facilitiesmockdata";
+import "./facilities.css";
 
 export default function Facilities() {
-	const [facility] = useState<Facility[]>([
-		{
-			id: "1",
-			name: "Main Sports Hall",
-			location: "123 Main St",
-			capacity: 100,
-			status: "active",
-		},
-
-		{
-			id: "2",
-			name: "Secondary Gym",
-			location: "456 Side Ave",
-			capacity: 50,
-			status: "maintenance",
-		},
-		{
-			id: "3",
-			name: "Tertiary Field",
-			location: "789 Tertiary Rd",
-			capacity: 75,
-			status: "active",
-		},
-	]);
+	const [facilities] = useState(facilitiesmockdata);
 
 	return (
-		<div className="space-y-6 p-6 ">
-			<div className="mb-6 ">
-				<h1>Facilities</h1>
-				<p>View and Manage all facilities of your organisation</p>
+		<div className="facilitiesRoot">
+			<div className="facilitiesHeader" aria-labelledby="facilities-header">
+				<div className="facilitiesTitle" id="facilities-title">
+					Facilities
+				</div>
+				<div className="facilitiesSubtitle">
+					View and Manage all facilities of your organisation
+				</div>
 			</div>
-
-			<FacilitiesTable data={facility} />
+			<section className="facilitiesContainer" aria-label="Facilities editor">
+				<div className="facilitiesContent">
+					<FacilitiesTable data={facilities} />
+				</div>
+			</section>
 		</div>
 	);
 }

@@ -8,7 +8,6 @@ const columns = [
 		header: "ID",
 		accessor: (r: Member) => r.id,
 		sortable: true,
-		width: "80px",
 	},
 	{
 		id: "firstName",

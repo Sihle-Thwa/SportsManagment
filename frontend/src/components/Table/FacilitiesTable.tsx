@@ -1,49 +1,59 @@
 import Table from "./Table";
-import type { ColumnDef } from "./types";
 import type { Facility } from "../../types/facility.types";
+import facilitiesmockdata from "../../routes/facilitiesmockdata";
 
-/**
- * Columns for facilities table
- */
-const columns: ColumnDef<Facility>[] = [
-	{ id: "id", header: "ID", sortable: true },
+const columns = [
+	{
+		id: "id",
+		header: "ID",
+		accessor: (r: Facility) => r.id,
+		sortable: true,
+	},
 	{
 		id: "name",
 		header: "Name",
+		accessor: (r: Facility) => r.name,
 		sortable: true,
 	},
-	{ id: "location", header: "Location", sortable: true },
+	{
+		id: "location",
+		header: "Location",
+		accessor: (r: Facility) => r.location,
+		sortable: true,
+	},
 	{
 		id: "capacity",
 		header: "Capacity",
+		accessor: (r: Facility) => r.capacity,
 		sortable: true,
 	},
 	{
 		id: "status",
 		header: "Status",
+		accessor: (r: Facility) => r.status,
 		sortable: true,
 	},
 ];
 
-type Props = {
+interface Props {
 	data: Facility[];
 	onEdit?: (id: string) => void;
 	onDelete?: (id: string) => void;
 	onDeleteMany?: (ids: string[]) => Promise<void> | void;
 	loading?: boolean;
-};
+}
 
-export default function FacilitiesTable({ data, loading = false }: Props) {
+export default function FacilitiesTable({
+	data = facilitiesmockdata,
+	loading = false,
+}: Props) {
 	return (
 		<Table<Facility>
 			columns={columns}
 			data={data}
 			loading={loading}
+			initialPageSize={10}
 			getRowId={(row) => row.id}
-			// If Table supports row actions, you may pass them here:
-			// onEdit={onEdit}
-			// onDelete={onDelete}
-			// onDeleteMany={onDeleteMany}
 		/>
 	);
 }

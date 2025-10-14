@@ -1,4 +1,3 @@
-// src/data/mockMembers.ts
 import { Member } from "../types/member.types";
 
 const firstNames = [
