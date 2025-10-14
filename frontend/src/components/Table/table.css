@@ -4,10 +4,10 @@
 	flex-direction: column;
 	width: 100%;
 	min-width: 320px;
-	box-sizing: border-box;
-	gap: 12px;
-	align-items: center; /* center inside page grid */
-	padding: 8px 0;
+	align-items: center;
+	box-shadow: var(--card-shadow);
+	border-radius: 12px;
+	background-color: var(--table-background);
 }
 
 /* container for table + sticky header support */
@@ -15,17 +15,14 @@
 	width: 100%;
 	overflow: hidden;
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	padding: 8px 12px;
 }
 
 /* inner content: constrains width and adds soft background */
 .tableContent {
 	width: 100%;
-	max-width: 1200px; /* matches Figma readability width */
-	background-color: var(--table-background);
-	box-shadow: var(--card-shadow);
-	border-radius: 12px;
-	overflow: clip;
 	display: flex;
 	flex-direction: column;
 }
@@ -34,27 +31,27 @@
 .tableHeader_thead {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	gap: 12px;
-	padding: 18px 20px;
+	padding: 8px 16px;
+	position: relative;
 	border-bottom: 1px solid var(--border-default);
-	background: transparent;
 	width: 100%;
-	box-sizing: border-box;
+	
 }
 
 /* header inner (keeps left / center / right layout) */
 .tableHeader_thead-row,
 .table-header__inner {
 	display: flex;
+	flex-direction: row;
 	align-items: center;
+	justify-content: space-between;
 	width: 100%;
 	gap: 12px;
 }
 
 /* left (show entries selector) */
 .table-header__left {
-	display: flex;
+	display: inline-flex;
 	align-items: center;
 	gap: 12px;
 	flex: 0 0 auto;
@@ -62,11 +59,10 @@
 
 /* center (search) */
 .table-header__center {
-	display: flex;
+	display: inline-flex;
 	justify-content: center;
 	align-items: center;
-	flex: 1 1 480px;
-	max-width: 640px;
+	flex: 0 0 auto;
 }
 
 /* right (cta) */
@@ -84,27 +80,24 @@
 	gap: 8px;
 	padding: 8px 12px;
 	border-radius: 10px;
-	background: var(--interactive-primary);
 	color: var(--text-on-primary);
 	border: 0;
 	font-weight: 600;
 	cursor: pointer;
-	box-shadow: var(--card-shadow);
+	box-shadow: var(--shadow-sm);
 }
 
 /* CTA button (add new) */
 .table-header__button {
 	display: inline-flex;
 	align-items: center;
-	gap: 10px;
-	padding: 10px 16px;
-	border-radius: 10px;
-	background: var(--interactive-primary);
+	gap: 8px;
+	padding: 8px 16px;
+	border-radius: 8px;
 	color: var(--text-on-primary);
-	border: 0;
 	cursor: pointer;
 	font-weight: 600;
-	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+	box-shadow: var(--shadow-sm);
 }
 
 /* CTA hover & focus */
@@ -160,8 +153,9 @@
 
 /* sort indicator small chevron */
 .sort-indicator {
-	font-size: 0.7rem;
-	opacity: 0.6;
+	font-size: 14px;
+	transition:  var(--duration-fast) var(--easing-smooth),
+		color var(--duration-fast) var(--easing-smooth);
 }
 .sort-indicator.active {
 	opacity: 1;
@@ -178,14 +172,14 @@
 /* each row */
 .tableBody_tbody-row {
 	display: flex;
+	flex-direction: row;
 	gap: 8px;
 	align-items: center;
-	padding: 18px 20px;
+	padding: 8px 16px;
 	border-bottom: 1px solid var(--border-default);
-	box-sizing: border-box;
 	width: 100%;
-	transition: background-color 150ms var(--easing-smooth),
-		transform 120ms var(--easing-smooth);
+	transition: var(--transition-fast) var(--easing-smooth);
+	transform: var(--transition-fast) var(--easing-smooth);
 }
 
 /* hover / focus states */
@@ -197,8 +191,8 @@
 	transform: translateY(-1px);
 }
 .tableBody_tbody-row:focus-within {
-	outline: 2px solid color-mix(in srgb, var(--interactive-primary) 12%, white);
-	outline-offset: 2px;
+	outline: 1px solid color-mix(in srgb, var(--interactive-primary) 12%, white);
+	outline-offset: 1px;
 	border-radius: 8px;
 }
 
@@ -223,16 +217,15 @@
 	flex: 0 0 120px;
 	display: flex;
 	justify-content: flex-end;
-	gap: 10px;
+	gap: 8px;
 	align-items: center;
 }
 
 /* small avatar or icon in name cell */
 .tableBody_tbody-cell .avatar {
-	width: 32px;
-	height: 32px;
+	width: var(--avatar-sm);
+	height: var(--avatar-sm);
 	border-radius: 8px;
-	background: var(--card-background);
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -243,18 +236,21 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	width: 36px;
-	height: 36px;
+	width: 100%;
 	border-radius: 8px;
 	border: none;
-	background: transparent;
 	cursor: pointer;
 }
 .tableBody_tbody-cell-actions-button-edit {
 	color: var(--interactive-primary);
+	width: 32px;
+	height: 32px;
 }
 .tableBody_tbody-cell-actions-button-delete {
 	color: var(--interactive-error);
+	width: 32px;
+	height: 32px;
+
 }
 
 /* selected row visual (when checkbox checked) */
@@ -274,11 +270,9 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 18px 20px;
+	padding: 8px 16px;
 	gap: 12px;
-	background: transparent;
 	width: 100%;
-	box-sizing: border-box;
 }
 .table-footer__center {
 	display: flex;

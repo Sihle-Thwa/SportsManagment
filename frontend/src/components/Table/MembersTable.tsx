@@ -5,8 +5,8 @@ import type { Member } from "../../types/member.types";
 const columns: ColumnDef<Member>[] = [
 	{ id: "id", header: "ID", sortable: true },
 	{
-		id: "firstName", // Changed from "name" to "firstName"
-		header: "Name",
+		id: "firstName",
+		header: "First Name",
 		sortable: true,
 	},
 	{ id: "lastName", header: "Last Name", sortable: true },

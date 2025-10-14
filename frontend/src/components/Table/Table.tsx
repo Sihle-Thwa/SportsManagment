@@ -178,7 +178,7 @@ export default function Table<T>({
 					/>
 
 					{/* semantic table */}
-					<table className="members-table" role="table" aria-label="Members">
+					<table className="tableBody_tbody" role="table" aria-label="Members">
 						<thead className="tableHeader_thead" role="rowgroup">
 							<tr role="row" className="tableHeader_thead-row">
 								<th

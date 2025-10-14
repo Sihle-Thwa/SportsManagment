@@ -85,7 +85,7 @@ export default function TableBody<T>({
 							<button
 								aria-label={`Edit ${String(id)}`}
 								title="Edit"
-								className="tableBody_tbody-cell-actions-button-edit icon-btn"
+								className="tableBody_tbody-cell-actions-button-edit"
 								onClick={() => {
 									const e = new CustomEvent("table:edit", {
 										detail: { id },
@@ -98,7 +98,7 @@ export default function TableBody<T>({
 							<button
 								aria-label={`Delete ${String(id)}`}
 								title="Delete"
-								className="tableBody_tbody-cell-actions-button-delete icon-btn"
+								className="tableBody_tbody-cell-actions-button-delete"
 								onClick={() => {
 									const e = new CustomEvent("table:delete", {
 										detail: { id },
