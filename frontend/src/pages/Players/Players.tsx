@@ -1,4 +1,5 @@
 import "./players.css";
+import PlayersPageForm from "./PlayersPageForm";
 import PlayersPageTable from "./PlayersPageTable";
 //import PlayersPageForm from "./PlayersPageForm";
 
@@ -19,7 +20,9 @@ export default function Players() {
 					<div className="playersContent_table">
 						<PlayersPageTable />{" "}
 					</div>
-					<div className="playersContent_form"></div>
+					<div className="playersContent_form">
+						<PlayersPageForm />
+					</div>
 				</div>
 			</section>
 		</div>

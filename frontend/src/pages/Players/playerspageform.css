@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+.cardBase_playersPageForm {
+	background-color: var(--card-background, var(--colour-neutral-100));
+	border: 1px solid;
+	border-color: var(--card-border);
+	border-radius: 8px;
+	height: 100%;
+	position: relative;
+	max-width: 750px;
+	width: 100%;
+}
+.cardBase_playersPageForm-header {
+	border-bottom: 1px solid var(--card-border);
+	padding: 16px 24px;
+	position: relative;
+	width: 100%;
+}
