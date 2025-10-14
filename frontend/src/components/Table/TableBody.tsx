@@ -76,7 +76,9 @@ export default function TableBody<T>({
 								{col.cell ? (
 									col.cell(row)
 								) : (
-									<span>{String(col.accessor?.(row) ?? "")}</span>
+									<div className="tableBody_tbody-data">
+										{String(col.accessor?.(row) ?? "")}
+									</div>
 								)}
 							</td>
 						))}

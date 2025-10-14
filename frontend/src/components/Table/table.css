@@ -278,13 +278,17 @@
 	width: 100%;
 	display: inline-flex;
 	align-items: center;
-	padding: 4px 8px;
 	overflow: hidden;
-	white-space: wrap;
-	text-overflow: ellipsis;
-	
 
 }
+
+.tableBody_tbody-data {
+	padding: 4px 8px;
+	white-space: wrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
 .tableBody_tbody-cell-actions {
 	flex: 0 0 80px;
 	display: inline-flex;
