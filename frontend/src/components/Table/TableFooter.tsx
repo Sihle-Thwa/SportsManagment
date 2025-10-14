@@ -18,7 +18,7 @@ export default function TableFooter({
 }: Props) {
 	return (
 		<div className="table-footer" role="contentinfo" aria-label="Table footer">
-			<div>
+			<div className="table-footer__left">
 				Showing {totalItems === 0 ? 0 : pageIndex * pageSize + 1} -{" "}
 				{Math.min((pageIndex + 1) * pageSize, totalItems)} of {totalItems}
 			</div>
@@ -30,8 +30,6 @@ export default function TableFooter({
 					onPageChange={onPageChange}
 				/>
 			</div>
-
-			<div style={{ width: 120 }} />
 		</div>
 	);
 }

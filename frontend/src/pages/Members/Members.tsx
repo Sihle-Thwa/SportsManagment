@@ -1,28 +1,10 @@
 import { useState } from "react";
 import MembersTable from "../../components/Table/MembersTable";
-import { Member } from "@/types/member.types";
 import "./members.css";
+import { membersMockData } from "../../routes/membersmockdata";
 
 export default function Members() {
-	const [members] = useState<Member[]>([
-		{
-			id: "1",
-			firstName: "John",
-			lastName: "Doe",
-			email: "john.doe@example.com",
-			role: "Admin",
-			contact: "+1234567890",
-		},
-		{
-			id: "2",
-			firstName: "Jane",
-			lastName: "Smith",
-			email: "jane.smith@example.com",
-			role: "User",
-			contact: "+0987654321",
-		},
-		// Add more members as needed
-	]);
+	const [members] = useState(membersMockData);
 
 	return (
 		<div className="membersRoot">

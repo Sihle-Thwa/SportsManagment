@@ -1,18 +1,30 @@
 import Table from "./Table";
-import type { ColumnDef } from "./types";
 import type { Member } from "../../types/member.types";
+import membersmockdata from "../../routes/membersmockdata";
 
-const columns: ColumnDef<Member>[] = [
-	{ id: "id", header: "ID", sortable: true },
+const columns = [
+	{
+		id: "id",
+		header: "ID",
+		accessor: (r: Member) => r.id,
+		sortable: true,
+		width: "80px",
+	},
 	{
 		id: "firstName",
-		header: "First Name",
+		header: "Name",
+		accessor: (r: Member) => r.firstName,
 		sortable: true,
 	},
-	{ id: "lastName", header: "Last Name", sortable: true },
-	{ id: "email", header: "Email", sortable: true },
-	{ id: "role", header: "Role", sortable: true },
-	{ id: "contact", header: "Contact", sortable: false },
+	{
+		id: "lastName",
+		header: "Surname",
+		accessor: (r: Member) => r.lastName,
+		sortable: true,
+	},
+	{ id: "email", header: "Email", accessor: (r: Member) => r.email },
+	{ id: "role", header: "Role", accessor: (r: Member) => r.role },
+	{ id: "contact", header: "Contact", accessor: (r: Member) => r.contact },
 ];
 
 interface Props {
@@ -23,7 +35,10 @@ interface Props {
 	loading?: boolean;
 }
 
-export default function MembersTable({ data, loading = false }: Props) {
+export default function MembersTable({
+	data = membersmockdata,
+	loading = false,
+}: Props) {
 	return (
 		<Table<Member>
 			columns={columns}

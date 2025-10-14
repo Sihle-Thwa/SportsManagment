@@ -1,6 +1,6 @@
 import type { ColumnDef, RowId } from "./types";
 import "./table.css";
-
+import { Edit, Delete } from "lucide-react";
 type Props<T> = {
 	columns: ColumnDef<T>[];
 	rows: T[];
@@ -93,7 +93,7 @@ export default function TableBody<T>({
 									window.dispatchEvent(e);
 								}}
 							>
-								✎
+								<Edit className="tableBody_tbody-cell-actions-button-edit" />
 							</button>
 							<button
 								aria-label={`Delete ${String(id)}`}
@@ -106,7 +106,7 @@ export default function TableBody<T>({
 									window.dispatchEvent(e);
 								}}
 							>
-								🗑
+								<Delete className="tableBody_tbody-cell-actions-button-delete" />
 							</button>
 						</td>
 					</tr>
