@@ -1,7 +1,17 @@
-// src/components/Table/types.ts
+
+import React from "react";
+
+export type RowId = string | number;
+
 export type ColumnDef<T> = {
-  key: keyof T;
+  id: string; // unique id used as key
   header: string;
+  // optional accessor for default plain text/cell content
+  accessor?: (row: T) => React.ReactNode | string;
+  // optional custom cell renderer for complex cells
+  cell?: (row: T) => React.ReactNode;
+  // whether the column is sortable
   sortable?: boolean;
-  render?: (row: T) => React.ReactNode;
+  // optional width hint (CSS)
+  width?: string;
 };

@@ -1,353 +1,450 @@
-/* Base */
-.members-table {
+/* ---------- root / layout ---------- */
+.tableRoot {
+	display: flex;
+	flex-direction: column;
 	width: 100%;
-	color: var(--sidebar-text, var(--card-foreground));
-	font-family: var(
-		--font-sans,
-		system-ui,
-		-apple-system,
-		"Segoe UI",
-		Roboto,
-		"Helvetica Neue"
-	);
-}
-
-.members-table__inner {
-	max-width: 1200px;
-	margin-inline: auto;
-	padding: 20px;
-}
-
-/* header */
-.table-header {
-	display: flex;
-	align-items: center;
-	gap: 16px;
-	justify-content: space-between;
-	margin-bottom: 18px;
-}
-
-/* left */
-.table-header__left,
-.table-header__right {
-	display: flex;
+	min-width: 320px;
+	box-sizing: border-box;
 	gap: 12px;
-	align-items: center;
+	align-items: center; /* center inside page grid */
+	padding: 8px 0;
 }
 
-.table-header__label {
-	font-size: 0.95rem;
-	color: var(--text-on-background, var(--text-primary));
-}
-
-/* select */
-.select-wrapper select.table-header__select {
-	appearance: none;
-	border: 1px solid var(--sidebar-border);
-	background: var(--card-background);
-	padding: 8px 10px;
-	border-radius: 8px;
-	min-width: 56px;
-}
-
-/* search center */
-.table-header__center {
-	flex: 1;
+/* container for table + sticky header support */
+.tableContainer {
+	width: 100%;
+	overflow: hidden;
 	display: flex;
 	justify-content: center;
 }
 
-.search-control {
+/* inner content: constrains width and adds soft background */
+.tableContent {
+	width: 100%;
+	max-width: 1200px; /* matches Figma readability width */
+	background-color: var(--table-background);
+	box-shadow: var(--card-shadow);
+	border-radius: 12px;
+	overflow: clip;
+	display: flex;
+	flex-direction: column;
+}
+
+/* ---------- header area (select, search, CTA) ---------- */
+.tableHeader_thead {
 	display: flex;
 	align-items: center;
-	gap: 8px;
-	width: 100%;
-	max-width: 560px;
-	border-radius: 12px;
-	padding: 6px 12px;
-	background: var(--card-background);
-	border: 1px solid var(--sidebar-border);
-}
-
-.search-input {
-	width: 100%;
-	border: none;
-	background: transparent;
-	padding: 8px 6px;
-	font-size: 0.95rem;
-	outline: none;
-}
-
-/* CTA */
-.button {
-	padding: 8px 12px;
-	border-radius: 8px;
-	border: 1px solid transparent;
-	font-weight: 600;
-	cursor: pointer;
-}
-.button--primary {
-	background: var(--interactive-primary);
-	color: var(--text-on-primary, #fff);
-	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-}
-.button--ghost {
-	background: transparent;
-	color: var(--sidebar-text);
-	border: 1px solid var(--card-border);
-}
-
-/* table core */
-.table-wrap {
-	width: 100%;
-	border-radius: 12px;
-	overflow: hidden;
-	border: 1px solid var(--card-border);
-	background: var(--card-background);
-}
-
-/* head */
-.table-head {
-	background: transparent;
-	border-bottom: 1px solid var(--card-border);
-}
-.table-row {
-	display: grid;
-	grid-template-columns: 110px 1fr 1fr 1.5fr 140px 140px 120px; /* columns as seen in design */
+	justify-content: space-between;
 	gap: 12px;
-	align-items: center;
-	padding: 12px 18px;
+	padding: 18px 20px;
+	border-bottom: 1px solid var(--border-default);
+	background: transparent;
+	width: 100%;
+	box-sizing: border-box;
 }
-.table-row--head {
-	font-weight: 600;
-	color: var(--text-on-background);
-	font-size: 0.95rem;
-}
-.table-cell {
-	padding: 6px 0;
-	font-size: 0.95rem;
-	color: var(--text-on-background);
-}
-.table-cell--head {
+
+/* header inner (keeps left / center / right layout) */
+.tableHeader_thead-row,
+.table-header__inner {
 	display: flex;
 	align-items: center;
+	width: 100%;
+	gap: 12px;
 }
-.table-header-button {
+
+/* left (show entries selector) */
+.table-header__left {
 	display: flex;
+	align-items: center;
+	gap: 12px;
+	flex: 0 0 auto;
+}
+
+/* center (search) */
+.table-header__center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex: 1 1 480px;
+	max-width: 640px;
+}
+
+/* right (cta) */
+.table-header__right {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	flex: 0 0 auto;
+}
+
+/* small select button (entries) */
+.table-header__select {
+	display: inline-flex;
 	align-items: center;
 	gap: 8px;
-	background: transparent;
-	border: none;
+	padding: 8px 12px;
+	border-radius: 10px;
+	background: var(--interactive-primary);
+	color: var(--text-on-primary);
+	border: 0;
 	font-weight: 600;
 	cursor: pointer;
-	color: var(--sidebar-text);
+	box-shadow: var(--card-shadow);
 }
-.table-header-button:focus {
-	outline: 2px solid color-mix(in srgb, var(--interactive-primary) 50%, white);
-	border-radius: 6px;
+
+/* CTA button (add new) */
+.table-header__button {
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 16px;
+	border-radius: 10px;
+	background: var(--interactive-primary);
+	color: var(--text-on-primary);
+	border: 0;
+	cursor: pointer;
+	font-weight: 600;
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
+
+/* CTA hover & focus */
+.table-header__button:hover,
+.table-header__select:hover {
+	filter: brightness(0.98);
+	transform: translateY(-1px);
+	transition: transform 150ms var(--easing-smooth);
+}
+.table-header__button:focus,
+.table-header__select:focus {
+	outline: 3px solid color-mix(in srgb, var(--interactive-primary) 20%, white);
+	outline-offset: 2px;
+	border-radius: 8px;
+}
+
+/* ---------- table head (column titles) ---------- */
+.tableHead {
+	display: flex;
+	width: 100%;
+	background: transparent;
+	padding: 12px 20px;
+	gap: 8px;
+	align-items: center;
+	box-sizing: border-box;
+}
+
+/* Use consistent column sizing by flex factors (adjust for your columns) */
+.tableHeader_thead-cell-checkbox {
+	flex: 0 0 44px;
+}
+.tableHeader_thead-cell {
+	flex: 1 1 160px;
+	min-width: 120px;
+}
+.tableHeader_thead-cell-sortable {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	cursor: pointer;
+}
+.tableHeader_thead-cell-actions {
+	flex: 0 0 120px;
+	text-align: right;
+}
+
+/* header text */
+.tableHeader_thead-cell .label {
+	font-weight: 700;
+	color: var(--text-on-background);
+	font-size: 14px;
+}
+
+/* sort indicator small chevron */
 .sort-indicator {
 	font-size: 0.7rem;
 	opacity: 0.6;
 }
 .sort-indicator.active {
 	opacity: 1;
+	color: var(--interactive-primary);
 }
 
-/* body */
-.table-body {
-	background: var(--card-background);
-}
-.table-row:nth-child(even) {
-	background: transparent;
-}
-.table-row:hover {
-	background: color-mix(in srgb, var(--interactive-primary) 7%, white);
+/* ---------- body (rows) ---------- */
+.tableBody_tbody {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
 }
 
-/* user cell */
-.user-cell {
+/* each row */
+.tableBody_tbody-row {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	padding: 18px 20px;
+	border-bottom: 1px solid var(--border-default);
+	box-sizing: border-box;
+	width: 100%;
+	transition: background-color 150ms var(--easing-smooth),
+		transform 120ms var(--easing-smooth);
+}
+
+/* hover / focus states */
+.tableBody_tbody-row:hover {
+	background: var(
+		--table-row-hover-bg,
+		color-mix(in srgb, var(--interactive-primary) 2%, white)
+	);
+	transform: translateY(-1px);
+}
+.tableBody_tbody-row:focus-within {
+	outline: 2px solid color-mix(in srgb, var(--interactive-primary) 12%, white);
+	outline-offset: 2px;
+	border-radius: 8px;
+}
+
+/* cells layout: match header flex factors */
+.tableBody_tbody-cell-checkbox {
+	flex: 0 0 44px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.tableBody_tbody-cell {
+	flex: 1 1 160px;
+	min-width: 120px;
 	display: flex;
 	align-items: center;
 	gap: 12px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
-.avatar-placeholder {
-	width: 36px;
-	height: 36px;
+.tableBody_tbody-cell-actions {
+	flex: 0 0 120px;
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+	align-items: center;
+}
+
+/* small avatar or icon in name cell */
+.tableBody_tbody-cell .avatar {
+	width: 32px;
+	height: 32px;
 	border-radius: 8px;
-	background: color-mix(in srgb, var(--sidebar-border) 20%, white);
+	background: var(--card-background);
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 }
-.user-name {
-	font-weight: 500;
-}
 
-/* actions */
-.action-buttons {
-	display: flex;
-	gap: 8px;
-	justify-self: end;
-}
-.icon-btn {
+/* action buttons style */
+.tableBody_tbody-cell-actions_button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border-radius: 8px;
+	border: none;
 	background: transparent;
-	border: 1px solid transparent;
-	padding: 6px;
-	border-radius: 6px;
 	cursor: pointer;
 }
-.icon-btn:focus {
-	outline: 2px solid var(--interactive-primary);
+.tableBody_tbody-cell-actions-button-edit {
+	color: var(--interactive-primary);
 }
-.icon-btn.destructive {
+.tableBody_tbody-cell-actions-button-delete {
 	color: var(--interactive-error);
 }
 
-/* skeleton */
-.skeleton {
-	background: linear-gradient(
-		90deg,
-		rgba(0, 0, 0, 0.06) 25%,
-		rgba(0, 0, 0, 0.04) 37%,
-		rgba(0, 0, 0, 0.06) 63%
-	);
-	background-size: 400% 100%;
-	animation: shimmer 1.4s infinite linear;
-	border-radius: 6px;
-	min-height: 16px;
-}
-.skeleton-text {
-	height: 14px;
-	width: 100%;
-}
-.skeleton-icon {
-	width: 24px;
-	height: 24px;
-	border-radius: 6px;
+/* selected row visual (when checkbox checked) */
+.tableBody_tbody-row.selected {
+	background: color-mix(in srgb, var(--interactive-primary) 4%, white);
 }
 
-@keyframes shimmer {
-	0% {
-		background-position: 200% 0;
-	}
-	100% {
-		background-position: -200% 0;
-	}
-}
-
-/* empty state */
+/* ---------- empty state ---------- */
 .table-empty {
 	padding: 40px;
 	text-align: center;
-}
-.table-empty__content {
-	color: var(--text-on-background-secondary, var(--colour-neutral-500));
+	color: var(--text-on-background-secondary);
 }
 
-/* footer */
+/* ---------- footer / pager ---------- */
 .table-footer {
 	display: flex;
-	gap: 12px;
 	align-items: center;
 	justify-content: space-between;
-	padding: 18px 6px;
+	padding: 18px 20px;
+	gap: 12px;
+	background: transparent;
+	width: 100%;
+	box-sizing: border-box;
 }
 .table-footer__center {
 	display: flex;
 	align-items: center;
 	gap: 12px;
+	justify-content: center;
+	width: 100%;
 }
+
+/* pager buttons */
 .pager-link {
 	background: transparent;
 	border: none;
 	color: var(--sidebar-text);
+	cursor: pointer;
+	padding: 6px 8px;
 }
 .pager-pages {
 	display: flex;
 	gap: 8px;
-	align-items: center;
 }
 .pager-page {
-	background: var(--interactive-primary);
-	color: var(--text-on-primary);
 	border-radius: 6px;
-	padding: 6px 10px;
-	border: none;
+	padding: 8px 12px;
+	border: 0;
 	cursor: pointer;
-}
-.pager-page:not(.active) {
-	background: color-mix(in srgb, var(--interactive-primary) 10%, white);
-	color: var(--interactive-primary);
+	font-weight: 700;
 }
 .pager-page.active {
-	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+	background: var(--interactive-primary);
+	color: var(--text-on-primary);
+	box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+.pager-page:not(.active) {
+	background: color-mix(in srgb, var(--interactive-primary) 8%, white);
+	color: var(--interactive-primary);
 }
 
-/* responsive */
-@media (max-width: 1024px) {
-	.table-row {
-		grid-template-columns: 90px 1fr 1fr auto;
-	}
-	.table-cell[data-label="Email"] {
-		display: none;
-	}
-	.table-cell[data-label="Contact"] {
-		display: none;
-	}
+/* prev/next labels */
+.pager-prevnext {
+	color: var(--text-on-background-secondary);
+	font-weight: 600;
 }
 
-@media (max-width: 640px) {
-	.members-table__inner {
-		padding: 12px;
-	}
-	.table-row {
-		grid-template-columns: 1fr;
-		gap: 6px;
-		padding: 12px;
-	}
-	.table-row--head {
-		display: none;
-	}
-	.table-cell {
-		padding: 8px 0;
-	}
-	.action-buttons {
-		justify-content: flex-start;
-	}
-	.table-header__center {
-		display: none;
-	}
-}
-/* selection column & bulk actions */
+/* ---------- selection & bulk action bar ---------- */
 .select-col {
-	width: 40px;
+	width: 44px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
-
-/* danger style for destructive bulk actions */
+.bulk-actions {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
 .button--danger {
-	background: transparent;
-	color: var(--interactive-error);
-	border: 1px solid color-mix(in srgb, var(--interactive-error) 10%, white);
-	padding: 6px 10px;
-	border-radius: 8px;
 	display: inline-flex;
 	gap: 8px;
 	align-items: center;
+	padding: 8px 12px;
+	border-radius: 10px;
+	border: 1px solid color-mix(in srgb, var(--interactive-error) 10%, white);
+	color: var(--interactive-error);
+	background: transparent;
+	cursor: pointer;
 	font-weight: 600;
 }
 .button--danger:hover {
-	background: color-mix(in srgb, var(--interactive-error) 8%, white);
+	background: color-mix(in srgb, var(--interactive-error) 6%, white);
 }
 
-/* smaller icon buttons spacing */
+/* ---------- skeleton / shimmer helpers ---------- */
+.shimmer {
+	background: linear-gradient(
+		90deg,
+		color-mix(in srgb, var(--table-background) 0%, white) 0%,
+		color-mix(in srgb, var(--table-background) 8%, white) 50%,
+		color-mix(in srgb, var(--table-background) 0%, white) 100%
+	);
+	background-size: 200% 100%;
+	animation: shimmer 1.6s linear infinite;
+	border-radius: 6px;
+}
+
+/* ---------- responsive ---------- */
+/* Tablet: hide less important columns and compress spacing */
+@media (max-width: 1024px) {
+	.tableContent {
+		max-width: 1000px;
+	}
+	/* hide contact on tablet if needed */
+	.tableBody_tbody-cell[data-label="Contact"],
+	.tableHeader_thead-cell[data-label="Contact"] {
+		display: none;
+	}
+	.tableHeader_thead-cell {
+		min-width: 110px;
+	}
+	.tableBody_tbody-cell {
+		min-width: 110px;
+	}
+}
+
+/* Mobile: stack content and show compact rows */
+@media (max-width: 640px) {
+	.tableContent {
+		border-radius: 0;
+	}
+	.tableHeader_thead {
+		padding: 12px;
+	}
+	.tableHeader_thead-row {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 10px;
+	}
+	.table-header__center {
+		display: none;
+	} /* hide center search on very small screens */
+	.tableHeader_thead-cell-actions {
+		display: none;
+	} /* actions can go inside row */
+	.tableBody_tbody-row {
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 12px;
+		gap: 8px;
+	}
+	.tableBody_tbody-cell {
+		width: 100%;
+		min-width: auto;
+	}
+	.tableBody_tbody-cell-actions {
+		width: 100%;
+		justify-content: flex-start;
+		gap: 12px;
+		padding-top: 8px;
+	}
+	.pager-pages {
+		gap: 6px;
+	}
+	.pager-page {
+		padding: 8px 10px;
+	}
+	.table-footer {
+		flex-direction: column;
+		gap: 8px;
+		align-items: stretch;
+	}
+}
+
+/* ---------- accessibility focus helpers ---------- */
+.tableBody_tbody-row:focus-within,
+.tableHeader_thead .table-header__button:focus {
+	box-shadow: 0 0 0 4px
+		color-mix(in srgb, var(--interactive-primary) 14%, white);
+	border-radius: 8px;
+}
+
+/* ---------- small utilities ---------- */
 .icon-btn {
 	width: 36px;
 	height: 36px;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+	border-radius: 8px;
 }

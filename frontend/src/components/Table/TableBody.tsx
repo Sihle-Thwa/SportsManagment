@@ -1,103 +1,129 @@
-import React from "react";
-import type { ColumnDef } from "./types";
+import type { ColumnDef, RowId } from "./types";
+import "./table.css";
+
+type Props<T> = {
+	columns: ColumnDef<T>[];
+	rows: T[];
+	getRowId: (r: T) => RowId;
+	selected: Record<string | number, boolean>;
+	onToggleRow: (id: RowId) => void;
+	loading?: boolean;
+};
 
 export default function TableBody<T>({
 	columns,
 	rows,
+	getRowId,
+	selected,
+	onToggleRow,
 	loading,
-	sort,
-	onSort,
-	renderRow,
-	// selection wiring
-	toggleSelectAllVisible,
-	isAllVisibleSelected,
-	isSomeVisibleSelected,
-}: {
-	columns: ColumnDef<T>[];
-	rows: T[];
-	loading?: boolean;
-	idField: string;
-	sort?: { key: keyof T; dir: "asc" | "desc" } | null;
-	onSort?: (key: keyof T) => void;
-	renderRow: (row: T) => React.ReactNode;
-	selectedMap?: Record<string, boolean>;
-	toggleRow?: (id: string) => void;
-	toggleSelectAllVisible?: () => void;
-	isAllVisibleSelected?: boolean;
-	isSomeVisibleSelected?: boolean;
-}) {
+}: Props<T>) {
 	if (loading) {
+		// skeleton rows
 		return (
-			<div role="status" aria-live="polite" className="p-4">
-				<div className="animate-pulse space-y-2">
-					<div className="h-6 bg-gray-200 rounded" />
-					<div className="h-6 bg-gray-200 rounded" />
-					<div className="h-6 bg-gray-200 rounded" />
-				</div>
-			</div>
+			<tbody className="tableBody_tbody" role="rowgroup" aria-busy="true">
+				{Array.from({ length: 6 }).map((_, i) => (
+					<tr className="tableBody_tbody-row" role="row" key={i}>
+						<td className="tableBody_tbody-cell-checkbox" role="cell">
+							<div
+								className="shimmer"
+								style={{ width: 20, height: 20, borderRadius: 4 }}
+							/>
+						</td>
+						{columns.map((col) => (
+							<td key={col.id} className="tableBody_tbody-cell" role="cell">
+								<div className="shimmer" style={{ width: 120, height: 16 }} />
+							</td>
+						))}
+						<td className="tableBody_tbody-cell-actions" role="cell">
+							<div className="shimmer" style={{ width: 80, height: 28 }} />
+						</td>
+					</tr>
+				))}
+			</tbody>
 		);
 	}
 
 	return (
-		<div className="overflow-x-auto border rounded">
-			<table className="min-w-full" role="table" aria-label="Data table">
-				<thead className="bg-surface">
-					<tr>
-						<th className="p-2 text-center">
+		<tbody className="tableBody_tbody" role="rowgroup">
+			{rows.map((row) => {
+				const id = getRowId(row);
+				const checked = !!selected[id];
+				return (
+					<tr
+						key={String(id)}
+						className="tableBody_tbody-row"
+						role="row"
+						aria-selected={checked}
+						tabIndex={0}
+					>
+						<td className="tableBody_tbody-cell-checkbox" role="cell">
 							<input
+								aria-label={`Select ${String(id)}`}
 								type="checkbox"
-								aria-label={
-									isAllVisibleSelected
-										? "Unselect all visible rows"
-										: "Select all visible rows"
-								}
-								checked={!!isAllVisibleSelected}
-								ref={(el) => {
-									if (!el) return;
-									el.indeterminate =
-										!!isSomeVisibleSelected && !isAllVisibleSelected;
-								}}
-								onChange={() => toggleSelectAllVisible?.()}
+								checked={checked}
+								onChange={() => onToggleRow(id)}
 							/>
-						</th>
+						</td>
+
 						{columns.map((col) => (
-							<th key={String(col.key)} className="p-2 text-left">
-								{col.sortable ? (
-									<button
-										onClick={() => onSort?.(col.key)}
-										className="inline-flex items-center gap-2"
-									>
-										<span>{col.header}</span>
-										{sort?.key === col.key
-											? sort.dir === "asc"
-												? "▲"
-												: "▼"
-											: "⇅"}
-									</button>
-								) : (
-									<span>{col.header}</span>
-								)}
-							</th>
-						))}
-						<th className="p-2 text-right">Actions</th>
-					</tr>
-				</thead>
-
-				<tbody>
-					{rows.length === 0 && (
-						<tr>
 							<td
-								colSpan={columns.length + 2}
-								className="p-6 text-center text-muted-foreground"
+								key={col.id}
+								className="tableBody_tbody-cell"
+								role="cell"
+								data-label={col.header}
 							>
-								No rows
+								{col.cell ? (
+									col.cell(row)
+								) : (
+									<span>{String(col.accessor?.(row) ?? "")}</span>
+								)}
 							</td>
-						</tr>
-					)}
+						))}
 
-					{rows.map((r) => renderRow(r))}
-				</tbody>
-			</table>
-		</div>
+						<td className="tableBody_tbody-cell-actions" role="cell">
+							<button
+								aria-label={`Edit ${String(id)}`}
+								title="Edit"
+								className="tableBody_tbody-cell-actions-button-edit icon-btn"
+								onClick={() => {
+									const e = new CustomEvent("table:edit", {
+										detail: { id },
+									});
+									window.dispatchEvent(e);
+								}}
+							>
+								✎
+							</button>
+							<button
+								aria-label={`Delete ${String(id)}`}
+								title="Delete"
+								className="tableBody_tbody-cell-actions-button-delete icon-btn"
+								onClick={() => {
+									const e = new CustomEvent("table:delete", {
+										detail: { id },
+									});
+									window.dispatchEvent(e);
+								}}
+							>
+								🗑
+							</button>
+						</td>
+					</tr>
+				);
+			})}
+
+			{rows.length === 0 && (
+				<tr className="table-empty" role="row">
+					<td
+						role="cell"
+						colSpan={columns.length + 2}
+						className="table-empty__content"
+					>
+						No results found
+					</td>
+				</tr>
+			)}
+		</tbody>
 	);
 }

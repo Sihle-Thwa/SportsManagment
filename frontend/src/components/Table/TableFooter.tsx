@@ -1,50 +1,37 @@
-// src/components/Table/TableFooter.tsx
 import TablePagination from "./TablePagination";
+import "./table.css";
 
-export default function TableFooter({
-	pageIndex,
-	pageCount,
-	onPageChange,
-	selectedCount,
-	onBulkDelete,
-	className,
-}: {
+type Props = {
+	totalItems: number;
 	pageIndex: number;
-	pageCount: number;
 	pageSize: number;
 	onPageChange: (idx: number) => void;
-	selectedCount?: number;
-	onBulkDelete?: () => void;
-	className?: string;
-}) {
+	pageCount: number;
+};
+
+export default function TableFooter({
+	totalItems,
+	pageIndex,
+	pageSize,
+	onPageChange,
+	pageCount,
+}: Props) {
 	return (
-		<div
-			className={`flex items-center justify-between mt-3 ${className ?? ""}`}
-		>
-			<div className="flex items-center gap-3">
-				<div className="text-sm text-muted-foreground">
-					Page {pageIndex + 1} of {pageCount}
-				</div>
-				{selectedCount && selectedCount > 0 && (
-					<div className="text-sm">Selected: {selectedCount}</div>
-				)}
+		<div className="table-footer" role="contentinfo" aria-label="Table footer">
+			<div>
+				Showing {totalItems === 0 ? 0 : pageIndex * pageSize + 1} -{" "}
+				{Math.min((pageIndex + 1) * pageSize, totalItems)} of {totalItems}
 			</div>
 
-			<div className="flex items-center gap-3">
-				{selectedCount && selectedCount > 0 && (
-					<button
-						className="px-3 py-1 rounded text-destructive"
-						onClick={onBulkDelete}
-					>
-						Delete selected ({selectedCount})
-					</button>
-				)}
+			<div className="table-footer__center">
 				<TablePagination
 					pageIndex={pageIndex}
 					pageCount={pageCount}
 					onPageChange={onPageChange}
 				/>
 			</div>
+
+			<div style={{ width: 120 }} />
 		</div>
 	);
 }

@@ -1,84 +1,120 @@
-import { useEffect, useState } from "react";
-import { Search, Trash2, Plus } from "lucide-react";
+import { Search } from "lucide-react";
+import "./table.css";
+
+type Props = {
+	pageSize: number;
+	pageSizeOptions: number[];
+	onPageSizeChange: (n: number) => void;
+	onSearch: (q: string) => void;
+	onAdd?: () => void;
+	onBulkDelete?: () => void;
+	anySelected?: boolean;
+	selectedCount?: number;
+	loading?: boolean;
+	searchValue?: string;
+	onClearSearch?: () => void;
+	searchPlaceholder?: string;
+};
 
 export default function TableHeader({
-	pageSizeOptions = [10, 25, 50],
 	pageSize,
+	pageSizeOptions,
 	onPageSizeChange,
-	query,
-	onQueryChange,
+	onSearch,
 	onAdd,
-	selectedCount = 0,
 	onBulkDelete,
-}: {
-	pageSizeOptions?: number[];
-	pageSize: number;
-	onPageSizeChange: (n: number) => void;
-	query: string;
-	onQueryChange: (q: string) => void;
-	onAdd?: () => void;
-	selectedCount?: number;
-	onBulkDelete?: () => void;
-}) {
-	const [localQ, setLocalQ] = useState(query);
-	useEffect(() => setLocalQ(query), [query]);
-
-	useEffect(() => {
-		const t = setTimeout(() => onQueryChange(localQ), 300);
-		return () => clearTimeout(t);
-	}, [localQ, onQueryChange]);
-
+	anySelected = false,
+	selectedCount = 0,
+	loading,
+	searchValue = "",
+	onClearSearch,
+	searchPlaceholder = "Search...",
+}: Props) {
 	return (
-		<div className="flex items-center justify-between mb-3">
-			<div className="flex items-center gap-3">
-				<label htmlFor="pageSize" className="sr-only">
-					Rows per page
-				</label>
-				<select
-					id="pageSize"
-					value={pageSize}
-					onChange={(e) => onPageSizeChange(Number(e.target.value))}
-					className="rounded border px-2 py-1"
-				>
-					{pageSizeOptions.map((s) => (
-						<option key={s} value={s}>
-							{s}
-						</option>
-					))}
-				</select>
-				<span className="text-sm text-muted-foreground">entries</span>
-
-				{selectedCount > 0 && (
-					<button
-						onClick={onBulkDelete}
-						className="ml-3 inline-flex items-center gap-2 rounded px-3 py-1 text-sm"
-						aria-label={`Delete ${selectedCount} selected`}
-					>
-						<Trash2 size={14} /> Delete selected ({selectedCount})
-					</button>
-				)}
-			</div>
-
-			<div className="flex items-center gap-3">
-				<div className="relative">
-					<Search className="absolute left-2 top-1/2 -translate-y-1/2 opacity-60" />
-					<input
-						type="search"
-						placeholder="Search..."
-						value={localQ}
-						onChange={(e) => setLocalQ(e.target.value)}
-						className="pl-8 pr-3 py-1 rounded border"
-						aria-label="Search table"
-					/>
+		<div className="table-header" role="toolbar" aria-label="Table controls">
+			<div className="table-header__inner">
+				<div className="table-header__left">
+					<div className="table-header__select" aria-label="Rows per page">
+						<label htmlFor="rows-per-page">Show</label>
+						<select
+							id="rows-per-page"
+							value={String(pageSize)}
+							onChange={(e) => onPageSizeChange(Number(e.target.value))}
+							style={{ marginLeft: 8 }}
+						>
+							{pageSizeOptions.map((o) => (
+								<option key={o} value={o}>
+									{o}
+								</option>
+							))}
+						</select>
+						<span style={{ marginLeft: 8 }}>entries</span>
+					</div>
 				</div>
 
-				<button
-					onClick={onAdd}
-					className="inline-flex items-center gap-2 rounded bg-primary px-3 py-1 text-white"
-					aria-label="Add new"
-				>
-					<Plus size={14} /> Add New
-				</button>
+				<div className="table-header__center" role="search">
+					<div style={{ width: "100%", maxWidth: 560 }}>
+						<div
+							style={{
+								display: "flex",
+								alignItems: "center",
+								gap: 8,
+								padding: "8px 12px",
+								borderRadius: 10,
+								border: "1px solid var(--border-default)",
+								background: "var(--card-background)",
+							}}
+						>
+							<Search className="table-header__icon" />
+							<input
+								aria-label="Search rows"
+								value={searchValue}
+								onChange={(e) => onSearch(e.target.value)}
+								placeholder={searchPlaceholder}
+								style={{
+									width: "100%",
+									border: "none",
+									outline: "none",
+									background: "transparent",
+								}}
+							/>
+							{!!searchValue && (
+								<button
+									aria-label="Clear search"
+									onClick={onClearSearch}
+									className="icon-btn"
+								>
+									×
+								</button>
+							)}
+						</div>
+					</div>
+				</div>
+
+				<div className="table-header__right">
+					{anySelected && (
+						<div
+							className="table-header__select-delete"
+							role="status"
+							aria-live="polite"
+						>
+							<span style={{ fontWeight: 600 }}>{selectedCount} selected</span>
+							<button
+								className="button--danger"
+								onClick={() => onBulkDelete?.()}
+								aria-disabled={loading}
+							>
+								Delete Selected
+							</button>
+						</div>
+					)}
+
+					<div className="table-header__cta-wrapper">
+						<button className="table-header__button" onClick={() => onAdd?.()}>
+							+ Add New Member
+						</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	);

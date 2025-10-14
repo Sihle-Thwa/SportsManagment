@@ -1,4 +1,6 @@
 {
 	"cSpell.words": ["messagessummary"],
-	"bookmarks.sideBar.expanded": true
+	"bookmarks.sideBar.expanded": true,
+	"editor.formatOnSave": true,
+	"editor.formatOnSaveMode": "modifications"
 }

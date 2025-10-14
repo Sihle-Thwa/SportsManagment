@@ -1,221 +1,269 @@
-// src/components/Table/Table.tsx
-import React, { useEffect, useMemo, useState } from "react";
-import type { ColumnDef } from "./types";
+import { useEffect, useMemo, useRef, useState } from "react";
 import TableHeader from "./TableHeader";
-import TableBody from "./TableBody";
 import TableFooter from "./TableFooter";
+import TableBody from "./TableBody";
+import type { ColumnDef, RowId } from "./types";
+import "./table.css";
 
-export interface TableProps<T> {
-	columns: ColumnDef<T>[];
-	data: T[];
-	idField: keyof T;
-	loading?: boolean;
-	initialPageSize?: number;
-	pageSizeOptions?: number[];
-	onSearch?: (q: string) => void;
-	onDelete?: (id: string) => void;
-	onDeleteMany?: (ids: string[]) => Promise<void> | void;
-	onEdit?: (id: string) => void;
-	renderRow?: (row: T) => React.ReactNode; // optional custom row renderer
-	className?: string;
+/* simple debounce hook */
+function useDebounced<T>(value: T, delay = 300) {
+	const [v, setV] = useState(value);
+	useEffect(() => {
+		const id = setTimeout(() => setV(value), delay);
+		return () => clearTimeout(id);
+	}, [value, delay]);
+	return v;
 }
 
-export default function Table<T extends Record<string, unknown>>({
+export type TableProps<T> = {
+	columns: ColumnDef<T>[];
+	data: T[];
+	getRowId: (row: T) => RowId;
+	initialPageSize?: number;
+	pageSizeOptions?: number[];
+	loading?: boolean;
+	onAdd?: () => void;
+	onBulkDelete?: (ids: RowId[]) => Promise<void> | void;
+	searchPlaceholder?: string;
+};
+
+type SortState = { id: string | null; direction: "asc" | "desc" | null };
+
+export default function Table<T>({
 	columns,
 	data,
-	idField,
-	loading = false,
+	getRowId,
 	initialPageSize = 10,
 	pageSizeOptions = [10, 25, 50],
-	onSearch,
-	onDelete,
-	onDeleteMany,
-	onEdit,
-	renderRow,
-	className,
+	loading = false,
+	onAdd,
+	onBulkDelete,
+	searchPlaceholder,
 }: TableProps<T>) {
 	const [query, setQuery] = useState("");
+	const debouncedQuery = useDebounced(query, 250);
+
 	const [pageSize, setPageSize] = useState(initialPageSize);
 	const [pageIndex, setPageIndex] = useState(0);
-	const [sort, setSort] = useState<{
-		key: keyof T;
-		dir: "asc" | "desc";
-	} | null>(null);
-	const [selected, setSelected] = useState<Record<string, boolean>>({});
 
-	// debounce search upward
-	useEffect(() => {
-		const t = setTimeout(() => {
-			onSearch?.(query);
-			setPageIndex(0);
-		}, 350);
-		return () => clearTimeout(t);
-	}, [query, onSearch]);
+	// selection map
+	const [selected, setSelected] = useState<Record<string | number, boolean>>(
+		{},
+	);
 
-	// derive filtered / sorted
+	// sort state
+	const [sort, setSort] = useState<SortState>({ id: null, direction: null });
+
+	// Derived: filtering
 	const filtered = useMemo(() => {
-		const q = query.trim().toLowerCase();
-		let rows = data;
-		if (q) {
-			rows = rows.filter((r) =>
-				Object.values(r).some((v) =>
-					String(v ?? "")
-						.toLowerCase()
-						.includes(q),
-				),
-			);
-		}
-		if (sort) {
-			rows = [...rows].sort((a, b) => {
-				const A = String(a[sort.key] ?? "").toLowerCase();
-				const B = String(b[sort.key] ?? "").toLowerCase();
-				if (A < B) return sort.dir === "asc" ? -1 : 1;
-				if (A > B) return sort.dir === "asc" ? 1 : -1;
-				return 0;
-			});
-		}
-		return rows;
-	}, [data, query, sort]);
+		if (!debouncedQuery) return data;
+		const q = debouncedQuery.toLowerCase();
+		return data.filter((row) =>
+			columns.some((col) => {
+				const v = col.accessor
+					? String(col.accessor(row) ?? "")
+					: String((row as Record<string, unknown>)[col.id] ?? "");
+				return v.toLowerCase().includes(q);
+			}),
+		);
+	}, [data, debouncedQuery, columns]);
 
-	const pageCount = Math.max(1, Math.ceil(filtered.length / pageSize));
-	const pageIndexSafe = Math.min(pageIndex, pageCount - 1);
-	const pageRows = useMemo(() => {
-		const start = pageIndexSafe * pageSize;
-		return filtered.slice(start, start + pageSize);
-	}, [filtered, pageIndexSafe, pageSize]);
+	// Derived: sorting
+	const sorted = useMemo(() => {
+		if (!sort.id || !sort.direction) return filtered;
+		const col = columns.find((c) => c.id === sort.id);
+		if (!col) return filtered;
+
+		const direction = sort.direction === "asc" ? 1 : -1;
+		return [...filtered].sort((a, b) => {
+			const aVal = col.accessor
+				? col.accessor(a)
+				: (a as Record<string, unknown>)[col.id];
+			const bVal = col.accessor
+				? col.accessor(b)
+				: (b as Record<string, unknown>)[col.id];
+
+			const A = aVal == null ? "" : String(aVal).toLowerCase();
+			const B = bVal == null ? "" : String(bVal).toLowerCase();
+			if (A < B) return -1 * direction;
+			if (A > B) return 1 * direction;
+			return 0;
+		});
+	}, [filtered, sort, columns]);
+
+	const pageCount = Math.max(1, Math.ceil(sorted.length / pageSize));
+	useEffect(() => {
+		if (pageIndex >= pageCount) setPageIndex(0);
+	}, [pageCount, pageIndex]);
+
+	const paged = useMemo(() => {
+		const start = pageIndex * pageSize;
+		return sorted.slice(start, start + pageSize);
+	}, [sorted, pageIndex, pageSize]);
 
 	// selection helpers
-	const selectedIds = useMemo(
-		() => Object.keys(selected).filter((k) => selected[k]),
-		[selected],
-	);
-	const isAllVisibleSelected =
-		pageRows.length > 0 &&
-		pageRows.every((r) => !!selected[String(r[idField])]);
-	const isSomeVisibleSelected =
-		pageRows.some((r) => !!selected[String(r[idField])]) &&
-		!isAllVisibleSelected;
+	const pageIds = paged.map(getRowId);
+	const allOnPageSelected =
+		pageIds.length > 0 && pageIds.every((id) => !!selected[id]);
+	const someOnPageSelected =
+		pageIds.some((id) => !!selected[id]) && !allOnPageSelected;
 
-	const toggleRow = (id: string) =>
-		setSelected((prev) => ({ ...prev, [id]: !prev[id] }));
-	const toggleSelectAllVisible = () =>
+	function toggleSelectAllOnPage() {
 		setSelected((prev) => {
-			const copy = { ...prev };
-			if (isAllVisibleSelected) {
-				pageRows.forEach((r) => delete copy[String(r[idField])]);
+			const next = { ...prev };
+			if (allOnPageSelected) {
+				for (const id of pageIds) delete next[id];
 			} else {
-				pageRows.forEach((r) => (copy[String(r[idField])] = true));
+				for (const id of pageIds) next[id] = true;
 			}
-			return copy;
+			return next;
 		});
+	}
 
-	const handleDeleteMany = async () => {
-		if (selectedIds.length === 0) return;
-		if (!confirm(`Delete ${selectedIds.length} selected items?`)) return;
-		try {
-			if (onDeleteMany) {
-				await onDeleteMany(selectedIds);
-			}
-			// optimistic local cleanup if parent didn't re-fetch
-			// caller can re-fetch, here we clear selection
-			setSelected({});
-		} catch (err) {
-			console.error(err);
-		}
-	};
-
-	const handleDeleteOne = (id: string) => {
-		if (onDelete) onDelete(id);
-		// optimistic clean selection
+	function toggleRow(id: RowId) {
 		setSelected((prev) => {
-			const cp = { ...prev };
-			delete cp[id];
-			return cp;
+			const next = { ...prev };
+			if (next[id]) delete next[id];
+			else next[id] = true;
+			return next;
 		});
-	};
+	}
 
-	// expose renderRow fallback
-	const defaultRenderRow = (row: T) => (
-		<tr key={String(row[idField])} className="even:bg-white odd:bg-transparent">
-			<td className="p-2 text-center">
-				<input
-					type="checkbox"
-					aria-label={`Select row ${String(row[idField])}`}
-					checked={!!selected[String(row[idField])]}
-					onChange={() => toggleRow(String(row[idField]))}
-				/>
-			</td>
-			{columns.map((col) => (
-				<td key={String(col.key)} className="p-2">
-					{col.render ? col.render(row) : String(row[col.key])}
-				</td>
-			))}
-			<td className="p-2 text-right space-x-2">
-				{onEdit && (
-					<button
-						onClick={() => onEdit(String(row[idField]))}
-						aria-label="Edit"
-						className="px-2 py-1 rounded"
-					>
-						Edit
-					</button>
-				)}
-				<button
-					onClick={() => handleDeleteOne(String(row[idField]))}
-					aria-label="Delete"
-					className="px-2 py-1 rounded text-destructive"
-				>
-					Delete
-				</button>
-			</td>
-		</tr>
-	);
+	async function handleBulkDelete() {
+		if (!onBulkDelete) return;
+		const ids = Object.keys(selected).filter((k) => selected[k]) as RowId[];
+		await onBulkDelete(ids);
+		setSelected({});
+	}
+
+	function toggleSort(columnId: string, sortable?: boolean) {
+		if (!sortable) return;
+		setSort((s) => {
+			if (s.id !== columnId) return { id: columnId, direction: "asc" };
+			if (s.direction === "asc") return { id: columnId, direction: "desc" };
+			return { id: null, direction: null };
+		});
+	}
+
+	// For indeterminate master checkbox
+	const masterRef = useRef<HTMLInputElement | null>(null);
+	useEffect(() => {
+		if (masterRef.current) masterRef.current.indeterminate = someOnPageSelected;
+	}, [someOnPageSelected]);
 
 	return (
-		<div className={className}>
-			<TableHeader
-				pageSizeOptions={pageSizeOptions}
-				pageSize={pageSize}
-				onPageSizeChange={(s) => {
-					setPageSize(s);
-					setPageIndex(0);
-				}}
-				query={query}
-				onQueryChange={(q) => setQuery(q)}
-				onAdd={() => {}}
-				selectedCount={selectedIds.length}
-				onBulkDelete={handleDeleteMany}
-			/>
+		<div className="tableRoot" role="region" aria-label="Data table">
+			<div className="tableContainer">
+				<div className="tableContent">
+					<TableHeader
+						pageSize={pageSize}
+						pageSizeOptions={pageSizeOptions}
+						onPageSizeChange={(n) => {
+							setPageSize(n);
+							setPageIndex(0);
+						}}
+						onSearch={(q) => {
+							setQuery(q);
+							setPageIndex(0);
+						}}
+						searchValue={query}
+						onAdd={onAdd}
+						onBulkDelete={handleBulkDelete}
+						anySelected={Object.values(selected).some(Boolean)}
+						selectedCount={
+							Object.keys(selected).filter((k) => selected[k]).length
+						}
+						onClearSearch={() => setQuery("")}
+						searchPlaceholder={searchPlaceholder}
+					/>
 
-			<TableBody
-				columns={columns}
-				rows={pageRows}
-				loading={loading}
-				idField={idField as string}
-				sort={sort}
-				onSort={(key) => {
-					setSort((prev) => {
-						if (!prev || prev.key !== key) return { key, dir: "asc" };
-						return { key, dir: prev.dir === "asc" ? "desc" : "asc" };
-					});
-				}}
-				renderRow={renderRow ? (r) => renderRow(r) : defaultRenderRow}
-				// selection wiring
-				selectedMap={selected}
-				toggleRow={toggleRow}
-				toggleSelectAllVisible={toggleSelectAllVisible}
-				isAllVisibleSelected={isAllVisibleSelected}
-				isSomeVisibleSelected={isSomeVisibleSelected}
-			/>
+					{/* semantic table */}
+					<table className="members-table" role="table" aria-label="Members">
+						<thead className="tableHeader_thead" role="rowgroup">
+							<tr role="row" className="tableHeader_thead-row">
+								<th
+									className="tableHeader_thead-cell-checkbox"
+									role="columnheader"
+								>
+									<input
+										ref={masterRef}
+										type="checkbox"
+										aria-label="Select all rows on this page"
+										checked={allOnPageSelected}
+										onChange={toggleSelectAllOnPage}
+									/>
+								</th>
 
-			<TableFooter
-				pageIndex={pageIndexSafe}
-				pageCount={pageCount}
-				pageSize={pageSize}
-				onPageChange={(idx) => setPageIndex(idx)}
-				selectedCount={selectedIds.length}
-				onBulkDelete={handleDeleteMany}
-			/>
+								{columns.map((col) => {
+									const isSorted = sort.id === col.id;
+									return (
+										<th
+											key={col.id}
+											scope="col"
+											role="columnheader"
+											className="tableHeader_thead-cell"
+											style={{ width: col.width }}
+											aria-sort={
+												isSorted
+													? sort.direction === "asc"
+														? "ascending"
+														: "descending"
+													: "none"
+											}
+										>
+											<button
+												type="button"
+												className="tableHeader_thead-cell-sortable"
+												onClick={() => toggleSort(col.id, col.sortable)}
+												aria-label={
+													col.sortable ? `${col.header} sortable` : col.header
+												}
+											>
+												<span>{col.header}</span>
+												<span
+													className={`sort-indicator ${
+														isSorted ? "active" : ""
+													}`}
+												>
+													{isSorted
+														? sort.direction === "asc"
+															? "▲"
+															: "▼"
+														: "↕"}
+												</span>
+											</button>
+										</th>
+									);
+								})}
+
+								<th
+									className="tableHeader_thead-cell-actions"
+									role="columnheader"
+								>
+									Action
+								</th>
+							</tr>
+						</thead>
+
+						<TableBody
+							columns={columns}
+							rows={paged}
+							getRowId={getRowId}
+							selected={selected}
+							onToggleRow={toggleRow}
+							loading={loading}
+						/>
+					</table>
+
+					<TableFooter
+						totalItems={sorted.length}
+						pageIndex={pageIndex}
+						pageSize={pageSize}
+						onPageChange={(idx) => setPageIndex(idx)}
+						pageCount={pageCount}
+					/>
+				</div>
+			</div>
 		</div>
 	);
 }
