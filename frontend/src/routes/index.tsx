@@ -8,7 +8,7 @@ import Planner from "../pages/Calendar/Planner";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Facilities from "../pages/Facilities/Facilities";
 import Members from "../pages/Members/Members";
-import Players from "../pages/Users/Users";
+import Players from "../pages/Players/Players";
 import Profile from "../pages/Profile/Profile";
 import Report from "../pages/Reports/Report";
 
