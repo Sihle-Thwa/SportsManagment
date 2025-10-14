@@ -1,10 +1,10 @@
 import { useState } from "react";
 import MembersTable from "../../components/Table/MembersTable";
 import "./members.css";
-import { membersMockData } from "../../routes/membersmockdata";
+import membersmockdata from "../../routes/membersmockdata";
 
 export default function Members() {
-	const [members] = useState(membersMockData);
+	const [members] = useState(membersmockdata);
 
 	return (
 		<div className="membersRoot">
