@@ -52,19 +52,34 @@ export default function PlayersPageTable({ selectedId, onSelect }: Props) {
 	return (
 		<div className="playersPageTableWrapper">
 			<table
-				className="playersPageTable"
+				className="playersPageTable players-page-table"
 				role="table"
 				aria-label="Players list"
 			>
-				<thead className="playersPageTable_tableHeader">
-					<tr className="playersPageTable_tableHeader-row">
-						<th className="playersPageTable_tableHeader-cell">First Name</th>
-						<th className="playersPageTable_tableHeader-cell">Last Name</th>
-						<th className="playersPageTable_tableHeader-cell">Status</th>
+				<thead className="playersPageTable_tableHeader players-page-table__header playersPageTable__header">
+					<tr className="playersPageTable_tableHeader-row players-page-table__header-row playersPageTable__headerRow">
+						<th
+							role="columnheader"
+							className="playersPageTable_tableHeader-cell players-page-table__header-cell playersPageTable__headerCell"
+						>
+							First Name
+						</th>
+						<th
+							role="columnheader"
+							className="playersPageTable_tableHeader-cell players-page-table__header-cell playersPageTable__headerCell"
+						>
+							Last Name
+						</th>
+						<th
+							role="columnheader"
+							className="playersPageTable_tableHeader-cell players-page-table__header-cell playersPageTable__headerCell"
+						>
+							Status
+						</th>
 					</tr>
 				</thead>
 
-				<tbody className="playersPageTable_tableBody">
+				<tbody className="playersPageTable_tableBody players-page-table__body playersPageTable__body">
 					{players.map((p, i) => {
 						const isSelected = localSelected === p.id;
 						return (
@@ -74,24 +89,41 @@ export default function PlayersPageTable({ selectedId, onSelect }: Props) {
 								tabIndex={0}
 								role="row"
 								aria-selected={isSelected}
-								className={`playersPageTable_tableBody-row ${
+								className={`playersPageTable_tableBody-row players-page-table__row playersPageTable__row ${
 									isSelected ? "is-selected" : ""
 								}`}
 								onClick={() => handleRowClick(p.id)}
 								onKeyDown={(e) => onRowKeyDown(e, i)}
 							>
-								<td className="playersPageTable_tableBody-cell">
+								<td
+									role="cell"
+									className="playersPageTable_tableBody-cell players-page-table__cell playersPageTable__cell table-data-field"
+								>
 									{p.firstName}
 								</td>
-								<td className="playersPageTable_tableBody-cell">
+								<td
+									role="cell"
+									className="playersPageTable_tableBody-cell players-page-table__cell playersPageTable__cell table-data-field"
+								>
 									{p.lastName}
 								</td>
-								<td className="playersPageTable_tableBody-cell">{p.status}</td>
+								<td
+									role="cell"
+									className="playersPageTable_tableBody-cell players-page-table__cell playersPageTable__cell table-data-field"
+								>
+									{p.status}
+								</td>
 							</tr>
 						);
 					})}
 				</tbody>
 			</table>
+
+			<div aria-live="polite" className="selection-live">
+				{localSelected
+					? `Selected player ${localSelected}`
+					: "No player selected"}
+			</div>
 		</div>
 	);
 }

@@ -6,6 +6,7 @@ import type { Players as PlayerType } from "../../types/players.types";
 import { getPlayerDetails } from "../../routes/playersmockdata"; // must return full player object by id
 import "./playerspageform.css";
 import TextField from "../../components/Form/Fields/TextField";
+import DateField from "../../components/Form/Fields/DateField";
 
 type Props = {
 	selectedId?: string | null;
@@ -78,16 +79,19 @@ export default function PlayersPageForm({
 				</div>
 
 				<div className="cardBase_playersPageForm-body">
-					<div className="formColumns_playersPageForm">
+					<div className="formColumns_playersPageForm_left">
 						<TextField name="firstName" label="First name" />
 						<TextField name="lastName" label="Last name" />
 						<TextField name="preferredName" label="Preferred name" />
 						<TextField name="middleName" label="Middle name" />
-						<TextField name="nationality" label="Nationality" />
-						<TextField name="dateOfBirth" label="Date of birth" />
+						<TextField name="gender" label="Gender" />
+
+						<DateField name="dateOfBirth" label="Date of birth" />
+					</div>
+					<div className="formColumn_playersPageForm_right">
 						<TextField name="identificationNumber" label="ID / Passport" />
 						<TextField name="age" label="Age" />
-						<TextField name="gender" label="Gender" />
+						<TextField name="nationality" label="Nationality" />
 						<TextField name="contact" label="Contact" />
 						<TextField name="email" label="Email" />
 						<TextField name="status" label="Status" />

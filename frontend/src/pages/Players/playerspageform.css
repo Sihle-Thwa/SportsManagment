@@ -56,23 +56,35 @@
 }
 
 .cardBase_playersPageForm-body {
-	align-items: flex-start;
-	display: inline-flex;
-	flex-direction: column;
-	gap: 12px;
-	padding: 64px 24px 24px 24px; /* top padding to avoid header overlap */
-	position: relative;
-	width: 100%;
+	margin: 60px 24px 60px 24px; /* space for header and footer */
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 16px;
+	height: calc(100% - 132px); /* adjust height to account for header and footer */
+	overflow-y: auto; /* enable vertical scrolling if content overflows */
 }
 
-.formColumns_playersPageForm {
+
+.formColumn_playersPageForm_left {
 	display: grid;
-	grid-template-columns: 1fr 1fr; /* two columns side by side */
-	grid-auto-flow: column; /* fill by columns */
-	align-items: center;
-	gap: 12px 24px; /* vertical and horizontal gaps */
+	grid-template-columns: 1fr;
+	gap: 16px;
+	flex: 1;
 	width: 100%;
+	overflow: hidden; /* prevent overflow */
+
+
 }
+.formColumn_playersPageForm_right {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 16px;
+	flex: 1;
+	width: 100%;
+	overflow: hidden; /* prevent overflow */
+
+}
+
 
 .cardBase_playersPageForm-footer {
 	border-top: 1px solid var(--card-border);
