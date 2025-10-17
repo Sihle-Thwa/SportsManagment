@@ -33,10 +33,10 @@
 .playersPageTable_tableHeader-cell {
 	display: inline-flex;
 	text-align: center;
-    flex: 1 1 80px;
+	flex: 1 1 80px;
 	font-weight: var(--font-weight-semibold);
 	color: var(--text-primary);
-    font-size: 16px;
+	font-size: 16px;
 }
 .playersPageTable_tableHeader-cell-sortable {
 	display: inline-flex;
@@ -71,3 +71,346 @@
 	display: inline-flex;
 	align-items: center;
 }
+
+/* === Table row selected + focus styles ===
+   Add this near the end of table.css so it overrides earlier rules where needed.
+   Uses semantic tokens: --interactive-primary, --text-on-primary, --table-row-hover-bg
+*/
+
+.tableRoot {
+	/* helper hook for showing global selection UI */
+	position: relative;
+}
+
+/* Selected row visual */
+.playersPageTable_tableBody-row.is-selected,
+.table-data-row.is-selected {
+	background: color-mix(
+		in srgb,
+		var(--interactive-primary) 8%,
+		var(--table-background)
+	);
+	border-left: 4px solid var(--interactive-primary);
+	transition: background 180ms
+			var(--easing-smooth, cubic-bezier(0.4, 0, 0.2, 1)),
+		box-shadow 160ms var(--easing-smooth);
+	box-shadow: 0 6px 16px rgba(17, 24, 39, 0.04);
+}
+
+/* Selected row text/icon color */
+.playersPageTable_tableBody-row.is-selected .table-data-field,
+.playersPageTable_tableBody-row.is-selected .tableBody_tbody-cell,
+.table-data-row.is-selected .table-data-field * {
+	color: var(--text-on-primary);
+}
+
+/* Focus-visible for keyboard users (outline the whole row) */
+.playersPageTable_tableBody-row:focus-visible,
+.table-data-row:focus-visible {
+	outline: 3px solid color-mix(in srgb, var(--interactive-primary) 30%, white);
+	outline-offset: 2px;
+	border-radius: 6px;
+}
+
+/* Hover state still subtly visible (doesn't conflict with selection) */
+.playersPageTable_tableBody-row:hover,
+.table-data-row:hover {
+	background: var(
+		--table-row-hover-bg,
+		color-mix(in srgb, var(--interactive-primary) 3%, white)
+	);
+	cursor: pointer;
+}
+
+/* Accessible contrast: when selected and background is dark, ensure readable text */
+.playersPageTable_tableBody-row.is-selected .tableBody_tbody-cell,
+.playersPageTable_tableBody-row.is-selected .tableBody_tbody-cell * {
+	color: var(--text-on-primary);
+}
+
+/* Checkbox focus + visible styles */
+.tableBody_tbody-cell input[type="checkbox"]:focus-visible,
+.tableHeader_thead-cell-checkbox input[type="checkbox"]:focus-visible,
+.select-col input[type="checkbox"]:focus-visible {
+	outline: 3px solid color-mix(in srgb, var(--interactive-primary) 28%, white);
+	outline-offset: 2px;
+	border-radius: 6px;
+}
+
+/* Transition helpers so selection feels smooth */
+.playersPageTable_tableBody-row,
+.table-data-row {
+	transition: background 150ms
+			var(--easing-smooth, cubic-bezier(0.4, 0, 0.2, 1)),
+		transform 120ms var(--easing-smooth);
+	-webkit-tap-highlight-color: transparent;
+}
+
+/* Bulk actions bar — appears fixed above/below table when any rows are selected.
+   Conventions: when the table root has .has-selection, show the bar.
+   You can toggle .has-selection on the root container from JS when rows are selected.
+*/
+.tableRoot .bulk-actions {
+	position: absolute;
+	left: 12px;
+	right: 12px;
+	top: -52px; /* adjust to sit above table header; if topbar present, change to bottom: -52px */
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	justify-content: space-between;
+	padding: 8px 12px;
+	background: color-mix(in srgb, var(--interactive-primary) 10%, white);
+	border-radius: 10px;
+	border: 1px solid color-mix(in srgb, var(--interactive-primary) 8%, white);
+	box-shadow: var(--shadow-md);
+	opacity: 0;
+	transform: translateY(-6px);
+	pointer-events: none;
+	transition: opacity 180ms var(--easing-smooth),
+		transform 160ms var(--easing-smooth);
+}
+
+/* show when table has selection */
+.tableRoot.has-selection .bulk-actions {
+	opacity: 1;
+	transform: translateY(0);
+	pointer-events: auto;
+}
+
+/* bulk action CTA styles */
+.bulk-actions .bulk-left {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+.bulk-actions .bulk-right {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+}
+
+/* destructive bulk button */
+.button--danger {
+	background: transparent;
+	color: var(--interactive-error);
+	border: 1px solid color-mix(in srgb, var(--interactive-error) 10%, white);
+	padding: 8px 12px;
+	border-radius: 8px;
+	font-weight: 600;
+}
+.button--danger:hover {
+	background: color-mix(in srgb, var(--interactive-error) 8%, white);
+}
+
+/* Small helper for selected count badge */
+.bulk-count {
+	font-weight: 600;
+	color: var(--interactive-primary);
+	background: color-mix(in srgb, var(--interactive-primary) 8%, white);
+	padding: 4px 8px;
+	border-radius: 999px;
+	font-size: 0.875rem;
+}
+
+/* ======================================================================
+   Accessibility: prefers-reduced-motion
+   ====================================================================== */
+@media (prefers-reduced-motion: reduce) {
+	.playersPageTable_tableBody-row,
+	.table-data-row,
+	.tableRoot .bulk-actions {
+		transition: none !important;
+	}
+}
+
+/* ======================================================================
+   High contrast adjustments
+   ====================================================================== */
+@media (prefers-contrast: more) {
+	.playersPageTable_tableBody-row.is-selected,
+	.table-data-row.is-selected {
+		border-left-width: 6px;
+	}
+	.playersPageTable_tableBody-row:focus-visible,
+	.table-data-row:focus-visible {
+		outline-width: 4px;
+	}
+}
+
+
+/* ==========================
+   Selection + Focus Styles
+   ========================== */
+
+/* Selected row */
+.playersPageTable_tableBody-row.is-selected,
+.table-data-row.is-selected {
+  background: color-mix(in srgb, var(--interactive-primary) 10%, var(--table-background));
+  border-left: 3px solid var(--interactive-primary);
+  box-shadow: 0 6px 18px rgba(17, 24, 39, 0.04);
+  transition: background 180ms var(--easing-smooth, cubic-bezier(0.4,0,0.2,1)),
+              box-shadow 180ms var(--easing-smooth);
+}
+
+/* Selected row text/icon contrast adjustments */
+.playersPageTable_tableBody-row.is-selected .playersPageTable_tableBody-cell,
+.table-data-row.is-selected .tableBody_tbody-cell {
+  color: var(--text-on-primary);
+}
+
+/* Make sure links/buttons inside selected row remain readable */
+.playersPageTable_tableBody-row.is-selected a,
+.playersPageTable_tableBody-row.is-selected button {
+  color: inherit;
+}
+
+/* Hover (subtle) */
+.playersPageTable_tableBody-row:hover,
+.table-data-row:hover {
+  background: var(--table-row-hover-bg, color-mix(in srgb, var(--interactive-primary) 3%, var(--table-background)));
+  transform: translateY(-1px);
+}
+
+/* Keyboard focus for rows (use focus-visible to avoid mouse focus) */
+.playersPageTable_tableBody-row:focus-visible,
+.table-data-row:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--interactive-primary) 28%, white);
+  outline-offset: 3px;
+  border-radius: 6px;
+  /* ensures focus stands above siblings */
+  z-index: 2;
+}
+
+/* Row should be keyboard-focusable: ensure components set tabindex="0" on row containers */
+
+/* Checkbox focus ring (accessible for keyboard users) */
+.playersPageTable_tableBody-cell input[type="checkbox"]:focus-visible,
+.select-col input[type="checkbox"]:focus-visible,
+.tableHeader_thead-cell-checkbox input[type="checkbox"]:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--interactive-primary) 28%, white);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ==========================
+   Bulk actions bar (toggle with .has-selection on root)
+   ========================== */
+
+.playersRoot {
+  position: relative; /* anchor for bulk-actions */
+}
+
+/* Bulk actions (hidden by default) */
+.playersRoot .bulk-actions {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: -56px; /* adjust to place above table header; tweak as needed */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: color-mix(in srgb, var(--interactive-primary) 8%, var(--card-background));
+  border: 1px solid color-mix(in srgb, var(--interactive-primary) 8%, var(--card-border));
+  border-radius: 10px;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 160ms var(--easing-smooth), transform 160ms var(--easing-smooth);
+}
+
+/* Show when there are selections */
+.playersRoot.has-selection .bulk-actions {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* small selected-count badge */
+.bulk-count {
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  background: color-mix(in srgb, var(--interactive-primary) 12%, white);
+  color: var(--interactive-primary);
+}
+
+/* bulk buttons */
+.bulk-actions .button--danger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--interactive-error) 10%, white);
+  background: transparent;
+  color: var(--interactive-error);
+  font-weight: 600;
+}
+.bulk-actions .button--danger:hover {
+  background: color-mix(in srgb, var(--interactive-error) 8%, white);
+}
+
+/* Clear selection button */
+.bulk-actions .button--clear {
+  background: transparent;
+  border: none;
+  color: var(--text-on-background-secondary);
+}
+
+/* ==========================
+   Accessibility / motion / contrast
+   ========================== */
+
+/* Reduced motion: remove transforms */
+@media (prefers-reduced-motion: reduce) {
+  .playersPageTable_tableBody-row,
+  .playersRoot .bulk-actions {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* High contrast adjustments */
+@media (prefers-contrast: more) {
+  .playersPageTable_tableBody-row.is-selected,
+  .table-data-row.is-selected {
+    border-left-width: 5px;
+  }
+  .playersPageTable_tableBody-row:focus-visible,
+  .table-data-row:focus-visible {
+    outline-width: 4px;
+  }
+}
+
+/* ==========================
+   Small helpers
+   ========================== */
+
+/* Utility to visually indicate selection status for non-colored themes */
+.playersPageTable_tableBody-row.is-selected .row-pill {
+  background: color-mix(in srgb, var(--interactive-primary) 18%, white);
+  color: var(--text-on-primary);
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+/* Ensure table rows with interactive children do not hide focus ring */
+.playersPageTable_tableBody-row :where(a, button, input) {
+  z-index: 3;
+}
+
+/* If you show an aria-live region for selection count (assistive tech) */
+.playersRoot .selection-live {
+  position: absolute;
+  left: -9999px;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+
+/* EOF */

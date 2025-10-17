@@ -86,8 +86,6 @@ const contacts = [
 
 const statusOptions = ["Active", "Injured", "Suspended", "Retired"];
 
-
-
 export function generateMockPlayers(count = 20): Players[] {
     const players: Players[] = [];
 
@@ -170,6 +168,10 @@ export function getPlayersFormData() {
             status,
         }),
     );
+}
+
+export function getPlayerDetails(id: string) {
+    return mockPlayers.find(p => p.id === id) ?? null;
 }
 
 export default mockPlayers;

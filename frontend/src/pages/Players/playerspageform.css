@@ -7,12 +7,119 @@
 	border-radius: 8px;
 	height: 100%;
 	position: relative;
-	max-width: 750px;
-	width: 100%;
+	width: 750px;
 }
 .cardBase_playersPageForm-header {
-	border-bottom: 1px solid var(--card-border);
-	padding: 16px 24px;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	left: 12px;
+	top: 12px;
+	width: 100%;
+	position: absolute;
+}
+
+.cardBase_playersPageForm-header-title {
+	font-size: var(--title-size-default);
+	font-weight: var(--font-weight-semibold);
+	color: var(--text-primary);
+	margin-top: -1px; /* slight visual tweak to align with icon */
+	position: relative;
+	white-space: nowrap;
+	width: fit-content;
+	z-index: 1; /* ensure title is above accent line */
+}
+
+.cardBase_playersPageForm-header-subtitle {
+	font-size: var(--subtitle-size-default);
+	font-weight: var(--font-weight-semibold);
+	color: var(--text-primary);
+	margin-top: -1px; /* slight visual tweak to align with icon */
+	position: relative;
+	white-space: nowrap;
+	width: fit-content;
+	z-index: 1; /* ensure title is above accent line */
+}
+
+.accentLine_playersPageForm {
+	height: 2px;
+	top: 36px; /* position just below the header */
+	position: absolute;
+	width: 700px;
+	margin-top: 4px;
+	border-radius: 2px;
+	background: linear-gradient(
+		90deg,
+		#f2c94c,
+		#f2994a
+	); /* warm accent similar to figma */
+}
+
+.cardBase_playersPageForm-body {
+	align-items: flex-start;
+	display: inline-flex;
+	flex-direction: column;
+	gap: 12px;
+	padding: 64px 24px 24px 24px; /* top padding to avoid header overlap */
 	position: relative;
 	width: 100%;
+}
+
+.formColumns_playersPageForm {
+	display: grid;
+	grid-template-columns: 1fr 1fr; /* two columns side by side */
+	grid-auto-flow: column; /* fill by columns */
+	align-items: center;
+	gap: 12px 24px; /* vertical and horizontal gaps */
+	width: 100%;
+}
+
+.cardBase_playersPageForm-footer {
+	border-top: 1px solid var(--card-border);
+	top: auto;
+	bottom: 0;
+	padding: 12px 24px;
+	position: relative;
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.cardBase_playersPageForm-footerActions {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 8px;
+}
+
+.buttonPrimary_playersPageForm {
+	background-color: var(--button-bg);
+	color: var(--button-fg);
+	border: 1px solid var(--button-bd);
+	border-radius: var(--button-radius);
+	padding: 8px 16px;
+	font-size: var(--button-font-size);
+}
+
+.buttonPrimary_playersPageForm:hover {
+	background-color: var(--button-bg-hover);
+	color: var(--button-fg-hover);
+	border: 1px solid var(--button-bd-hover);
+	box-shadow: var(--button-shadow);
+}
+.buttonSecondary_playersPageForm {
+	background-color: var(--button-bg);
+	color: var(--button-fg);
+	border: 1px solid var(--button-bd);
+	border-radius: var(--button-radius);
+	padding: 8px 16px;
+	font-size: var(--button-font-size);
+}
+
+.buttonSecondary_playersPageForm:hover {
+	background-color: var(--button-bg-hover);
+	color: var(--button-fg-hover);
+	border: 1px solid var(--button-bd-hover);
+	box-shadow: var(--button-shadow);
 }
