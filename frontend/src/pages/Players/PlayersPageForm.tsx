@@ -1,4 +1,3 @@
-// src/pages/players/PlayersPageForm.tsx
 "use client";
 import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -19,7 +18,7 @@ export default function PlayersPageForm({
 	onSave,
 	onClearSelection,
 }: Props) {
-	// form default is empty; we will reset when selection changes
+	// form default is empty; it will reset when selection changes
 	const methods = useForm<PlayerType>({
 		defaultValues: {
 			id: "",
@@ -70,7 +69,11 @@ export default function PlayersPageForm({
 						id="player-form-title"
 						className="cardBase_playersPageForm-header-title"
 					>
-						{selectedId ? "Edit Player" : "Player details"}
+						{selectedId
+							? `${methods.getValues("firstName")}, ${methods.getValues(
+									"lastName",
+							  )}`
+							: "Player details"}
 					</div>
 					<div className="cardBase_playersPageForm-header-subtitle">
 						{selectedId ? "Edit selected player" : "No player selected"}
@@ -81,11 +84,10 @@ export default function PlayersPageForm({
 				<div className="cardBase_playersPageForm-body">
 					<div className="formColumns_playersPageForm_left">
 						<TextField name="firstName" label="First name" />
+						<TextField name="middleName" label="Middle name" />
 						<TextField name="lastName" label="Last name" />
 						<TextField name="preferredName" label="Preferred name" />
-						<TextField name="middleName" label="Middle name" />
 						<TextField name="gender" label="Gender" />
-
 						<DateField name="dateOfBirth" label="Date of birth" />
 					</div>
 					<div className="formColumn_playersPageForm_right">

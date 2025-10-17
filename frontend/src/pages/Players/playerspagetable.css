@@ -104,7 +104,7 @@
 .playersPageTable_tableBody-row.is-selected .table-data-field,
 .players-page-table__row.is-selected .table-data-field,
 .playersPageTable__row.is-selected .table-data-field {
-	color: var(--text-on-primary, #fff);
+	color: var(--interactive-primary);
 }
 
 /* Focus-visible for keyboard users (outline the whole row) - scoped */

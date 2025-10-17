@@ -52,15 +52,15 @@ export default function PlayersPageTable({ selectedId, onSelect }: Props) {
 	return (
 		<div className="playersPageTableWrapper">
 			<table
-				className="playersPageTable players-page-table"
+				className="playersPageTable"
 				role="table"
 				aria-label="Players list"
 			>
-				<thead className="playersPageTable_tableHeader players-page-table__header playersPageTable__header">
-					<tr className="playersPageTable_tableHeader-row players-page-table__header-row playersPageTable__headerRow">
+				<thead className="playersPageTable_tableHeader ">
+					<tr className="playersPageTable_tableHeader-row playersPageTable__header-row">
 						<th
 							role="columnheader"
-							className="playersPageTable_tableHeader-cell players-page-table__header-cell playersPageTable__headerCell"
+							className="playersPageTable_tableHeader-cell playersPageTable__header-cell"
 						>
 							First Name
 						</th>
