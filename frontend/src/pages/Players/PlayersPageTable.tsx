@@ -1,4 +1,3 @@
-// src/pages/players/PlayersPageTable.tsx
 import React, { useMemo, useState, useEffect } from "react";
 import { getPlayersTableData } from "../../routes/playersmockdata"; // must return { id, firstName, lastName, status }[]
 import "./playerspagetable.css";
@@ -57,29 +56,29 @@ export default function PlayersPageTable({ selectedId, onSelect }: Props) {
 				aria-label="Players list"
 			>
 				<thead className="playersPageTable_tableHeader ">
-					<tr className="playersPageTable_tableHeader-row playersPageTable__header-row">
+					<tr className="playersPageTable_tableHeader-row">
 						<th
 							role="columnheader"
-							className="playersPageTable_tableHeader-cell playersPageTable__header-cell"
+							className="playersPageTable_tableHeader-cell"
 						>
 							First Name
 						</th>
 						<th
 							role="columnheader"
-							className="playersPageTable_tableHeader-cell players-page-table__header-cell playersPageTable__headerCell"
+							className="playersPageTable_tableHeader-cell"
 						>
 							Last Name
 						</th>
 						<th
 							role="columnheader"
-							className="playersPageTable_tableHeader-cell players-page-table__header-cell playersPageTable__headerCell"
+							className="playersPageTable_tableHeader-cell"
 						>
 							Status
 						</th>
 					</tr>
 				</thead>
 
-				<tbody className="playersPageTable_tableBody players-page-table__body playersPageTable__body">
+				<tbody className="playersPageTable_tableBody ">
 					{players.map((p, i) => {
 						const isSelected = localSelected === p.id;
 						return (
@@ -89,28 +88,19 @@ export default function PlayersPageTable({ selectedId, onSelect }: Props) {
 								tabIndex={0}
 								role="row"
 								aria-selected={isSelected}
-								className={`playersPageTable_tableBody-row players-page-table__row playersPageTable__row ${
+								className={`playersPageTable_tableBody-row  ${
 									isSelected ? "is-selected" : ""
 								}`}
 								onClick={() => handleRowClick(p.id)}
 								onKeyDown={(e) => onRowKeyDown(e, i)}
 							>
-								<td
-									role="cell"
-									className="playersPageTable_tableBody-cell players-page-table__cell playersPageTable__cell table-data-field"
-								>
+								<td role="cell" className="playersPageTable_tableBody-cell">
 									{p.firstName}
 								</td>
-								<td
-									role="cell"
-									className="playersPageTable_tableBody-cell players-page-table__cell playersPageTable__cell table-data-field"
-								>
+								<td role="cell" className="playersPageTable_tableBody-cell">
 									{p.lastName}
 								</td>
-								<td
-									role="cell"
-									className="playersPageTable_tableBody-cell players-page-table__cell playersPageTable__cell table-data-field"
-								>
+								<td role="cell" className="playersPageTable_tableBody-cell">
 									{p.status}
 								</td>
 							</tr>

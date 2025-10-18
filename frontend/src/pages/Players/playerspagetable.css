@@ -1,6 +1,5 @@
 /* Component root: accept camelCase and kebab-case classnames */
-.playersPageTable,
-.players-page-table {
+.playersPageTable {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
@@ -9,22 +8,19 @@
 	box-shadow: var(--shadow-card, var(--card-shadow));
 	border-radius: 8px;
 	background-color: var(--surface-1, var(--table-background));
-	overflow-y: auto;
 }
 
 /* wrapper around the table (matches PlayersPageTable.tsx .playersPageTableWrapper) */
 .playersPageTableWrapper {
 	display: flex;
 	flex-direction: column;
-	gap: 12px;
 	width: 100%;
 	align-items: center;
+	height: 580px;
 }
 
 /* Header */
-.playersPageTable_tableHeader,
-.players-page-table__header,
-.playersPageTable__header {
+.playersPageTable_tableHeader {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -36,9 +32,7 @@
 }
 
 /* Header row / cell */
-.playersPageTable_tableHeader-row,
-.players-page-table__header-row,
-.playersPageTable__headerRow {
+.playersPageTable_tableHeader-row {
 	display: inline-flex;
 	flex-direction: row;
 	align-items: center;
@@ -46,9 +40,7 @@
 	width: 100%;
 }
 
-.playersPageTable_tableHeader-cell,
-.players-page-table__header-cell,
-.playersPageTable__headerCell {
+.playersPageTable_tableHeader-cell {
 	display: inline-flex;
 	text-align: center;
 	flex: 1 1 80px;
@@ -58,17 +50,15 @@
 }
 
 /* Body */
-.playersPageTable_tableBody,
-.players-page-table__body,
-.playersPageTable__body {
+.playersPageTable_tableBody {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+	max-height: 480px;
+	overflow-y: auto;
 }
 
-.playersPageTable_tableBody-row,
-.players-page-table__row,
-.playersPageTable__row {
+.playersPageTable_tableBody-row {
 	display: inline-flex;
 	flex-direction: row;
 	align-items: center;
@@ -79,9 +69,7 @@
 }
 
 /* Cells */
-.playersPageTable_tableBody-cell,
-.players-page-table__cell,
-.playersPageTable__cell {
+.playersPageTable_tableBody-cell {
 	flex: 1 1 80px;
 	min-width: 80px;
 	width: 100%;
@@ -90,45 +78,44 @@
 }
 
 /* Selected row visual: scoped to component only */
-.playersPageTable_tableBody-row.is-selected,
-.players-page-table__row.is-selected,
-.playersPageTable__row.is-selected {
-	background: color-mix(in srgb, var(--interactive-primary) 8%, var(--surface-1, var(--table-background)));
+.playersPageTable_tableBody-row.is-selected {
+	background: color-mix(
+		in srgb,
+		var(--interactive-primary) 8%,
+		var(--surface-1, var(--table-background))
+	);
 	border-left: 4px solid var(--interactive-primary);
-	transition: background 180ms var(--easing-smooth, cubic-bezier(0.4, 0, 0.2, 1)),
+	transition: background 180ms
+			var(--easing-smooth, cubic-bezier(0.4, 0, 0.2, 1)),
 		box-shadow 160ms var(--easing-smooth);
 	box-shadow: 0 6px 16px rgba(17, 24, 39, 0.04);
 }
 
 /* Selected row text/icon color (scoped & specific) */
-.playersPageTable_tableBody-row.is-selected .table-data-field,
-.players-page-table__row.is-selected .table-data-field,
-.playersPageTable__row.is-selected .table-data-field {
+.playersPageTable_tableBody-row.is-selected {
 	color: var(--interactive-primary);
 }
 
 /* Focus-visible for keyboard users (outline the whole row) - scoped */
-.playersPageTable_tableBody-row:focus-visible,
-.players-page-table__row:focus-visible,
-.playersPageTable__row:focus-visible {
-	outline: 3px solid color-mix(in srgb, var(--interactive-primary) 30%, var(--surface-1, #fff));
+.playersPageTable_tableBody-row:focus-visible {
+	outline: 3px solid
+		color-mix(in srgb, var(--interactive-primary) 30%, var(--surface-1, #fff));
 	outline-offset: 2px;
 	border-radius: 6px;
 }
 
 /* Hover state (scoped; avoid global :hover) */
-.playersPageTable_tableBody-row:hover,
-.players-page-table__row:hover,
-.playersPageTable__row:hover {
-	background: var(--table-row-hover-bg, color-mix(in srgb, var(--interactive-primary) 3%, var(--surface-1, #fff)));
+.playersPageTable_tableBody-row:hover {
+	background: var(
+		--table-row-hover-bg,
+		color-mix(in srgb, var(--interactive-primary) 3%, var(--surface-1, #fff))
+	);
 	cursor: pointer;
 }
 
 /* Ensure selected rows have readable content (scoped) */
-.playersPageTable_tableBody-row.is-selected *,
-.players-page-table__row.is-selected *,
-.playersPageTable__row.is-selected * {
-	color: var(--text-on-primary, #fff);
+.playersPageTable_tableBody-row.is-selected {
+	color: var(--text-on-secondary, var(--text-on-background));
 }
 
 /* live selection region (matches .selection-live in PlayersPageTable.tsx) */
@@ -145,10 +132,10 @@
 /* Transition / reduced motion */
 @media (prefers-reduced-motion: reduce) {
 	.playersPageTable_tableBody-row,
-	.players-page-table__row,
+	__row,
 	.playersPageTable__row,
 	.playersPageTable_tableBody-row.is-selected,
-	.players-page-table__row.is-selected,
+	__row.is-selected,
 	.playersPageTable__row.is-selected {
 		transition: none !important;
 	}
@@ -156,28 +143,21 @@
 
 /* Responsive adjustments */
 @media (max-width: 520px) {
-	.playersPageTable,
-	.players-page-table {
+	.playersPageTable {
 		max-width: 100%;
 		border-radius: 6px;
 	}
 
-	.playersPageTable_tableHeader-cell,
-	.players-page-table__header-cell,
-	.playersPageTable__headerCell {
+	.playersPageTable_tableHeader-cell {
 		font-size: calc(var(--type-scale-0, 14px));
 		padding: 6px 8px;
 	}
 
-	.playersPageTable_tableBody-row,
-	.players-page-table__row,
-	.playersPageTable__row {
+	.playersPageTable_tableBody-row {
 		padding: 8px;
 	}
 
-	.playersPageTable_tableBody-cell,
-	.players-page-table__cell,
-	.playersPageTable__cell {
+	.playersPageTable_tableBody-cell {
 		min-width: 64px;
 	}
 }
