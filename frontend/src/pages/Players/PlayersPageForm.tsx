@@ -73,11 +73,9 @@ export default function PlayersPageForm({
 							? `${methods.getValues("firstName")}, ${methods.getValues(
 									"lastName",
 							  )}`
-							: "Player details"}
+							: "No player selected"}
 					</div>
-					<div className="cardBase_playersPageForm-header-subtitle">
-						{selectedId ? "Edit selected player" : "No player selected"}
-					</div>
+
 					<div className="accentLine_playersPageForm" aria-hidden />
 				</div>
 
