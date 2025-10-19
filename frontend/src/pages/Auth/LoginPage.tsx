@@ -31,7 +31,7 @@ export default function LoginPage() {
 							Login in to your account
 						</div>
 						<div className="loginPageContent_header_subtitle">
-							Welcome Back, Please enter your details
+							Welcome Back! Please enter your details.
 						</div>
 					</div>
 					<FormProvider {...methods}>
