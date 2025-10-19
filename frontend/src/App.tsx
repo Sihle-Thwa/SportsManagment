@@ -1,17 +1,36 @@
 // src/App.tsx
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route,
+	Navigate,
+} from "react-router-dom";
 import { MainLayout } from "./components/layout/MainLayout";
 import { routes } from "./routes";
 import { ThemeProvider } from "./components/theme-provider";
 import "./index.css";
+import LoginPage from "./pages/Auth/loginPage";
+import RegisterPage from "./pages/Auth/registerPage";
 
 function App() {
+	const isAuthenticated = false; // Replace with real authentication logic
 	return (
 		<ThemeProvider defaultTheme="system" storageKey="ui-theme">
 			<Router>
 				<div className="body">
 					<Routes>
-						<Route path="/" element={<MainLayout />}>
+						<Route path="/login" element={<LoginPage />} />
+						<Route path="/register" element={<RegisterPage />} />
+						<Route
+							path="/"
+							element={
+								isAuthenticated ? (
+									<MainLayout />
+								) : (
+									<Navigate to="/login" replace />
+								)
+							}
+						>
 							{routes.map((route) => (
 								<Route
 									key={route.id}

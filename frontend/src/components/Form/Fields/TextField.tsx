@@ -12,6 +12,7 @@ export interface TextFieldProps {
 	className?: string;
 	rules?: RegisterOptions;
 	disabled?: boolean;
+	required?: boolean;
 }
 
 export const TextField: React.FC<TextFieldProps> = ({
@@ -22,6 +23,7 @@ export const TextField: React.FC<TextFieldProps> = ({
 	type = "text",
 	rules,
 	disabled = false,
+	required = false,
 }) => {
 	const {
 		register,
@@ -45,6 +47,7 @@ export const TextField: React.FC<TextFieldProps> = ({
 				aria-invalid={!!err}
 				aria-describedby={err ? `${name}-err` : undefined}
 				disabled={disabled}
+				required={required}
 				className={cn("field__input", err && "error")}
 			/>
 			{description && <div className="field__desc">{description}</div>}
