@@ -1,8 +1,8 @@
 "use client";
 import { useForm, FormProvider } from "react-hook-form";
 import TextField from "../../components/Form/Fields/TextField";
-import { GoogleIcon } from "../../components/Icons/GoogleIcon";
 import "./loginpage.css";
+import { LogIn as GoogleIcon } from "lucide-react";
 
 export default function LoginPage() {
 	const methods = useForm();
@@ -43,7 +43,8 @@ export default function LoginPage() {
 									required
 									placeholder="Email/Username"
 								/>
-								<TextField
+                                <TextField
+                                    id="password"
 									label="Password"
 									name="password"
 									required

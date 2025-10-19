@@ -9,8 +9,8 @@ import { MainLayout } from "./components/layout/MainLayout";
 import { routes } from "./routes";
 import { ThemeProvider } from "./components/theme-provider";
 import "./index.css";
-import LoginPage from "./pages/Auth/loginPage";
-import RegisterPage from "./pages/Auth/registerPage";
+import LoginPage from "./pages/Auth/LoginPage";
+import RegisterPage from "./pages/Auth/RegisterPage";
 
 function App() {
 	const isAuthenticated = false; // Replace with real authentication logic

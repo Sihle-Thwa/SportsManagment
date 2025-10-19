@@ -4,6 +4,7 @@ import { cn } from "../../../lib/utils";
 import "../formfield.css";
 
 export interface TextFieldProps {
+	id?: string;
 	name: string;
 	label?: string;
 	placeholder?: string;
@@ -16,6 +17,7 @@ export interface TextFieldProps {
 }
 
 export const TextField: React.FC<TextFieldProps> = ({
+	id,
 	name,
 	label,
 	placeholder,
@@ -40,7 +42,7 @@ export const TextField: React.FC<TextFieldProps> = ({
 				</label>
 			)}
 			<input
-				id={name}
+				id={id}
 				{...register(name, rules)}
 				type={type}
 				placeholder={placeholder}
