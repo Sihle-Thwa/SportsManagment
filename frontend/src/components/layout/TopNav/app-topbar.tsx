@@ -13,7 +13,6 @@ export default function AppTopBar() {
 	const location = useLocation();
 	const pathname = location.pathname;
 
-	// local UI state to animate button (the sidebar provider also ultimately controls layout)
 	const [menuOpen, setMenuOpen] = React.useState<boolean>(!isCollapsed);
 
 	React.useEffect(() => {
@@ -28,7 +27,6 @@ export default function AppTopBar() {
 
 	return (
 		<div className="app-topbar-inner" role="region" aria-label="Top navigation">
-			{/* LEFT: Brand/Home + menu toggle + page title (Header) */}
 			<div className="topbar-section topbar-left">
 				<div className="topbar-brand-group">
 					<button
@@ -46,10 +44,8 @@ export default function AppTopBar() {
 					</button>
 				</div>
 
-				{/* inline header (page title / breadcrumb) */}
 				<div className="topbar-header">
 					<div className="topbar-header__title" title={pathname ?? "/"}>
-						{/* lightweight title from pathname; for richer header use app-header */}
 						{pathname
 							.split("/")
 							.filter(Boolean)
@@ -59,13 +55,10 @@ export default function AppTopBar() {
 					</div>
 				</div>
 			</div>
-
-			{/* CENTER: search (hidden on small screens) */}
 			<div className="topbar-section topbar-center" aria-label="Site search">
 				<SearchInput />
 			</div>
 
-			{/* RIGHT: controls */}
 			<div className="topbar-section topbar-right">
 				<ModeToggle />
 			</div>

@@ -13,7 +13,7 @@ import LoginPage from "./pages/Auth/LoginPage";
 import RegisterPage from "./pages/Auth/RegisterPage";
 
 function App() {
-	const isAuthenticated = false; // Replace with real authentication logic
+	const isAuthenticated = false; 
 	return (
 		<ThemeProvider defaultTheme="system" storageKey="ui-theme">
 			<Router>

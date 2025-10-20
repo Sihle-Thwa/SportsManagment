@@ -4,12 +4,11 @@
 	.loginPageRoot {
 		display: flex;
 		flex-direction: column;
-        min-height: 100vh;
-		max-width: 100vw;
-        height: 100%;
+		height: 100vh;
 		width: 100%;
 		background-image: var(--background-canvas-gradient);
-		overflow: hidden;
+		background-size: cover;
+		background-position: center;
 	}
 
 	.loginPageHeader {
@@ -17,44 +16,60 @@
 		justify-content: center;
 		align-items: center;
 		width: 100%;
-		height: 64px;
-		background-color: var(--card-background);
+		height: 72px;
+		position: sticky;
+		top: 0;
+		background: var(--sidebar-background, var(--colour-neutral-100));
 		border-bottom: 1px solid var(--border-subtle);
 		box-shadow: var(--shadow-sm);
 	}
 
 	.loginPageHeaderContainer {
 		display: flex;
+		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-		max-width: 1220px;
+		max-width: 100%;
 		width: 100%;
+		padding: 0px 16px;
+		height: 100%;
+		overflow: hidden;
 	}
 
 	.loginPageHeaderContainer_brand {
 		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
 		align-items: flex-start;
 		gap: 8px;
+		
 	}
 
 	.loginPageHeaderContainer_cta {
 		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
 		align-items: flex-end;
 		gap: 8px;
+
 	}
 
 	.loginPageHeaderContainer_cta_text {
 		display: flex;
-		align-items: flex-start;
+		justify-content: center;
+		align-items: center;
 		gap: 8px;
-		font-size: var(--button-size-sm);
+		font-size: var(--button-size-md);
 		font-weight: var(--font-weight-light);
 		color: var(--text-primary);
 	}
 
 	.loginPageHeaderContainer_cta_link {
 		display: flex;
-		font-size: var(--button-size-sm);
+		justify-content: center;
+		align-items: center;
+		gap: 8px;
+		font-size: var(--button-size-md);
 		font-weight: var(--font-weight-semibold);
 		color: var(--colour-accent);
 	}
@@ -65,21 +80,23 @@
 		justify-content: center;
 		align-items: center;
 		width: 100%;
-		padding: 32px 16px;
+		flex-grow: 1;
+		padding: 16px;
+		overflow: auto;
+
 	}
 
 	.loginPageContent {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 16px;
+		background: var(--background-surface);
+		border: 1px solid var(--border-default);
+		border-radius: var(--radius-xl);
+		padding: 32px;
+		gap: 24px;
 		width: 100%;
-		max-width: 400px;
-		background-color: var(--card-background);
-		border: 1px solid var(--border-subtle);
-		border-radius: var(--radius-lg);
-		box-shadow: var(--shadow-lg);
-		padding: 16px;
+		max-width: 420px;
 	}
 
 	.loginPageContent_header {
@@ -87,7 +104,7 @@
 		flex-direction: column;
 		align-items: center;
 		gap: 8px;
-		margin-bottom: 16px;
+		width: 100%;
 	}
 
 	.loginPageContent_header_title {
@@ -98,8 +115,8 @@
 	}
 
 	.loginPageContent_header_subtitle {
-		font-size: var(--button-size-sm);
-		font-weight: var(--font-weight-regular);
+		font-size: var(--button-size-md);
+		font-weight: var(--font-weight-normal);
 		color: var(--text-secondary);
 		text-align: center;
 	}
@@ -108,6 +125,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		gap: 24px;
 		width: 100%;
 	}
 
@@ -121,25 +139,27 @@
 
 	.loginPageForm_bodyForgotPassword {
 		display: flex;
+		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
-		padding-top: 8px;
 	}
 
 	.loginPageForm_bodyForgotPassword_checkbox {
 		display: flex;
 		align-items: center;
 		gap: 8px;
-		width: 100%;
 		font-size: var(--button-size-sm);
 		color: var(--text-primary);
+		font-weight: var(--font-weight-normal);
 	}
 	.loginPageForm_bodyForgotPassword_link {
 		display: flex;
-		justify-content: flex-end;
-		width: 100%;
+		align-items: center;
+		gap: 8px;
 		font-size: var(--button-size-sm);
+		font-weight: var(--font-weight-semibold);
+		text-decoration: underline;
 		color: var(--colour-accent);
 	}
 
@@ -154,8 +174,7 @@
 	.loginPageForm_bodyFooter_cta {
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		gap: 8px;
+		gap: 12px;
 		width: 100%;
 	}
 
@@ -173,19 +192,24 @@
 
 	.loginPageForm_bodyFooter_cta_secondaryButton {
 		display: flex;
+		flex-direction: row;
 		justify-content: center;
-		width: 100%;
-		background-color: var(--button-background);
+		align-items: center;
+		gap: 8px;
+		font-size: var(--button-size-md);
 		color: var(--text-primary);
 		border: 1px solid var(--border-default);
 		border-radius: var(--radius-lg);
-		padding: 8px 16px;
 		font-size: var(--button-font-size);
+		padding: 8px 16px;
+		transition: background-color 0.2s ease;
+		
 	}
 
 	.loginPageForm_bodyFooter_icon {
-		display: flex;
+		width: var(--icon-size-md);
+		height: var(--icon-size-md);
+		justify-content: center;
 		align-items: center;
-		margin-right: 8px;
 	}
 }
