@@ -19,9 +19,11 @@ export default function LoginPage() {
 	const { handleSubmit, register } = methods;
 	const auth = useAuth();
 	const navigate = useNavigate();
-	const location = useLocation() as unknown as { state?: { from?: Location } };
+	const location = useLocation();
+	// safety-typed access to location.state.from.pathname
 	const from =
-		(location.state && location.state.from?.pathname) || "/dashboard";
+		(location.state as { from?: { pathname?: string } } | undefined)?.from
+			?.pathname ?? "/";
 	const [error, setError] = useState<string | null>(null);
 	const [loading, setLoading] = useState(false);
 
@@ -29,6 +31,12 @@ export default function LoginPage() {
 		setError(null);
 		setLoading(true);
 		try {
+			// guard: if there's no AuthProvider, show helpful message instead of throwing
+			if (!auth) {
+				throw new Error(
+					"No AuthProvider found. Wrap your app/page with AuthProvider before using authentication.",
+				);
+			}
 			await auth.signIn(data.email.trim(), data.password, !!data.remember);
 			navigate(from, { replace: true });
 		} catch (err: unknown) {
@@ -59,7 +67,7 @@ export default function LoginPage() {
 				<div className="loginPageContent">
 					<div className="loginPageContent_header">
 						<div className="loginPageContent_header_title">
-							Login in to your account
+							Log in to your account
 						</div>
 						<div className="loginPageContent_header_subtitle">
 							Welcome Back! Please enter your details.
@@ -72,12 +80,15 @@ export default function LoginPage() {
 							<form
 								className="loginPageForm_body"
 								onSubmit={handleSubmit(onSubmit)}
+								noValidate
 							>
 								<TextField
 									label="Email"
 									name="email"
 									required
 									placeholder="Email/Username"
+									type="email"
+									autoComplete="email"
 								/>
 								<TextField
 									id="password"
@@ -86,6 +97,7 @@ export default function LoginPage() {
 									required
 									type="password"
 									placeholder="Password"
+									autoComplete="current-password"
 								/>
 
 								{error && (
@@ -100,6 +112,7 @@ export default function LoginPage() {
 											type="checkbox"
 											id="rememberMe"
 											{...register("remember")}
+											defaultChecked
 										/>
 										<label htmlFor="rememberMe">Remember Me</label>
 									</div>

@@ -1,4 +1,4 @@
-import React from "react";
+import { useContext, createContext } from "react";
 import type { UserProfile } from "../types/auth.types";
 
 export type AuthContextType = {
@@ -20,12 +20,12 @@ export type AuthContextType = {
 	refresh: () => Promise<void>;
 };
 
-export const AuthContext = React.createContext<AuthContextType | undefined>(
+export const AuthContext = createContext<AuthContextType | undefined>(
 	undefined,
 );
 
 export const useAuth = () => {
-	const ctx = React.useContext(AuthContext);
+	const ctx = useContext(AuthContext);
 	if (!ctx) throw new Error("useAuth must be used inside AuthProvider");
 	return ctx;
 };

@@ -14,6 +14,7 @@ export interface TextFieldProps {
 	rules?: RegisterOptions;
 	disabled?: boolean;
 	required?: boolean;
+	autoComplete?: string;
 }
 
 export const TextField: React.FC<TextFieldProps> = ({
@@ -51,6 +52,7 @@ export const TextField: React.FC<TextFieldProps> = ({
 				disabled={disabled}
 				required={required}
 				className={cn("field__input", err && "error")}
+				autoComplete={undefined}
 			/>
 			{description && <div className="field__desc">{description}</div>}
 			{err && (

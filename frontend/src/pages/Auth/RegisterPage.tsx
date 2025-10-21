@@ -12,7 +12,7 @@ type RegisterForm = {
 	lastName: string;
 	email: string;
 	password: string;
-	confirmPassword?: string;
+	confirmPassword: string; // changed: make required to match the form
 };
 
 export default function RegisterPage() {
@@ -27,6 +27,13 @@ export default function RegisterPage() {
 
 	async function onSubmit(values: RegisterForm) {
 		setErr(null);
+		// guard: if there's no AuthProvider, show helpful message instead of throwing
+		if (!auth) {
+			setErr(
+				"No AuthProvider found. Wrap your app/page with AuthProvider before using authentication.",
+			);
+			return;
+		}
 		if (!agree) {
 			setErr("Please accept Terms and Conditions");
 			return;
@@ -37,10 +44,11 @@ export default function RegisterPage() {
 		}
 		setLoading(true);
 		try {
+			// trim inputs before sending
 			await auth.register(
-				values.firstName,
-				values.lastName,
-				values.email,
+				values.firstName.trim(),
+				values.lastName.trim(),
+				values.email.trim(),
 				values.password,
 			);
 			navigate("/dashboard", { replace: true });
@@ -60,7 +68,7 @@ export default function RegisterPage() {
 					</div>
 					<div className="registerPageHeaderContainer_cta">
 						<div className="registerPageHeaderContainer_cta_text">
-							You have an account?
+							Already have an account? {/* changed text for consistency */}
 						</div>
 						<a href="/login" className="registerPageHeaderContainer_cta_link">
 							Log In
@@ -91,18 +99,22 @@ export default function RegisterPage() {
 									name="firstName"
 									required
 									placeholder="First Name"
+									autoComplete="given-name"
 								/>
 								<TextField
 									label="Last Name"
 									name="lastName"
 									required
 									placeholder="Last Name"
+									autoComplete="family-name"
 								/>
 								<TextField
 									label="Email"
 									name="email"
 									required
 									placeholder="Email/Username"
+									type="email"
+									autoComplete="email"
 								/>
 								<TextField
 									id="password"
@@ -111,6 +123,7 @@ export default function RegisterPage() {
 									required
 									type="password"
 									placeholder="Password"
+									autoComplete="new-password"
 								/>
 								<TextField
 									id="confirmPassword"
@@ -119,6 +132,7 @@ export default function RegisterPage() {
 									required
 									type="password"
 									placeholder="Confirm Password"
+									autoComplete="new-password"
 								/>
 								{/* Terms checkbox - uses setAgree so the setter is not unused */}
 								<div className="registerPageForm_terms">
@@ -127,8 +141,13 @@ export default function RegisterPage() {
 										type="checkbox"
 										checked={agree}
 										onChange={(e) => setAgree(e.target.checked)}
+										aria-describedby="agree-error"
+										aria-checked={agree}
 									/>
-									<label htmlFor="agree">
+									<label
+										htmlFor="agree"
+										className="registerPageForm_terms_label"
+									>
 										I accept the Terms and Conditions
 									</label>
 								</div>
@@ -140,9 +159,7 @@ export default function RegisterPage() {
 								)}
 								<div className="registerPageForm_bodyLoginRedirect">
 									<div className="registerPageForm_bodyLoginRedirect_text">
-										<label htmlFor="rememberMe">
-											Already have an account?{" "}
-										</label>
+										<label htmlFor="rememberMe">Already have an account?</label>
 									</div>
 									<a
 										href="/login"
