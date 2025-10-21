@@ -1,5 +1,5 @@
 import React from "react";
-import type { UserProfile } from "../types/auth.types";
+import type { UserProfile } from "./types/auth.types";
 
 export type AuthContextType = {
 	user: UserProfile | null;
@@ -20,9 +20,7 @@ export type AuthContextType = {
 	refresh: () => Promise<void>;
 };
 
-export const AuthContext = React.createContext<AuthContextType | undefined>(
-	undefined,
-);
+export const AuthContext = React.createContext<AuthContextType | undefined>(undefined);
 
 export const useAuth = () => {
 	const ctx = React.useContext(AuthContext);

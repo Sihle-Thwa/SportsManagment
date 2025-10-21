@@ -6,60 +6,44 @@ import {
 	Navigate,
 } from "react-router-dom";
 import { MainLayout } from "./components/layout/MainLayout";
-import { routes } from "./routes";
-import { ThemeProvider } from "./components/theme-provider";
 import "./index.css";
 import LoginPage from "./pages/Auth/LoginPage";
 import RegisterPage from "./pages/Auth/RegisterPage";
+import { AuthProvider } from "./AuthProvider";
+import { ProtectedRoute } from "./components/ProtectedRoute";
+import Profile from "./pages/Profile/Profile";
 
 function App() {
-	const isAuthenticated = false; 
 	return (
-		<ThemeProvider defaultTheme="system" storageKey="ui-theme">
+		<AuthProvider>
 			<Router>
-				<div className="body">
-					<Routes>
-						<Route path="/login" element={<LoginPage />} />
-						<Route path="/register" element={<RegisterPage />} />
-						<Route
-							path="/"
-							element={
-								isAuthenticated ? (
-									<MainLayout />
-								) : (
-									<Navigate to="/login" replace />
-								)
-							}
-						>
-							{routes.map((route) => (
-								<Route
-									key={route.id}
-									path={route.path}
-									element={route.element}
-								/>
-							))}
+				<Routes>
+					<Route path="/" element={<Navigate to="/login" replace />} />
+					<Route path="/login" element={<LoginPage />} />
+					<Route path="/register" element={<RegisterPage />} />
 
-							{/* Fallback (404) */}
-							<Route
-								path="*"
-								element={
-									<div className="flex items-center justify-center h-full">
-										<div className="text-center">
-											<h2 className="text-2xl font-semibold text-gray-900 mb-2">
-												Page Not Found
-											</h2>
-											<p className="text-gray-600">
-												The page you're looking for doesn't exist.
-											</p>
-										</div>
-									</div>
-								}
-							/>
-						</Route>
-					</Routes>
-				</div>
+					<Route
+						path="/app/*"
+						element={
+							<ProtectedRoute>
+								<MainLayout />
+							</ProtectedRoute>
+						}
+					/>
+
+					<Route
+						path="/profile"
+						element={
+							<ProtectedRoute>
+								<Profile />
+							</ProtectedRoute>
+						}
+					/>
+
+					<Route path="*" element={<Navigate to="/login" replace />} />
+				</Routes>
 			</Router>
-		</ThemeProvider>
+		</AuthProvider>
 	);
 }
 

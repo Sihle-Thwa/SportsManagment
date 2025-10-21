@@ -149,7 +149,7 @@
 		width: 100%;
 	}
 
-	.registerPageForm_bodyForgotPassword {
+	.registerPageForm_bodyLoginRedirect {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
@@ -157,15 +157,15 @@
 		width: 100%;
 	}
 
-	.registerPageForm_bodyForgotPassword_checkbox {
+	.registerPageForm_bodyLoginRedirect_text {
 		display: flex;
 		align-items: center;
 		gap: 8px;
-		font-size: var(--button-size-sm);
+		font-size: var(--button-size-md);
 		color: var(--text-primary);
 		font-weight: var(--font-weight-normal);
 	}
-	.registerPageForm_bodyForgotPassword_link {
+	.registerPageForm_bodyLoginRedirect_link {
 		display: flex;
 		align-items: center;
 		gap: 8px;

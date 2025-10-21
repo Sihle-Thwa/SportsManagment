@@ -1,11 +1,42 @@
 "use client";
-import { useForm, FormProvider } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
+import { useLocation, useNavigate } from "react-router-dom";
 import TextField from "../../components/Form/Fields/TextField";
-import "./loginpage.css";
 import { LogIn as GoogleIcon } from "lucide-react";
+import { useState } from "react";
+import { useAuth } from "../../hooks/useAuth";
+import "./loginpage.css";
+
+type LoginForm = {
+	email: string;
+	password: string;
+	remember?: boolean;
+};
 
 export default function LoginPage() {
-	const methods = useForm();
+	const methods = useForm<LoginForm>({ defaultValues: { remember: true } });
+	// use the destructured helpers so they are actually referenced
+	const { handleSubmit, register } = methods;
+	const auth = useAuth();
+	const navigate = useNavigate();
+	const location = useLocation() as unknown as { state?: { from?: Location } };
+	const from =
+		(location.state && location.state.from?.pathname) || "/dashboard";
+	const [error, setError] = useState<string | null>(null);
+	const [loading, setLoading] = useState(false);
+
+	async function onSubmit(data: LoginForm) {
+		setError(null);
+		setLoading(true);
+		try {
+			await auth.signIn(data.email.trim(), data.password, !!data.remember);
+			navigate(from, { replace: true });
+		} catch (err: unknown) {
+			setError((err as { message?: string }).message ?? "Sign in failed");
+		} finally {
+			setLoading(false);
+		}
+	}
 
 	return (
 		<div className="loginPageRoot">
@@ -37,7 +68,11 @@ export default function LoginPage() {
 					</div>
 					<FormProvider {...methods}>
 						<div className="loginPageForm_content">
-							<form className="loginPageForm_body">
+							{/* attach onSubmit so handleSubmit and onSubmit are used */}
+							<form
+								className="loginPageForm_body"
+								onSubmit={handleSubmit(onSubmit)}
+							>
 								<TextField
 									label="Email"
 									name="email"
@@ -52,38 +87,54 @@ export default function LoginPage() {
 									type="password"
 									placeholder="Password"
 								/>
-							</form>
-							<div className="loginPageForm_bodyForgotPassword">
-								<div className="loginPageForm_bodyForgotPassword_checkbox">
-									<input type="checkbox" id="rememberMe" />
-									<label htmlFor="rememberMe">Remember Me</label>
-								</div>
-								<a
-									href="/forgot-password"
-									className="loginPageForm_bodyForgotPassword_link"
-								>
-									Forgot Password?
-								</a>
-							</div>
-						</div>
-						<div className="loginPageForm_bodyFooter">
-							<div className="loginPageForm_bodyFooter_cta">
-								<button
-									className="button-primary button-lg loginPageForm_bodyFooter_cta_primaryButton"
-									type="submit"
-								>
-									Log in
-								</button>
-								<button
-									className="button-secondary button-lg loginPageForm_bodyFooter_cta_secondaryButton"
-									type="submit"
-								>
-									<div className="loginPageForm_bodyFooter_icon">
-										<GoogleIcon />
+
+								{error && (
+									<div role="alert" className="loginPageForm_error">
+										{error}
 									</div>
-									Log in with Google
-								</button>
-							</div>
+								)}
+
+								<div className="loginPageForm_bodyForgotPassword">
+									<div className="loginPageForm_bodyForgotPassword_checkbox">
+										<input
+											type="checkbox"
+											id="rememberMe"
+											{...register("remember")}
+										/>
+										<label htmlFor="rememberMe">Remember Me</label>
+									</div>
+									<a
+										href="/forgot-password"
+										className="loginPageForm_bodyForgotPassword_link"
+									>
+										Forgot Password?
+									</a>
+								</div>
+
+								<div className="loginPageForm_bodyFooter">
+									<div className="loginPageForm_bodyFooter_cta">
+										<button
+											className="button-primary button-lg loginPageForm_bodyFooter_cta_primaryButton"
+											type="submit"
+											disabled={loading}
+										>
+											{loading ? "Signing in…" : "Log in"}
+										</button>
+										<button
+											type="button"
+											className="button-secondary button-lg loginPageForm_bodyFooter_cta_secondaryButton"
+											onClick={() =>
+												alert("Google sign-in demo — integrate your provider")
+											}
+										>
+											<span className="loginPageForm_bodyFooter_icon">
+												<GoogleIcon />
+											</span>
+											Log in with Google
+										</button>
+									</div>
+								</div>
+							</form>
 						</div>
 					</FormProvider>
 				</div>
