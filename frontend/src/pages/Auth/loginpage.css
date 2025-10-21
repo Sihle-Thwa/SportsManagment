@@ -121,6 +121,14 @@
 		text-align: center;
 	}
 
+	.accentLine_loginPageForm {
+		width: 100%;
+		height: 4px;
+		background-color: var(--colour-accent);
+		border-radius: var(--radius-full);
+		margin-top: 4px;
+	}
+
 	.loginPageForm_content {
 		display: flex;
 		flex-direction: column;

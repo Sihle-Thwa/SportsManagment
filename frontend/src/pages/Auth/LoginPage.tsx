@@ -33,6 +33,7 @@ export default function LoginPage() {
 						<div className="loginPageContent_header_subtitle">
 							Welcome Back! Please enter your details.
 						</div>
+						<div className="accentLine_loginPageForm" aria-hidden />
 					</div>
 					<FormProvider {...methods}>
 						<div className="loginPageForm_content">
@@ -43,8 +44,8 @@ export default function LoginPage() {
 									required
 									placeholder="Email/Username"
 								/>
-                                <TextField
-                                    id="password"
+								<TextField
+									id="password"
 									label="Password"
 									name="password"
 									required
@@ -67,15 +68,19 @@ export default function LoginPage() {
 						</div>
 						<div className="loginPageForm_bodyFooter">
 							<div className="loginPageForm_bodyFooter_cta">
-                                <button className="button-primary button-lg loginPageForm_bodyFooter_cta_primaryButton"
-                                type="submit">
+								<button
+									className="button-primary button-lg loginPageForm_bodyFooter_cta_primaryButton"
+									type="submit"
+								>
 									Log in
 								</button>
-                                <button className="button-secondary button-lg loginPageForm_bodyFooter_cta_secondaryButton"
-                                    type="submit">
-                                    <div className="loginPageForm_bodyFooter_icon">
-                                        <GoogleIcon />
-                                    </div>
+								<button
+									className="button-secondary button-lg loginPageForm_bodyFooter_cta_secondaryButton"
+									type="submit"
+								>
+									<div className="loginPageForm_bodyFooter_icon">
+										<GoogleIcon />
+									</div>
 									Log in with Google
 								</button>
 							</div>
