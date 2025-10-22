@@ -1,20 +1,18 @@
-/* global/index.css */
 @import "tailwindcss";
 
-/* Import base colours (colour palette) */
 @import "./colours.css";
-
-/* Import semantic tokens with light/dark mode variables */
 @import "./semantic-tokens.css";
-
-/* Import typography styles */
 @import "./typography.css";
-
-/* Import theme styles */
 @import "./theme.css";
 
-/* Import component styles */
-@import "./components/button.css";
-@import "./components/dropdown.css";
-@import "./components/pagination.css";
-@import "./components/table.css";
+/* Global Styles */
+body {
+    font-family: var(--font-sans);
+    font-size: var(--body-size-default);
+    background-color: var(--background-canvas);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+

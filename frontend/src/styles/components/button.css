@@ -1,73 +1,76 @@
 @import "tailwindcss";
-@import "../../styles/colours.css";
-/* ==========================================================================
-   BUTTON TOKENS
-   - This file maps those to button-specific tokens for clarity and reuse.
-   ========================================================================== */
+
 
 :root {
-	/* --- Shared layout tokens --- */
-	--button-radius: 6px; /* 6px */
+	/*  Shared layout tokens  */
+
+	/* Button base styles */
+	--button-padding: 12px 16px;
+	--button-radius: 6px;
 	--button-border-width: 1px;
 	--button-gap: 8px;
-	--button-font-weight: 600;
-	--button-line-height: 1; /* keeps height tight with padding */
-	--button-transition: 150ms ease;
+	--button-font-weight: var(--font-weight-semibold);
+	--button-line-height: 1; 
+	--button-transition: var(--transition-fast);
+	
 
+	
 	/* Focus ring */
-	--button-ring-color: color-mix(
-		in oklab,
-		var(--colour-primary) 45%,
-		white 55%
-	);
-	--button-ring-offset: 2px;
+	--button-ring-color: var(--colour-primary-500);
 	--button-ring-size: 3px;
+	--button-ring-offset: 2px;
 
-	/* ---------- PRIMARY ---------- */
-	--button-primary-background: var(--colour-primary);
-	--button-primary-background-hover: var(--colour-secondary);
-	--button-primary-background-pressed: var(--colour-primary-800);
+	/* Button variant tokens */
+
+	/* PRIMARY */
+	--button-primary-background: var(--colour-primary-500);
+	--button-primary-background-hover: var(--colour-primary-700);
+	--button-primary-background-pressed: var(--colour-primary-900);
 	--button-primary-background-disabled: var(--colour-primary-100);
 	--button-primary-text: var(--colour-neutral-100);
-	--button-primary-text-hover: var(--colour-neutral-100);
-	--button-primary-text-disabled: var(--colour-neutral-100);
-	--button-primary-border: var(--colour-primary);
-	--button-primary-border-hover: var(--colour-secondary);
+	--button-primary-text-disabled: var(--colour-primary-700);
+	--button-primary-border: var(--colour-primary-500);
+	--button-primary-border-hover: var(--colour-primary-700);
 	--button-primary-border-disabled: var(--colour-primary-100);
 
-	/* ---------- SECONDARY (Outline/Ghost-ish) ---------- */
-	--button-secondary-background: transparent;
-	--button-secondary-background-hover: var(--colour-secondary-100);
-	--button-secondary-background-pressed: var(--colour-secondary-300);
-	--button-secondary-background-disabled: transparent;
-	--button-secondary-text: var(--colour-secondary-900);
-	--button-secondary-text-hover: var(--colour-secondary-700);
-	--button-secondary-text-disabled: var(--colour-secondary-300);
-	--button-secondary-border: var(--colour-secondary-500);
-	--button-secondary-border-hover: var(--colour-secondary-700);
-	--button-secondary-border-disabled: var(--colour-secondary-300);
+	/* SECONDARY */
+	--button-secondary-background: var(--colour-neutral-100);
+	--button-secondary-background-hover: var(--colour-neutral-200);
+	--button-secondary-background-pressed: var(--colour-neutral-300);
+	--button-secondary-background-disabled: var(--colour-neutral-100);
+	--button-secondary-text: var(--colour-primary-500);
+	--button-secondary-text-hover: var(--colour-primary-700);
+	--button-secondary-text-disabled: var(--colour-neutral-300);
+	--button-secondary-border: var(--colour-primary-500);
+	--button-secondary-border-hover: var(--colour-primary-700);
+	--button-secondary-border-disabled: var(--colour-neutral-300);
 
-	/* ---------- TERTIARY ---------- */
-	--button-tertiary-background: var(--colour-tertiary-500);
-	--button-tertiary-background-hover: var(--colour-tertiary-700);
-	--button-tertiary-background-pressed: var(--colour-tertiary-900);
-	--button-tertiary-background-disabled: var(--colour-tertiary-100);
+
+	/* TERTIARY */
+	--button-tertiary-background: var(--colour-accent-500);
+	--button-tertiary-background-hover: var(--colour-accent-700);
+	--button-tertiary-background-pressed: var(--colour-accent-900);
+	--button-tertiary-background-disabled: var(--colour-accent-100);
 	--button-tertiary-text: var(--colour-neutral-100);
-	--button-tertiary-text-disabled: var(--colour-tertiary-900);
-	--button-tertiary-border: var(--colour-tertiary-500);
+	--button-tertiary-text-disabled: var(--colour-accent-700);
+	--button-tertiary-border: var(--colour-accent-500);
+	--button-tertiary-border-hover: var(--colour-accent-700);
+	--button-tertiary-border-disabled: var(--colour-accent-100);
 
-	/* ---------- SUCCESS ---------- */
+
+	/* SUCCESS */
 	--button-success-background: var(--colour-success-500);
 	--button-success-background-hover: var(--colour-success-700);
 	--button-success-background-pressed: var(--colour-success-900);
 	--button-success-background-disabled: var(--colour-success-100);
 	--button-success-text: var(--colour-neutral-100);
 	--button-success-text-disabled: var(--colour-success-700);
-	--button-success-border: var(--colour-success-500);
+	--button-success-border: var(--colour-success-500);	
 	--button-success-border-hover: var(--colour-success-700);
 	--button-success-border-disabled: var(--colour-success-100);
 
-	/* ---------- WARNING ---------- */
+
+	/* WARNING */
 	--button-warning-background: var(--colour-warning-500);
 	--button-warning-background-hover: var(--colour-warning-700);
 	--button-warning-background-pressed: var(--colour-warning-900);
@@ -78,7 +81,7 @@
 	--button-warning-border-hover: var(--colour-warning-700);
 	--button-warning-border-disabled: var(--colour-warning-100);
 
-	/* ---------- ERROR ---------- */
+	/* ERROR */
 	--button-error-background: var(--colour-error-500);
 	--button-error-background-hover: var(--colour-error-700);
 	--button-error-background-pressed: var(--colour-error-900);
@@ -89,7 +92,7 @@
 	--button-error-border-hover: var(--colour-error-700);
 	--button-error-border-disabled: var(--colour-error-100);
 
-	/* ---------- GHOST ---------- */
+	/* GHOST */
 	--button-ghost-background: transparent;
 	--button-ghost-background-hover: var(--colour-neutral-200);
 	--button-ghost-background-pressed: var(--colour-neutral-300);
@@ -102,66 +105,40 @@
 	--button-ghost-border-disabled: transparent;
 }
 
-/* ==========================================================================
-   COMPONENT
-   - Uses a small custom-properties API per instance:
-     --button-bg, --button-fg, --button-bd, plus hover/active/disabled counterparts.
-   ========================================================================== */
 
 @layer components {
 	.button {
-		/* API defaults */
-		--button-bg: transparent;
-		--button-fg: currentColor;
-		--button-bd: currentColor;
-
-		--button-bg-hover: var(--button-bg);
-		--button-fg-hover: var(--button-fg);
-		--button-bd-hover: var(--button-bd);
-
-		--button-bg-active: var(--button-bg-hover);
-		--button-fg-active: var(--button-fg-hover);
-		--button-bd-active: var(--button-bd-hover);
-
-		--button-bg-disabled: var(--button-bg);
-		--button-fg-disabled: var(--button-fg);
-		--button-bd-disabled: var(--button-bd);
-
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
 		gap: var(--button-gap);
-
-		border: var(--button-border-width) solid var(--button-bd);
+		padding: var(--button-padding);
 		border-radius: var(--button-radius);
-		background-color: var(--button-bg);
-		color: var(--button-fg);
-		text-decoration: none;
+		border-width: var(--button-border-width);
 		font-weight: var(--button-font-weight);
 		line-height: var(--button-line-height);
-		white-space: nowrap;
-		user-select: none;
-		vertical-align: middle;
-
-		transition: background-color var(--button-transition),
-			color var(--button-transition), border-color var(--button-transition),
-			box-shadow var(--button-transition);
-
-		/* Reasonable min-tap size without forcing explicit height */
-		min-height: 36px; /* 36px */
-		padding-inline: 12px; /* default if no size class is added */
-		padding-block: 9px; /* 9px */
+		font-size: 14px;
+		height: 32px;
 		cursor: pointer;
+		transition: var(--transition-fast);
+		user-select: none;
+		text-decoration: none;
+		background-color: var(--button-bg);
+		color: var(--button-fg);
+		border-color: var(--button-bd);
+		
 	}
 
-	.button:where(:disabled, [aria-disabled="true"]) {
-		cursor: not-allowed;
-		pointer-events: none;
+	.button:disabled,
+	.button[aria-disabled="true"] {
 		background-color: var(--button-bg-disabled);
 		color: var(--button-fg-disabled);
 		border-color: var(--button-bd-disabled);
-		opacity: 0.8;
+		cursor: not-allowed;
+		pointer-events: none;
+		opacity: 0.7;
 	}
+	
 
 	.button:where(:hover):not(:disabled, [aria-disabled="true"]) {
 		background-color: var(--button-bg-hover);
@@ -188,7 +165,7 @@
 		}
 	}
 
-	/* ---------------- SIZES ---------------- */
+	/* SIZES */
 	.button-sm {
 		padding-inline: 14px; /* 14px */
 		padding-block: 8px; /* 8px */
@@ -211,7 +188,7 @@
 		font-size: 16px; /* 16px */
 	}
 
-	/* ---------------- ICON UTILS ---------------- */
+	/* ICON UTILS */
 	.button-icon {
 		inline-size: 24px; /* 24px */
 		block-size: 24px; /* 24px */

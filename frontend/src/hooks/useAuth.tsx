@@ -20,9 +20,7 @@ export type AuthContextType = {
 	refresh: () => Promise<void>;
 };
 
-export const AuthContext = createContext<AuthContextType | undefined>(
-	undefined,
-);
+export const AuthContext = createContext<AuthContextType | null>(null);
 
 export const useAuth = () => {
 	const ctx = useContext(AuthContext);

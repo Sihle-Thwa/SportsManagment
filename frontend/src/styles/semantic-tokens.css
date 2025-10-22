@@ -1,17 +1,11 @@
 @import 'tailwindcss';
 @import './colours.css';
-/* semantic-tokens.css */
 
 /* Light Theme (default) */
 
 :root {
     /* Background */
-    --background-canvas: var(--background-canvas-gradient);
 
-    /* Additional border variable for muted borders */
-    --border-muted: var(--colour-neutral-300);
-
-    /* Background */
     --background-canvas: var(--background-canvas-gradient);
     --background-surface: var(--colour-neutral-100);
     --background-surface-secondary: var(--colour-secondary-300);
@@ -35,331 +29,181 @@
     --background-surface-tertiary-inverse: var(--colour-neutral-100);
 
     /* Text colours */
-    --text-primary: var(--colour-primary);
-    --text-secondary: var(--colour-secondary);
-    --text-tertiary: var(--colour-tertiary);
-    --text-placeholder: var(--colour-neutral-700);
-    --text-disabled: var(--colour-neutral-300);
-
+    --text-primary: var(--colour-neutral-900);
+    --text-secondary: var(--colour-neutral-700);
+    --text-tertiary: var(--colour-neutral-500);
+    --text-inverse: var(--colour-neutral-100);
     --text-on-primary: var(--colour-neutral-100);
     --text-on-secondary: var(--colour-neutral-100);
     --text-on-tertiary: var(--colour-neutral-100);
-    --text-on-surface: var(--colour-neutral-900);
-    --text-on-surface-secondary: var(--colour-neutral-500);
-    --text-on-surface-tertiary: var(--colour-neutral-300);
-    --text-on-background: var(--colour-neutral-900);
-    --text-on-background-secondary: var(--colour-neutral-500);
-    --text-on-background-tertiary: var(--colour-neutral-300);
+    --text-disabled: var(--colour-neutral-300);
+    --text-placeholder: var(--colour-neutral-400);
+    --text-link: var(--colour-primary-500);
+    --text-link-hover: var(--colour-primary-700);
+    --text-link-active: var(--colour-primary-900);
+    --text-link-disabled: var(--colour-neutral-300);
+
+    /* Icon colours */
+    --icon-primary: var(--colour-neutral-500);
+    --icon-secondary: var(--colour-neutral-700);
+    --icon-tertiary: var(--colour-neutral-900); 
+    --icon-on-primary: var(--colour-neutral-100);
+    --icon-on-secondary: var(--colour-neutral-100);
+    --icon-on-tertiary: var(--colour-neutral-100);
+    --icon-disabled: var(--colour-neutral-300);
+    --icon-hover: var(--colour-primary-500);
+    --icon-active: var(--colour-primary-700);
+    --icon-accent: var(--colour-tertiary-500);
+    --icon-success: var(--colour-success-500);
+    --icon-warning: var(--colour-warning-500);
+    --icon-error: var(--colour-error-500);
     
-
     /* Border colours */
-    --border-subtle: var(--colour-neutral-100);
-    --border-default: var(--colour-neutral-300);
-    --border-strong: var(--colour-neutral-900);
-    --border-focus: var(--colour-primary);
+    --border-default: var(--border-subtle);
+    --border-muted: var(--border-default);
+    --border-focus: var(--colour-primary-500);
+    --border-error: var(--colour-error-500);    
+    --border-success: var(--colour-success-500);
     --border-disabled: var(--colour-neutral-300);
-    --border-error: var(--colour-error);
-
-    /* Interactive colours - Adapted for CRM colour Palette */
-
+    
+    /* Interactive States - Adapted for CRM colour Palette */
     /* Primary Interactive States */
-    --interactive-primary: var(--colour-primary-500);
-    /* Primary 500 - Main interactive state */
-    --interactive-primary-hover: var(--colour-primary-700);
-    /* Primary 700 - Darker on hover for depth */
-    --interactive-primary-active: var(--colour-primary-900);
-    /* Primary 900 - Darkest for active/pressed */
-    --interactive-primary-disabled: var(--colour-neutral-300);
-    /* Neutral 300 - Muted for disabled state */
-
-    /* Secondary Interactive States */
-    --interactive-secondary: var(--colour-secondary-500);
-    /* Secondary 500 - Main secondary interactive */
-    --interactive-secondary-hover: var(--colour-secondary-700);
-    /* Secondary 700 - Darker on hover */
+    --interactive-hover: var(--colour-primary-500);
+    --interactive-pressed: var(--colour-primary-700);
+    --interactive-active: var(--colour-primary-900);
+    --interactive-disabled: var(--colour-neutral-300);
+    --interactive-focus: var(--colour-primary-200);
+    
+    /*Secondary Interactive States*/
+    --interactive-secondary-hover: var(--colour-secondary-500);
+    --interactive-secondary-pressed: var(--colour-secondary-700);
     --interactive-secondary-active: var(--colour-secondary-900);
-    /* Secondary 900 - Darkest for active */
-    --interactive-secondary-disabled: var(--colour-secondary-300);
-    /* Secondary 300 - Muted for disabled */
+    --interactive-secondary-disabled: var(--colour-neutral-300);
+    --interactive-secondary-focus: var(--colour-secondary-200);
 
-    /* Tertiary Interactive States (replaces generic accent) */
-    --interactive-tertiary: var(--colour-tertiary-500);
-    /* Tertiary 500 - Teal accent interactions */
-    --interactive-tertiary-hover: var(--colour-tertiary-700);
-    /* Tertiary 700 - Darker teal on hover */
+    /* Tertiary Interactive States */
+    --interactive-tertiary-hover: var(--colour-tertiary-500);
+    --interactive-tertiary-pressed: var(--colour-tertiary-700);
     --interactive-tertiary-active: var(--colour-tertiary-900);
-    /* Tertiary 900 - Darkest teal for active */
-    --interactive-tertiary-disabled: var(--colour-tertiary-300);
-    /* Tertiary 300 - Muted teal for disabled */
+    --interactive-tertiary-disabled: var(--colour-neutral-300);
+    --interactive-tertiary-focus: var(--colour-tertiary-200);
 
-    /* Success Interactive States */
-    --interactive-success: var(--colour-success-500);
-    /* Success 500 - Main success actions */
-    --interactive-success-hover: var(--colour-success-700);
-    /* Success 700 - Darker green on hover */
-    --interactive-success-active: var(--colour-success-900);
-    /* Success 900 - Darkest green for active */
-    --interactive-success-disabled: var(--colour-success-300);
-    /* Success 300 - Muted green for disabled */
-
-    /* Warning Interactive States */
-    --interactive-warning: var(--colour-warning-500);
-    /* Warning 500 - Main warning actions */
-    --interactive-warning-hover: var(--colour-warning-700);
-    /* Warning 700 - Darker amber on hover */
-    --interactive-warning-active: var(--colour-warning-900);
-    /* Warning 900 - Darkest amber for active */
-    --interactive-warning-disabled: var(--colour-warning-300);
-    /* Warning 300 - Muted amber for disabled */
-
-    /* Error Interactive States */
-    --interactive-error: var(--colour-error-500);
-    /* Error 500 - Main error actions */
-    --interactive-error-hover: var(--colour-error-700);
-    /* Error 700 - Darker red on hover */
-    --interactive-error-active: var(--colour-error-900);
-    /* Error 900 - Darkest red for active */
-    --interactive-error-disabled: var(--colour-error-300);
-    /* Error 300 - Muted red for disabled */
-
-    /* Neutral Interactive States (for subtle actions) */
-    --interactive-neutral: var(--colour-neutral-500);
-    /* Neutral 500 - Subtle interactions */
-    --interactive-neutral-hover: var(--colour-neutral-700);
-    /* Neutral 700 - Darker gray on hover */
-    --interactive-neutral-active: var(--colour-neutral-900);
-    /* Neutral 900 - Darkest gray for active */
-    --interactive-neutral-disabled: var(--colour-neutral-300);
-    /* Neutral 300 - Muted gray for disabled */
-
-    /* Status colours - Adapted for CRM colour Palette */
-
-    /* Success Status */
+    /* Status Colours - Adapted for CRM colour Palette */
+    
     --status-success: var(--colour-success-500);
-    /* Success 500 - Main success text/icons */
     --status-success-background: var(--colour-success-100);
-    /* Success 100 - Light background */
     --status-success-border: var(--colour-success-300);
-    /* Success 300 - Subtle border */
+    --status-success-border: var(--colour-success-300);
+    --status-success-border: var(--colour-success-300);
+
 
     /* Warning Status */
     --status-warning: var(--colour-warning-500);
-    /* Warning 500 - Main warning text/icons */
     --status-warning-background: var(--colour-warning-100);
-    /* Warning 100 - Light background */
     --status-warning-border: var(--colour-warning-300);
-    /* Warning 300 - Subtle border */
+    
+    /* Error Status */
+    --status-error: var(--colour-error-500);
+    --status-error-background: var(--colour-error-100);
+    --status-error-border: var(--colour-error-300);
 
     /* Error Status */
     --status-error: var(--colour-error-500);
-    /* Error 500 - Main error text/icons */
     --status-error-background: var(--colour-error-100);
-    /* Error 100 - Light background */
     --status-error-border: var(--colour-error-300);
-    /* Error 300 - Subtle border */
 
     /* Info Status (using Tertiary/Teal colours) */
     --status-info: var(--colour-tertiary-500);
-    /* Tertiary 500 - Main info text/icons */
     --status-info-background: var(--colour-tertiary-100);
-    /* Tertiary 100 - Light background */
     --status-info-border: var(--colour-tertiary-300);
-    /* Tertiary 300 - Subtle border */
 
-    /* Additional CRM-Specific Status colours */
-
-    /* Primary Status (for brand-related status messages) */
-    --status-primary: var(--colour-primary-500);
-    /* Primary 500 - Brand status text/icons */
-    --status-primary-background: var(--colour-primary-100);
-    /* Light primary background */
-    --status-primary-border: var(--colour-primary-300);
-    /* Subtle primary border */
-
-    /* Neutral Status (for general information) */
-    --status-neutral: var(--colour-neutral-500);
-    /* Neutral 500 - Neutral status text */
-    --status-neutral-background: var(--colour-neutral-100);
-    /* Neutral 50 - Light neutral background */
-    --status-neutral-border: var(--colour-neutral-300);
-    /* Neutral 300 - Subtle neutral border */
-
-
-    /* Component-Specific colours - Adapted for CRM colour Palette */
-
+    /* Layout Components */
+    --layout-background: var(--colour-neutral-100);
+    --layout-border: var(--border-subtle);
+    --layout-shadow: 0 1px 3px hsla(220, 15%, 15%, 0.1);
+    --layout-shadow-hover: 0 4px 12px hsla(220, 15%, 15%, 0.15);
+    --layout-shadow-active: 0 4px 12px hsla(220, 15%, 15%, 0.15);
+    
     /* Sidebar Navigation */
-    --sidebar-background: var(--colour-neutral-100);
-    /* Neutral 50 - Light neutral background */
-    --sidebar-background-hover: var(--colour-primary-500);
-    /* Primary 700 - Primary colour on hover */
-    --sidebar-background-active: var(--colour-primary-900);
-    /* Primary 900 - Darkest primary when active */
-    --sidebar-border: var(--border-subtle);
-    /* Secondary 100 - Subtle border */
-    --sidebar-text: var(--text-primary);
-    /* Neutral 700 - Dark gray text */
-    --sidebar-text-hover: var(--text-secondary);
-    /* White text on hover (over primary bg) */
-    --sidebar-text-pressed: var(--text-tertiary);
-    /* Neutral 300 - Muted when pressed */
-    --sidebar-text-active: var(--text-on-primary);
-    /* White text when active */
-    --sidebar-icon: var(--icon-primary);
-    /* Neutral 500 - Medium gray icons */
-    --sidebar-icon-hover: var(--icon-on-primary);
-    /* White icons on hover */
-    --sidebar-icon-active: var(--icon-on-primary);
-    /* White icons when active */
-
+    --sidebar-background: var(--colour-neutral-900);
+    --sidebar-border: var(--border-muted);
+    --sidebar-text: var(--colour-neutral-100);
+    --sidebar-text-secondary: var(--colour-neutral-300);
+    --sidebar-icon: var(--colour-neutral-100);
+    --sidebar-icon-hover: var(--colour-tertiary-100);
+    --sidebar-item-background-hover: var(--colour-neutral-800);
+    --sidebar-item-background-active: var(--colour-primary-900);
+    --sidebar-item-border-active: var(--colour-primary-500);
+    --sidebar-item-text-active: var(--colour-neutral-100);
+    
+    /* Navbar Components */
+    --navbar-background: var(--colour-neutral-100);
+    --navbar-border: var(--border-subtle);
+    --navbar-text: var(--colour-neutral-900);
+    --navbar-text-secondary: var(--colour-neutral-500);
+    --navbar-icon: var(--colour-neutral-900);
+    --navbar-icon-hover: var(--colour-primary-500);
+    --navbar-icon-active: var(--colour-primary-700);
+    --navbar-icon-disabled: var(--colour-neutral-300);
+    
     /* Card Components */
     --card-background: var(--colour-neutral-100);
-    /* Pure white background */
-    --card-background-hover: var(--colour-neutral-100);
-    /* Neutral 100 - Light hover state */
-    --card-border: var(--border-default);
-    /* Secondary 100 - Subtle border */
-    --card-border-hover: var(--border-muted);
-    /* Secondary 300 - Slightly darker on hover */
+    --card-border: var(--border-subtle);
     --card-shadow: 0 1px 3px hsla(220, 15%, 15%, 0.1);
-    /* Neutral 900 with low opacity */
     --card-shadow-hover: 0 4px 12px hsla(220, 15%, 15%, 0.15);
-    /* Enhanced shadow on hover */
-    --card-foreground: var(--colour-neutral-900);
-    /* Neutral 900 - Dark text */
-    --card-foreground-secondary: var(--colour-neutral-500);
-    /* Neutral 500 - Secondary text */
-
+    --card-header-background: var(--colour-neutral-200);
+    --card-header-border: var(--border-muted);
+    --card-footer-background: var(--colour-neutral-200);
+    --card-footer-border: var(--border-muted);
+    
     /* Input Components */
     --input-background: var(--colour-neutral-100);
-    /* White background */
-    --input-background-disabled: var(--colour-neutral-100);
-    /* Neutral 50 - Light gray when disabled */
-    --input-border: var(--border-subtle);
-    /* Secondary 300 - Default border */
-    --input-border-hover: var(--border-muted);
-    /* Secondary 500 - Darker on hover */
-    --input-border-focus: var(--colour-primary-500);
-    /* Primary 500 - Primary colour when focused */
-    --input-border-error: var(--colour-error-500);
-    /* Error 500 - Red border for errors */
-    --input-border-success: var(--colour-success-500);
-    /* Success 500 - Green border for success */
     --input-text: var(--colour-neutral-900);
-    /* Neutral 900 - Dark input text */
-    --input-text-disabled: var(--colour-neutral-500);
-    /* Neutral 500 - Muted when disabled */
-    --input-placeholder: var(--colour-neutral-300);
-    /* Neutral 300 - Light placeholder text */
-
+    --input-border: var(--border-default);
+    --input-border-focus: var(--colour-primary-500);
+    --input-border-error: var(--colour-error-500);
+    --input-background-disabled: var(--colour-neutral-200);
+    --input-text-disabled: var(--colour-neutral-300);
+    --input-border-disabled: var(--border-muted);
+    
     /* Header/Navigation Bar */
-    --header-background: var(--colour-neutral-900);
-    /* Primary 900 - Dark navy header */
-    --header-border: var(--border-muted);
-    /* Primary 800 - Slightly lighter border */
-    --header-text: var(--colour-neutral-100);
-    /* White text */
-    --header-text-secondary: var(--colour-neutral-300);
-    /* Secondary 100 - Muted white text */
-    --header-icon: var(--colour-neutral-100);
-    /* White icons */
-    --header-icon-hover: var(--colour-tertiary-100);
-    /* Tertiary 100 - Light teal on hover */
-
+    --header-background: var(--colour-neutral-100);
+    --header-border: var(--border-subtle);
+    --header-text: var(--colour-neutral-900);
+    --header-icon: var(--colour-neutral-900);
+    --header-icon-hover: var(--colour-primary-500);
+    --header-icon-active: var(--colour-primary-700);
+    --header-icon-disabled: var(--colour-neutral-300);
+    
     /* Table Components */
-    --table-background: var(--colour-neutral-100);
-    /* White background */
-    --table-background-alt: var(--colour-neutral-50);
-    /* Neutral 50 - Alternate row background */
-    --table-background-hover: var(--colour-tertiary-100);
-    /* Tertiary 100 - Light teal row hover */
-    --table-border: var(--border-subtle);
-    /* Secondary 100 - Table borders */
-    --table-header-background: var(--colour-neutral-100);
-    /* Neutral 100 - Header background */
-    --table-header-text: var(--colour-neutral-900);
-    /* Neutral 900 - Dark header text */
-    --table-text: var(--colour-neutral-900);
-    /* Neutral 900 - Table cell text */
-    --table-text-secondary: var(--colour-neutral-500);
-    /* Neutral 500 - Secondary table text */
-
-    --table-row-selected-background: var(--colour-primary-100);
-    /* Primary 100 - Light primary background for selected rows */
-    --table-row-selected-text: var(--colour-primary-900);
-    /* Primary 900 - Dark primary text for selected rows */
-
-    /* Table footer background */
-    --table-footer-background: var(--colour-neutral-100);
-    /* Neutral 100 - Light footer background */
-    --table-footer-text: var(--colour-neutral-900);
-    /* Neutral 900 - Dark footer text */
-    --table-footer-border: var(--border-muted);
-    /* Secondary 100 - Footer border */
-    --table-footer-text-secondary: var(--colour-neutral-500);
-    /* Neutral 500 - Muted footer text */
-    --table-footer-text-hover: var(--colour-secondary-700);
-    /* Secondary 700 - Darker text on hover */
-    --table-footer-text-active: var(--colour-secondary-900);
-    /* Secondary 900 - Darkest text when active */
-    --table-footer-text-disabled: var(--colour-secondary-300);
-    /* Secondary 300 - Muted footer text when disabled */
-    --table-footer-icon: var(--colour-secondary-500);
-    /* Secondary 500 - Footer icons */
-    --table-footer-icon-hover: var(--colour-secondary-700);
-    /* Secondary 700 - Darker footer icons on hover */
-    --table-footer-icon-active: var(--colour-secondary-900);
-    /* Secondary 900 - Darkest footer icons when active */
-    --table-footer-icon-disabled: var(--colour-secondary-300);
-    /* Secondary 300 - Muted footer icons when disabled */
-
-
-
+    --table-header-background: var(--colour-neutral-200);
+    --table-header-border: var(--border-muted);
+    --table-row-background: var(--colour-neutral-100);
+    --table-row-background-alt: var(--colour-neutral-150);
+    --table-row-hover: var(--colour-neutral-200);
+    --table-row-border: var(--border-subtle);
+    --table-cell-text: var(--colour-neutral-900);
+    --table-cell-text-secondary: var(--colour-neutral-500);
+    --table-cell-border: var(--border-subtle);
+    
     /* Modal/Dialog Components */
-
     --modal-background: var(--colour-neutral-100);
-    /* White modal background */
-    --modal-overlay: hsla(220, 15%, 15%, 0.5);
-    /* Neutral 900 with 50% opacity */
-    --modal-border: var(--border-muted);
-    /* Secondary 100 - Modal border */
-    --modal-shadow: 0 10px 25px hsla(220, 15%, 15%, 0.25);
-    /* Enhanced shadow for modals */
-    --modal-header-background: var(--colour-neutral-100);
-    /* Neutral 100 - Light header */
+    --modal-border: var(--border-subtle);
+    --modal-shadow: 0 10px 25px hsla(220, 15%, 15%, 0.2);
+    --modal-header-background: var(--colour-neutral-200);
     --modal-header-border: var(--border-muted);
-    /* Secondary 100 - Header border */
-
+    --modal-footer-background: var(--colour-neutral-200);
+    --modal-footer-border: var(--border-muted);
+        
     /* Badge/Tag Components */
-    --badge-primary-background: var(--colour-primary-900);
-    /* Primary 900 - Primary badges */
-    --badge-primary-text: var(--colour-neutral-100);
-    /* White text */
-    --badge-secondary-background: var(--colour-secondary-300);
-    /* Secondary 300 - Secondary badges */
-    --badge-secondary-text: var(--colour-neutral-900);
-    /* Neutral 900 - Dark text */
-    --badge-success-background: var(--colour-success-100);
-    /* Success 100 - Light green background */
-    --badge-success-text: var(--colour-success-700);
-    /* Success 700 - Dark green text */
-    --badge-warning-background: var(--colour-warning-100);
-    /* Warning 100 - Light amber background */
-    --badge-warning-text: var(--colour-warning-700);
-    /* Warning 700 - Dark amber text */
-    --badge-error-background: var(--colour-error-100);
-    /* Error 100 - Light red background */
-    --badge-error-text: var(--colour-error-700);
-    /* Error 700 - Dark red text */
-
+    --badge-background: var(--colour-neutral-200);
+    --badge-text: var(--colour-neutral-900);
+    --badge-border: var(--border-subtle);
+    
     /* Tooltip Components */
     --tooltip-background: var(--colour-neutral-900);
-    /* Neutral 900 - Dark tooltip background */
     --tooltip-text: var(--colour-neutral-100);
-    /* White tooltip text */
     --tooltip-border: var(--colour-neutral-700);
-    /* Neutral 700 - Tooltip border */
     --tooltip-shadow: 0 4px 12px hsla(220, 15%, 15%, 0.25);
-    /* Tooltip shadow */
-
     
 }

@@ -1,113 +1,67 @@
 @import 'tailwindcss';
 
 
-/***** Section: Theme *****/
-
 :root {
 
 
-    /***** Section: Spacing Scale *****/
+    /* Spacing Scale */
 
-    --space-px: 1px;
-    --space-0: 0;
-    --space-1: 4px;
-    /* 4px */
-    --space-2: 8px;
-    /* 8px */
-    --space-3: 12px;
-    /* 12px */
-    --space-4: 16px;
-    /* 16px */
-    --space-5: 20px;
-    /* 20px */
-    --space-6: 24px;
-    /* 24px */
-    --space-8: 32px;
-    /* 32px */
-    --space-10: 40px;
-    /* 40px */
-    --space-12: 48px;
-    /* 48px */
-    --space-16: 64px;
-    /* 64px */
-    --space-20: 80px;
-    /* 80px */
-    --space-24: 96px;
-    /* 96px */
-    --space-32: 128px;
-    /* 128px */
-    /***** End Section *****/
+    --spacing-0: 0;
+    --spacing-1: 4px;
+    --spacing-2: 8px;
+    --spacing-3: 12px;
+    --spacing-4: 16px;
+    --spacing-5: 20px;
+    --spacing-6: 24px;
+    --spacing-8: 32px;
+    --spacing-10: 40px;
+    --spacing-12: 48px;
+    --spacing-16: 64px;
+    --spacing-20: 80px;
 
-    /***** Section: Border Radius Palette *****/
-
-    --radius-none: 0;
-    --radius-xs: 2px;
-    /* 2px */
+    /* Border Radius */
     --radius-sm: 4px;
-    /* 4px */
-    --radius-base: 6px;
-    /* 6px */
     --radius-md: 8px;
-    /* 8px */
     --radius-lg: 12px;
-    /* 12px */
-    --radius-xl: 16px;
-    /* 16px */
-    --radius-2xl: 24px;
-    /* 24px */
-    --radius-3xl: 32px;
-    /* 32px */
     --radius-full: 9999px;
-    /***** End Section *****/
 
-    /***** Shadows *****/
-    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --shadow-base: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-base: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 25px 50px rgba(0, 0, 0, 0.25);
 
-    /***** End Section *****/
+    /* Transitions and Animations */
+    --transition-fast: all 0.2s ease-in-out;
+    --transition-base: all 0.3s ease-in-out;
+    --transition-slow: all 0.5s ease-in-out;
 
-    /***** Section: Transitions and Animations *****/
+    /* Keyframes */
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
 
-    --duration-instant: 0ms;
-    --duration-fast: 150ms;
-    --duration-base: 200ms;
-    --duration-slow: 300ms;
-    --duration-slower: 500ms;
+    @keyframes slideUp {
+        from { transform: translateY(10px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
 
-    --ease-linear: linear;
-    --ease-in: cubic-bezier(0.4, 0, 1, 1);
-    --ease-out: cubic-bezier(0, 0, 0.2, 1);
-    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-    /***** End Section *****/
+    /* Z-Index Scale */
 
-    /***** Section: Z-Index Scales *****/
-    --z-hide: -1;
-    --z-base: 0;
-    --z-raised: 10;
-    --z-dropdown: 1000;
-    --z-sticky: 1010;
-    --z-banner: 1020;
-    --z-overlay: 1030;
-    --z-modal: 1040;
-    --z-popover: 1050;
-    --z-skip-link: 1060;
-    --z-toast: 1070;
-    --z-tooltip: 1080;
-    /***** End Section *****/
+    --z-index-dropdown: 1000;
+    --z-index-modal: 1100;
+    --z-index-tooltip: 1200;
 
-    /***** Section: Icon Sizes *****/
---icon-size-sm: 18px;    
---icon-size-sm: 24px;
+    /* Icon Sizes */
+    --icon-size-sm: 18px;
+    --icon-size-md: 24px;
     --icon-size-default: 32px;
     --icon-size-md: var(--icon-size-default);
     --icon-size-lg: 42px;
     --icon-size-xl: 48px;
 
-    /***** End Section *****/
 
     /***** Section: Avatar Sizes *****/
     --avatar-size-sm: 24px;

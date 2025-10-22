@@ -14,7 +14,7 @@ type LoginForm = {
 };
 
 export default function LoginPage() {
-	const methods = useForm<LoginForm>({ defaultValues: { remember: true } });
+	const methods = useForm<LoginForm>({ defaultValues: { remember: false } });
 	// use the destructured helpers so they are actually referenced
 	const { handleSubmit, register } = methods;
 	const auth = useAuth();
@@ -22,10 +22,14 @@ export default function LoginPage() {
 	const location = useLocation();
 	// safety-typed access to location.state.from.pathname
 	const from =
-		(location.state as { from?: { pathname?: string } } | undefined)?.from
+		(location.state as { from?: { pathname?: string } } | null)?.from
 			?.pathname ?? "/";
 	const [error, setError] = useState<string | null>(null);
 	const [loading, setLoading] = useState(false);
+
+	function handleNavigation() {
+		navigate(from, { replace: true });
+	}
 
 	async function onSubmit(data: LoginForm) {
 		setError(null);
@@ -33,12 +37,10 @@ export default function LoginPage() {
 		try {
 			// guard: if there's no AuthProvider, show helpful message instead of throwing
 			if (!auth) {
-				throw new Error(
-					"No AuthProvider found. Wrap your app/page with AuthProvider before using authentication.",
-				);
+				throw new Error("Authentication service is not available");
 			}
 			await auth.signIn(data.email.trim(), data.password, !!data.remember);
-			navigate(from, { replace: true });
+			handleNavigation();
 		} catch (err: unknown) {
 			setError((err as { message?: string }).message ?? "Sign in failed");
 		} finally {
@@ -76,14 +78,13 @@ export default function LoginPage() {
 					</div>
 					<FormProvider {...methods}>
 						<div className="loginPageForm_content">
-							{/* attach onSubmit so handleSubmit and onSubmit are used */}
 							<form
 								className="loginPageForm_body"
 								onSubmit={handleSubmit(onSubmit)}
-								noValidate
 							>
 								<TextField
 									label="Email"
+									id="email"
 									name="email"
 									required
 									placeholder="Email/Username"

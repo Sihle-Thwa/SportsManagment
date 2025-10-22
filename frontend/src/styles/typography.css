@@ -14,59 +14,98 @@
 	--display-size-lg: 80px;
 	--display-size-md: 72px;
 	--display-size-sm: 60px;
+	--display-size-xs: 48px;
+
 
 	/* Headline Sizes */
 	--headline-size-lg: 36px;
 	--headline-size-md: 32px;
 	--headline-size-sm: 30px;
+	--headline-size-xs: 24px;
 
 	/* Title Sizes */
 	--title-size-lg: 28px;
+	--title-size-md: 24px;
 	--title-size-default: 24px;
+	--title-size-sm: 20px;
 
 	/* Subtitle Sizes */
-	--subtitle-size-default: 18px;
+	--subtitle-size-lg: 20px;
+	--subtitle-size-md: 18px;
+	--subtitle-size-default: 16px;
+	--subtitle-size-sm: 14px;
+	
+	/* Heading Sizes */
+	--heading-size-lg: 22px;
+	--heading-size-md: 20px;
+	--heading-size-default: 18px;
+	--heading-size-sm: 16px;
 
 	/* Body Sizes */
-	--body-size-lg: 16px;
-	--body-size-default: 14px;
-	--body-size-sm: 12px;
+	--body-size-lg: 18px;
+	--body-size-md: 16px;
+	--body-size-default: 16px;
+	--body-size-sm: 14px;
 
 	/* Caption Sizes */
+	--caption-size-lg: 14px;
+	--caption-size-md: 12px;
 	--caption-size-default: 12px;
+	--caption-size-sm: 10px;
 
 	/* Overline Sizes */
 	--overline-size-default: 12px;
 	--overline-size-sm: 10px;
+	
+	/* Label Sizes */
+	--label-size-lg: 14px;
+	--label-size-md: 12px;
+	--label-size-default: 12px;
+	--label-size-sm: 10px;
 
-        /* Small Print Sizes */
+    /* Small Print Sizes */
+	--small-print-size-lg: 14px;
+	--small-print-size-md: 12px;
 	--small-print-size-default: 12px;
-
+	--small-print-size-sm: 10px;
 
 	/* Button Font Sizes */
+	--button-size-lg: 18px;
+	--button-size-md: 16px;
 	--button-size-default: 16px;
 	--button-size-sm: 14px;
+	
+	/**Radio Button Font Sizes**/
+	--radio-size-default: 14px;
+	--radio-size-sm: 12px;
+
+	/* Checkbox Font Sizes */
+	--checkbox-size-lg: 14px;
+	--checkbox-size-md: 12px;
+	--checkbox-size-default: 14px;
+	--checkbox-size-sm: 12px;
 
 	/* Font Weights */
+	--font-weight-thin: 100;
 	--font-weight-light: 300;
 	--font-weight-normal: 400;
 	--font-weight-medium: 500;
 	--font-weight-semibold: 600;
 	--font-weight-bold: 700;
 	--font-weight-extrabold: 800;
-
+	
 	/* Line Heights */
-	--line-height-tight: 1.25;
-	--line-height-snug: 1.375;
+	--line-height-tight: 1.2;
 	--line-height-normal: 1.5;
-	--line-height-relaxed: 1.625;
+	--line-height-relaxed: 1.75;
 	--line-height-loose: 2;
-
+	--line-height-extra-loose: 2.5;
+	
 	/* Letter Spacing */
-	--letter-spacing-tight: -0.05em;
-	--letter-spacing-normal: 0;
-	--letter-spacing-wide: 0.05em;
-	--letter-spacing-wider: 0.1em;
+	--letter-spacing-tight: -0.5px;
+	--letter-spacing-normal: 0px;
+	--letter-spacing-wide: 0.5px;
+	--letter-spacing-wider: 1px;
 }
 
 /***** End Section *****/

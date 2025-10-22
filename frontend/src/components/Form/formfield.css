@@ -26,7 +26,6 @@
   font-size: var(--body-size-default);
   font-weight: var(--font-weight-semibold);
   color: var(--text-primary);
-  margin: 0;
 }
 
 /* Description text */
@@ -111,7 +110,7 @@
   color: var(--text-primary);
 }
 .radioItem input[type="radio"] {
-  width: var(--body-size-default);
+  width: var(--);
   height: var(--body-size-default);
 }
 
@@ -124,6 +123,7 @@
 
 /* small helper text */
 .field__helper {
+  margin-top: 6px;
   font-size: var(--small-print-size-default);
   color: var(--text-tertiary);
 }
@@ -133,6 +133,6 @@
   .grid-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px 16px;
+    gap: 16px;
   }
 }
