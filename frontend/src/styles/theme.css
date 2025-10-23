@@ -49,10 +49,13 @@
     }
 
     /* Z-Index Scale */
-
     --z-index-dropdown: 1000;
-    --z-index-modal: 1100;
-    --z-index-tooltip: 1200;
+    --z-index-sticky: 1020;
+    --z-index-modal-backdrop: 1040;
+    --z-index-modal: 1050;
+    --z-index-popover: 1060;
+    --z-index-tooltip: 1070;
+    
 
     /* Icon Sizes */
     --icon-size-sm: 18px;

@@ -22,8 +22,9 @@ export default function LoginPage() {
 	const location = useLocation();
 	// safety-typed access to location.state.from.pathname
 	const from =
-		(location.state as { from?: { pathname?: string } })?.from?.pathname ?? "/";
-	const [error, setError] = useState<string | undefined>(undefined);
+		(location.state as { from?: { pathname?: string } })?.from?.pathname ??
+		"/dashboard";
+	const [error, setError] = useState<string>();
 	const [loading, setLoading] = useState(false);
 
 	function handleNavigation() {
@@ -124,7 +125,7 @@ export default function LoginPage() {
 								className="loginPageForm_submitButton"
 								disabled={loading}
 							>
-								{loading ? "Loading..." : "Log In"}
+								{loading ? "Loading..." : "Sign In"}
 							</button>
 
 							<div

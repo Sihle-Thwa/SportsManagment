@@ -9,7 +9,7 @@ export default {
 
     ],
     theme: {
-        darkMode: ['class', '[data-theme="dark"] '],
+        darkMode: ['class', '[data-theme="dark"]'],
         extend: {},
 
     },
