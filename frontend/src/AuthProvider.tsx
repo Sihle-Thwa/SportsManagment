@@ -1,4 +1,3 @@
-// src/auth/AuthProvider.tsx
 import React, { useEffect, useState } from "react";
 import { AuthContext, type AuthContextType } from "./hooks/useAuth";
 import type { UserProfile } from "./types/auth.types";
@@ -58,7 +57,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 		}
 	};
 
-	const register: AuthContextType["register"] = async (
+	const signUp: AuthContextType["signUp"] = async (
 		firstName,
 		lastName,
 		email,
@@ -107,7 +106,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 		token,
 		loading,
 		signIn,
-		register,
+		signUp,
 		signOut,
 		refresh,
 	};

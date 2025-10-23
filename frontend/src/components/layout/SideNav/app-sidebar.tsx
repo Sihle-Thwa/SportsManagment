@@ -20,16 +20,16 @@ export function AppSideBar() {
 
 	return (
 		<div
-			id="app-sidebar"
+			id="app_sidebar"
 			className={[
-				"app-sidebar",
+				"app_sidebar",
 				"sidebar",
 				isCollapsed ? "sidebar-collapsed" : "sidebar-expanded",
 			].join(" ")}
 			aria-label="Primary navigation"
 			aria-expanded={!isCollapsed}
 		>
-			<div className="app-sidebar__inner">
+			<div className="app_sidebar__inner">
 				<SidebarHeader className="sidebar-header">
 					<SidebarMenuButton className="sidebar-brand" aria-label="Go to home">
 						<House
@@ -44,12 +44,12 @@ export function AppSideBar() {
 					</SidebarMenuButton>
 				</SidebarHeader>
 
-				<SidebarContent className="sidebar-content">
+				<SidebarContent className="sidebar_content">
 					<NavMain collapsed={isCollapsed} />
 					<NavSecondary collapsed={isCollapsed} />
 				</SidebarContent>
 
-				<SidebarFooter className="sidebar-footer">
+				<SidebarFooter className="sidebar_footer">
 					<NavUser collapsed={isCollapsed} />
 				</SidebarFooter>
 

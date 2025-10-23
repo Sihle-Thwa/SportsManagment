@@ -1,7 +1,6 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 
-// Lazy load MainLayout
 const MainLayout = lazy(() => import("../components/layout/MainLayout"));
 
 import Planner from "../pages/Calendar/Planner";

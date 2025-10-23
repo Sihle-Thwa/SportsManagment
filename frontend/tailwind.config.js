@@ -8,6 +8,7 @@ export default {
         './src/**/*.{js,ts,jsx,tsx}',
     ],
     theme: {
+        darkMode: ['class', '[data-theme="dark"] '],
         extend: {},
     },
     plugins: [
@@ -16,3 +17,4 @@ export default {
         aspectRatio,
     ],
 };
+

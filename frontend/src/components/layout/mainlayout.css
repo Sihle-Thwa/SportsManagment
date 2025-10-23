@@ -7,7 +7,7 @@
 }
 
 /* Grid shell */
-.main-container {
+.main_container {
 	display: grid;
 	grid-template-columns: var(--sidebar-width) 1fr;
 	grid-template-rows: var(--topbar-height) 1fr;
@@ -32,13 +32,13 @@
 	border-right: 1px solid var(--border-default, var(--colour-neutral-200));
 }
 
-.app-sidebar [data-slot="sidebar-container"] {
+.app-sidebar [data-slot="sidebar_container"] {
 	left: 0 !important;
 	right: auto !important;
 	top: 0 !important;
 }
 
-.app-topbar {
+.app_topbar {
 	grid-area: header;
 	height: var(--topbar-height);
 	min-height: var(--topbar-height);
@@ -50,7 +50,7 @@
 }
 
 /* Content region */
-.app-content {
+.app_content {
 	grid-area: content;
 	position: relative;
 	overflow-x: hidden;
@@ -61,7 +61,7 @@
 }
 
 /* Page wrapper */
-.content-wrapper {
+.content_wrapper {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
@@ -70,31 +70,31 @@
 		
 }
 
-/* --------------------------------------------------------------------------
+/* --------------------------------------------------------------------
 	Sidebar collapse / expand bindings
    -------------------------------------------------------------------------- */
-.main-container.is-collapsed {
+.main_container.is-collapsed {
 	grid-template-columns: var(--sidebar-width-collapsed) 1fr;
 }
-.main-container.is-expanded {
+.main_container.is-expanded {
 	grid-template-columns: var(--sidebar-width) 1fr;
 }
-.main-container[data-sidebar-collapsed="true"] {
+.main_container[data-sidebar-collapsed="true"] {
 	grid-template-columns: var(--sidebar-width-collapsed) 1fr;
 }
 
 /* Defensive: nudge aside width to match state */
-.main-container.is-collapsed .app-sidebar {
+.main_container.is-collapsed .app_sidebar {
 	overflow: hidden;
 	width: var(--sidebar-width-collapsed);
 }
-.main-container.is-expanded .app-sidebar {
+.main_container.is-expanded .app_sidebar {
 	overflow: hidden;
 	width: var(--sidebar-width);
 }
 
 @media (max-width: 1024px) {
-	.main-container {
+	.main_container {
 		--sidebar-width: 280px;
 		--sidebar-width-collapsed: 0px;
 		grid-template-columns: 1fr;
@@ -105,7 +105,7 @@
 	}
 
 	/* show overlay when provider marks sidebar expanded */
-	.main-container.is-expanded::before {
+	.main_container.is-expanded::before {
 		content: "";
 		position: fixed;
 		inset: 0;
@@ -115,13 +115,13 @@
 	}
 
 	/* on small screens the placeholder column should not consume width */
-	.app-sidebar {
+	.app_sidebar {
 		width: 0;
 		min-width: 0;
 		border-right: none;
 	}
 
-	.app-content {
+	.app_content {
 		height: calc(100vh - var(--topbar-height));
 	}
 }
@@ -131,22 +131,22 @@
 		--sidebar-width: 100vw;
 		--sidebar-width-collapsed: 0px;
 	}
-	.content-wrapper {
+	.content_wrapper {
 		overflow: hidden;
 		padding: 8px 4px;
 		gap: 8px;
 	}
-	.main-container {
+	.main_container {
 		--sidebar-width: 100vw;
 		--sidebar-width-collapsed: 0px;
 		grid-template-rows: 64px 1fr;
 	}
-	.app-topbar {
+	.app_topbar {
 		--topbar-height: 64px;
 		min-height: 64px;
 		height: 100%;
 	}
-	.app-content {
+	.app_content {
 		overflow: hidden;
 		height: calc(100vh - var(--topbar-height));
 	}
@@ -179,23 +179,23 @@
 
 
 /* Scrollbar */
-.app-content::-webkit-scrollbar {
+.app_content::-webkit-scrollbar {
 	width: 8px;
 }
-.app-content::-webkit-scrollbar-track {
+.app_content::-webkit-scrollbar-track {
 	background: var(--scrollbar-track, var(--colour-neutral-100));
 }
-.app-content::-webkit-scrollbar-thumb {
+.app_content::-webkit-scrollbar-thumb {
 	background: var(--scrollbar-thumb, var(--colour-primary-600));
 	border-radius: 4px;
 }
-.app-content::-webkit-scrollbar-thumb:hover {
+.app_content::-webkit-scrollbar-thumb:hover {
 	background: var(--scrollbar-thumb-hover, var(--colour-primary-600));
 }
 
 /* Print */
 @media print {
-	.main-container {
+	.main_container {
 		--sidebar-width: 0px;
 		--sidebar-width-collapsed: 0px;
 		grid-template-columns: 1fr;
@@ -204,20 +204,20 @@
 		grid-template-areas:
 			"content";
 	}
-	.app-sidebar,
-	.app-topbar {
+	.app_sidebar,
+	.app_topbar {
 		display: none;
 		visibility: hidden;
 		height: 0;
 		min-height: 0;
 	}
-	.app-content {
+	.app_content {
 		height: auto;
 		overflow: visible;
 		clip: auto;
 
 	}
-	.content-wrapper {
+	.content_wrapper {
 		padding: 0;
 		overflow: visible;
 	}

@@ -1,4 +1,3 @@
-// src/App.tsx
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -11,36 +10,23 @@ import LoginPage from "./pages/Auth/LoginPage";
 import RegisterPage from "./pages/Auth/RegisterPage";
 import { AuthProvider } from "./AuthProvider";
 import { ProtectedRoute } from "./components/ProtectedRoute";
-import Profile from "./pages/Profile/Profile";
 
 function App() {
 	return (
 		<AuthProvider>
 			<Router>
 				<Routes>
-					<Route path="/" element={<Navigate to="/login" replace />} />
-					<Route path="/login" element={<LoginPage />} />
-					<Route path="/register" element={<RegisterPage />} />
-
+					<Route path="/" element={<Navigate to="/dashboard" />} />
+					<Route path="/signIn" element={<LoginPage />} />
+					<Route path="/signUp" element={<RegisterPage />} />
 					<Route
-						path="/app/*"
+						path="/"
 						element={
 							<ProtectedRoute>
 								<MainLayout />
 							</ProtectedRoute>
 						}
 					/>
-
-					<Route
-						path="/profile"
-						element={
-							<ProtectedRoute>
-								<Profile />
-							</ProtectedRoute>
-						}
-					/>
-
-					<Route path="*" element={<Navigate to="/login" replace />} />
 				</Routes>
 			</Router>
 		</AuthProvider>

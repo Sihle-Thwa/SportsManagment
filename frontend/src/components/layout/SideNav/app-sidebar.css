@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 @layer components {
-	.app-sidebar {
+	.app_sidebar {
 		display: flex;
 		flex-direction: column;
 		grid-area: sidebar;
@@ -18,20 +18,17 @@
 		border: none;
 	}
 
-	/* When the outer container has a fixed inner container (shadcn style),
-     ensure the fixed container aligns to the grid column and top — this
-     eliminates any visual gap between topbar and sidebar. */
-	.app-sidebar [data-slot="sidebar-container"] {
+	.app_sidebar [data-slot="sidebar_container"] {
 		left: 0 !important;
 		right: auto !important;
-		top: 0 !important; /* sit at very top so it sits under topbar visually */
+		top: 0 !important;
 		height: 100vh !important;
 		transition: width var(--transition-fast) var(--easing-smooth);
 		will-change: width, transform;
 	}
 
 	/* inner visual wrapper (if used) */
-	.app-sidebar__inner {
+	.app_sidebar__inner {
 		display: flex;
 		flex-direction: column;
 		height: 100%;
@@ -75,7 +72,7 @@
 		white-space: nowrap;
 	}
 
-	.sidebar-content {
+	.sidebar_content {
 		display: flex;
 		flex-direction: column;
 		gap: 18px;
@@ -99,8 +96,8 @@
 	}
 
 	/* Make transitions smooth for the fixed inner container too, if present */
-	.sidebar-collapsed [data-slot="sidebar-container"],
-	.sidebar-expanded [data-slot="sidebar-container"] {
+	.sidebar-collapsed [data-slot="sidebar_container"],
+	.sidebar-expanded [data-slot="sidebar_container"] {
 		width: inherit;
 	}
 
@@ -110,14 +107,14 @@
 		transition: opacity 150ms;
 		pointer-events: none;
 	}
-	.app-sidebar:hover .sidebar-rail {
+	.app_sidebar:hover .sidebar-rail {
 		opacity: 1;
 		pointer-events: auto;
 	}
 
 	/* Mobile overlay support: controlled by .is-expanded on .main-container */
 	@media (max-width: 1024px) {
-		.app-sidebar {
+		.app_sidebar {
 			position: fixed;
 			left: 0;
 			top: 0;
@@ -130,7 +127,7 @@
 		}
 
 		/* When the provider state indicates expanded, slide in */
-		.main-container.is-expanded .app-sidebar {
+		.main_container.is-expanded .app_sidebar {
 			transform: translateX(0);
 		}
 	}
