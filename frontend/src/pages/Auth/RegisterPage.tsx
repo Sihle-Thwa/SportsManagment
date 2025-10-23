@@ -12,7 +12,7 @@ type RegisterForm = {
 	lastName: string;
 	email: string;
 	password: string;
-	confirmPassword: string; // changed: make required to match the form
+	confirmPassword: string;
 };
 
 export default function RegisterPage() {
@@ -27,7 +27,6 @@ export default function RegisterPage() {
 
 	async function onSubmit(values: RegisterForm) {
 		setErr(null);
-		// guard: if there's no AuthProvider, show helpful message instead of throwing
 		if (!auth) {
 			setErr(
 				"No AuthProvider found. Wrap your app/page with AuthProvider before using authentication.",

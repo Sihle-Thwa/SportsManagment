@@ -15,25 +15,29 @@ type LoginForm = {
 
 export default function LoginPage() {
 	const methods = useForm<LoginForm>({ defaultValues: { remember: false } });
-	// use the destructured helpers so they are actually referenced
 	const { handleSubmit, register } = methods;
 	const auth = useAuth();
 	const navigate = useNavigate();
 	const location = useLocation();
 	// safety-typed access to location.state.from.pathname
 	const from =
-		(location.state as { from?: { pathname?: string } } | null)?.from
-			?.pathname ?? "/";
-	const [error, setError] = useState<string | null>(null);
+		(location.state as { from?: { pathname?: string } })?.from?.pathname ?? "/";
+	const [error, setError] = useState<string | undefined>(undefined);
 	const [loading, setLoading] = useState(false);
 
 	function handleNavigation() {
-		navigate(from, { replace: true });
+		// if there's an error, navigate to the error page
+		if (error) {
+			navigate("/error", { replace: true });
+		} else {
+			navigate(from, { replace: true });
+		}
 	}
 
 	async function onSubmit(data: LoginForm) {
-		setError(null);
+		setError(undefined);
 		setLoading(true);
+
 		try {
 			// guard: if there's no AuthProvider, show helpful message instead of throwing
 			if (!auth) {
@@ -41,10 +45,12 @@ export default function LoginPage() {
 			}
 			await auth.signIn(data.email.trim(), data.password, !!data.remember);
 			handleNavigation();
-		} catch (err: unknown) {
-			setError((err as { message?: string }).message ?? "Sign in failed");
+		} catch (err) {
+			setError((err as { message?: string }).message ?? "Sign In failed");
 		} finally {
 			setLoading(false);
+			// Reset form state
+			methods.reset();
 		}
 	}
 
@@ -59,7 +65,7 @@ export default function LoginPage() {
 						<div className="loginPageHeaderContainer_cta_text">
 							Don't have an account?
 						</div>
-						<a href="/register" className="loginPageHeaderContainer_cta_link">
+						<a href="/signUp" className="loginPageHeaderContainer_cta_link">
 							Sign Up
 						</a>
 					</div>
@@ -77,82 +83,57 @@ export default function LoginPage() {
 						<div className="accentLine_loginPageForm" aria-hidden />
 					</div>
 					<FormProvider {...methods}>
-						<div className="loginPageForm_content">
-							<form
-								className="loginPageForm_body"
-								onSubmit={handleSubmit(onSubmit)}
+						<form className="loginPageForm" onSubmit={handleSubmit(onSubmit)}>
+							<TextField
+								label="Email"
+								type="email"
+								placeholder="Enter your email"
+								{...register("email", { required: "Email is required" })}
+							/>
+							<TextField
+								label="Password"
+								type="password"
+								placeholder="Enter your password"
+								{...register("password", { required: "Password is required" })}
+							/>
+							{error && <div className="formError">{error}</div>}
+							<button
+								type="submit"
+								className="loginPageForm_submitButton"
+								disabled={loading}
 							>
-								<TextField
-									label="Email"
-									id="email"
-									name="email"
-									required
-									placeholder="Email/Username"
-									type="email"
-									autoComplete="email"
-								/>
-								<TextField
-									id="password"
-									label="Password"
-									name="password"
-									required
-									type="password"
-									placeholder="Password"
-									autoComplete="current-password"
-								/>
+								{loading ? "Loading..." : "Log In"}
+							</button>
 
-								{error && (
-									<div role="alert" className="loginPageForm_error">
-										{error}
-									</div>
-								)}
+							<div className="loginPageForm_forgotPassword">
+								<a href="/forgot-password">Forgot Password?</a>
+							</div>
+							<div className="loginPageForm_rememberMe">
+								<label>
+									<input type="checkbox" {...register("remember")} />
+									Remember Me
+								</label>
+							</div>
 
-								<div className="loginPageForm_bodyForgotPassword">
-									<div className="loginPageForm_bodyForgotPassword_checkbox">
-										<input
-											type="checkbox"
-											id="rememberMe"
-											{...register("remember")}
-											defaultChecked
-										/>
-										<label htmlFor="rememberMe">Remember Me</label>
-									</div>
-									<a
-										href="/forgot-password"
-										className="loginPageForm_bodyForgotPassword_link"
-									>
-										Forgot Password?
-									</a>
+							<div className="loginPageForm_divider">
+								<div className="loginPageForm_divider_line"></div>
+								<div className="loginPageForm_divider_text">
+									<span>or continue with</span>
 								</div>
-
-								<div className="loginPageForm_bodyFooter">
-									<div className="loginPageForm_bodyFooter_cta">
-										<button
-											className="button-primary button-lg loginPageForm_bodyFooter_cta_primaryButton"
-											type="submit"
-											disabled={loading}
-										>
-											{loading ? "Signing in…" : "Log in"}
-										</button>
-										<button
-											type="button"
-											className="button-secondary button-lg loginPageForm_bodyFooter_cta_secondaryButton"
-											onClick={() =>
-												alert("Google sign-in demo — integrate your provider")
-											}
-										>
-											<span className="loginPageForm_bodyFooter_icon">
-												<GoogleIcon />
-											</span>
-											Log in with Google
-										</button>
-									</div>
-								</div>
-							</form>
-						</div>
+							</div>
+							<button type="button" className="loginPageForm_googleButton">
+								<GoogleIcon className="loginPageForm_googleButton_icon" />
+								Continue with Google
+							</button>
+						</form>
 					</FormProvider>
+				</div>
+				<div className="loginPageImageSection">
+					{/* Placeholder for image or illustration */}
 				</div>
 			</div>
 		</div>
 	);
 }
+
+

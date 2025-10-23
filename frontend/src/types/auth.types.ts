@@ -4,4 +4,5 @@ export type UserProfile = {
     lastName: string;
     email: string;
     avatarUrl?: string;
+
 };

@@ -5,8 +5,8 @@ import type { UserProfile } from "./types/auth.types";
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 	children,
 }) => {
-	const [user, setUser] = useState<UserProfile | null>(null);
-	const [token, setToken] = useState<string | null>(null);
+	const [user, setUser] = useState<UserProfile>();
+	const [token, setToken] = useState<string>();
 	const [loading, setLoading] = useState<boolean>(true);
 
 	// keys used for persistence
@@ -86,8 +86,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 	};
 
 	const signOut: AuthContextType["signOut"] = () => {
-		setUser(null);
-		setToken(null);
+		setUser(undefined);
+		setToken(undefined);
 		localStorage.removeItem(TOKEN_KEY);
 		localStorage.removeItem(USER_KEY);
 	};
@@ -102,8 +102,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 	};
 
 	const value: AuthContextType = {
-		user,
-		token,
+		user: user as UserProfile,
+		token: token as string,
 		loading,
 		signIn,
 		signUp,

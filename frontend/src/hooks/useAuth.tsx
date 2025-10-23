@@ -1,9 +1,9 @@
-import React from "react";
+import { createContext, useContext } from "react";
 import type { UserProfile } from "../types/auth.types";
 
 export type AuthContextType = {
-	user: UserProfile | null;
-	token: string | null;
+	user: UserProfile;
+	token: string;
 	loading: boolean;
 	signIn: (
 		email: string,
@@ -20,12 +20,14 @@ export type AuthContextType = {
 	refresh: () => Promise<void>;
 };
 
-export const AuthContext = React.createContext<AuthContextType | undefined>(
+export const AuthContext = createContext<AuthContextType | undefined>(
 	undefined,
 );
 
 export const useAuth = () => {
-	const ctx = React.useContext(AuthContext);
-	if (!ctx) throw new Error("useAuth must be used inside AuthProvider");
-	return ctx;
+	const context = useContext(AuthContext);
+	if (!context) {
+		throw new Error("useAuth must be used within an AuthProvider");
+	}
+	return context;
 };
