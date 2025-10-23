@@ -9,11 +9,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 	const [token, setToken] = useState<string>();
 	const [loading, setLoading] = useState<boolean>(true);
 
-	// keys used for persistence
 	const TOKEN_KEY = "auth.token";
 	const USER_KEY = "auth.user";
 
-	// hydrate from localStorage
 	useEffect(() => {
 		try {
 			const rawToken = localStorage.getItem(TOKEN_KEY);
@@ -38,7 +36,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 			// include password in token generation so the parameter is used (mock only)
 			const fakeToken = btoa(`${email}:${password}:${Date.now()}`);
 			const fakeUser: UserProfile = {
-				id: email,
 				firstName: email.split("@")[0] || "User",
 				lastName: "",
 				email,
@@ -70,7 +67,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 			// include password in token generation so the parameter is used (mock only)
 			const fakeToken = btoa(`${email}:${password}:${Date.now()}`);
 			const fakeUser: UserProfile = {
-				id: email,
 				firstName,
 				lastName,
 				email,

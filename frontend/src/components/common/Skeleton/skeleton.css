@@ -1,7 +1,5 @@
 @import "tailwindcss";
-/* ---------------------------
-     Skeleton + shimmer
-     --------------------------- */
+
 .skeleton {
 	background: linear-gradient(
 		90deg,

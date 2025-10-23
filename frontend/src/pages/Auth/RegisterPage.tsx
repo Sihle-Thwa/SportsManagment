@@ -44,7 +44,7 @@ export default function RegisterPage() {
 		setLoading(true);
 		try {
 			// trim inputs before sending
-			await auth.register(
+			await auth.signUp(
 				values.firstName.trim(),
 				values.lastName.trim(),
 				values.email.trim(),

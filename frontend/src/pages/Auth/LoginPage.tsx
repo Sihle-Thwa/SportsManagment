@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import "./loginpage.css";
 
+
 type LoginForm = {
 	email: string;
 	password: string;
@@ -71,30 +72,51 @@ export default function LoginPage() {
 					</div>
 				</div>
 			</div>
-			<div className="loginPageContainer">
-				<div className="loginPageContent">
-					<div className="loginPageContent_header">
-						<div className="loginPageContent_header_title">
+			<div
+				className="loginPageContainer"
+				role="main"
+				aria-labelledby="login-page-title"
+			>
+				<div
+					className="loginPageContent"
+					aria-describedby="login-page-description"
+				>
+					<div className="loginPageContent_header" id="login-page-description">
+						<div
+							className="loginPageContent_header_title"
+							id="login-page-title"
+						>
 							Log in to your account
 						</div>
-						<div className="loginPageContent_header_subtitle">
+						<div
+							className="loginPageContent_header_subtitle"
+							id="login-page-subtitle"
+						>
 							Welcome Back! Please enter your details.
 						</div>
 						<div className="accentLine_loginPageForm" aria-hidden />
 					</div>
 					<FormProvider {...methods}>
-						<form className="loginPageForm" onSubmit={handleSubmit(onSubmit)}>
+						<form
+							className="loginPageForm"
+							onSubmit={handleSubmit(onSubmit)}
+							noValidate
+						>
 							<TextField
+								name="email"
 								label="Email"
 								type="email"
 								placeholder="Enter your email"
-								{...register("email", { required: "Email is required" })}
+								autoComplete="email"
+								rules={{ required: "Email is required" }}
 							/>
 							<TextField
+								name="password"
 								label="Password"
 								type="password"
 								placeholder="Enter your password"
-								{...register("password", { required: "Password is required" })}
+								autoComplete="current-password"
+								rules={{ required: "Password is required" }}
 							/>
 							{error && <div className="formError">{error}</div>}
 							<button
@@ -105,17 +127,26 @@ export default function LoginPage() {
 								{loading ? "Loading..." : "Log In"}
 							</button>
 
-							<div className="loginPageForm_forgotPassword">
+							<div
+								className="loginPageForm_forgotPassword"
+								id="forgot-password-link"
+							>
 								<a href="/forgot-password">Forgot Password?</a>
 							</div>
-							<div className="loginPageForm_rememberMe">
-								<label>
+							<div
+								className="loginPageForm_rememberMe"
+								id="remember-me-checkbox"
+							>
+								<div className="loginPageForm_rememberMe_checkbox">
 									<input type="checkbox" {...register("remember")} />
 									Remember Me
-								</label>
+								</div>
 							</div>
 
-							<div className="loginPageForm_divider">
+							<div
+								className="loginPageForm_divider"
+								aria-label="or continue with"
+							>
 								<div className="loginPageForm_divider_line"></div>
 								<div className="loginPageForm_divider_text">
 									<span>or continue with</span>

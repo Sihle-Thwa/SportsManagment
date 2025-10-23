@@ -12,10 +12,8 @@ import { AuthProvider } from "./AuthProvider";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import Profile from "./pages/Profile/Profile";
 
-// import theme initializer
 import { initTheme } from "./lib/theme";
 
-// Initialize theme preference before the app mounts
 initTheme();
 
 function App() {
@@ -29,7 +27,7 @@ function App() {
 					<Route path="/signUp" element={<RegisterPage />} />
 					{/* Protected app routes */}
 					<Route
-						path="/"
+						path="/*"
 						element={
 							<ProtectedRoute>
 								<MainLayout />
