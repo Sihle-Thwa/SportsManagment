@@ -1,34 +1,49 @@
 @import "tailwindcss";
 
+/* Topbar styles using semantic tokens + fallbacks */
 @layer components {
+	:root {
+		--topbar-height: 72px;
+		--radius-md: 8px;
+		--icon-size-sm: 18px;
+		--icon-size-md: 20px;
+		--transition-fast: 180ms;
+		--easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
 	.app-topbar-inner {
 		display: flex;
 		align-items: center;
-		overflow: hidden;
 		justify-content: space-between;
-		height: var(--topbar-height, 72px);
 		width: 100%;
-		padding: 0px 16px;
-		background: var(--sidebar-background, var(--colour-neutral-100));
-		border-bottom: 1px solid var(--border-default);
+		height: var(--topbar-height);
+		padding: 0 16px;
+		gap: 12px;
+		background: var(
+			--header-background,
+			var(--sidebar-background, var(--colour-neutral-100))
+		);
+		border-bottom: 1px solid var(--header-border, var(--border-default));
+		box-sizing: border-box;
+		z-index: 40;
 	}
 
 	.topbar-section {
 		display: flex;
 		align-items: center;
+		gap: 12px;
 		height: 100%;
-		justify-content: center;
-		min-width: 0;
-		overflow: hidden;
-		}
+		min-width: 0; /* allow children to overflow hidden text */
+	}
 
 	/* LEFT */
 	.topbar-left {
 		display: flex;
-		flex-direction: row;
+		align-items: center;
+		gap: 12px;
 		justify-content: flex-start;
-		width: 100%;
-		
+		flex: 0 1 auto;
+		min-width: 0;
 	}
 
 	.topbar-brand-group {
@@ -49,39 +64,57 @@
 		justify-content: center;
 		width: 40px;
 		height: 40px;
+		border-radius: var(--radius-md);
+		background: transparent;
+		border: 1px solid transparent;
+		color: var(--header-icon, var(--header-text));
+		cursor: pointer;
+		transition: background var(--transition-fast) var(--easing-smooth),
+			transform var(--transition-fast);
 	}
-	.topbar-toggle:hover {
-		background: var(--sidebar-background-hover, var(--colour-neutral-500));
+	.topbar-toggle:hover,
+	.topbar-toggle:focus {
+		background: var(--header-toggle-hover, var(--background-surface-hover));
+		outline: none;
+		box-shadow: 0 0 0 3px
+			color-mix(in srgb, var(--interactive-primary) 8%, transparent);
 	}
+
 	.topbar-toggle__icon {
 		width: var(--icon-size-md);
 		height: var(--icon-size-md);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
 	}
 
-	/* header area */
+	/* header area (page title / breadcrumb) */
 	.topbar-header {
 		display: flex;
 		align-items: center;
+		gap: 8px;
 		min-width: 0;
 		padding-left: 8px;
 	}
 	.topbar-header__title {
 		display: inline-flex;
-		font-size: var(--title-size-default);
-		font-weight: var(--font-weight-normal);
-		color: var(--text-primary);
+		font-size: var(--title-size-sm, 16px);
+		font-weight: var(--font-weight-semibold, 600);
+		color: var(--header-text, var(--text-on-background));
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		width: 200px;
+		max-width: 320px;
 	}
 
 	/* CENTER */
 	.topbar-center {
 		display: flex;
-		flex-direction: row;
+		align-items: center;
 		justify-content: center;
-		width: 100%;
+		flex: 1 1 auto;
+		min-width: 0;
+		padding: 0 12px;
 	}
 	@media (max-width: 640px) {
 		.topbar-center {
@@ -92,17 +125,29 @@
 	/* RIGHT */
 	.topbar-right {
 		display: flex;
-		flex-direction: row;
-		justify-content: flex-end;
-		align-items: center;
-		width: 100%;
 		gap: 8px;
+		align-items: center;
+		justify-content: flex-end;
+		flex: 0 1 auto;
 	}
 
-	/* small screens adjustments */
+	/* small-screen adjustments */
 	@media (max-width: 1024px) {
 		.app-topbar-inner {
-			padding: 0 8px;
+			padding: 0 12px;
 		}
+
+		.topbar-header__title {
+			max-width: 160px;
+		}
+	}
+
+	/* Accessibility: visible focus ring for keyboard users */
+	.topbar-toggle:focus-visible,
+	.topbar-toggle:focus {
+		outline: none;
+		box-shadow: 0 0 0 3px
+			color-mix(in srgb, var(--interactive-primary) 12%, transparent);
+		border-color: var(--interactive-primary);
 	}
 }

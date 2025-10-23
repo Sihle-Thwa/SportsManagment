@@ -1,131 +1,169 @@
-/* src/components/layout/SideNav/nav-user.css */
 @import "tailwindcss";
+
 @layer components {
+	:root {
+		--radius-md: 8px;
+		--icon-size-md: 20px;
+		--transition-fast: 150ms;
+		--easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
 	.nav-user {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		align-items: center;
+		align-items: stretch;
 		width: 100%;
 		margin-top: auto;
-		padding: 8px;
+		padding: 10px;
 		box-sizing: border-box;
 	}
+
 	.nav-user__trigger {
 		width: 100%;
 		display: flex;
 		align-items: center;
-		gap: 8px;
+		gap: 10px;
 		padding: 8px;
-		border-radius: 8px;
+		border-radius: var(--radius-md);
 		background: transparent;
 		border: none;
 		cursor: pointer;
-		transition: background 150ms, transform 150ms;
+		transition: background var(--transition-fast) var(--easing-smooth),
+			transform var(--transition-fast) var(--easing-smooth);
+		color: var(--sidebar-text);
+		text-align: left;
 	}
-	.nav-user__trigger:hover {
-		background: var(--sidebar-background-hover);
+
+	.nav-user__trigger:hover,
+	.nav-user__trigger:focus {
+		background: var(--sidebar-item-background-hover);
+		outline: none;
 	}
+
 	.nav-user-trigger-collapsed {
 		justify-content: center;
 		padding: 8px;
 		min-width: 48px;
 	}
+
 	.nav-user__avatar {
 		width: 40px;
 		height: 40px;
-		border-radius: 8px;
+		border-radius: var(--radius-md);
 		overflow: hidden;
 		flex-shrink: 0;
+		background: var(--card-background);
 	}
+
 	.nav-user-avatar-collapsed {
 		width: var(--icon-size-md);
 		height: var(--icon-size-md);
+		border-radius: 6px;
 	}
+
 	.nav-user__avatar-img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		display: block;
 	}
+
 	.nav-user__avatar-fallback {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: var(--primary, var(--colour-primary-500));
-		color: var(--primary-foreground, #fff);
-		font-weight: 600;
+		background: var(--interactive-primary);
+		color: var(--text-on-primary);
+		font-weight: var(--font-weight-semibold);
 		width: 100%;
 		height: 100%;
 	}
+
 	.nav-user__info {
 		display: flex;
 		flex-direction: column;
 		min-width: 0;
 		flex: 1;
 		text-align: left;
+		line-height: 1.1;
 	}
+
 	.nav-user__name {
-		font-weight: 600;
-		font-size: var(--font-size-sm);
+		font-weight: var(--font-weight-semibold);
+		font-size: var(--body-size-default);
 		color: var(--sidebar-text);
 		overflow: hidden;
 		text-overflow: ellipsis;
+		white-space: nowrap;
 	}
+
 	.nav-user__email {
-		font-size: var(--font-size-xs);
-		color: var(--text-on-surface-secondary);
+		font-size: var(--caption-size-default);
+		color: var(--sidebar-text-secondary, var(--text-secondary));
 		margin-top: 2px;
 		overflow: hidden;
 		text-overflow: ellipsis;
-	}
-	.nav-user__chevron {
-		flex-shrink: 0;
-		color: var(--text-on-surface-secondary);
+		white-space: nowrap;
 	}
 
+	.nav-user__chevron {
+		flex-shrink: 0;
+		color: var(--sidebar-text-secondary);
+	}
+
+	/* Dropdown */
 	.nav-user__dropdown {
-		margin-top: 6px;
+		margin-top: 8px;
 		width: 100%;
-		background: var(--popover);
-		border: 1px solid var(--border-default);
-		border-radius: 8px;
-		box-shadow: var(--shadow-md);
+		background: var(--card-background);
+		border: 1px solid var(--card-border);
+		border-radius: var(--radius-md);
+		box-shadow: var(--card-shadow);
 		z-index: 70;
 		padding: 8px;
 	}
+
 	.nav-user-dropdown-info {
 		display: flex;
 		align-items: center;
 		gap: 8px;
 	}
+
 	.nav-user-dropdown-avatar {
 		width: 40px;
 		height: 40px;
-		border-radius: 8px;
+		border-radius: var(--radius-md);
 		overflow: hidden;
 		flex-shrink: 0;
 	}
+
 	.nav-user-dropdown-text {
 		display: flex;
 		flex-direction: column;
 	}
+
 	.nav-user-dropdown-item {
 		display: flex;
-		gap: 8px;
+		gap: 10px;
 		align-items: center;
 		padding: 8px;
-		border-radius: 8px;
+		border-radius: var(--radius-md);
 		background: transparent;
 		border: none;
 		width: 100%;
 		text-align: left;
 		cursor: pointer;
-		transition: background 150ms;
+		transition: background var(--transition-fast) var(--easing-smooth);
 	}
-	.nav-user-dropdown-item:hover {
+
+	.nav-user-dropdown-item:hover,
+	.nav-user-dropdown-item:focus {
 		background: var(--background-surface-hover);
+		outline: none;
 	}
+
 	.nav-user-dropdown-logout {
-		color: var(--destructive);
+		color: var(--status-error, var(--colour-error-500));
 	}
 }

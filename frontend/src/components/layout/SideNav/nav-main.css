@@ -1,15 +1,24 @@
-/* src/components/layout/SideNav/nav-main.css */
 @import "tailwindcss";
+
 @layer components {
+	:root {
+		--icon-size-lg: 28px;
+		--radius-md: 8px;
+		--transition-fast: 180ms;
+		--easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
 	.nav-main {
 		width: 100%;
 	}
+
 	.nav-main__menu {
 		display: flex;
 		flex-direction: column;
-		gap: 8px;
+		gap: 6px;
 		width: 100%;
 	}
+
 	.nav-main__item {
 		width: 100%;
 	}
@@ -20,25 +29,35 @@
 		gap: 12px;
 		width: 100%;
 		padding: 8px 12px;
-		border: 1px solid transparent;
 		border-radius: var(--radius-md);
 		color: var(--sidebar-text, var(--colour-neutral-900));
+		background: transparent;
 		text-decoration: none;
+		border: 1px solid transparent;
 		transition: background var(--transition-fast) var(--easing-smooth),
-			color var(--transition-fast) var(--easing-smooth),;
+			color var(--transition-fast) var(--easing-smooth),
+			box-shadow var(--transition-fast) var(--easing-smooth);
+		font-size: var(--body-size-default);
 	}
 
-	.nav-main__link:hover {
+	.nav-main__link:hover,
+	.nav-main__link:focus {
 		background: var(
-			--sidebar-background-hover,
-			var(--background-surface-hover)
+			--sidebar-item-background-hover,
+			color-mix(
+				in srgb,
+				var(--sidebar-background) 95%,
+				var(--interactive-hover) 5%
+			)
 		);
-		color: var(--sidebar-text-hover, var(--colour-neutral-100));
+		color: var(--sidebar-text-hover, var(--text-on-primary));
+		outline: none;
 	}
 
 	.nav-main__link.is-active {
 		background: var(--interactive-primary, var(--colour-primary-500));
 		color: var(--sidebar-text-active, var(--text-on-primary));
+		box-shadow: var(--layout-shadow-active);
 	}
 
 	.nav-main__icon {
@@ -48,23 +67,23 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		color: var(--sidebar-icon);
+		color: var(--sidebar-icon, var(--icon-primary));
 		transition: color var(--transition-fast) var(--easing-smooth);
 	}
 
 	.nav-main__link:hover .nav-main__icon,
 	.nav-main__link.is-active .nav-main__icon {
-		color: var(--sidebar-icon-hover, var(--text-on-primary));
+		color: var(--sidebar-icon-hover, var(--icon-on-primary));
 	}
 
 	.nav-main__label {
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		font-size: var(--font-size-sm);
+		font-size: var(--body-size-default);
 	}
 
-	/* collapsed state: center icons, hide text */
+	/* collapsed: only show icons centered */
 	.nav-main.is-collapsed .nav-main__link {
 		justify-content: center;
 		padding: 8px;

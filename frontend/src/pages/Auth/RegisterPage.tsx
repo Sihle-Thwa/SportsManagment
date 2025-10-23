@@ -69,7 +69,7 @@ export default function RegisterPage() {
 						<div className="registerPageHeaderContainer_cta_text">
 							Already have an account? {/* changed text for consistency */}
 						</div>
-						<a href="/login" className="registerPageHeaderContainer_cta_link">
+						<a href="/signIn" className="registerPageHeaderContainer_cta_link">
 							Log In
 						</a>
 					</div>

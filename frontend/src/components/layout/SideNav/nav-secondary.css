@@ -1,15 +1,21 @@
-/* src/components/layout/SideNav/nav-secondary.css */
 @import "tailwindcss";
+
 @layer components {
+	:root {
+		--icon-size-md: 20px;
+		--radius-md: 8px;
+		--transition-fast: 180ms;
+		--easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
 	.nav-secondary__menu {
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
 		width: 100%;
-		height: 100%;
-		margin-top: auto;
-		
+		margin-top: auto; /* push to bottom */
 	}
+
 	.nav-secondary__link {
 		display: inline-flex;
 		align-items: center;
@@ -18,15 +24,23 @@
 		padding: 8px 12px;
 		color: var(--sidebar-text);
 		text-decoration: none;
-		transition: background 150ms var(--easing-smooth), color 150ms;
+		border-radius: var(--radius-md);
+		transition: background var(--transition-fast) var(--easing-smooth),
+			color var(--transition-fast) var(--easing-smooth);
+		font-size: var(--body-size-default);
 	}
-	.nav-secondary__link:hover {
-		background: var(--sidebar-background-hover);
+
+	.nav-secondary__link:hover,
+	.nav-secondary__link:focus {
+		background: var(--sidebar-item-background-hover);
 		color: var(--sidebar-text-hover);
+		outline: none;
 	}
+
 	.nav-secondary__link.is-active {
-		background: var(--interactive-neutral);
+		background: var(--interactive-secondary-active, var(--interactive-neutral));
 		color: var(--sidebar-text-active);
+		box-shadow: var(--layout-shadow-active);
 	}
 
 	.nav-secondary__icon {
@@ -37,8 +51,9 @@
 		justify-content: center;
 		color: var(--sidebar-icon);
 	}
+
 	.nav-secondary__label {
-		font-size: var(--font-size-md);
+		font-size: var(--body-size-default);
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;

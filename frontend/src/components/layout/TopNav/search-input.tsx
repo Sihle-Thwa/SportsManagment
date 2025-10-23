@@ -1,16 +1,8 @@
 "use client";
-
 import * as React from "react";
 import { Search } from "lucide-react";
 import "./searchinput.css";
 import { useNavigate } from "react-router-dom";
-
-/**
- * Simple, self-contained search input with:
- * - keyboard shortcut "/" to focus
- * - 300ms debounce fetch to /api/search?q=
- * - results dropdown with keyboard nav (up/down + enter)
- */
 
 type SearchResult = {
 	url: string;

@@ -1,23 +1,39 @@
-/* src/components/layout/SideNav/app-sidebar.css */
 @import "tailwindcss";
 
+/* app-sidebar.css - refactored to use semantic tokens and typography scale */
 @layer components {
+	:root {
+		/* fallbacks for some layout tokens not present elsewhere */
+		--sidebar-width: 250px;
+		--sidebar-width-collapsed: 72px;
+		--sidebar-topbar: 72px;
+		--icon-size-lg: 28px;
+		--icon-size-md: 20px;
+		--radius-md: 8px;
+		--transition-fast: 180ms;
+		--easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
 	.app_sidebar {
 		display: flex;
 		flex-direction: column;
 		grid-area: sidebar;
-		--sidebar-w: var(--sidebar-width, 250px);
-		--sidebar-collapsed-w: var(--sidebar-width-collapsed, 72px);
-		width: var(--sidebar-w);
-		min-width: var(--sidebar-collapsed-w);
+		width: var(--sidebar-width);
+		min-width: var(--sidebar-width-collapsed);
 		height: 100%;
-		transition: var(--transition-fast);
+		background: var(--sidebar-background, var(--colour-neutral-100));
+		color: var(--sidebar-text, var(--colour-neutral-900));
+		transition: width var(--transition-fast) var(--easing-smooth),
+			transform var(--transition-fast) var(--easing-smooth),
+			box-shadow var(--transition-fast) var(--easing-smooth);
 		z-index: 50;
 		position: relative;
-		overflow: visible;
-		border: none;
+		box-sizing: border-box;
+		border-right: 1px solid var(--sidebar-border, var(--border-default));
 	}
 
+	/* If your Sidebar implementation mounts a fixed container inside,
+     this ensures it remains aligned to the left edge of the grid column. */
 	.app_sidebar [data-slot="sidebar_container"] {
 		left: 0 !important;
 		right: auto !important;
@@ -27,84 +43,97 @@
 		will-change: width, transform;
 	}
 
-	/* inner visual wrapper (if used) */
 	.app_sidebar__inner {
 		display: flex;
 		flex-direction: column;
 		height: 100%;
 		width: 100%;
+		gap: 12px;
 	}
 
+	/* header / brand */
 	.sidebar-header {
 		display: flex;
 		align-items: center;
-		justify-content: center;
+		gap: 8px;
 		padding: 12px;
-		height: 72px;
-		border-bottom: 1px solid var(--border-default);
+		height: var(--sidebar-topbar);
+		border-bottom: 1px solid var(--sidebar-border, var(--border-default));
+		background: transparent;
 	}
 
 	.sidebar-brand {
 		display: flex;
 		align-items: center;
-		gap: 8px;
-		padding: 12px;
+		gap: 10px;
+		padding: 6px 8px;
 		width: 100%;
 		border: none;
+		background: transparent;
 		cursor: pointer;
-		text-decoration: none;
 		color: inherit;
+		text-decoration: none;
 	}
-	/* Center icon when collapsed */
+
 	.sidebar-brand-icon {
 		width: var(--icon-size-lg);
 		height: var(--icon-size-lg);
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--sidebar-icon, var(--icon-primary));
+		flex-shrink: 0;
 	}
+
 	.sidebar-brand-icon-collapsed {
 		margin: 0 auto;
+		display: inline-flex;
 		justify-content: center;
-		display: flex;
 	}
 
 	.sidebar-brand-text {
 		font-weight: var(--font-weight-semibold);
-		font-size: var(--title-size-default);
+		font-size: var(--title-size-sm, 20px);
+		color: var(--sidebar-text);
 		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	.sidebar_content {
 		display: flex;
 		flex-direction: column;
-		gap: 18px;
+		gap: 12px;
 		padding: 12px;
 		overflow: auto;
-		height: calc(100% - 72px - 72px); /* header + footer space */
+		height: calc(100% - var(--sidebar-topbar) - var(--sidebar-topbar));
 	}
 
 	.sidebar-footer {
 		padding: 12px;
-		border-top: 1px solid var(--border-default);
+		border-top: 1px solid var(--sidebar-border, var(--border-default));
 		background: transparent;
+		margin-top: auto;
 	}
 
-	/* Collapsed vs expanded helpers */
+	/* collapsed / expanded helpers (applied on wrapper element) */
 	.sidebar-collapsed {
-		width: var(--sidebar-collapsed-w);
-	}
-	.sidebar-expanded {
-		width: var(--sidebar-w);
+		width: var(--sidebar-width-collapsed);
 	}
 
-	/* Make transitions smooth for the fixed inner container too, if present */
+	.sidebar-expanded {
+		width: var(--sidebar-width);
+	}
+
 	.sidebar-collapsed [data-slot="sidebar_container"],
 	.sidebar-expanded [data-slot="sidebar_container"] {
 		width: inherit;
 	}
 
-	/* Hide rail when collapsed to avoid stray lines */
+	/* small rail (optional) — hidden by default to avoid stray lines */
 	.sidebar-rail {
 		opacity: 0;
-		transition: opacity 150ms;
+		transition: opacity 150ms var(--easing-smooth);
 		pointer-events: none;
 	}
 	.app_sidebar:hover .sidebar-rail {
@@ -112,22 +141,22 @@
 		pointer-events: auto;
 	}
 
-	/* Mobile overlay support: controlled by .is-expanded on .main-container */
+	/* mobile off-canvas */
 	@media (max-width: 1024px) {
 		.app_sidebar {
 			position: fixed;
 			left: 0;
 			top: 0;
-			height: 100vh;
 			transform: translateX(-100%);
-			transition: transform var(--transition-fast) var(--easing-smooth),
-				width var(--transition-fast) var(--easing-smooth);
-			box-shadow: var(--shadow-md);
-			width: var(--sidebar-w);
+			box-shadow: var(--layout-shadow);
+			width: var(--sidebar-width);
+			height: 100vh;
+			background: var(--sidebar-background);
 		}
 
-		/* When the provider state indicates expanded, slide in */
-		.main_container.is-expanded .app_sidebar {
+		/* when main container toggles expanded (JS will add .is-expanded) */
+		.main_container.is-expanded .app_sidebar,
+		.main-container.is-expanded .app_sidebar {
 			transform: translateX(0);
 		}
 	}
