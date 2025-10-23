@@ -43,8 +43,8 @@ export default function NavUser({
 				triggerRef.current?.focus();
 			}
 		}
-		document.addEventListener("mousedown", onDocClick);
-		document.addEventListener("keydown", onKey);
+		document.addEventListener("mousedown", onDocClick, { passive: true });
+		document.addEventListener("keydown", onKey, { passive: false });
 		return () => {
 			document.removeEventListener("mousedown", onDocClick);
 			document.removeEventListener("keydown", onKey);

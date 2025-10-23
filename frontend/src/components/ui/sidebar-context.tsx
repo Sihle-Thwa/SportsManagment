@@ -63,10 +63,20 @@ export function SidebarProvider({
 
 	React.useEffect(() => {
 		const mql = window.matchMedia("(max-width: 768px)");
-		const onChange = () => setIsMobile(mql.matches);
-		onChange();
-		mql.addEventListener("change", onChange);
-		return () => mql.removeEventListener("change", onChange);
+		const onChange = (event: MediaQueryListEvent) => setIsMobile(event.matches);
+
+		// Set initial value
+		setIsMobile(mql.matches);
+
+		// Use modern addEventListener for MediaQueryList
+		if (mql.addEventListener) {
+			mql.addEventListener("change", onChange);
+			return () => mql.removeEventListener("change", onChange);
+		} else {
+			// Fallback for older browsers
+			mql.addListener(onChange);
+			return () => mql.removeListener(onChange);
+		}
 	}, []);
 
 	const cookieInitial = React.useMemo(readCookieInitial, []);

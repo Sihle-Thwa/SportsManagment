@@ -37,8 +37,8 @@ export default function SearchInput() {
 				inputRef.current?.focus();
 			}
 		}
-		window.addEventListener("keydown", onKey);
-		return () => window.removeEventListener("keydown", onKey);
+		document.addEventListener("keydown", onKey, { passive: false });
+		return () => document.removeEventListener("keydown", onKey);
 	}, []);
 
 	// debounce fetch
@@ -49,24 +49,38 @@ export default function SearchInput() {
 			setLoading(false);
 			return;
 		}
+
+		const abortController = new AbortController();
 		setLoading(true);
+
 		const id = window.setTimeout(async () => {
 			try {
-				const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
+				const res = await fetch(`/api/search?q=${encodeURIComponent(q)}`, {
+					signal: abortController.signal,
+				});
 				if (!res.ok) throw new Error("search failed");
 				const payload = await res.json();
 				setResults(Array.isArray(payload) ? payload : []);
 				setOpen(true);
 				setIndex(0);
-			} catch {
+			} catch (error) {
+				// Don't update state if request was aborted
+				if (error instanceof Error && error.name === "AbortError") {
+					return;
+				}
 				setResults([]);
 				setOpen(false);
 			} finally {
-				setLoading(false);
+				if (!abortController.signal.aborted) {
+					setLoading(false);
+				}
 			}
 		}, 300);
 
-		return () => window.clearTimeout(id);
+		return () => {
+			window.clearTimeout(id);
+			abortController.abort();
+		};
 	}, [q]);
 
 	// click outside closes
@@ -75,7 +89,7 @@ export default function SearchInput() {
 			if (!containerRef.current) return;
 			if (!containerRef.current.contains(e.target as Node)) setOpen(false);
 		}
-		document.addEventListener("mousedown", onDoc);
+		document.addEventListener("mousedown", onDoc, { passive: true });
 		return () => document.removeEventListener("mousedown", onDoc);
 	}, []);
 

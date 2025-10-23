@@ -2,6 +2,8 @@ import { lazy, Suspense } from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 
 const MainLayout = lazy(() => import("../components/layout/MainLayout"));
+const LoginPage = lazy(() => import("../pages/Auth/LoginPage"));
+const RegisterPage = lazy(() => import("../pages/Auth/RegisterPage"));
 
 import Planner from "../pages/Calendar/Planner";
 import Dashboard from "../pages/Dashboard/Dashboard";
@@ -10,6 +12,7 @@ import Members from "../pages/Members/Members";
 import Players from "../pages/Players/Players";
 import Profile from "../pages/Profile/Profile";
 import Report from "../pages/Reports/Report";
+import { ProtectedRoute } from "../components/ProtectedRoute";
 
 // Icons
 import {
@@ -76,20 +79,62 @@ export const routes = [
 const router = createBrowserRouter([
 	{
 		path: "/",
+		element: <Navigate to="/signIn" replace />,
+	},
+	{
+		path: "/signIn",
 		element: (
 			<Suspense fallback={<div>Loading...</div>}>
-				<MainLayout />
+				<LoginPage />
 			</Suspense>
+		),
+	},
+	{
+		path: "/signUp",
+		element: (
+			<Suspense fallback={<div>Loading...</div>}>
+				<RegisterPage />
+			</Suspense>
+		),
+	},
+	{
+		path: "/",
+		element: (
+			<ProtectedRoute>
+				<Suspense fallback={<div>Loading...</div>}>
+					<MainLayout />
+				</Suspense>
+			</ProtectedRoute>
 		),
 		children: [
 			{
-				index: true,
-				element: <Navigate to="/dashboard" replace />,
+				path: "dashboard",
+				element: <Dashboard />,
 			},
-			...routes.map((item) => ({
-				path: item.path,
-				element: item.element,
-			})),
+			{
+				path: "profile",
+				element: <Profile />,
+			},
+			{
+				path: "members",
+				element: <Members />,
+			},
+			{
+				path: "facilities",
+				element: <Facilities />,
+			},
+			{
+				path: "players",
+				element: <Players />,
+			},
+			{
+				path: "planner",
+				element: <Planner />,
+			},
+			{
+				path: "reports",
+				element: <Report />,
+			},
 		],
 	},
 ]);

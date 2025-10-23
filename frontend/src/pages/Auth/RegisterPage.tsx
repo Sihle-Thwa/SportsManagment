@@ -116,7 +116,6 @@ export default function RegisterPage() {
 									autoComplete="email"
 								/>
 								<TextField
-									id="password"
 									label="Password"
 									name="password"
 									required
@@ -125,7 +124,6 @@ export default function RegisterPage() {
 									autoComplete="new-password"
 								/>
 								<TextField
-									id="confirmPassword"
 									label="Confirm Password"
 									name="confirmPassword"
 									required
