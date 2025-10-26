@@ -1,119 +1,89 @@
 @import "tailwindcss";
 
-/* app-sidebar.css - refactored to use semantic tokens and typography scale */
 @layer components {
 	:root {
-		/* fallbacks for some layout tokens not present elsewhere */
-		--sidebar-width: 250px;
-		--sidebar-width-collapsed: 72px;
-		--sidebar-topbar: 72px;
-		--icon-size-lg: 28px;
-		--icon-size-md: 20px;
-		--radius-md: 8px;
-		--transition-fast: 180ms;
-		--easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+		--sidebar-width: 240px;
+		--sidebar-width-collapsed: 64px;
+		--sidebar-topbar: 56px;
 	}
-
 	.app_sidebar {
+		grid-column: sidebar;
 		display: flex;
 		flex-direction: column;
-		grid-area: sidebar;
-		width: var(--sidebar-width);
-		min-width: var(--sidebar-width-collapsed);
-		height: 100%;
-		background: var(--sidebar-background, var(--colour-neutral-100));
-		color: var(--sidebar-text, var(--colour-neutral-900));
+		height: 100vh;
+		background: var(--sidebar-background);
+		border-right: 1px solid var(--sidebar-border);
+		box-shadow: var(--sidebar-shadow, none);
 		transition: width var(--transition-fast) var(--easing-smooth),
-			transform var(--transition-fast) var(--easing-smooth),
+			background-color var(--transition-fast) var(--easing-smooth),
+			border-color var(--transition-fast) var(--easing-smooth),
 			box-shadow var(--transition-fast) var(--easing-smooth);
-		z-index: 50;
-		position: relative;
-		box-sizing: border-box;
-		border-right: 1px solid var(--sidebar-border, var(--border-default));
 	}
 
 	/* If your Sidebar implementation mounts a fixed container inside,
      this ensures it remains aligned to the left edge of the grid column. */
 	.app_sidebar [data-slot="sidebar_container"] {
-		left: 0 !important;
-		right: auto !important;
-		top: 0 !important;
-		height: 100vh !important;
-		transition: width var(--transition-fast) var(--easing-smooth);
-		will-change: width, transform;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
 	}
 
 	.app_sidebar__inner {
 		display: flex;
 		flex-direction: column;
 		height: 100%;
-		width: 100%;
-		gap: 12px;
 	}
 
 	/* header / brand */
 	.sidebar-header {
+		height: var(--sidebar-topbar);
 		display: flex;
 		align-items: center;
-		gap: 8px;
-		padding: 12px;
-		height: var(--sidebar-topbar);
+		justify-content: center;
 		border-bottom: 1px solid var(--sidebar-border, var(--border-default));
 		background: transparent;
+		padding: 0 12px;
 	}
 
 	.sidebar-brand {
 		display: flex;
 		align-items: center;
-		gap: 10px;
-		padding: 6px 8px;
+		gap: 12px;
 		width: 100%;
-		border: none;
-		background: transparent;
-		cursor: pointer;
-		color: inherit;
-		text-decoration: none;
 	}
 
 	.sidebar-brand-icon {
-		width: var(--icon-size-lg);
-		height: var(--icon-size-lg);
 		display: inline-flex;
-		align-items: center;
 		justify-content: center;
-		color: var(--sidebar-icon, var(--icon-primary));
+		align-items: center;
+		width: 32px;
+		height: 32px;
 		flex-shrink: 0;
 	}
 
 	.sidebar-brand-icon-collapsed {
 		margin: 0 auto;
-		display: inline-flex;
-		justify-content: center;
+		opacity: 0;
 	}
 
 	.sidebar-brand-text {
-		font-weight: var(--font-weight-semibold);
-		font-size: var(--title-size-sm, 20px);
-		color: var(--sidebar-text);
+		font-size: 1.125rem;
+		font-weight: 600;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
 
 	.sidebar_content {
+		flex-grow: 1;
 		display: flex;
 		flex-direction: column;
-		gap: 12px;
-		padding: 12px;
-		overflow: auto;
-		height: calc(100% - var(--sidebar-topbar) - var(--sidebar-topbar));
+		overflow-y: auto;
 	}
 
 	.sidebar-footer {
-		padding: 12px;
 		border-top: 1px solid var(--sidebar-border, var(--border-default));
-		background: transparent;
-		margin-top: auto;
+		padding: 12px;
 	}
 
 	/* collapsed / expanded helpers (applied on wrapper element) */
@@ -124,40 +94,5 @@
 	.sidebar-expanded {
 		width: var(--sidebar-width);
 	}
-
-	.sidebar-collapsed [data-slot="sidebar_container"],
-	.sidebar-expanded [data-slot="sidebar_container"] {
-		width: inherit;
-	}
-
-	/* small rail (optional) — hidden by default to avoid stray lines */
-	.sidebar-rail {
-		opacity: 0;
-		transition: opacity 150ms var(--easing-smooth);
-		pointer-events: none;
-	}
-	.app_sidebar:hover .sidebar-rail {
-		opacity: 1;
-		pointer-events: auto;
-	}
-
-	/* mobile off-canvas */
-	@media (max-width: 1024px) {
-		.app_sidebar {
-			position: fixed;
-			left: 0;
-			top: 0;
-			transform: translateX(-100%);
-			box-shadow: var(--layout-shadow);
-			width: var(--sidebar-width);
-			height: 100vh;
-			background: var(--sidebar-background);
-		}
-
-		/* when main container toggles expanded (JS will add .is-expanded) */
-		.main_container.is-expanded .app_sidebar,
-		.main-container.is-expanded .app_sidebar {
-			transform: translateX(0);
-		}
-	}
+	
 }

@@ -125,8 +125,8 @@
     --layout-shadow-active: 0 4px 12px hsla(220, 15%, 15%, 0.15);
     
     /* Sidebar Navigation */
-    --sidebar-background: var(--colour-neutral-900);
-    --sidebar-border: var(--border-muted);
+    --sidebar-background: var(--colour-neutral-100);
+    --sidebar-border: var(--border-subtle);
     --sidebar-text: var(--colour-neutral-100);
     --sidebar-text-secondary: var(--colour-neutral-300);
     --sidebar-icon: var(--colour-neutral-100);
