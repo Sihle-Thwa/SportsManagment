@@ -34,18 +34,6 @@
 	overflow: auto;
 	flex: 1;
 }
-
-/* skeleton helper */
-.skeletonCalendar {
-	border-radius: var(--radius-lg);
-}
-
-/* ------------ DayPicker / Tailwind overrides for this component only ------------
-   We map DayPicker keys to these class names in CalendarObject.tsx and can style them
-   here. Because we're using CSS Modules those class names are unique to this file.
-   --------------------------------------------------------------------------- */
-
-/* top-level months container (maps to 'months' key) */
 .months {
 	display: flex;
 	flex-direction: row;

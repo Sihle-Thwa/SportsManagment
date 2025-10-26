@@ -19,7 +19,6 @@ export default function TableBody<T>({
 	loading,
 }: Props<T>) {
 	if (loading) {
-		// skeleton rows
 		return (
 			<tbody className="tableBody_tbody" role="rowgroup" aria-busy="true">
 				{Array.from({ length: 6 }).map((_, i) => (

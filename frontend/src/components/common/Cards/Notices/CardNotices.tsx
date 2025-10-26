@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { Skeleton } from "../../Skeleton/Skeleton";
 import "./cardnotices.css";
 
 export type Notice = {
@@ -10,28 +9,7 @@ export type Notice = {
 	time?: string;
 };
 
-export const CardNotices: React.FC<{
-	notices?: Notice[];
-	loading?: boolean;
-}> = ({ notices = [], loading = false }) => {
-	if (loading) {
-		return (
-			<div className="card-notices">
-				<div className="card-notices-header">
-					<div className="card-notices-header-title">Notices</div>
-				</div>
-				<div className="card-notices-body">
-					{Array.from({ length: 4 }).map((_, i) => (
-						<div key={i} className="notice-item">
-							<Skeleton className="skeleton-line" />
-							<Skeleton className="skeleton-small-line" />
-						</div>
-					))}
-				</div>
-			</div>
-		);
-	}
-
+export const CardNotices: React.FC<{ notices?: Notice[] }> = ({ notices }) => {
 	const latest = (notices || []).slice(0, 4);
 
 	return (

@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { MoreVertical } from "lucide-react";
-import { Skeleton } from "../../Skeleton/Skeleton";
 import "./messagessummary.css";
 
 type Message = {
@@ -13,8 +12,7 @@ type Message = {
 
 export const MessagesSummary: React.FC<{
 	messages?: Message[];
-	loading?: boolean;
-}> = ({ messages = [], loading = false }) => {
+}> = ({ messages = [] }) => {
 	const [selectedConversation, setSelectedConversation] = React.useState<
 		number | null
 	>(null);
@@ -48,30 +46,6 @@ export const MessagesSummary: React.FC<{
 						timestamp: "1h",
 					},
 			  ];
-
-	if (loading) {
-		return (
-			<div className="card-messages">
-				<div className="card-messages-header">
-					<div className="card-messages-header-title">Messages</div>
-					<div className="card-messages-header-actions">
-						<Skeleton className="skeleton-icon" />
-					</div>
-				</div>
-				<div className="messages-list-container">
-					{Array.from({ length: 4 }).map((_, i) => (
-						<div key={i} className="message-item">
-							<Skeleton className="skeleton-avatar" />
-							<div style={{ flex: 1 }}>
-								<Skeleton className="skeleton-line short" />
-								<Skeleton className="skeleton-line" />
-							</div>
-						</div>
-					))}
-				</div>
-			</div>
-		);
-	}
 
 	return (
 		<div className="card-messages" aria-labelledby="messages-heading">

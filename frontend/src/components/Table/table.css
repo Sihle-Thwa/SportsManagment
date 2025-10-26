@@ -431,7 +431,7 @@
 	background: color-mix(in srgb, var(--interactive-error) 6%, white);
 }
 
-/* ---------- skeleton / shimmer helpers ---------- */
+/* --------- shimmer helpers ---------- */
 .shimmer {
 	background: linear-gradient(
 		90deg,

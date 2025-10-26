@@ -1,17 +1,14 @@
-// CalendarObject.tsx
 "use client";
 import React from "react";
 import { Calendar } from "../../../ui/calendar";
-import { Skeleton } from "../../Skeleton/Skeleton";
 import "./calendarobject.css"; // CSS module import
 
-export function CalendarObject({ loading = false }: { loading?: boolean }) {
+export function CalendarObject() {
 	const [date, setDate] = React.useState<Date | undefined>(new Date());
 	React.useEffect(() => {
 		setDate(new Date());
 	}, []);
 
-	// Map DayPicker class keys to module classes (only keys you want to override)
 	const classNames = {
 		// container level
 		months: "months",
@@ -36,19 +33,6 @@ export function CalendarObject({ loading = false }: { loading?: boolean }) {
 		day_range_middle: "day_range_middle",
 		// extend or override other keys as necessary
 	};
-
-	if (loading) {
-		return (
-			<div className="cardCalendar" aria-label="Calendar loading">
-				<div className="cardHeader">
-					<div className="cardHeaderTitle">Calendar</div>
-				</div>
-				<div className="cardBody">
-					<Skeleton className="skeletonCalendar" />
-				</div>
-			</div>
-		);
-	}
 
 	return (
 		<div

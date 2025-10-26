@@ -1,34 +1,8 @@
 "use client";
-import React from "react";
 import greetingCardImg from "../../../../assets/images/standing-dashboard-image.svg";
-import { Skeleton } from "../../Skeleton/Skeleton";
 import "./cardgreetings.css";
 
-export const CardGreeting: React.FC<{ loading?: boolean }> = ({
-	loading = false,
-}) => {
-	if (loading) {
-		return (
-			<section className="card-greeting" aria-labelledby="greeting-heading">
-				<div className="card-greeting-body">
-					<div className="greeting-content">
-						<div className="greeting-text">
-							<Skeleton className="skeleton-heading" />
-							<Skeleton className="skeleton-line" />
-							<div className="greeting-actions">
-								<Skeleton className="skeleton-button" />
-								<Skeleton className="skeleton-button small" />
-							</div>
-						</div>
-						<div className="greeting-image">
-							<Skeleton className="skeleton-image" />
-						</div>
-					</div>
-				</div>
-			</section>
-		);
-	}
-
+export const CardGreeting = () => {
 	return (
 		<div className="card-greeting" aria-labelledby="greeting-heading">
 			<div className="card-greeting-body">
