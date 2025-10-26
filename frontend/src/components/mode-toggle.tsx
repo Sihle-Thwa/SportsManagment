@@ -10,30 +10,46 @@ import { useTheme } from "../components/use-theme";
 import { useEffect, useState } from "react";
 import { getStoredTheme, initTheme } from "../lib/theme";
 
-export function ModeToggle({ className }: { className?: string }) {
+export function ModeToggle() {
 	const { setTheme } = useTheme();
 	// track current for icon + immediate UI feedback
-	const [current, setCurrent] = useState<string>();
+	const [current, setCurrent] = useState<
+		"light" | "dark" | "system" | undefined
+	>();
 
-	// initialize theme on client
 	useEffect(() => {
 		initTheme();
+
 		const stored = getStoredTheme();
-		if (stored) setTheme(stored);
+
+		if (stored) {
+			setTheme(stored);
+		} else {
+			// No stored theme: set "system" as the default
+			setTheme("system");
+			setCurrent("system");
+		}
 	}, [setTheme]);
 
 	// helper to update both theme provider and local state
-	const apply = (t: "light" | "dark") => {
+	const apply = (t: "light" | "dark" | "system") => {
 		setTheme(t);
 		setCurrent(t);
 	};
+	// sync current with theme changes
+	useEffect(() => {
+		const stored = getStoredTheme();
+		if (stored) {
+			setCurrent(stored);
+		} else {
+			setCurrent("system");
+		}
+	}, [setCurrent]);
 
-	// pick icon based on current theme
-	const ThemeIcon = () => {
-		if (current === "dark") return <Moon className="w-5 h-5" />;
-		if (current === "light") return <Sun className="w-5 h-5" />;
-		return <Laptop className="w-5 h-5" />; // system
-	};
+	// early return to avoid hydration mismatch
+	if (!current) {
+		return null;
+	}
 
 	return (
 		<DropdownMenu>
@@ -41,30 +57,34 @@ export function ModeToggle({ className }: { className?: string }) {
 				<button
 					type="button"
 					aria-label="Toggle theme"
-					className={
-						"inline-flex items-center justify-center p-2 rounded-md transition-colors " +
-						"bg-transparent hover:bg-slate-100 dark:hover:bg-slate-800 " +
-						"focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary " +
-						"shadow-sm " +
-						(className ?? "")
-					}
+					className="mode-toggle__button"
 				>
-					<ThemeIcon />
+					{current === "dark" && <Moon className="mode-toggle__icon_Moon" />}
+					{current === "light" && <Sun className="mode-toggle__icon_Sun" />}
+					{current === "system" && (
+						<Laptop className="mode-toggle__icon_Laptop" />
+					)}
 					<span className="sr-only">Toggle theme</span>
 				</button>
 			</DropdownMenuTrigger>
 
-			<DropdownMenuContent align="end" className="min-w-[9rem]">
+			<DropdownMenuContent align="end" className="mode-toggle__menuContent">
+				<DropdownMenuItem onClick={() => apply("system")}>
+					<div className="mr-2">
+						<Laptop className="mode-toggle__icon_Laptop" />
+					</div>
+					System
+				</DropdownMenuItem>
 				<DropdownMenuItem onClick={() => apply("light")}>
-					<span className="mr-2">
-						<Sun className="w-4 h-4" />
-					</span>
+					<div className="mr-2">
+						<Sun className="mode-toggle__icon_Sun" />
+					</div>
 					Light
 				</DropdownMenuItem>
 				<DropdownMenuItem onClick={() => apply("dark")}>
-					<span className="mr-2">
-						<Moon className="w-4 h-4" />
-					</span>
+					<div className="mr-2">
+						<Moon className="mode-toggle__icon_Moon" />
+					</div>
 					Dark
 				</DropdownMenuItem>
 			</DropdownMenuContent>

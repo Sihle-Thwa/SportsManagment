@@ -1,27 +1,69 @@
 @import "tailwindcss";
-@layer components {
-
-	.dropdownMenu_modeToggle {
-		
-	}
 
 	.mode-toggle__button {
-		display: inline-flex;
+		display: flex;
+		flex-direction: row;
 		align-items: center;
-		gap: 8px;
-		padding: 6px 12px;
-		border-radius: var(--radius-md);
-		background: transparent;
-		border: 1px solid transparent;
+		justify-content: center;
+		background-color: inherit;
 		color: var(--text-primary);
+		cursor: pointer;
+		transition: color 0.2s ease, opacity 0.2s ease;
 	}
 	.mode-toggle__button:hover {
-		background: var(--surface-background-hover);
+		color: var(--text-secondary);
+		opacity: 0.8;
 	}
-	.mode-toggle__icon {
+	.mode-toggle__icon_Moon {
+		color: var(--color-gray-800);
 		width: var(--icon-size-sm);
 		height: var(--icon-size-sm);
 	}
 
-	
-}
+	.mode-toggle__icon_Sun {
+		color: var(--color-amber-500);
+		width: var(--icon-size-sm);
+		height: var(--icon-size-sm);
+	}
+
+	.mode-toggle__icon_Laptop {
+		color: var(--color-gray-600);
+		width: var(--icon-size-sm);
+		height: var(--icon-size-sm);
+	}
+
+	.mode-toggle__menuContent {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		justify-content: center;
+		align-items: stretch;
+		background-color: var(--modal-background);
+		border: 1px solid var(--modal-border);
+		border-radius: var(--border-radius-md);
+		box-shadow: var(--modal-shadow);
+		padding: 8px 16px;
+	}
+
+	.mode-toggle__menuItem {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 8px;
+		padding: 8px 12px;
+		border-radius: var(--border-radius-sm);
+		cursor: pointer;
+		transition: background-color 0.2s ease;
+	}
+	.mode-toggle__menuItem:hover {
+		background-color: var(--modal-hover-background);
+	}
+	.mode-toggle__menuItem--active {
+		background-color: var(--modal-active-background);
+		font-weight: 600;
+	}
+	.mode-toggle__menuItemIcon {
+		width: var(--icon-size-sm);
+		height: var(--icon-size-sm);
+	}
+
