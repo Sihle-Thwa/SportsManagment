@@ -13,18 +13,17 @@ import { getStoredTheme, initTheme } from "../lib/theme";
 export function ModeToggle({ className }: { className?: string }) {
 	const { setTheme } = useTheme();
 	// track current for icon + immediate UI feedback
-	const [current, setCurrent] = useState<string | null>(null);
+	const [current, setCurrent] = useState<string>();
 
 	// initialize theme on client
 	useEffect(() => {
 		initTheme();
-		const stored = getStoredTheme() || "system";
-		setCurrent(stored);
+		const stored = getStoredTheme();
 		if (stored) setTheme(stored);
 	}, [setTheme]);
 
 	// helper to update both theme provider and local state
-	const apply = (t: "light" | "dark" | "system") => {
+	const apply = (t: "light" | "dark") => {
 		setTheme(t);
 		setCurrent(t);
 	};
@@ -67,12 +66,6 @@ export function ModeToggle({ className }: { className?: string }) {
 						<Moon className="w-4 h-4" />
 					</span>
 					Dark
-				</DropdownMenuItem>
-				<DropdownMenuItem onClick={() => apply("system")}>
-					<span className="mr-2">
-						<Laptop className="w-4 h-4" />
-					</span>
-					System
 				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>

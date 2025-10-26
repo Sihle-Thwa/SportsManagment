@@ -1,5 +1,10 @@
 @import "tailwindcss";
 @layer components {
+
+	.dropdownMenu_modeToggle {
+		
+	}
+
 	.mode-toggle__button {
 		display: inline-flex;
 		align-items: center;
@@ -17,4 +22,6 @@
 		width: var(--icon-size-sm);
 		height: var(--icon-size-sm);
 	}
+
+	
 }

@@ -157,8 +157,8 @@
     --card-footer-border: var(--border-muted);
     
     /* Input Components */
-    --input-background: var(--colour-neutral-100);
-    --input-text: var(--colour-neutral-900);
+    --input-background: var(--color-white);
+    --input-text: var(--text-primary);
     --input-border: var(--border-default);
     --input-border-focus: var(--colour-primary-500);
     --input-border-error: var(--colour-error-500);
