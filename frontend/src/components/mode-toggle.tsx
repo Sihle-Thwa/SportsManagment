@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { getStoredTheme, initTheme } from "../lib/theme";
 
 export function ModeToggle() {
-	const { setTheme } = useTheme();
+	const { setTheme, theme, resolvedTheme, cycleTheme } = useTheme();
 	// track current for icon + immediate UI feedback
 	const [current, setCurrent] = useState<
 		"light" | "dark" | "system" | undefined
@@ -56,8 +56,13 @@ export function ModeToggle() {
 			<DropdownMenuTrigger asChild>
 				<button
 					type="button"
-					aria-label="Toggle theme"
 					className="mode-toggle__button"
+					aria-pressed={
+						theme === "dark" || (theme === "system" && resolvedTheme === "dark")
+					}
+					aria-label={`Toggle theme (current: ${theme}, resolved: ${resolvedTheme})`}
+					onClick={cycleTheme}
+					title={`Theme: ${theme} (resolved: ${resolvedTheme})`}
 				>
 					{current === "dark" && <Moon className="mode-toggle__icon_Moon" />}
 					{current === "light" && <Sun className="mode-toggle__icon_Sun" />}
