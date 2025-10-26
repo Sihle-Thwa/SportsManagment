@@ -1,4 +1,3 @@
-// src/components/layout/SideNav/nav-main.tsx
 "use client";
 import { NavLink, useLocation } from "react-router-dom";
 import { SidebarMenu, SidebarMenuItem } from "../../ui/sidebar";

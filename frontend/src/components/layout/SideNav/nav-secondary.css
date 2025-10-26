@@ -1,59 +1,63 @@
 @import "tailwindcss";
 
 @layer components {
-	:root {
-		--icon-size-md: 20px;
-		--radius-md: 8px;
-		--transition-fast: 180ms;
-		--easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+	.nav-secondary {
+		width: 100%;
+		overflow: hidden;
 	}
 
 	.nav-secondary__menu {
+		list-style: none;
+		margin: 0;
+		padding: 0;
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
-		width: 100%;
-		margin-top: auto; /* push to bottom */
+	}
+
+	.nav-secondary__item {
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
 	}
 
 	.nav-secondary__link {
-		display: inline-flex;
+		display: flex;
 		align-items: center;
 		gap: 12px;
 		width: 100%;
 		padding: 8px 12px;
-		color: var(--sidebar-text);
 		text-decoration: none;
-		border-radius: var(--radius-md);
+		color: var(--text-primary);
+		border-radius: var(--border-radius-default);
 		transition: background var(--transition-fast) var(--easing-smooth),
-			color var(--transition-fast) var(--easing-smooth);
-		font-size: var(--body-size-default);
+			color var(--transition-fast) var(--easing-smooth),
+			box-shadow var(--transition-fast) var(--easing-smooth);
 	}
 
-	.nav-secondary__link:hover,
-	.nav-secondary__link:focus {
+	.nav-secondary__link:hover {
 		background: var(--sidebar-item-background-hover);
 		color: var(--sidebar-text-hover);
-		outline: none;
 	}
 
 	.nav-secondary__link.is-active {
-		background: var(--interactive-secondary-active, var(--interactive-neutral));
-		color: var(--sidebar-text-active);
-		box-shadow: var(--layout-shadow-active);
+		background: var(--sidebar-item-background-active);
+		color: var(--sidebar-item-text-active);
 	}
 
 	.nav-secondary__icon {
-		width: var(--icon-size-md);
+	width: var(--icon-size-md);
 		height: var(--icon-size-md);
-		display: inline-flex;
+		margin: 0;
+		display: flex;
 		align-items: center;
 		justify-content: center;
 		color: var(--sidebar-icon);
+		transition: color var(--transition-fast) var(--easing-smooth);
 	}
 
 	.nav-secondary__label {
-		font-size: var(--body-size-default);
+		flex-grow: 1;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;

@@ -47,15 +47,15 @@ export default function NavSecondary({
 								title={collapsed ? item.title : undefined}
 								aria-label={item.title}
 							>
-								<span className="nav-secondary__icon" aria-hidden>
+								<div className="nav-secondary__icon" aria-hidden>
 									{Icon ? (
-										<Icon size={16} />
+										<Icon />
 									) : (
-										<span className="sidebar-menu-icon-placeholder" />
+										<div className="sidebar-menu-icon-placeholder" />
 									)}
-								</span>
+								</div>
 								{!collapsed && (
-									<span className="nav-secondary__label">{item.title}</span>
+									<div className="nav-secondary__label">{item.title}</div>
 								)}
 							</NavLink>
 						</SidebarMenuItem>

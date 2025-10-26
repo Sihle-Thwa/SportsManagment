@@ -1,92 +1,96 @@
 @import "tailwindcss";
 
 @layer components {
-	:root {
-		--icon-size-lg: 28px;
-		--radius-md: 8px;
-		--transition-fast: 180ms;
-		--easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
-	}
 
 	.nav-main {
 		width: 100%;
+		overflow: hidden;
+
 	}
 
+
 	.nav-main__menu {
+		list-style: none;
+		margin: 0;
+		padding: 0;
 		display: flex;
 		flex-direction: column;
-		gap: 6px;
-		width: 100%;
+		gap: 8px;
 	}
 
 	.nav-main__item {
-		width: 100%;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
 	}
 
 	.nav-main__link {
-		display: inline-flex;
+		display: flex;
 		align-items: center;
 		gap: 12px;
 		width: 100%;
 		padding: 8px 12px;
-		border-radius: var(--radius-md);
-		color: var(--sidebar-text, var(--colour-neutral-900));
-		background: transparent;
 		text-decoration: none;
-		border: 1px solid transparent;
+		color: var(--text-primary);
+		border-radius: var(--border-radius-default);
 		transition: background var(--transition-fast) var(--easing-smooth),
 			color var(--transition-fast) var(--easing-smooth),
 			box-shadow var(--transition-fast) var(--easing-smooth);
-		font-size: var(--body-size-default);
 	}
 
-	.nav-main__link:hover,
+	.nav-main__link:hover {
+
+		background: var(--interactive-hover, var(--colour-primary-100));
+		color: var(--text-primary);
+		box-shadow: var(--layout-shadow-hover);
+	}
+
 	.nav-main__link:focus {
-		background: var(
-			--sidebar-item-background-hover,
-			color-mix(
-				in srgb,
-				var(--sidebar-background) 95%,
-				var(--interactive-hover) 5%
-			)
-		);
-		color: var(--sidebar-text-hover, var(--text-on-primary));
-		outline: none;
+		background: var(--interactive-focus, var(--colour-primary-100));
+		color: var(--text-primary);
+		outline: var(--focus-outline, 2px solid var(--colour-primary-500));
+		outline-offset: var(--focus-outline-offset, 2px);
 	}
 
 	.nav-main__link.is-active {
-		background: var(--interactive-primary, var(--colour-primary-500));
-		color: var(--sidebar-text-active, var(--text-on-primary));
-		box-shadow: var(--layout-shadow-active);
+		background: var(--sidebar-item-background-active);
+		color: var(--sidebar-item-text-active);
+		font-weight: var(--font-weight-semibold);
 	}
 
 	.nav-main__icon {
-		flex: 0 0 auto;
-		width: var(--icon-size-lg);
-		height: var(--icon-size-lg);
-		display: inline-flex;
+		width: var(--icon-size-md);
+		height: var(--icon-size-md);
+		margin: 0;
+		display: flex;
 		align-items: center;
 		justify-content: center;
-		color: var(--sidebar-icon, var(--icon-primary));
+		color: var(--text-primary);
 		transition: color var(--transition-fast) var(--easing-smooth);
 	}
 
-	.nav-main__link:hover .nav-main__icon,
-	.nav-main__link.is-active .nav-main__icon {
-		color: var(--sidebar-icon-hover, var(--icon-on-primary));
+	.nav-main__icon:active {
+		color: var(--text-on-primary);
+	}
+
+	.nav-main__icon:focus {
+		outline: 2px solid var(--focus-outline);
+		outline-offset: 2px;
 	}
 
 	.nav-main__label {
+		flex-grow: 1;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		font-size: var(--body-size-default);
+
 	}
 
 	/* collapsed: only show icons centered */
 	.nav-main.is-collapsed .nav-main__link {
 		justify-content: center;
 		padding: 8px;
+
 	}
 	.nav-main.is-collapsed .nav-main__label {
 		display: none;
