@@ -1,4 +1,3 @@
-// app-header.tsx
 import { useLocation } from "react-router-dom";
 import "./appheader.css";
 
