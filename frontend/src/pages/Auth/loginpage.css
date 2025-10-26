@@ -19,8 +19,8 @@
 		height: 72px;
 		position: sticky;
 		top: 0;
-		background: var(--sidebar-background, var(--colour-neutral-100));
-		border-bottom: 1px solid var(--border-subtle);
+		background: var(--navbar-background);
+		border-bottom: 1px solid var(--navbar-border);
 		box-shadow: var(--shadow-sm);
 	}
 
@@ -42,6 +42,7 @@
 		justify-content: flex-start;
 		align-items: flex-start;
 		gap: 8px;
+		color: var(--navbar-text);
 		
 	}
 
@@ -145,48 +146,7 @@
 		width: 100%;
 	}
 
-	.loginPageForm_bodyForgotPassword {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-		width: 100%;
-	}
-
-	.loginPageForm_bodyForgotPassword_checkbox {
-		display: flex;
-		align-items: center;
-		gap: 8px;
-		font-size: var(--button-size-sm);
-		color: var(--text-primary);
-		font-weight: var(--font-weight-normal);
-	}
-	.loginPageForm_bodyForgotPassword_link {
-		display: flex;
-		align-items: center;
-		gap: 8px;
-		font-size: var(--button-size-sm);
-		font-weight: var(--font-weight-semibold);
-		text-decoration: underline;
-		color: var(--colour-accent);
-	}
-
-	.loginPageForm_bodyFooter {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 16px;
-		width: 100%;
-	}
-
-	.loginPageForm_bodyFooter_cta {
-		display: flex;
-		flex-direction: column;
-		gap: 12px;
-		width: 100%;
-	}
-
-	.loginPageForm_bodyFooter_cta_primaryButton {
+	.loginPageForm_submitButton {
 		display: flex;
 		justify-content: center;
 		width: 100%;
@@ -196,28 +156,72 @@
 		border-radius: var(--radius-lg);
 		padding: 8px 16px;
 		font-size: var(--button-font-size);
+		margin-top: 16px;
 	}
 
-	.loginPageForm_bodyFooter_cta_secondaryButton {
+	.loginPageForm_forgotPassword {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		font-size: var(--button-size-sm);
+		font-weight: var(--font-weight-semibold);
+		text-decoration: underline;
+		color: var(--colour-accent);
+		margin-top: 8px;
+	}
+
+	.loginPageForm_rememberMe {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		font-size: var(--button-size-sm);
+		color: var(--text-primary);
+		font-weight: var(--font-weight-normal);
+		margin-top: 8px;
+	}
+
+	.loginPageForm_rememberMe_cta {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		font-size: var(--button-size-sm);
+		color: var(--text-primary);
+		font-weight: var(--font-weight-normal);
+	}
+
+	.loginPageForm_divider {
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-		gap: 8px;
-		font-size: var(--button-size-md);
-		color: var(--text-primary);
-		border: 1px solid var(--border-default);
-		border-radius: var(--radius-lg);
-		font-size: var(--button-font-size);
-		padding: 8px 16px;
-		transition: background-color 0.2s ease;
-		
+		gap: 12px;
+		width: 100%;
+		margin-top: 8px;
+		margin-bottom: 8px;
+	}
+	.loginPageForm_divider_line {
+		display: flex;
+		width: 100%;
+		height: 1px;
+		background-color: var(--colour-secondary);
+		border-radius: var(--radius-full);
 	}
 
-	.loginPageForm_bodyFooter_icon {
-		width: var(--icon-size-md);
-		height: var(--icon-size-md);
+	.loginPageForm_googleButton {
+		display: flex;
 		justify-content: center;
 		align-items: center;
+		gap: 8px;
+		width: 100%;
+		background-color: var(--text-tertiary);
+		color: var(--text-on-tertiary);
+		border: 1px solid var(--border-default);
+		border-radius: var(--radius-lg);
+		padding: 8px 16px;
+		font-size: var(--button-font-size);
+	}
+	.loginPageForm_googleButton_icon {
+		width: var(--icon-size-sm);
+		height: var(--icon-size-sm);
 	}
 }

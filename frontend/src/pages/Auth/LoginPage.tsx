@@ -129,19 +129,20 @@ export default function LoginPage() {
 							</button>
 
 							<div
+								className="loginPageForm_rememberMe"
+								id="remember-me-checkbox"
+							>
+								<div className="loginPageForm_rememberMe_cta">
+									<input type="checkbox" {...register("remember")} />
+									Remember Me
+								</div>
+							</div>
+
+							<div
 								className="loginPageForm_forgotPassword"
 								id="forgot-password-link"
 							>
 								<a href="/forgot-password">Forgot Password?</a>
-							</div>
-							<div
-								className="loginPageForm_rememberMe"
-								id="remember-me-checkbox"
-							>
-								<div className="loginPageForm_rememberMe_checkbox">
-									<input type="checkbox" {...register("remember")} />
-									Remember Me
-								</div>
 							</div>
 
 							<div
@@ -149,9 +150,6 @@ export default function LoginPage() {
 								aria-label="or continue with"
 							>
 								<div className="loginPageForm_divider_line"></div>
-								<div className="loginPageForm_divider_text">
-									<span>or continue with</span>
-								</div>
 							</div>
 							<button type="button" className="loginPageForm_googleButton">
 								<GoogleIcon className="loginPageForm_googleButton_icon" />
