@@ -1,5 +1,5 @@
 "use client";
-import { statsdata } from "../../../routes/statsdata";
+import { statsdata } from "../../../../routes/statsdata";
 
 import "./cardstatistics.css";
 

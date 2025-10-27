@@ -1,6 +1,6 @@
 "use client";
 import CardGreeting from "../../components/common/Cards/Greetings/CardGreeting";
-import { CardStatistics } from "../../components/common/Cards//CardStatistics";
+import { CardStatistics } from "../../components/common/Cards/Statistics/CardStatistics";
 import { CalendarObject } from "../../components/common/Cards/Calendar/CalendarObject";
 import { CardNotices } from "../../components/common/Cards/Notices/CardNotices";
 import { MessagesSummary } from "../../components/common/Cards/Messages/MessagesSummary";
