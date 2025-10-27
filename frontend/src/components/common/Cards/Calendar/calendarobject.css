@@ -1,26 +1,24 @@
-/* calendarobject.module.css */
 @import "tailwindcss";
 
-/* Basic card styling (scoped to module) */
 .cardCalendar {
 	display: flex;
 	flex-direction: column;
-	gap: 8px;
-	max-height: 320px;
-	padding: 0;
-	overflow: hidden;
-	background-color: var(--card-background);
-	border: 1px solid var(--border-default);
-	border-radius: var(--radius-lg);
-	box-shadow: var(--shadow-md);
+	width: 100%;
+	height: 100%;
+	min-height: 300px;
+	min-width: 280px;
+	background: var(--card-background);
+	border: 1px solid var(--card-border);
+	border-radius: 12px;
+	box-shadow: var(--card-shadow);
 }
 
-/* header/body module classes (used instead of global names) */
 .cardHeader {
-	padding: 8px 12px;
-	border-bottom: 1px solid var(--border-default);
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
+	padding: 12px 16px;
+	border-bottom: 1px solid var(--card-border);
 }
 .cardHeaderTitle {
 	font-size: var(--title-size-default);
@@ -28,34 +26,35 @@
 	color: var(--card-foreground, var(--colour-neutral-900));
 }
 .cardBody {
+	flex: 1 1 auto;
+	padding: 16px;
+	overflow: auto;
+}
+
+.calendarRoot {
 	display: flex;
 	flex-direction: column;
-	padding: 8px;
-	overflow: auto;
-	flex: 1;
+	gap: 16px;
 }
+
 .months {
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
-	align-items: start;
+	gap: 16px;
 }
 
-/* single month wrapper */
 .month {
-	display: flex;
-	flex-direction: column;
-	min-width: 0;
+	flex: 1 1 auto;
 }
 
-/* caption (month label and nav) */
 .caption {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	margin-bottom: 8px;
 }
 .caption_label {
-	font-size: var(--subtitle-size-default);
+	font-size: var(--body-size-default);
 	font-weight: var(--font-weight-medium);
 	color: var(--card-foreground, var(--colour-neutral-900));
 }
@@ -64,35 +63,41 @@
 .nav {
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	gap: 4px;
 }
 .nav_button {
-	background: transparent;
-	border: none;
+	width: var(--icon-size-md);
+	height: var(--icon-size-md);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 8px;
 	cursor: pointer;
-	transition: var(--transition-fast);
+	transition: var(--transition-fast), color 150ms, transform 120ms;
+	font-size: var(--body-size-lg);
+	color: var(--card-foreground, var(--colour-neutral-900));
+	background: transparent;
+}
+.nav_button:hover {
+	background: var(--background-surface-hover, rgba(0, 0, 0, 0.04));
 }
 
-/* table / grid */
 .table {
-	width: 100%;
-	table-layout: fixed;
-	border-collapse: collapse;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
 }
 .head_row {
 	display: flex;
-	justify-content: space-between;
 	gap: 8px;
 }
 .head_cell {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
 	flex: 1 1 0;
-	font-size: var(--overline-size-default);
-	color: var(--card-foreground-secondary);
-	padding: 4px 0;
+	display: flex;
+	justify-content: center;
+	font-size: var(--body-size-sm);
+	font-weight: var(--font-weight-medium);
+	color: var(--card-foreground-secondary, rgba(0, 0, 0, 0.6));
 }
 
 /* rows/cells */
@@ -101,60 +106,59 @@
 	gap: 8px;
 }
 .cell {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
 	flex: 1 1 0;
-	padding: 4px 0;
+	display: flex;
+	justify-content: center;
 }
 
 /* day button (maps to 'day' key you pass) */
 .day {
-	width: var(--icon-size-default);
-	height: var(--icon-size-default);
+	width: var(--icon-size-md);
+	height: var(--icon-size-md);
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	border-radius: 8px;
 	cursor: pointer;
-	transition: var(--transition-fast), color 150ms, transform 120ms;
-	color: var(--card-foreground, var(--colour-neutral-900));
+	transition: var(--transition-fast), background-color 150ms, color 150ms;
+	font-size: var(--body-size-sm);
 	font-weight: var(--font-weight-medium);
+	color: var(--card-foreground, var(--colour-neutral-900));
 	background: transparent;
 }
 .day:hover {
 	background: var(--background-surface-hover, rgba(0, 0, 0, 0.04));
 }
 
-/* selected day */
 .day_selected {
-	background: var(--interactive-primary, var(--colour-primary-500));
-	color: var(--text-on-primary, var(--colour-neutral-900));
+	background: var(--colour-primary-500);
+	color: var(--text-on-primary, var(--colour-neutral-100));
 }
 
 /* today marker */
 .day_today {
-	border: 1px solid var(--border-default);
-	color: var(--text-on-primary, var(--colour-neutral-900));
+	border: 2px solid var(--colour-primary-500);
 }
 
 /* outside days & disabled */
 .day_outside {
-	color: var(--card-foreground-disabled, rgba(0, 0, 0, 0.35));
-	opacity: 0.6;
+	color: var(--card-foreground-secondary, rgba(0, 0, 0, 0.6));
+	
 }
 .day_disabled {
-	color: var(--card-foreground-disabled, rgba(0, 0, 0, 0.35));
-	pointer-events: none;
-	opacity: 0.5;
+	cursor: not-allowed;
+	color: var(--card-foreground-disabled, rgba(0, 0, 0, 0.38));
 }
 
 /* small responsive tweaks */
-@media (max-width: 640px) {
+@media (max-width: 600px) {
+	.months {
+		flex-direction: column;
+	}
 	.day {
 		width: var(--icon-size-sm);
 		height: var(--icon-size-sm);
+		font-size: var(--body-size-sm);
 	}
 	.caption_label {
 		font-size: var(--body-size-sm);
@@ -162,4 +166,10 @@
 	.cardBody {
 		padding: 8px;
 	}
+	.nav_button {
+		width: var(--icon-size-sm);
+		height: var(--icon-size-sm);
+	}
 }
+
+
