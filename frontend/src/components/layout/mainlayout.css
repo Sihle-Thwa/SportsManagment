@@ -4,152 +4,229 @@
 	--sidebar-width: 250px;
 	--sidebar-width-collapsed: 72px;
 	--topbar-height: 72px;
+	--layout-gap: 24px;
+	--transition-fast: 180ms;
+	--easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Grid shell */
 .main_container {
 	display: grid;
-	grid-template-columns: var(--sidebar-width) 1fr;
-	grid-template-rows: var(--topbar-height) 1fr;
 	grid-template-areas:
 		"sidebar header"
 		"sidebar content";
+	grid-template-columns: var(--sidebar-width) 1fr;
+	grid-template-rows: var(--topbar-height) 1fr;
 	height: 100vh;
 	width: 100vw;
-	background: var(--background-canvas);
-	color: var(--foreground, var(--colour-neutral-900));
-	transition: grid-template-columns var(--transition-fast)
-		var(--easing-smooth, cubic-bezier(0.4, 0, 0.2, 1));
-	overflow-y: auto;
-	overflow-x: hidden;
+	overflow: hidden;
+	background: var(--canvas-background, var(--colour-neutral-100));
+	transition: grid-template-columns var(--transition-fast) var(--easing-smooth);
+	--topbar-height: 72px;
 }
-/* Sidebar */
-.app-sidebar {
+
+.app_sidebar {
 	grid-area: sidebar;
-	position: relative;
-	z-index: 50;
+	height: 100vh;
+	min-height: 100vh;
 	width: var(--sidebar-width);
-	min-width: var(--sidebar-width-collapsed);
-	border-right: 1px solid var(--border-default, var(--colour-neutral-200));
+	position: sticky;
+	top: 0;
+	z-index: 40;
+	transition: width var(--transition-fast) var(--easing-smooth),
+		transform var(--transition-fast) var(--easing-smooth);
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	border-right: 1px solid var(--border-default);
+	background: var(--sidebar-background, var(--card-background));
 }
 
-.app-sidebar [data-slot="sidebar_container"] {
-	left: 0 !important;
-	right: auto !important;
-	top: 0 !important;
+.app_sidebar [data-slot="sidebar_container"] {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
 }
 
+/* Topbar */
 .app_topbar {
 	grid-area: header;
 	height: var(--topbar-height);
 	min-height: var(--topbar-height);
-	display: flex;
-	align-items: center;
-	z-index: 50;
+	width: 100%;
 	position: sticky;
 	top: 0;
+	z-index: 30;
+	display: flex;
+	align-items: center;
+	padding: 0 16px;
+	background: var(--topbar-background, var(--card-background));
+	border-bottom: 1px solid var(--border-default);
 }
 
-/* Content region */
-.app_content {
+/* Main content region (pages) */
+.main_content {
 	grid-area: content;
-	position: relative;
-	overflow-x: hidden;
 	height: calc(100vh - var(--topbar-height));
+	width: 100%;
+	overflow: auto;
 	-webkit-overflow-scrolling: touch;
-	transition: height var(--transition-fast)
-		var(--easing-smooth, cubic-bezier(0.4, 0, 0.2, 1));
-}
-
-/* Page wrapper */
-.content_wrapper {
+	background: var(--canvas-background);
 	display: flex;
 	flex-direction: column;
-	width: 100%;
-	padding: 0;
-	overflow: auto;		
 }
 
-/* --------------------------------------------------------------------
-	Sidebar collapse / expand bindings
-   -------------------------------------------------------------------------- */
-.main_container.is-collapsed {
-	grid-template-columns: var(--sidebar-width-collapsed) 1fr;
+/* inner app content wrapper where routes render */
+.app_content {
+	width: 100%;
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: var(--layout-gap);
+	box-sizing: border-box;
+	min-height: calc(100vh - var(--topbar-height));
 }
-.main_container.is-expanded {
-	grid-template-columns: var(--sidebar-width) 1fr;
+
+/* content area accessible focus helper */
+#content-wrapper:focus {
+	outline: none;
+	box-shadow: 0 0 0 3px
+		color-mix(in srgb, var(--interactive-primary) 8%, transparent);
 }
+
+/* Overlay for off-canvas on mobile (hidden on desktop) */
+.app_sidebar_overlay {
+	display: none;
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.32);
+	z-index: 35;
+	transition: opacity var(--transition-fast) var(--easing-smooth);
+	opacity: 0;
+	pointer-events: none;
+}
+
+/* show overlay when sidebar is expanded on small screens */
+.main_container[data-sidebar-collapsed="false"] .app_sidebar_overlay,
+.app_sidebar_overlay[data-overlay-visible="true"] {
+	display: block;
+	opacity: 1;
+	pointer-events: auto;
+}
+
+/* ------------------------------------------------------------------
+Collapsed state — shrink sidebar
+------------------------------------------------------------------*/
+.main_container.is-collapsed,
 .main_container[data-sidebar-collapsed="true"] {
 	grid-template-columns: var(--sidebar-width-collapsed) 1fr;
+	--topbar-height: 72px;
 }
 
-/* Defensive: nudge aside width to match state */
-.main_container.is-collapsed .app_sidebar {
-	overflow: hidden;
+.main_container.is-collapsed .app_sidebar,
+.main_container[data-sidebar-collapsed="true"] .app_sidebar {
 	width: var(--sidebar-width-collapsed);
 }
-.main_container.is-expanded .app_sidebar {
-	overflow: hidden;
+
+/* expanded state explicit class */
+.main_container.is-expanded,
+.main_container[data-sidebar-collapsed="false"] {
+	grid-template-columns: var(--sidebar-width) 1fr;
+}
+
+.main_container.is-expanded .app_sidebar,
+.main_container[data-sidebar-collapsed="false"] .app_sidebar {
 	width: var(--sidebar-width);
 }
 
+/* ------------------------------------------------------------------
+Responsiveness: tablet & mobile
+------------------------------------------------------------------*/
+
+/* Tablet breakpoint — keep sidebar narrow, but allow off-canvas */
 @media (max-width: 1024px) {
 	.main_container {
-		--sidebar-width: 200px;
-		--sidebar-width-collapsed: 0px;
-		grid-template-columns: var(--sidebar-width-collapsed) 1fr;
-	}
-	.app_sidebar {
-		width: var(--sidebar-width-collapsed);
-	}
-	.app_content {
-		height: calc(100vh - var(--topbar-height));
-	}
-	.app_sidebar {
-		border-right: none;
+		grid-template-columns: 1fr;
+		grid-template-rows: var(--topbar-height) 1fr;
+		grid-template-areas:
+			"header"
+			"content";
 	}
 
+	/* When the sidebar provider marks expanded, slide it in as overlay */
+	.main_container .app_sidebar {
+		position: fixed;
+		left: 0;
+		top: 0;
+		height: 100vh;
+		transform: translateX(-110%);
+		width: var(--sidebar-width);
+		box-shadow: var(--shadow-md);
+		transition: transform var(--transition-fast) var(--easing-smooth);
+		z-index: 45;
+	}
+
+	/* slide sidebar in when not collapsed */
+	.main_container[data-sidebar-collapsed="false"] .app_sidebar {
+		transform: translateX(0);
+	}
+
+	/* overlay visible when sidebar expanded */
+	.app_sidebar_overlay {
+		display: block;
+	}
+
+	/* ensure main content doesn't scroll when sidebar open (optional) */
+	.main_container[data-sidebar-collapsed="false"] .main_content {
+		touch-action: none;
+		overflow: hidden;
+	}
 }
 
+/* Smaller devices: reduce topbar height and spacing */
 @media (max-width: 640px) {
-	.main_container {
+	:root {
 		--topbar-height: 56px;
-		grid-template-rows: var(--topbar-height) 1fr;
 	}
+
 	.app_topbar {
 		height: var(--topbar-height);
-		min-height: var(--topbar-height);
+		padding: 0 12px;
 	}
+
 	.app_content {
-		height: calc(100vh - var(--topbar-height));
+		padding: 12px;
+	}
+
+	.main_container .app_sidebar {
+		width: var(--sidebar-width);
+	}
+
+	/* on very small screens keep overlay behavior */
+	.main_container[data-sidebar-collapsed="false"] .app_sidebar {
+		transform: translateX(0);
 	}
 }
 
+/* ------------------------------------------------------------------
+Accessibility: reduced motion
+------------------------------------------------------------------*/
+@media (prefers-reduced-motion: reduce) {
+	.main_container,
+	.app_sidebar,
+	.app_topbar,
+	.app_content,
+	.app_sidebar_overlay {
+		transition: none !important;
+	}
+}
 
-/* Scrollbar */
+/* Ensure scrollbars are subtle and match theme */
 .app_content::-webkit-scrollbar {
-	width: 8px;
+	width: 10px;
 }
 .app_content::-webkit-scrollbar-thumb {
-	background-color: var(--colour-neutral-300);
-	border-radius: 4px;
-}
-.app_content::-webkit-scrollbar-thumb:hover {
-	background-color: var(--colour-neutral-400);
-}
-
-	/* Print */
-@media print {
-	.main_container,
-	.app_content,
-	.content_wrapper {
-		height: auto !important;
-	}
-	.app_sidebar,
-	.app_topbar {
-		display: none;
-		visibility: hidden;
-		height: 0;
-		min-height: 0;
-	}
+	background: color-mix(
+		in srgb,
+		var(--muted-foreground, var(--colour-neutral-700)) 30%,
+		transparent
+	);
+	border-radius: 6px;
 }

@@ -1,10 +1,7 @@
-// src/components/layout/SideNav/nav-user.tsx
 "use client";
-
-import * as React from "react";
+import React from "react";
 import { ChevronDown, LogOut, Settings } from "lucide-react";
-import { cn } from "../../../lib/utils";
-import "./nav-user.css";
+import "./navuser.css";
 
 export interface NavUserProps {
 	collapsed?: boolean;
@@ -44,7 +41,7 @@ export default function NavUser({
 			}
 		}
 		document.addEventListener("mousedown", onDocClick, { passive: true });
-		document.addEventListener("keydown", onKey, { passive: false });
+		document.addEventListener("keydown", onKey);
 		return () => {
 			document.removeEventListener("mousedown", onDocClick);
 			document.removeEventListener("keydown", onKey);
@@ -52,29 +49,23 @@ export default function NavUser({
 	}, []);
 
 	return (
-		<div className={cn("nav-user", collapsed && "is-collapsed")}>
+		<div className="navUserRoot">
 			<button
 				ref={triggerRef}
 				type="button"
-				className={cn(
-					"nav-user__trigger nav-user-trigger",
-					collapsed && "nav-user-trigger-collapsed",
-				)}
+				className="navUserTrigger"
 				aria-haspopup="menu"
 				aria-expanded={open}
 				onClick={() => setOpen((s) => !s)}
 			>
 				<span
-					className={cn(
-						"nav-user__avatar nav-user-avatar",
-						collapsed && "nav-user-avatar-collapsed",
-					)}
+					className={`navUserAvatar ${collapsed && "navUserAvatarCollapsed"}`}
 					aria-hidden
 				>
 					{avatarUrl ? (
-						<img src={avatarUrl} alt="" className="nav-user__avatar-img" />
+						<img src={avatarUrl} alt="" className="navUserAvatarImg" />
 					) : (
-						<span className="nav-user__avatar-fallback nav-user-avatar-fallback">
+						<span className="navUserAvatarFallback">
 							{String(name)
 								.split(" ")
 								.map((n) => n[0])
@@ -87,11 +78,11 @@ export default function NavUser({
 
 				{!collapsed && (
 					<>
-						<span className="nav-user__info nav-user-info">
-							<span className="nav-user__name nav-user-name">{name}</span>
-							<span className="nav-user__email nav-user-email">{email}</span>
+						<span className="navUserInfo">
+							<span className="navUserName">{name}</span>
+							<span className="navUserEmail">{email}</span>
 						</span>
-						<ChevronDown className="nav-user__chevron nav-user-menu-icon" />
+						<ChevronDown className="navUserChevron" />
 					</>
 				)}
 			</button>
@@ -99,24 +90,21 @@ export default function NavUser({
 			{open && (
 				<div
 					ref={menuRef}
-					className="nav-user__dropdown nav-user-dropdown"
+					className="navUserMenu"
 					role="menu"
 					aria-label="User menu"
 				>
-					<div className="nav-user-dropdown-header">
-						<div className="nav-user-dropdown-info">
-							<div
-								className="nav-user-dropdown-avatar nav-user-dropdown-avatar-fallback"
-								aria-hidden
-							>
+					<div className="navUserMenuHeader">
+						<div className="navUserMenuUser">
+							<div className="navUserMenuAvatar" aria-hidden>
 								{avatarUrl ? (
 									<img
 										src={avatarUrl}
 										alt=""
-										className="nav-user-dropdown-avatar-img"
+										className="navUserMenuAvatarImg"
 									/>
 								) : (
-									<div className="nav-user-dropdown-avatar-fallback">
+									<div className="navUserMenuAvatarFallback">
 										{String(name)
 											.split(" ")
 											.map((n) => n[0])
@@ -126,38 +114,38 @@ export default function NavUser({
 									</div>
 								)}
 							</div>
-							<div className="nav-user-dropdown-text">
-								<div className="nav-user-dropdown-name">{name}</div>
-								<div className="nav-user-dropdown-email">{email}</div>
+							<div className="navUserMenuText">
+								<div className="navUserMenuName">{name}</div>
+								<div className="navUserMenuEmail">{email}</div>
 							</div>
 						</div>
 					</div>
 
-					<div className="nav-user-dropdown-list">
+					<div className="navUserMenuList">
 						<button
 							type="button"
-							className="nav-user-dropdown-item"
+							className="navUserMenuItem"
 							role="menuitem"
 							onClick={() => {
 								setOpen(false);
 								onOpenSettings?.();
 							}}
 						>
-							<Settings className="nav-user-dropdown-item-icon" />
+							<Settings className="navUserMenuIcon" />
 							<span>Settings</span>
 						</button>
 
 						<button
 							type="button"
-							className="nav-user-dropdown-item nav-user-dropdown-logout"
+							className={`navUserMenuItem navUserLogout`}
 							role="menuitem"
 							onClick={() => {
 								setOpen(false);
 								onSignOut?.();
 							}}
 						>
-							<LogOut className="nav-user-dropdown-item-icon" />
-							<span>Sign out</span>
+							<LogOut className="navUserMenuIcon" />
+							<span>Sign Out</span>
 						</button>
 					</div>
 				</div>

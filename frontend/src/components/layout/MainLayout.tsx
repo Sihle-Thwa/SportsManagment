@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import AppTopBar from "../layout/TopNav/app-topbar";
 import { SidebarProvider, useSidebar } from "../ui/sidebar-context";
-import AppSideBar from "./SideNav/app-sidebar";
+import AppSideBar from "./SideNav/AppSidebar";
 import "./mainlayout.css";
 import "../../lib/theme";
 
@@ -16,19 +16,37 @@ function InnerShell() {
 				isCollapsed ? "is-collapsed" : "is-expanded"
 			}`}
 			data-sidebar-collapsed={isCollapsed ? "true" : "false"}
+			aria-hidden="false"
 		>
-			<AppSideBar />
-
-			<div className="app_topbar" role="banner">
-				<AppTopBar />
-				{/* Add any additional elements to the top bar here */}
+			{/* Sidebar column / off-canvas on mobile */}
+			<div
+				className="app_sidebar"
+				role="complementary"
+				aria-label="Primary navigation"
+			>
+				<AppSideBar />
 			</div>
 
-			<main id="main_content" className="app_content" role="main" tabIndex={-1}>
-				<div className="content_wrapper">
+			{/* Topbar */}
+			<div className="app_topbar" role="banner">
+				<AppTopBar />
+			</div>
+
+			{/* Main content */}
+			<main id="main_content" className="main_content" role="main">
+				<div className="app_content" id="content-wrapper" tabIndex={-1}>
 					<Outlet />
 				</div>
 			</main>
+
+			<div
+				className="app_sidebar_overlay"
+				aria-hidden={isCollapsed}
+				data-overlay-visible={!isCollapsed ? "true" : "false"}
+				onClick={() =>
+					sidebar?.isCollapsed ? undefined : sidebar?.toggleSidebar()
+				}
+			/>
 		</div>
 	);
 }

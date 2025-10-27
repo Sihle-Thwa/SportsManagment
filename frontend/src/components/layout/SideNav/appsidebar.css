@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+:root {
+	--sidebar-width: 250px;
+	--sidebar-width-collapsed: 72px;
+	--sidebar-topbar: 72px;
+	--radius-md: 8px;
+}
+
+/* root wrapper */
+.appSidebar {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	background: var(--sidebar-background, var(--card-background));
+	border-right: 1px solid var(--border-default);
+	box-shadow: var(--sidebar-shadow, var(--shadow-md));
+	transition: width 200ms var(--easing-smooth),
+		background-color 200ms var(--easing-smooth);
+	overflow: hidden;
+	width: var(--sidebar-width);
+}
+
+/* collapsed / expanded variants */
+.appSidebar.collapsed {
+	width: var(--sidebar-width-collapsed);
+}
+.appSidebar.expanded {
+	width: var(--sidebar-width);
+}
+
+.appSidebarInner {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+/* header / brand */
+.appSidebarHeader {
+	height: var(--sidebar-topbar);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 8px;
+}
+
+.appSidebarBrand {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+	background: transparent;
+	border: none;
+	text-decoration: none;
+	cursor: pointer;
+	color: inherit;
+	padding: 8px;
+	border-radius: var(--radius-md);
+}
+
+.appSidebarBrand:focus {
+	outline: none;
+	box-shadow: 0 0 0 4px
+		color-mix(in srgb, var(--interactive-primary) 8%, transparent);
+}
+
+.appSidebarBrandIcon {
+	width: 28px;
+	height: 28px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--sidebar-icon, var(--text-on-surface));
+}
+
+.appSidebarBrandIconCollapsed {
+	width: 20px;
+	height: 20px;
+	margin: 0 auto;
+}
+
+/* hide the text in small/collapsed states */
+.appSidebarBrandText {
+	font-size: var(--title-size-sm, 16px);
+	font-weight: var(--font-weight-semibold, 600);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* content area (menus) */
+.appSidebarContent {
+	flex: 1 1 auto;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	padding: 12px 8px;
+}
+
+/* footer */
+.appSidebarFooter {
+	padding: 12px;
+	border-top: 1px solid var(--border-default);
+	background: transparent;
+}
+
+.appSidebarRail {
+	/* left for any vertical rail visuals */
+	opacity: 0;
+}

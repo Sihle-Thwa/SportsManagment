@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+.navMainRoot {
+	width: 100%;
+}
+.navMainMenu {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+}
+
+.navMainItem {
+	margin: 0;
+}
+
+/* link base */
+.navMainLink {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	width: 100%;
+	padding: 8px 12px;
+	text-decoration: none;
+	color: var(--sidebar-text, var(--text-on-surface));
+	border-radius: 8px;
+	transition:  var(--transition-fast) var(--easing-smooth),
+		color 160ms var(--easing-smooth);
+}
+
+.navMainLink:hover {
+	background: var(
+		--sidebar-item-background-hover,
+		var(--background-surface-hover)
+	);
+	color: var(--sidebar-text-hover, var(--text-on-surface));
+}
+
+.navMainLink:focus {
+	outline: none;
+	box-shadow: 0 0 0 4px
+		color-mix(in srgb, var(--interactive-primary) 8%, transparent);
+}
+
+/* active */
+.navMainLink.active {
+	background: var(--sidebar-item-background-active, var(--interactive-primary));
+	color: var(--sidebar-item-text-active, var(--text-on-primary));
+	font-weight: var(--font-weight-semibold);
+}
+
+/* icon + label */
+.navMainLinkIcon {
+	width: 20px;
+	height: 20px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: inherit;
+	flex: 0 0 auto;
+}
+
+.navMainLinkLabel {
+	flex: 1 1 auto;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* collapsed variants */
+.navMainLink.collapsed {
+	justify-content: center;
+	padding: 8px;
+}
+.navMainLink.collapsed .navMainLinkLabel {
+	display: none;
+}
