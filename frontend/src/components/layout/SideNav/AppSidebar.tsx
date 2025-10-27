@@ -5,7 +5,6 @@ import {
 	SidebarHeader,
 	SidebarContent,
 	SidebarFooter,
-	SidebarRail,
 } from "../../ui/sidebar";
 import { useSidebar } from "../../ui/sidebar-context";
 import NavMain from "./NavMain";
@@ -47,7 +46,6 @@ export function AppSidebar()  {
 					<NavUser collapsed={isCollapsed} />
 				</SidebarFooter>
 
-				<SidebarRail className="appSidebarRail" />
 			</div>
 		</aside>
 	);

@@ -4,9 +4,6 @@
 	--sidebar-width: 250px;
 	--sidebar-width-collapsed: 72px;
 	--topbar-height: 72px;
-	--layout-gap: 24px;
-	--transition-fast: 180ms;
-	--easing-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .main_container {
@@ -19,25 +16,17 @@
 	height: 100vh;
 	width: 100vw;
 	overflow: hidden;
-	background: var(--canvas-background, var(--colour-neutral-100));
-	transition: grid-template-columns var(--transition-fast) var(--easing-smooth);
-	--topbar-height: 72px;
+	
 }
 
 .app_sidebar {
 	grid-area: sidebar;
-	height: 100vh;
-	min-height: 100vh;
-	width: var(--sidebar-width);
+	height: 100vh;	
 	position: sticky;
 	top: 0;
 	z-index: 40;
-	transition: width var(--transition-fast) var(--easing-smooth),
-		transform var(--transition-fast) var(--easing-smooth);
-	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
-	border-right: 1px solid var(--border-default);
-	background: var(--sidebar-background, var(--card-background));
+	box-shadow: var(--shadow-md);
 }
 
 .app_sidebar [data-slot="sidebar_container"] {
@@ -57,39 +46,26 @@
 	z-index: 30;
 	display: flex;
 	align-items: center;
-	padding: 0 16px;
-	background: var(--topbar-background, var(--card-background));
+	padding:  0;
 	border-bottom: 1px solid var(--border-default);
+	box-shadow: var(--shadow-md);
 }
 
-/* Main content region (pages) */
 .main_content {
 	grid-area: content;
 	height: calc(100vh - var(--topbar-height));
+	overflow-y: auto;
 	width: 100%;
-	overflow: auto;
 	-webkit-overflow-scrolling: touch;
-	background: var(--canvas-background);
-	display: flex;
-	flex-direction: column;
 }
 
 /* inner app content wrapper where routes render */
 .app_content {
+	padding: 16px;
+	min-height: 100%;
 	width: 100%;
-	max-width: 1280px;
-	margin: 0 auto;
-	padding: var(--layout-gap);
-	box-sizing: border-box;
-	min-height: calc(100vh - var(--topbar-height));
 }
 
-/* content area accessible focus helper */
-#content-wrapper:focus {
-	outline: none;
-	box-shadow: 0 0 0 3px
-		color-mix(in srgb, var(--interactive-primary) 8%, transparent);
-}
 
 /* Overlay for off-canvas on mobile (hidden on desktop) */
 .app_sidebar_overlay {
@@ -98,7 +74,6 @@
 	inset: 0;
 	background: rgba(0, 0, 0, 0.32);
 	z-index: 35;
-	transition: opacity var(--transition-fast) var(--easing-smooth);
 	opacity: 0;
 	pointer-events: none;
 }
@@ -107,7 +82,7 @@
 .main_container[data-sidebar-collapsed="false"] .app_sidebar_overlay,
 .app_sidebar_overlay[data-overlay-visible="true"] {
 	display: block;
-	opacity: 1;
+	opacity: 0.85;
 	pointer-events: auto;
 }
 
@@ -123,6 +98,8 @@ Collapsed state — shrink sidebar
 .main_container.is-collapsed .app_sidebar,
 .main_container[data-sidebar-collapsed="true"] .app_sidebar {
 	width: var(--sidebar-width-collapsed);
+	transition: width var(--transition-fast) var(--easing-smooth);
+	overflow: hidden;
 }
 
 /* expanded state explicit class */
@@ -143,11 +120,9 @@ Responsiveness: tablet & mobile
 /* Tablet breakpoint — keep sidebar narrow, but allow off-canvas */
 @media (max-width: 1024px) {
 	.main_container {
-		grid-template-columns: 1fr;
-		grid-template-rows: var(--topbar-height) 1fr;
-		grid-template-areas:
-			"header"
-			"content";
+		grid-template-columns: var(--sidebar-width-collapsed) 1fr;
+		--topbar-height: 72px;
+
 	}
 
 	/* When the sidebar provider marks expanded, slide it in as overlay */
@@ -156,11 +131,9 @@ Responsiveness: tablet & mobile
 		left: 0;
 		top: 0;
 		height: 100vh;
-		transform: translateX(-110%);
 		width: var(--sidebar-width);
-		box-shadow: var(--shadow-md);
+		transform: translateX(-100%);
 		transition: transform var(--transition-fast) var(--easing-smooth);
-		z-index: 45;
 	}
 
 	/* slide sidebar in when not collapsed */
@@ -181,52 +154,22 @@ Responsiveness: tablet & mobile
 }
 
 /* Smaller devices: reduce topbar height and spacing */
-@media (max-width: 640px) {
-	:root {
-		--topbar-height: 56px;
+@media (max-width: 768px) {
+	.main_container {
+		--topbar-height: 64px;
 	}
 
 	.app_topbar {
 		height: var(--topbar-height);
+		min-height: var(--topbar-height);
 		padding: 0 12px;
 	}
-
 	.app_content {
 		padding: 12px;
 	}
-
-	.main_container .app_sidebar {
+	.app_sidebar {
 		width: var(--sidebar-width);
 	}
-
-	/* on very small screens keep overlay behavior */
-	.main_container[data-sidebar-collapsed="false"] .app_sidebar {
-		transform: translateX(0);
-	}
 }
 
-/* ------------------------------------------------------------------
-Accessibility: reduced motion
-------------------------------------------------------------------*/
-@media (prefers-reduced-motion: reduce) {
-	.main_container,
-	.app_sidebar,
-	.app_topbar,
-	.app_content,
-	.app_sidebar_overlay {
-		transition: none !important;
-	}
-}
 
-/* Ensure scrollbars are subtle and match theme */
-.app_content::-webkit-scrollbar {
-	width: 10px;
-}
-.app_content::-webkit-scrollbar-thumb {
-	background: color-mix(
-		in srgb,
-		var(--muted-foreground, var(--colour-neutral-700)) 30%,
-		transparent
-	);
-	border-radius: 6px;
-}

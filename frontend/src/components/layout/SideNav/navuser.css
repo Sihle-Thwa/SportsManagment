@@ -1,45 +1,36 @@
 @import "tailwindcss";
 
-:root {
-	--radius-md: 8px;
-}
-
 /* container */
 .navUserRoot {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
 	width: 100%;
-	margin-top: auto;
-	padding: 8px;
-	box-sizing: border-box;
+	height: 100%;
+	padding: 0;
+	margin-top: 0;
 }
 
 .navUserTrigger {
-	width: 100%;
 	display: flex;
 	align-items: center;
-	gap: 10px;
-	padding: 8px;
-	border-radius: var(--radius-md);
-	background: transparent;
+	gap: 8px;
+	padding: 8px 12px;
+	border-radius: 8px;
 	border: none;
 	cursor: pointer;
-	color: var(--sidebar-text);
+	width: 100%;
 }
 
 /* avatar */
 .navUserAvatar {
-	width: 40px;
-	height: 40px;
-	border-radius: var(--radius-md);
-	overflow: hidden;
-	flex-shrink: 0;
-	background: var(--card-background);
-	display: inline-flex;
+	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-weight: var(--font-weight-semibold);
-	color: var(--text-on-primary);
+	width: var(--avatar-size-md);
+	height: var(--avatar-size-md);
+	border-radius: var(--radius-full);
 }
 .navUserAvatarCollapsed {
 	width: 28px;

@@ -1,4 +1,3 @@
-/* src/index.css */
 @import "../src/styles/global.css";
 
 /* Base Reset & app container */
@@ -10,9 +9,5 @@
 		margin: 0;
 		padding: 0;
 		
-	}
-	html, body, #root {
-		height: 100%;
-		width: 100%;
 	}
 }

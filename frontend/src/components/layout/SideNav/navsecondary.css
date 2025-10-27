@@ -1,53 +1,87 @@
 @import "tailwindcss";
 
 .navSecondaryRoot {
-	padding: 8px 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0 12px;
+	margin-top: auto;
+	width: 100%;
+	overflow: hidden;
+
 }
 .navSecondaryMenu {
-	list-style: none;
-	margin: 0;
-	padding: 0;
+	padding-top: 8px;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	overflow: hidden;
+
 }
 .navSecondaryItem {
-	margin: 0;
-	padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	overflow: hidden;
 }
 
 .navSecondaryLink {
 	display: flex;
+	flex-direction: row;
 	align-items: center;
-	padding: 8px 12px;
+	gap: 8px;
+	width: 100%;
+	padding: 8px;
 	text-decoration: none;
-	color: var(--text-primary);
-	background: var(--sidebar-background);
 }
 .navSecondaryLink:hover {
-	background: var(--sidebar-background-hover);
-	color: var(--sidebar-text-hover);
+	background: var(--sidebar-item-background-hover);
+	color: var(--sidebar-item-text-hover);
+	border-radius: var(--radius-md);
+	
 }
 .navSecondaryLink.active {
+
 	background: var(--sidebar-item-background-active);
 	color: var(--sidebar-item-text-active);
+	border-radius: var(--radius-md);
+	font-weight: var(--body-weight-semibold);
+	
+}
+
+.navSecondaryLinkItem {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
 }
 
 .navSecondaryIcon {
-	width: 20px;
-	height: 20px;
-	display: inline-flex;
+	width: var(--icon-size-sm);
+	height: var(--icon-size-sm);
+	display: flex;
 	align-items: center;
 	justify-content: center;
+	gap: 8px;
 }
 .navSecondaryLabel {
 	flex: 1 1 auto;
+	font-size: var(--body-size-md);
+	font-weight: var(--body-weight-normal);
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
-.navSecondaryItem.collapsed {
+.navSecondaryIcon.collapsed {
+	display: flex;
+	align-items: center;
 	justify-content: center;
-	padding: 8px;
+	gap: 8px;
 }
-.navSecondaryItem.collapsed .navSecondaryLabel {
+.navSecondaryIcon.collapsed .navSecondaryLabel {
 	display: none;
 }

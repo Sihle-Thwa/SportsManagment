@@ -1,9 +1,11 @@
 @import "tailwindcss";
 
 .navMainRoot {
-	width: 100%;
+	display: flex;
+	flex-direction: column;
 	padding: 8px 0;
-	box-sizing: border-box;
+	margin: 0;
+	gap: 8px;
 }
 .navMainMenu {
 	list-style: none;
@@ -11,13 +13,12 @@
 	padding: 0;
 	display: flex;
 	flex-direction: column;
-	gap: 8px;
+	gap: 4px;
 }
 
 .navMainItem {
 	margin: 0;
 	padding: 0;
-	
 }
 
 /* link base */
@@ -27,20 +28,17 @@
 	gap: 8px;
 	text-decoration: none;
 	padding: 8px 12px;
-	font-size: 14px;
-	background: var(--sidebar-item-background, transparent);
-
-	}
-
-.navMainLink:hover {
-	background: var(
-		--sidebar-item-background-hover,
-		var(--background-surface-hover)
-	);
-	color: var(--sidebar-text-hover, var(--text-on-surface));
+	border-radius: var(--radius-md);
 }
 
-.navMainLink:active{
+.navMainLink:hover {
+	background: var(--sidebar-item-background-hover);
+	color: var(--sidebar-item-text-hover);
+
+	
+}
+
+.navMainLink.active{
 	background: var(
 		--sidebar-item-background-active
 	);
@@ -48,34 +46,23 @@
 	font-weight: var(--font-weight-semibold);
 }
 
-/* active */
-.navMainLink.active {
-	background: var(--sidebar-item-background-active, var(--interactive-primary));
-	color: var(--sidebar-item-text-active, var(--text-on-primary));
-	font-weight: var(--font-weight-semibold);
-}
 
 /* icon + label */
 .navMainLinkIcon {
 	width: var(--icon-size-default);
 	height: var(--icon-size-default);
-	display: inline-flex;
+	display: flex;
 	align-items: center;
 	justify-content: center;
 	color: inherit;
-}
 
-.navMainLinkLabel {
-	flex-grow: 1;
-	color: inherit;
 }
 
 /* collapsed variants */
 .navMainLink.collapsed {
 	justify-content: center;
-	padding: 8px;
+
 }
 .navMainLink.collapsed .navMainLinkLabel {
 	display: none;
-	
 }

@@ -9,7 +9,7 @@ export interface SecondaryItem {
 	id: string;
 	title: string;
 	path: string;
-	icon: React.ElementType | null;
+	icon: React.ElementType;
 }
 
 const ITEMS: SecondaryItem[] = [
@@ -35,8 +35,8 @@ export default function NavSecondary({
 								title={collapsed ? i.title : undefined}
 								aria-label={i.title}
 							>
-								<div className="navSecondaryIcon" aria-hidden>
-									{Icon ? <Icon /> : <span />}
+								<div className="navSecondaryLinkItem" aria-hidden>
+									{Icon ? <Icon className="navSecondaryIcon" /> : <div />}
 								</div>
 								{!collapsed && (
 									<div className="navSecondaryLabel">{i.title}</div>

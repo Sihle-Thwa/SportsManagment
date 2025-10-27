@@ -127,10 +127,11 @@
     --sidebar-border: var(--border-subtle);
     --sidebar-text: var(--colour-neutral-100);
     --sidebar-text-secondary: var(--colour-neutral-300);
+    --sidebar-item-text-hover: var(--text-on-secondary);
     --sidebar-icon: var(--colour-neutral-100);
     --sidebar-icon-hover: var(--colour-tertiary-100);
-    --sidebar-item-background-hover: var(--colour-neutral-800);
-    --sidebar-item-background-active: var(--colour-primary-900);
+    --sidebar-item-background-hover: var(--colour-primary-300);
+    --sidebar-item-background-active: var(--colour-primary-500);
     --sidebar-item-border-active: var(--colour-primary-500);
     --sidebar-item-text-active: var(--colour-neutral-100);
 

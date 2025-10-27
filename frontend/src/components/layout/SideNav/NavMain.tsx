@@ -12,7 +12,7 @@ export default function NavMain({ collapsed = false }: NavMainProps) {
 	const location = useLocation();
 
 	return (
-		<nav className="navMainRoot" aria-label="Primary">
+		<nav className="navMainRoot" aria-label="Primary" id="nav-main">
 			<SidebarMenu className="navMainMenu">
 				{routes.map((route) => {
 					const match = location.pathname === route.path;
