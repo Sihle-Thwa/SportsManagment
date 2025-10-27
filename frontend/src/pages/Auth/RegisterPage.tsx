@@ -7,6 +7,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+
 type RegisterForm = {
 	firstName: string;
 	lastName: string;

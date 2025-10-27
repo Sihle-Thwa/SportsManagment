@@ -53,16 +53,19 @@
 
 .main_content {
 	grid-area: content;
-	height: calc(100vh - var(--topbar-height));
 	overflow-y: auto;
+	height: 100%;
 	width: 100%;
-	-webkit-overflow-scrolling: touch;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 /* inner app content wrapper where routes render */
 .app_content {
-	padding: 16px;
-	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+	overflow-x: hidden;
 	width: 100%;
 }
 

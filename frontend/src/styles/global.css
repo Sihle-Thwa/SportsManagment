@@ -1,5 +1,4 @@
 @import "tailwindcss";
-
 @import "./colours.css";
 @import "./semantic-tokens.css";
 @import "./typography.css";
@@ -8,19 +7,16 @@
 
 /* Global Styles */
 
-:root {
-    --font-sans: 'Inter', sans-serif;
-    --body-size-default: 16px;
-    --background-canvas: var(--background-canvas);
-    --text-primary: var(--text-primary);
-}
-
 body {
     font-family: var(--font-sans);
     font-size: var(--body-size-default);
-    background-color: var(--background-canvas);
+    background: var(--background-canvas);
     color: var(--text-primary);
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    width: 100%;
+    min-height: 100vh;
+    
 }
+

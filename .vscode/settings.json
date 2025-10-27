@@ -3,5 +3,15 @@
 	"bookmarks.sideBar.expanded": true,
 	"editor.formatOnSave": true,
 	"editor.formatOnSaveMode": "modifications",
-	"github.copilot.nextEditSuggestions.enabled": true
+	"github.copilot.nextEditSuggestions.enabled": true,
+	"prettier.enableDebugLogs": true,
+	"prettier.experimentalTernaries": true,
+	"prettier.prettierPath": "../../../node_modules/prettier",
+	"prettier.proseWrap": "always",
+	"prettier.requireConfig": true,
+	"prettier.resolveGlobalModules": true,
+	"prettier.trailingComma": "all",
+	"prettier.useTabs": true,
+	"prettier.vueIndentScriptAndStyle": true,
+	"prettier.withNodeModules": true
 }

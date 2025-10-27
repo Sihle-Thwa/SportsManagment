@@ -1,13 +1,16 @@
 @import "tailwindcss";
 
 .membersRoot {
+	
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-start;
+	justify-content: center;
 	align-items: center;
+	background-image: var(--background-canvas-gradient);
+	background-size: cover;
+	background-position: center;
 	width: 100%;
-	padding: 0;
-	margin: 0;
+	height: 100%;
 }
 
 .membersHeader {
@@ -17,17 +20,17 @@
 	align-items: flex-start;
 	box-shadow: var(--shadow-base);
 	width: 100%;
-	min-width: 320px;
+	position: sticky;
 	top: 0;
-	padding: 8px 16px;
-	background-color: var(--card-background);
-	border-bottom: 1px solid var(--card-border);
+	padding: 12px;
+	background-color: var(--header-background);
+	border-bottom: 1px solid var(--header-border);
 }
 
 .membersTitle {
 	display: flex;
 	flex-direction: column;
-	font-size: var(--title-size-default);
+	font-size: var(--title-size-lg);
 	font-weight: var(--font-weight-bold);
 	color: var(--card-foreground);
 	letter-spacing: var(--letter-spacing-normal);
@@ -45,14 +48,18 @@
 
 .membersContainer {
 	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
+	flex-direction: row;
 	align-items: center;
+	justify-content: center;
 	width: 100%;
+	max-width: 1280px;
 }
 
 .membersContent {
 	display: flex;
-	padding: 16px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	width: 100%;
+	padding: 12px;
 }

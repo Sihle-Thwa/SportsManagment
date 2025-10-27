@@ -1,5 +1,8 @@
 {
     "recommendations": [
-        "alefragnani.bookmarks"
+        "alefragnani.bookmarks",
+        "esbenp.prettier-vscode",
+        "esbenp.prettier-vscode"
+
     ]
 }
