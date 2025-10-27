@@ -1,256 +1,121 @@
 /*  Light / default theme  */
-:root {
-	--background-canvas-gradient: radial-gradient(
-		at bottom right,
-		#fef08a 0%,
-		rgba(255, 240, 163, 0.25) 25%,
-		rgba(255, 240, 163, 0.08) 50%,
-		rgba(255, 255, 255, 1) 100%
-	);
 
-	/* Primary colour Scale */
-	--colour-primary: hsl(220, 100%, 10%);
-	--colour-primary-500: hsl(220, 55%, 45%);
-	--colour-primary-600: hsl(220, 65%, 35%);
-	--colour-primary-700: hsl(220, 75%, 25%);
-	--colour-primary-800: hsl(220, 85%, 15%);
-	--colour-primary-900: hsl(220, 100%, 5%);
-
-	/* Secondary colour Scale */
-	--colour-secondary: hsl(220, 40%, 25%);
-	--colour-secondary-100: hsl(220, 20%, 85%);
-	--colour-secondary-300: hsl(220, 25%, 70%);
-	--colour-secondary-700: hsl(220, 35%, 35%);
-	--colour-secondary-800: hsl(220, 38%, 30%);
-	--colour-secondary-900: hsl(220, 40%, 25%);
-
-	/* Tertiary colour Scale (teal-ish) */
-	--colour-tertiary: hsl(195, 85%, 25%);
-	--colour-tertiary-100: hsl(195, 45%, 85%);
-	--colour-tertiary-300: hsl(195, 55%, 70%);
-	--colour-tertiary-500: hsl(195, 65%, 50%);
-	--colour-tertiary-700: hsl(195, 75%, 35%);
-	--colour-tertiary-900: hsl(195, 85%, 25%);
-
-	/* Accent (warm / amber) */
-	--colour-accent: hsl(36, 65%, 40%);
-	--colour-accent-100: hsl(36, 40%, 90%);
-	--colour-accent-300: hsl(36, 50%, 70%);
-	--colour-accent-500: hsl(36, 60%, 50%);
-	--colour-accent-700: hsl(36, 70%, 35%);
-	--colour-accent-900: hsl(36, 80%, 25%);
-
-	/* Neutral scale (light theme) */
-	--colour-neutral: hsl(220, 10%, 25%);
-	--colour-neutral-100: hsl(220, 6%, 95%);
-	--colour-neutral-300: hsl(220, 8%, 75%);
-	--colour-neutral-500: hsl(220, 10%, 55%);
-	--colour-neutral-700: hsl(220, 12%, 35%);
-	--colour-neutral-900: hsl(220, 15%, 15%);
-
-	/* Status colours */
-	--colour-success: hsl(160, 84%, 39%);
-	--colour-success-100: hsl(160, 84%, 95%);
-	--colour-success-300: hsl(160, 84%, 90%);
-	--colour-success-500: hsl(160, 84%, 34%);
-	--colour-success-700: hsl(160, 84%, 32%);
-	--colour-success-900: hsl(160, 84%, 20%);
-
-	--colour-warning: hsl(42, 100%, 50%);
-	--colour-warning-100: hsl(42, 100%, 95%);
-	--colour-warning-300: hsl(42, 100%, 85%);
-	--colour-warning-500: hsl(42, 100%, 55%);
-	--colour-warning-700: hsl(42, 100%, 40%);
-	--colour-warning-900: hsl(42, 100%, 30%);
-
-	--colour-error: hsl(0, 78%, 48%);
-	--colour-error-100: hsl(0, 78%, 95%);
-	--colour-error-300: hsl(0, 78%, 85%);
-	--colour-error-500: hsl(0, 78%, 50%);
-	--colour-error-700: hsl(0, 78%, 35%);
-	--colour-error-900: hsl(0, 78%, 25%);
-
-	/* Semantic tokens (used across components) - Light theme */
-	--background-canvas: var(--background-canvas-gradient);
-	--background-surface: var(--colour-neutral-100);
-	--background-surface-secondary: var(--colour-secondary-100);
-	--background-surface-hover: var(--colour-primary-500);
-	--background-surface-pressed: var(--colour-primary-100);
-	--background-surface-active: var(--colour-primary-300);
-
-	--text-primary: var(--colour-primary);
-	--text-secondary: var(--colour-secondary);
-	--text-placeholder: var(--colour-neutral-700);
-	--text-disabled: var(--colour-neutral-300);
-	--text-on-background: var(--colour-neutral-900);
-
-	--border-default: hsl(220, 8%, 85%); /* subtle light border */
-	--border-muted: hsl(220, 10%, 80%);
-	--ring: var(--colour-primary-500);
-
-	/* component specific */
-	--sidebar-background: var(--colour-neutral-100);
-	--sidebar-text: var(--text-primary);
-	--card-background: var(--colour-neutral-100);
-	--card-border: var(--border-default);
-	--input-background: hsl(0 0% 100%);
-	--input-disabled-background: hsl(220 6% 96%);
-	--input-border: var(--border-default);
-	--icon-primary: hsl(220 8% 55%);
-	--icon-on-primary: #fff;
-
-	/* shadows / radii (kept neutral) */
-	--shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04);
-	--shadow-md: 0 6px 20px rgba(16, 24, 40, 0.06);
-	--radius-sm: 6px;
-	--radius-md: 10px;
-	--radius-lg: 14px;
-	--radius-full: 9999px;
-}
-
-/* Dark theme overrides (manual) */
-[data-theme="dark"] {
-	--background-canvas-gradient: radial-gradient(
-		at top left,
-		rgba(6, 12, 34, 1) 0%,
-		rgba(8, 16, 40, 0.8) 35%,
-		rgba(4, 8, 16, 0.85) 65%,
-		rgba(3, 6, 12, 1) 100%
-	);
-
-	/* Tweak primary to a lighter blue for dark backgrounds */
-	--colour-primary: hsl(210, 100%, 90%);
-	--colour-primary-500: hsl(210, 60%, 70%);
-	--colour-primary-600: hsl(210, 55%, 60%);
-	--colour-primary-700: hsl(210, 50%, 50%);
-	--colour-primary-800: hsl(210, 45%, 42%);
-	--colour-primary-900: hsl(210, 40%, 30%);
-
-	/* Secondary / tertiary adapt to be visible on dark bg */
-	--colour-secondary: hsl(210, 20%, 80%);
-	--colour-secondary-100: hsl(210, 18%, 12%);
-	--colour-secondary-300: hsl(210, 22%, 18%);
-	--colour-secondary-700: hsl(210, 24%, 30%);
-	--colour-secondary-800: hsl(210, 26%, 36%);
-	--colour-secondary-900: hsl(210, 28%, 42%);
-
-	--colour-tertiary: hsl(185, 60%, 60%);
-	--colour-tertiary-100: hsl(185, 20%, 8%);
-	--colour-tertiary-300: hsl(185, 40%, 18%);
-	--colour-tertiary-500: hsl(185, 60%, 40%);
-	--colour-tertiary-700: hsl(185, 70%, 30%);
-	--colour-tertiary-900: hsl(185, 80%, 24%);
-
-	/* Accent (amber) - keep vibrancy but darker */
-	--colour-accent: hsl(36, 90%, 60%);
-	--colour-accent-100: hsl(36, 18%, 10%);
-	--colour-accent-300: hsl(36, 70%, 45%);
-	--colour-accent-500: hsl(36, 80%, 50%);
-	--colour-accent-700: hsl(36, 85%, 40%);
-	--colour-accent-900: hsl(36, 95%, 30%);
-
-	/* Neutral scale (dark) */
-	--colour-neutral-100: hsl(210, 20%, 8%);
-	--colour-neutral-300: hsl(210, 18%, 18%);
-	--colour-neutral-500: hsl(210, 16%, 28%);
-	--colour-neutral-700: hsl(210, 14%, 42%);
-	--colour-neutral-900: hsl(210, 12%, 92%); /* used for lighter text */
-
-	/* statuses in dark */
-	--colour-success: hsl(160, 80%, 50%);
-	--colour-success-100: hsl(160, 80%, 12%);
-	--colour-success-500: hsl(160, 80%, 48%);
-
-	--colour-warning: hsl(42, 100%, 55%);
-	--colour-error: hsl(0, 78%, 60%);
-
-	/* Semantic mapping for components on dark */
-	--background-canvas: var(--background-canvas-gradient);
-	--background-surface: var(--colour-neutral-100); 
-	--background-surface-secondary: hsl(210, 20%, 10%);
-	--background-surface-hover: color-mix(
-		in srgb,
-		var(--colour-primary-500) 12%,
-		black
-	);
-	--background-surface-pressed: color-mix(
-		in srgb,
-		var(--colour-primary-700) 10%,
-		black
-	);
-	--background-surface-active: color-mix(
-		in srgb,
-		var(--colour-primary-900) 14%,
-		black
-	);
-
-	--text-primary: var(--colour-neutral-900);
-	--text-secondary: var(--colour-secondary);
-	--text-placeholder: hsl(210, 12%, 48%);
-	--text-disabled: hsl(210, 10%, 36%);
-	--text-on-background: var(--colour-neutral-900);
-
-	--border-default: hsl(210, 20%, 14%);
-	--border-muted: hsl(210, 20%, 16%);
-	--ring: var(--colour-tertiary-300);
-
-	/* component specifics override for dark */
-	--sidebar-background: var(--colour-neutral-300);
-	--sidebar-text: var(--text-primary);
-	--card-background: hsl(210, 20%, 10%);
-	--card-border: var(--border-default);
-	--input-background: hsl(210, 20%, 8%);
-	--input-disabled-background: hsl(210, 20%, 6%);
-	--input-border: var(--border-default);
-	--icon-primary: hsl(210, 18%, 60%);
-	--icon-on-primary: #fff;
-
-	/* shadows should be subtly reversed (soft glow) */
-	--shadow-sm: 0 1px 2px rgba(2, 6, 23, 0.6);
-	--shadow-md: 0 6px 20px rgba(2, 6, 23, 0.6);
-}
-
-/* If user prefers dark and app hasn't set a data-theme, apply dark variables */
-@media (prefers-color-scheme: dark) {
-	:root:not([data-theme]) {
+	:root {
 		--background-canvas-gradient: radial-gradient(
-			at top left,
-			rgba(6, 12, 34, 1) 0%,
-			rgba(8, 16, 40, 0.8) 35%,
-			rgba(4, 8, 16, 0.85) 65%,
-			rgba(3, 6, 12, 1) 100%
+			at bottom right,
+			#fef08a 0%,
+			rgba(255, 240, 163, 0.25) 25%,
+			rgba(255, 240, 163, 0.08) 50%,
+			rgba(255, 255, 255, 1) 100%
 		);
-		--background-surface: hsl(210, 20%, 10%);
-		--card-background: hsl(210, 20%, 10%);
+
+		/* Primary colour Scale */
+		--colour-primary: hsl(220, 100%, 10%);
+		--colour-primary-500: hsl(220, 55%, 45%);
+		--colour-primary-600: hsl(220, 65%, 35%);
+		--colour-primary-700: hsl(220, 75%, 25%);
+		--colour-primary-800: hsl(220, 85%, 15%);
+		--colour-primary-900: hsl(220, 100%, 5%);
+		--colour-primary-300: hsl(220, 45%, 65%); /* Added for semantic usage */
+
+		/* Secondary colour Scale */
+		--colour-secondary: hsl(220, 40%, 25%);
+		--colour-secondary-100: hsl(220, 20%, 85%);
+		--colour-secondary-300: hsl(220, 25%, 70%);
+		--colour-secondary-700: hsl(220, 35%, 35%);
+		--colour-secondary-800: hsl(220, 38%, 30%);
+		--colour-secondary-900: hsl(220, 40%, 25%);
+
+		/* Tertiary colour Scale (teal-ish) */
+		/* Tertiary colour Scale (teal-ish) */
+		--colour-tertiary: hsl(195, 85%, 25%);
+		--colour-tertiary-100: hsl(195, 45%, 85%);
+		--colour-tertiary-300: hsl(195, 55%, 70%);
+		--colour-tertiary-500: hsl(195, 65%, 50%);
+		--colour-tertiary-700: hsl(195, 75%, 35%);
+		--colour-tertiary-900: hsl(195, 85%, 25%);
+		/* Accent (warm / amber) */
+		--colour-accent: hsl(36, 65%, 40%);
+		--colour-accent-100: hsl(36, 40%, 90%);
+		--colour-accent-300: hsl(36, 50%, 70%);
+		--colour-accent-500: hsl(36, 60%, 50%);
+		--colour-accent-700: hsl(36, 70%, 35%);
+		--colour-accent-900: hsl(36, 80%, 25%);
+		--colour-tertiary-700: hsl(195, 75%, 35%);
+		--colour-tertiary-900: hsl(195, 85%, 25%);
+
+		/* Accent (warm / amber) */
+		--colour-accent: hsl(36, 65%, 40%);
+		--colour-accent-100: hsl(36, 40%, 90%);
+		--colour-accent-300: hsl(36, 50%, 70%);
+		--colour-accent-500: hsl(36, 60%, 50%);
+		--colour-accent-700: hsl(36, 70%, 35%);
+		--colour-accent-900: hsl(36, 80%, 25%);
+
+		/* Neutral scale (light theme) */
+		--colour-neutral: hsl(220, 10%, 25%);
+		--colour-neutral-100: hsl(220, 6%, 95%);
+		--colour-neutral-300: hsl(220, 8%, 75%);
+		--colour-neutral-500: hsl(220, 10%, 55%);
+		--colour-neutral-700: hsl(220, 12%, 35%);
+		--colour-neutral-900: hsl(220, 15%, 15%);
+
+		/* Status colours */
+		--colour-success: hsl(160, 84%, 39%);
+		--colour-success-100: hsl(160, 84%, 95%);
+		--colour-success-300: hsl(160, 84%, 90%);
+		--colour-success-500: hsl(160, 84%, 34%);
+		--colour-success-700: hsl(160, 84%, 32%);
+		--colour-success-900: hsl(160, 84%, 20%);
+
+		--colour-warning: hsl(42, 100%, 50%);
+		--colour-warning-100: hsl(42, 100%, 95%);
+		--colour-warning-300: hsl(42, 100%, 85%);
+		--colour-warning-500: hsl(42, 100%, 55%);
+		--colour-warning-700: hsl(42, 100%, 40%);
+		--colour-warning-900: hsl(42, 100%, 30%);
+
+		--colour-error: hsl(0, 78%, 48%);
+		--colour-error-100: hsl(0, 78%, 95%);
+		--colour-error-300: hsl(0, 78%, 85%);
+		--colour-error-500: hsl(0, 78%, 50%);
+		--colour-error-700: hsl(0, 78%, 35%);
+		--colour-error-900: hsl(0, 78%, 25%);
+
+		/* Semantic tokens (used across components) - Light theme */
+		--background-canvas: var(--background-canvas-gradient);
+		--background-surface: var(--colour-neutral-100);
+		--background-surface-secondary: var(--colour-secondary-100);
+		--background-surface-hover: var(--colour-primary-500);
+		--background-surface-pressed: var(--colour-primary-100);
+		--background-surface-active: var(--colour-primary-300);
+
+		--text-primary: var(--colour-primary);
+		--text-secondary: var(--colour-secondary);
+		--text-placeholder: var(--colour-neutral-700);
+		--text-disabled: var(--colour-neutral-300);
 		--text-on-background: var(--colour-neutral-900);
-		--input-background: hsl(210, 20%, 8%);
-		--border-default: hsl(210, 20%, 14%);
+
+		--border-default: hsl(220, 8%, 85%); /* subtle light border */
+		--border-muted: hsl(220, 10%, 80%);
+		--ring: var(--colour-primary-500);
+
+		/* component specific */
+		--sidebar-background: var(--colour-neutral-100);
+		--sidebar-text: var(--text-primary);
+		--card-background: var(--colour-neutral-100);
+		--card-border: var(--border-default);
+		--input-background: hsl(0 0% 100%);
+		--input-disabled-background: hsl(220 6% 96%);
+		--input-border: var(--border-default);
+		--icon-primary: hsl(220 8% 55%);
+		--icon-on-primary: #fff;
+
+		/* shadows / radii (kept neutral) */
+		--shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04);
+		--shadow-md: 0 6px 20px rgba(16, 24, 40, 0.06);
+		--radius-sm: 6px;
+		--radius-md: 10px;
+		--radius-lg: 14px;
+		--radius-full: 9999px;
 	}
-}
-
-/* Small helpers for accessibility (focus rings etc.) */
-:root,
-[data-theme="dark"] {
-	--focus-ring-width: 3px;
-	--focus-ring-color: color-mix(in srgb, var(--ring) 70%, white);
-}
-
-:where(button, [role="button"], a, input, select, textarea):focus {
-	outline: none;
-	box-shadow: 0 0 0 var(--focus-ring-width) var(--focus-ring-color);
-	border-radius: 8px;
-}
-
-.theme-light-only {
-	display: initial;
-}
-[data-theme="dark"] .theme-light-only {
-	display: none;
-}
-
-.theme-dark-only {
-	display: none;
-}
-[data-theme="dark"] .theme-dark-only {
-	display: initial;
-}

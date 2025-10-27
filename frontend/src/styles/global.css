@@ -5,7 +5,16 @@
 @import "./typography.css";
 @import "./theme.css";
 
+
 /* Global Styles */
+
+:root {
+    --font-sans: 'Inter', sans-serif;
+    --body-size-default: 16px;
+    --background-canvas: var(--background-canvas);
+    --text-primary: var(--text-primary);
+}
+
 body {
     font-family: var(--font-sans);
     font-size: var(--body-size-default);
@@ -15,4 +24,3 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
-

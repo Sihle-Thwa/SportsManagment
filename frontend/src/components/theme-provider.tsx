@@ -11,7 +11,7 @@ type ThemeProviderProps = {
 
 export function ThemeProvider({
 	children,
-	defaultTheme = "system",
+	defaultTheme = "light",
 	storageKey = "app-theme",
 }: ThemeProviderProps) {
 	const [theme, setTheme] = useState<Theme>(

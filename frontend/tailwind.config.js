@@ -10,8 +10,9 @@ export default {
     ],
     theme: {
         darkMode: ['class', '[data-theme="dark"]'],
+        lightMode: ['class', '[data-theme="light"]'],
+        defaultMode: ['class', '[data-theme="light"]'],
         extend: {},
-
     },
     plugins: [
         forms,

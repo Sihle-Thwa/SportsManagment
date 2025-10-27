@@ -4,7 +4,6 @@ import * as React from "react";
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react";
 import { useSidebar } from "../../ui/sidebar-context";
 import SearchInput from "./search-input";
-import ModeToggle from "../../mode-toggle";
 import "./apptopbar.css";
 import { useLocation } from "react-router-dom";
 
@@ -59,9 +58,7 @@ export default function AppTopBar() {
 				<SearchInput />
 			</div>
 
-			<div className="topbar-section topbar-right">
-				<ModeToggle />
-			</div>
+			<div className="topbar-section topbar-right">{/* <ModeToggle /> */}</div>
 		</div>
 	);
 }

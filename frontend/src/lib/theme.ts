@@ -1,28 +1,37 @@
-const STORAGE_KEY = "ui-theme";
+const STORAGE_KEY = "app-theme";
 
 export type ThemeChoice = "light" | "dark" | "system";
 
-export function getStoredTheme(): ThemeChoice | null {
-    return (localStorage.getItem(STORAGE_KEY) as ThemeChoice) ?? null;
+export function getStoredTheme(): ThemeChoice {
+    // Validate stored value; default to "light" when missing or invalid.
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw === "light" || raw === "dark" || raw === "system") {
+        return raw;
+    }
+    return "light";
 }
 
 export function applyTheme(theme: ThemeChoice) {
     localStorage.setItem(STORAGE_KEY, theme);
-    document.documentElement.setAttribute(
-        "data-theme",
-        theme === "system" ? "light" : "dark",
-    );
+    let appliedTheme = theme;
+    if (theme === "system") {
+        appliedTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? "dark" : "light";
+    }
+    document.documentElement.setAttribute("data-theme", appliedTheme);
+    document.documentElement.classList.remove("light", "dark");
+    if (appliedTheme === "light" || appliedTheme === "dark") {
+        document.documentElement.classList.add(appliedTheme);
+    }
+    console.log(`Applied theme: ${theme}`);
+    document.documentElement.classList.add(theme);
+    console.log(`Applied theme: ${theme}`);
 }
 
 /** Initialise theme on app boot. */
 export function initTheme(): void {
+    // Ensure a validated theme is always applied on startup (defaults to "light").
     const stored = getStoredTheme();
-    if (stored === "light" || stored === "dark" || stored === "system") {
-        document.documentElement.setAttribute("data-theme", stored === "light" ? "dark" : "light");
-        applyTheme(stored);
-        return;
-    }
-    document.documentElement.removeAttribute("data-theme");
+    applyTheme(stored);
 }
 
 export default {
@@ -30,4 +39,3 @@ export default {
     applyTheme,
     initTheme,
 };
-

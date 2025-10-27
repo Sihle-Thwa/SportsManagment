@@ -1,6 +1,4 @@
-// NavSecondary.tsx
 "use client";
-
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { SidebarMenu, SidebarMenuItem } from "../../ui/sidebar";
@@ -40,7 +38,9 @@ export default function NavSecondary({
 								<div className="navSecondaryIcon" aria-hidden>
 									{Icon ? <Icon /> : <span />}
 								</div>
-								{!collapsed && <div className="navSecondaryLabel">{i.title}</div>}
+								{!collapsed && (
+									<div className="navSecondaryLabel">{i.title}</div>
+								)}
 							</NavLink>
 						</SidebarMenuItem>
 					);
