@@ -1,31 +1,31 @@
 @import "tailwindcss";
 
 @layer components {
-	/* --- layout & cards (same as earlier) --- */
+	
 	.dashboard {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
 		width: 100%;
-		max-width: 1280px;
 		padding: 16px;
-		margin: 0 auto;
+		margin: 0;
+
 	}
 
 	.dashboard-grid {
 		display: grid;
 		grid-template-columns: 1fr;
-		gap: 12px;
 		align-items: start;
+		justify-content: center;
+		gap: 16px;
+		width: 100%;
 	}
 
 	@media (min-width: 768px) {
 		.dashboard-grid {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
-		}
-	}
-
-	@media (min-width: 1200px) {
-		.dashboard-grid {
-			grid-template-columns: 1fr 1fr 1fr;
-			gap: 12px;
+			grid-template-columns: 1fr 1fr;
+			gap: 16px;
 		}
 		.greeting-col {
 			grid-column: 1 / span 2;
@@ -34,7 +34,7 @@
 			grid-column: 3 / span 1;
 		}
 		.stats-col {
-			grid-column: 1 / span 3;
+			grid-column: 1 / span 2;
 		}
 		.messages-col {
 			grid-column: 1 / span 1;
@@ -42,32 +42,34 @@
 		.players-col {
 			grid-column: 2 / span 1;
 		}
-		
 		.notices-col {
-			grid-column: 3 / span 1;
+			grid-column: 1 / span 2;
+		}
+		
+	}
+
+	@media (min-width: 1024px) {
+		.dashboard-grid {
+			grid-template-columns: repeat(4, 1fr);
+			gap: 24px;
+		}
+		.greeting-col {
+			grid-column: 1 / span 2;
+		}
+		.calendar-col {
+			grid-column: 3 / span 2;
+		}
+		.stats-col {
+			grid-column: 1 / span 4;
+		}
+		.messages-col {
+			grid-column: 1 / span 2;
+		}
+		.players-col {
+			grid-column: 3 / span 2;
+		}
+		.notices-col {
+			grid-column: 1 / span 4;
 		}
 	}
-
-	/* Chart & footer CTA */
-	
-	.players-cta {
-		display: flex;
-		gap: 8px;
-		align-items: center;
-	}
-	.btn-icon {
-		margin-right: 8px;
-		display: inline-flex;
-		align-items: center;
-	}
-
-	
-	/* --- empty state --- */
-	.empty {
-		padding: 12px;
-		color: var(--card-foreground-secondary);
-	}
-
-	
-	
 }

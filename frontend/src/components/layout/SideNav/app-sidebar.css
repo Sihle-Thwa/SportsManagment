@@ -2,8 +2,8 @@
 
 @layer components {
 	:root {
-		--sidebar-width: 240px;
-		--sidebar-width-collapsed: 64px;
+		--sidebar-width: 250px;
+		--sidebar-width-collapsed: 72px;
 		--sidebar-topbar: 72px;
 	}
 	.app_sidebar {
