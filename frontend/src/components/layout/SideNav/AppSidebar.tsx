@@ -18,8 +18,8 @@ export function AppSidebar()  {
 
 	return (
 		<aside
-			id="app-sidebar"
-			className= "appSidebar"
+			id="appsidebar"
+			className="appSidebar"
 			aria-label="Primary navigation"
 			aria-expanded={!isCollapsed}
 		>
@@ -31,10 +31,7 @@ export function AppSidebar()  {
 						title="Home"
 						type="button"
 					>
-						<House
-							className="appSidebarBrandIcon"
-							aria-hidden
-						/>
+						<House className="appSidebarBrandIcon" aria-hidden />
 						{!isCollapsed && (
 							<span className="appSidebarBrandText">U-Organise</span>
 						)}

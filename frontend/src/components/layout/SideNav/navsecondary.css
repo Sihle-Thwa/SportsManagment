@@ -1,33 +1,28 @@
 @import "tailwindcss";
 
 .navSecondaryRoot {
-	width: 100%;
+	padding: 8px 0;
 }
 .navSecondaryMenu {
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	display: flex;
-	flex-direction: column;
-	gap: 6px;
 }
 .navSecondaryItem {
 	margin: 0;
+	padding: 0;
 }
 
 .navSecondaryLink {
 	display: flex;
 	align-items: center;
-	gap: 12px;
-	width: 100%;
 	padding: 8px 12px;
 	text-decoration: none;
-	color: var(--sidebar-text, var(--text-on-surface));
-	border-radius: 8px;
-	transition:  var(--duration-fast) var(--easing-smooth), color 160ms;
+	color: var(--text-primary);
+	background: var(--sidebar-background);
 }
 .navSecondaryLink:hover {
-	background: var(--sidebar-item-background-hover);
+	background: var(--sidebar-background-hover);
 	color: var(--sidebar-text-hover);
 }
 .navSecondaryLink.active {

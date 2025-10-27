@@ -2,6 +2,8 @@
 
 .navMainRoot {
 	width: 100%;
+	padding: 8px 0;
+	box-sizing: border-box;
 }
 .navMainMenu {
 	list-style: none;
@@ -9,26 +11,26 @@
 	padding: 0;
 	display: flex;
 	flex-direction: column;
-	gap: 6px;
+	gap: 8px;
 }
 
 .navMainItem {
 	margin: 0;
+	padding: 0;
+	
 }
 
 /* link base */
 .navMainLink {
 	display: flex;
 	align-items: center;
-	gap: 12px;
-	width: 100%;
-	padding: 8px 12px;
+	gap: 8px;
 	text-decoration: none;
-	color: var(--sidebar-text, var(--text-on-surface));
-	border-radius: 8px;
-	transition:  var(--transition-fast) var(--easing-smooth),
-		color 160ms var(--easing-smooth);
-}
+	padding: 8px 12px;
+	font-size: 14px;
+	background: var(--sidebar-item-background, transparent);
+
+	}
 
 .navMainLink:hover {
 	background: var(
@@ -38,10 +40,12 @@
 	color: var(--sidebar-text-hover, var(--text-on-surface));
 }
 
-.navMainLink:focus {
-	outline: none;
-	box-shadow: 0 0 0 4px
-		color-mix(in srgb, var(--interactive-primary) 8%, transparent);
+.navMainLink:active{
+	background: var(
+		--sidebar-item-background-active
+	);
+	color: var(--text-on-primary);
+	font-weight: var(--font-weight-semibold);
 }
 
 /* active */
@@ -53,20 +57,17 @@
 
 /* icon + label */
 .navMainLinkIcon {
-	width: 20px;
-	height: 20px;
+	width: var(--icon-size-default);
+	height: var(--icon-size-default);
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	color: inherit;
-	flex: 0 0 auto;
 }
 
 .navMainLinkLabel {
-	flex: 1 1 auto;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+	flex-grow: 1;
+	color: inherit;
 }
 
 /* collapsed variants */
@@ -76,4 +77,5 @@
 }
 .navMainLink.collapsed .navMainLinkLabel {
 	display: none;
+	
 }
