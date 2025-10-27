@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import './colours.css';
+@import "tailwindcss";
+@import "./colours.css";
 
 /* Light Theme (default) */
 
@@ -46,7 +46,7 @@
     /* Icon colours */
     --icon-primary: var(--colour-neutral-500);
     --icon-secondary: var(--colour-neutral-700);
-    --icon-tertiary: var(--colour-neutral-900); 
+    --icon-tertiary: var(--colour-neutral-900);
     --icon-on-primary: var(--colour-neutral-100);
     --icon-on-secondary: var(--colour-neutral-100);
     --icon-on-tertiary: var(--colour-neutral-100);
@@ -57,24 +57,23 @@
     --icon-success: var(--colour-success-500);
     --icon-warning: var(--colour-warning-500);
     --icon-error: var(--colour-error-500);
-    
+
     /* Border colours */
+    --border-strong: var(--colour-neutral-900);
+    --border-subtle: var(--colour-neutral-300);
     --border-default: var(--border-subtle);
-    --border-muted: var(--border-default);
-    --border-focus: var(--colour-primary-500);
-    --border-error: var(--colour-error-500);    
+    --border-muted: var(--colour-neutral-100);
+    --border-focus: var(--colour-primary-700);
+    --border-error: var(--colour-error-500);
     --border-success: var(--colour-success-500);
-    --border-disabled: var(--colour-neutral-300);
-    
-    /* Interactive States - Adapted for CRM colour Palette */
+    --border-disabled: var(--colour-neutral-100);
     /* Primary Interactive States */
-    --interactive-hover: var(--colour-primary-500);
-    --interactive-pressed: var(--colour-primary-700);
-    --interactive-active: var(--colour-primary-900);
-    --interactive-disabled: var(--colour-neutral-300);
-    --interactive-focus: var(--colour-primary-200);
-    
-    /*Secondary Interactive States*/
+    --interactive-primary-hover: var(--colour-primary-500);
+    --interactive-primary-pressed: var(--colour-primary-700);
+    --interactive-primary-active: var(--colour-primary-900);
+    --interactive-primary-disabled: var(--colour-neutral-300);
+    --interactive-primary-focus: var(--colour-primary);
+    /* Secondary Interactive States */
     --interactive-secondary-hover: var(--colour-secondary-500);
     --interactive-secondary-pressed: var(--colour-secondary-700);
     --interactive-secondary-active: var(--colour-secondary-900);
@@ -89,19 +88,18 @@
     --interactive-tertiary-focus: var(--colour-tertiary-200);
 
     /* Status Colours - Adapted for CRM colour Palette */
-    
+
     --status-success: var(--colour-success-500);
     --status-success-background: var(--colour-success-100);
     --status-success-border: var(--colour-success-300);
     --status-success-border: var(--colour-success-300);
     --status-success-border: var(--colour-success-300);
 
-
     /* Warning Status */
     --status-warning: var(--colour-warning-500);
     --status-warning-background: var(--colour-warning-100);
     --status-warning-border: var(--colour-warning-300);
-    
+
     /* Error Status */
     --status-error: var(--colour-error-500);
     --status-error-background: var(--colour-error-100);
@@ -123,7 +121,7 @@
     --layout-shadow: 0 1px 3px hsla(220, 15%, 15%, 0.1);
     --layout-shadow-hover: 0 4px 12px hsla(220, 15%, 15%, 0.15);
     --layout-shadow-active: 0 4px 12px hsla(220, 15%, 15%, 0.15);
-    
+
     /* Sidebar Navigation */
     --sidebar-background: var(--colour-neutral-100);
     --sidebar-border: var(--border-subtle);
@@ -135,7 +133,7 @@
     --sidebar-item-background-active: var(--colour-primary-900);
     --sidebar-item-border-active: var(--colour-primary-500);
     --sidebar-item-text-active: var(--colour-neutral-100);
-    
+
     /* Navbar Components */
     --navbar-background: var(--colour-neutral-100);
     --navbar-border: var(--border-subtle);
@@ -145,7 +143,7 @@
     --navbar-icon-hover: var(--colour-primary-500);
     --navbar-icon-active: var(--colour-primary-700);
     --navbar-icon-disabled: var(--colour-neutral-300);
-    
+
     /* Card Components */
     --card-background: var(--colour-neutral-100);
     --card-border: var(--border-subtle);
@@ -155,7 +153,7 @@
     --card-header-border: var(--border-muted);
     --card-footer-background: var(--colour-neutral-200);
     --card-footer-border: var(--border-muted);
-    
+
     /* Input Components */
     --input-background: var(--color-white);
     --input-text: var(--text-primary);
@@ -165,7 +163,7 @@
     --input-background-disabled: var(--colour-neutral-200);
     --input-text-disabled: var(--colour-neutral-300);
     --input-border-disabled: var(--border-muted);
-    
+
     /* Header/Navigation Bar */
     --header-background: var(--colour-neutral-100);
     --header-border: var(--border-subtle);
@@ -174,7 +172,7 @@
     --header-icon-hover: var(--colour-primary-500);
     --header-icon-active: var(--colour-primary-700);
     --header-icon-disabled: var(--colour-neutral-300);
-    
+
     /* Table Components */
     --table-header-background: var(--colour-neutral-200);
     --table-header-border: var(--border-muted);
@@ -185,7 +183,7 @@
     --table-cell-text: var(--colour-neutral-900);
     --table-cell-text-secondary: var(--colour-neutral-500);
     --table-cell-border: var(--border-subtle);
-    
+
     /* Modal/Dialog Components */
     --modal-background: var(--colour-neutral-100);
     --modal-border: var(--border-subtle);
@@ -194,16 +192,15 @@
     --modal-header-border: var(--border-muted);
     --modal-footer-background: var(--colour-neutral-200);
     --modal-footer-border: var(--border-muted);
-        
+
     /* Badge/Tag Components */
     --badge-background: var(--colour-neutral-200);
     --badge-text: var(--colour-neutral-900);
     --badge-border: var(--border-subtle);
-    
+
     /* Tooltip Components */
     --tooltip-background: var(--colour-neutral-900);
     --tooltip-text: var(--colour-neutral-100);
     --tooltip-border: var(--colour-neutral-700);
     --tooltip-shadow: 0 4px 12px hsla(220, 15%, 15%, 0.25);
-    
 }
