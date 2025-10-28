@@ -56,11 +56,14 @@
 
 .playersContent {
 	display: grid;
-	grid-template-columns: 1fr 2fr;
+	grid-template-columns: 1fr 1fr;
 	place-items: stretch;
+	align-items: stretch;
+	justify-content: center;
 	width: 100%;
 	padding: 12px;
-	gap: 24px;
+	gap: 16px;
+
 }
 
 .playersContent_table {

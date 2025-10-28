@@ -4,7 +4,7 @@ import PlayersPageTable from "./PlayersPageTable";
 import "./players.css";
 
 export default function Players() {
-	const [selectedPlayerId, setSelectedPlayerId] = useState<string | null>(null);
+	const [selectedPlayerId, setSelectedPlayerId] = useState<string >("");
 
 	return (
 		<div className="playersRoot">
@@ -21,8 +21,8 @@ export default function Players() {
 				<div className="playersContent">
 					<div className="playersContent_table" aria-live="polite">
 						<PlayersPageTable
-							selectedId={selectedPlayerId}
 							onSelect={setSelectedPlayerId}
+							selectedId={selectedPlayerId}
 						/>
 					</div>
 					<div className="playersContent_form">

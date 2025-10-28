@@ -1,16 +1,17 @@
 import React, { useMemo, useState, useEffect } from "react";
-import { getPlayersTableData } from "../../routes/playersmockdata"; // must return { id, firstName, lastName, status }[]
+import { getPlayersTableData } from "../../routes/playersmockdata";
 import "./playerspagetable.css";
 
 type Props = {
-	selectedId?: string | null;
-	onSelect?: (id: string | null) => void;
+	selectedId?: string ;
+	onSelect?:  (id: string ) => void;
 };
 
 export default function PlayersPageTable({ selectedId, onSelect }: Props) {
 	const players = useMemo(() => getPlayersTableData(), []);
 	const [localSelected, setLocalSelected] = useState<string | null>(
 		selectedId ?? null,
+
 	);
 
 	// sync prop -> local
@@ -19,7 +20,7 @@ export default function PlayersPageTable({ selectedId, onSelect }: Props) {
 	function handleRowClick(id: string) {
 		const next = localSelected === id ? null : id;
 		setLocalSelected(next);
-		onSelect?.(next);
+		onSelect?.(next ?? "");
 	}
 
 	// keyboard: allow up/down + Enter to select

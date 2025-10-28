@@ -1,34 +1,34 @@
-/* Component root: accept camelCase and kebab-case classnames */
-.playersPageTable {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	max-width: 420px;
-	align-items: center;
-	box-shadow: var(--shadow-card, var(--card-shadow));
-	border-radius: 8px;
-	background-color: var(--surface-1, var(--table-background));
-}
 
-/* wrapper around the table (matches PlayersPageTable.tsx .playersPageTableWrapper) */
 .playersPageTableWrapper {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+	min-width: 320px;
 	align-items: center;
-	height: 580px;
+	box-shadow: var(--card-shadow);
+	border-radius: 12px;
+	background-color: var(--table-background);
+}
+
+.playersPageTable {
+	width: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
 }
 
 /* Header */
 .playersPageTable_tableHeader {
-	display: flex;
+	display: inline-flex;
 	flex-direction: row;
 	align-items: center;
+	justify-content: flex-start;
 	width: 100%;
 	padding: 8px 12px;
-	border-bottom: 2px solid var(--border-1, var(--border-default));
-	font-weight: var(--font-weight-semibold, 600);
-	color: var(--text-on-surface, var(--text-on-background));
+	border-bottom: 2px solid var(--border-default);
+	font-weight: var(--font-weight-semibold);
+	color: var(--text-on-background);
+	font-size: 16px;
 }
 
 /* Header row / cell */
@@ -37,25 +37,28 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: flex-start;
+	gap: 8px;
 	width: 100%;
 }
 
 .playersPageTable_tableHeader-cell {
-	display: inline-flex;
-	text-align: center;
-	flex: 1 1 80px;
-	font-weight: var(--font-weight-semibold, 600);
-	color: var(--text-primary, --text-primary);
-	font-size: var(--type-scale-1, 16px); /* from typography.css */
+	flex: 1 1 100px;
+	min-width: 100px;
+	width: 100%;
+	display: flex;
+	align-items: center;
 }
 
 /* Body */
 .playersPageTable_tableBody {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
 	width: 100%;
-	max-height: 480px;
-	overflow-y: auto;
+	height: 100%;
+	overflow: auto;
+
 }
 
 .playersPageTable_tableBody-row {
@@ -64,8 +67,13 @@
 	align-items: center;
 	justify-content: flex-start;
 	width: 100%;
-	padding: 12px;
-	border-bottom: 1px solid var(--border-1, var(--border-default));
+	padding: 8px 12px;
+	color: var(--text-on-primary);
+	border-bottom: 1px solid var(--border-default);
+	cursor: pointer;
+	font-size: 14px;
+	color: var(--text-on-background-primary);
+	
 }
 
 /* Cells */
@@ -75,42 +83,24 @@
 	width: 100%;
 	display: inline-flex;
 	align-items: center;
+	overflow: hidden;
 }
 
 /* Selected row visual: scoped to component only */
 .playersPageTable_tableBody-row.is-selected {
-	background: color-mix(
-		in srgb,
-		var(--interactive-primary) 8%,
-		var(--surface-1, var(--table-background))
+	background: var(
+		--table-row-selected-bg,
+		color-mix(in srgb, var(--interactive-primary) 4%, white)
 	);
-	border-left: 4px solid var(--interactive-primary);
-	transition: background 180ms
-			var(--easing-smooth, cubic-bezier(0.4, 0, 0.2, 1)),
-		box-shadow 160ms var(--easing-smooth);
-	box-shadow: 0 6px 16px rgba(17, 24, 39, 0.04);
-}
 
-/* Selected row text/icon color (scoped & specific) */
-.playersPageTable_tableBody-row.is-selected {
-	color: var(--interactive-primary);
-}
+	box-shadow: 0 0 0 2px var(--interactive-primary);
 
-/* Focus-visible for keyboard users (outline the whole row) - scoped */
-.playersPageTable_tableBody-row:focus-visible {
-	outline: 3px solid
-		color-mix(in srgb, var(--interactive-primary) 30%, var(--surface-1, #fff));
-	outline-offset: 2px;
-	border-radius: 6px;
 }
 
 /* Hover state (scoped; avoid global :hover) */
 .playersPageTable_tableBody-row:hover {
-	background: var(
-		--table-row-hover-bg,
-		color-mix(in srgb, var(--interactive-primary) 3%, var(--surface-1, #fff))
-	);
-	cursor: pointer;
+	background: var( --table-row-hover);
+	transform: translateY(-1px);
 }
 
 /* Ensure selected rows have readable content (scoped) */
@@ -141,23 +131,3 @@
 	}
 }
 
-/* Responsive adjustments */
-@media (max-width: 520px) {
-	.playersPageTable {
-		max-width: 100%;
-		border-radius: 6px;
-	}
-
-	.playersPageTable_tableHeader-cell {
-		font-size: calc(var(--type-scale-0, 14px));
-		padding: 6px 8px;
-	}
-
-	.playersPageTable_tableBody-row {
-		padding: 8px;
-	}
-
-	.playersPageTable_tableBody-cell {
-		min-width: 64px;
-	}
-}

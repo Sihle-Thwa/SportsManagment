@@ -74,12 +74,14 @@
     --border-error: var(--colour-error-500);
     --border-success: var(--colour-success-500);
     --border-disabled: var(--colour-neutral-100);
+
     /* Primary Interactive States */
     --interactive-primary-hover: var(--colour-primary-500);
     --interactive-primary-pressed: var(--colour-primary-700);
     --interactive-primary-active: var(--colour-primary-900);
     --interactive-primary-disabled: var(--colour-neutral-300);
     --interactive-primary-focus: var(--colour-primary);
+
     /* Secondary Interactive States */
     --interactive-secondary-hover: var(--colour-secondary-500);
     --interactive-secondary-pressed: var(--colour-secondary-700);
@@ -95,7 +97,6 @@
     --interactive-tertiary-focus: var(--colour-tertiary-200);
 
     /* Status Colours - Adapted for CRM colour Palette */
-
     --status-success: var(--colour-success-500);
     --status-success-background: var(--colour-success-100);
     --status-success-border: var(--colour-success-300);
@@ -168,7 +169,7 @@
     --input-border: var(--border-default);
     --input-border-focus: var(--colour-primary-500);
     --input-border-error: var(--colour-error-500);
-    --input-background-disabled: var(--colour-neutral-200);
+    --input-background-disabled: var(--colour-neutral-300);
     --input-text-disabled: var(--colour-neutral-300);
     --input-border-disabled: var(--border-muted);
 
@@ -182,15 +183,19 @@
     --header-icon-disabled: var(--colour-neutral-300);
 
     /* Table Components */
-    --table-header-background: var(--colour-neutral-200);
-    --table-header-border: var(--border-muted);
+    --table-background: var(--colour-neutral-100);
+    --table-border: var(--border-subtle);
     --table-row-background: var(--colour-neutral-100);
-    --table-row-background-alt: var(--colour-neutral-150);
-    --table-row-hover: var(--colour-neutral-200);
+    --table-row-background-alt: var(--colour-neutral-100);
+    --table-row-selected-background: var(--colour-primary-100);
+    --table-row-selected-border: var(--border-subtle);
+    --table-row-selected-text: var(--text-on-primary);
+    --table-row-hover: var(--colour-primary-100);
     --table-row-border: var(--border-subtle);
     --table-cell-text: var(--colour-neutral-900);
-    --table-cell-text-secondary: var(--colour-neutral-500);
+    --table-cell-text-secondary: var(--colour-secondary-500);
     --table-cell-border: var(--border-subtle);
+    --table-row-selected-text: var(--text-on-secondary);
 
     /* Modal/Dialog Components */
     --modal-background: var(--colour-neutral-100);
