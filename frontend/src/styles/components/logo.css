@@ -1,0 +1,45 @@
+@import 'tailwindcss';
+@layer components {
+
+:root {
+    --brand-icon-size_xl: 42px;
+    --brand-icon-size_lg: 32px;
+    --brand-icon-size_md: 24px;
+    --brand-icon-size_sm: 16px;
+    --brand-icon-fill: #1D3752;
+
+}
+.uorganise-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: var(--brand-icon-size_md);
+    width: var(--brand-icon-size_md);
+    min-width: none;
+    max-height: var(--brand-icon-size_md);
+    height: var(--brand-icon-size_md);
+    min-height: none;
+
+}
+.uorganise-icon-bg {
+
+    width: var(--brand-icon-size_md);
+    height: var(--brand-icon-size_md);
+    border-radius: 32;
+    fill: var(--brand-icon-fill);
+}
+
+.uorganise-icon-border {
+    stroke: #FFFFFF;
+    stroke-width: 2.5;
+    fill: none;
+
+}
+
+.uorganise-icon-check {
+    stroke: #FFA200;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+}

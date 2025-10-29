@@ -61,7 +61,7 @@ export default function LoginPage() {
 			<div className="loginPageHeader">
 				<div className="loginPageHeaderContainer">
 					<div className="loginPageHeaderContainer_brand">
-						Logo Company Name
+						u-organise
 					</div>
 					<div className="loginPageHeaderContainer_cta">
 						<div className="loginPageHeaderContainer_cta_text">
