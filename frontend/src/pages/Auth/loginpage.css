@@ -13,15 +13,11 @@
 
 	.loginPageHeader {
 		display: flex;
-		justify-content: center;
-		align-items: center;
+		flex-direction: row;
 		width: 100%;
 		height: 72px;
-		position: sticky;
-		top: 0;
-		background: var(--navbar-background);
-		border-bottom: 1px solid var(--navbar-border);
-		box-shadow: var(--shadow-sm);
+		background: var(--background-surface);
+		border-bottom: 1px solid var(--border-default);
 	}
 
 	.loginPageHeaderContainer {
@@ -29,21 +25,23 @@
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-		max-width: 100%;
 		width: 100%;
-		padding: 0px 16px;
-		height: 100%;
-		overflow: hidden;
+		padding: 0 16px;
 	}
 
 	.loginPageHeaderContainer_brand {
 		display: flex;
 		flex-direction: row;
-		justify-content: flex-start;
-		align-items: flex-start;
-		gap: 8px;
-		color: var(--navbar-text);
+		justify-content: center;
+		gap: 4px;
 		
+	}
+
+
+	.loginPageHeaderContainer_brand_name {
+		font-size: var(--title-size-md);
+		font-weight: var(--font-weight-bold);
+		color: var(--colour-primary);
 	}
 
 	.loginPageHeaderContainer_cta {

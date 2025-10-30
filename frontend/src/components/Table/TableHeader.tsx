@@ -1,96 +1,129 @@
-import "./table.css";
-import SearchInput from "../layout/TopNav/search-input";
+// TableHeader.tsx
+import { useEffect, useState } from "react";
+import { Search } from "lucide-react";
+import "../../styles/components/table.css";
 
-type Props = {
+export type TableHeaderProps = {
 	pageSize: number;
-	pageSizeOptions: number[];
-	onPageSizeChange: (n: number) => void;
-	onSearch: (q: string) => void;
+	pageSizeOptions?: number[];
+	onPageSizeChange?: (size: number) => void;
+	onSearch?: (q: string) => void;
 	onAdd?: () => void;
 	onBulkDelete?: () => void;
 	anySelected?: boolean;
 	selectedCount?: number;
-	loading?: boolean;
-	searchValue?: string;
-	onClearSearch?: () => void;
 	searchPlaceholder?: string;
+	debounceDelay?: number; // in ms (default 300ms)
 };
 
 export default function TableHeader({
 	pageSize,
-	pageSizeOptions,
+	pageSizeOptions = [10, 25, 50],
 	onPageSizeChange,
+	onSearch,
 	onAdd,
 	onBulkDelete,
 	anySelected = false,
 	selectedCount = 0,
-	loading,
-	searchValue = "",
-	onClearSearch,
-}: Props) {
+	searchPlaceholder = "Search…",
+	debounceDelay = 300,
+}: TableHeaderProps) {
+	const [searchTerm, setSearchTerm] = useState("");
+
+	// 🔁 debounce the search updates
+	useEffect(() => {
+		const handle = setTimeout(() => {
+			if (onSearch) onSearch(searchTerm.trim());
+		}, debounceDelay);
+
+		return () => clearTimeout(handle);
+	}, [searchTerm, debounceDelay, onSearch]);
+
 	return (
-		<div
-			className="tableHeader_thead"
-			role="toolbar"
-			aria-label="Table controls"
-		>
-			<div className="table-header__inner">
-				<div className="table-header__left">
-					<div className="table-header__select-text">Show</div>
+		<div className="table-header" role="toolbar" aria-label="Table controls">
+			{/* -------- LEFT CONTROLS -------- */}
+			<div className="table-header__left">
+				{/* Entries selector */}
+				<div
+					className="table-header__select"
+					role="group"
+					aria-label="Rows per page"
+				>
+					<label htmlFor="table-pagesize" className="sr-only">
+						Rows per page
+					</label>
 					<select
-						id="rows-per-page"
-						value={String(pageSize)}
-						onChange={(e) => onPageSizeChange(Number(e.target.value))}
-						style={{ marginLeft: 8 }}
+						id="table-pagesize"
+						value={pageSize}
+						onChange={(e) => onPageSizeChange?.(Number(e.target.value))}
 						className="table-header__select"
+						aria-label="Rows per page"
+						style={{
+							appearance: "none",
+							border: "none",
+							background: "transparent",
+						}}
 					>
-						{pageSizeOptions.map((o) => (
-							<option key={o} value={o}>
-								{o}
+						{pageSizeOptions.map((opt) => (
+							<option key={opt} value={opt}>
+								{opt} / page
 							</option>
 						))}
 					</select>
-					<div className="table-header__select-text">entries</div>
 				</div>
 
-				<div className="table-header__center" role="search">
-					<div style={{ width: "100%", maxWidth: 560 }}>
-						<SearchInput />
+				{/* Bulk actions */}
+				{anySelected && (
+					<div className="bulk-actions" aria-live="polite">
+						<button
+							type="button"
+							className="button--danger"
+							onClick={() => onBulkDelete?.()}
+							aria-label={`Delete ${selectedCount} selected items`}
+						>
+							Delete ({selectedCount})
+						</button>
+					</div>
+				)}
+			</div>
 
-						{!!searchValue && (
-							<button
-								aria-label="Clear search"
-								onClick={onClearSearch}
-								className="icon-btn"
-							>
-								×
-							</button>
-						)}
+			{/* -------- CENTER: SEARCH -------- */}
+			<div className="table-header__center" role="search">
+				<div className="search-input" style={{ width: "100%", maxWidth: 420 }}>
+					<div className="search-input__wrap">
+						<Search className="search-input__icon" aria-hidden />
+						<input
+							className="search-input__control"
+							type="search"
+							value={searchTerm}
+							placeholder={searchPlaceholder}
+							onChange={(e) => setSearchTerm(e.target.value)}
+							aria-label="Search table"
+						/>
 					</div>
 				</div>
+			</div>
 
-				<div className="table-header__right">
-					{anySelected && (
-						<div
-							className="table-header__select-delete"
-							role="status"
-							aria-live="polite"
-						>
-							<span style={{ fontWeight: 600 }}>{selectedCount} selected</span>
-							<button
-								className="button--danger"
-								onClick={() => onBulkDelete?.()}
-								aria-disabled={loading}
-							>
-								Delete Selected
-							</button>
-						</div>
-					)}
+			{/* -------- RIGHT CONTROLS -------- */}
+			<div className="table-header__right">
+				<button
+					type="button"
+					className="table-header__button"
+					onClick={() => onAdd?.()}
+					aria-label="Add new item"
+				>
+					Add new
+				</button>
 
-					<button className="table-header__button" onClick={() => onAdd?.()}>
-						+ Add New Member
-					</button>
-				</div>
+				<button
+					type="button"
+					className="table-header__button table-header__button--secondary"
+					onClick={() => console.log("Export triggered")}
+					aria-label="Export table"
+					title="Export"
+				>
+					Export
+				</button>
 			</div>
 		</div>
 	);

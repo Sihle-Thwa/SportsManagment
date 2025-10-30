@@ -3,17 +3,7 @@ import TableHeader from "./TableHeader";
 import TableFooter from "./TableFooter";
 import TableBody from "./TableBody";
 import type { ColumnDef, RowId } from "./types";
-import "./table.css";
-
-/* simple debounce hook */
-function useDebounced<T>(value: T, delay = 300) {
-	const [v, setV] = useState(value);
-	useEffect(() => {
-		const id = setTimeout(() => setV(value), delay);
-		return () => clearTimeout(id);
-	}, [value, delay]);
-	return v;
-}
+import "../../styles/components/table.css";
 
 export type TableProps<T> = {
 	columns: ColumnDef<T>[];
@@ -41,80 +31,64 @@ export default function Table<T>({
 	searchPlaceholder,
 }: TableProps<T>) {
 	const [query, setQuery] = useState("");
-	const debouncedQuery = useDebounced(query, 250);
-
 	const [pageSize, setPageSize] = useState(initialPageSize);
 	const [pageIndex, setPageIndex] = useState(0);
-
-	// selection map
 	const [selected, setSelected] = useState<Record<string | number, boolean>>(
-		{},
+		{}
 	);
-
-	// sort state
 	const [sort, setSort] = useState<SortState>({ id: null, direction: null });
 
-	// Derived: filtering
+	// Filter and sort logic
 	const filtered = useMemo(() => {
-		if (!debouncedQuery) return data;
-		const q = debouncedQuery.toLowerCase();
+		if (!query) return data;
+		const q = query.toLowerCase();
 		return data.filter((row) =>
 			columns.some((col) => {
-				const v = col.accessor
+				const val = col.accessor
 					? String(col.accessor(row) ?? "")
-					: String((row as Record<string, unknown>)[col.id] ?? "");
-				return v.toLowerCase().includes(q);
-			}),
+					: String((row as unknown as Record<string, unknown>)[col.id] ?? "");
+				return val.toLowerCase().includes(q);
+			})
 		);
-	}, [data, debouncedQuery, columns]);
+	}, [data, query, columns]);
 
-	// Derived: sorting
 	const sorted = useMemo(() => {
 		if (!sort.id || !sort.direction) return filtered;
 		const col = columns.find((c) => c.id === sort.id);
 		if (!col) return filtered;
-
-		const direction = sort.direction === "asc" ? 1 : -1;
+		const dir = sort.direction === "asc" ? 1 : -1;
 		return [...filtered].sort((a, b) => {
-			const aVal = col.accessor
-				? col.accessor(a)
-				: (a as Record<string, unknown>)[col.id];
-			const bVal = col.accessor
-				? col.accessor(b)
-				: (b as Record<string, unknown>)[col.id];
-
-			const A = aVal == null ? "" : String(aVal).toLowerCase();
-			const B = bVal == null ? "" : String(bVal).toLowerCase();
-			if (A < B) return -1 * direction;
-			if (A > B) return 1 * direction;
-			return 0;
+			const A =
+				(col.accessor
+					? col.accessor(a)
+					: (a as unknown as Record<string, unknown>)[col.id]) ?? "";
+			const B =
+				(col.accessor
+					? col.accessor(b)
+					: (b as unknown as Record<string, unknown>)[col.id]) ?? "";
+			return String(A).localeCompare(String(B)) * dir;
 		});
 	}, [filtered, sort, columns]);
 
+	// Pagination
 	const pageCount = Math.max(1, Math.ceil(sorted.length / pageSize));
-	useEffect(() => {
-		if (pageIndex >= pageCount) setPageIndex(0);
-	}, [pageCount, pageIndex]);
-
 	const paged = useMemo(() => {
 		const start = pageIndex * pageSize;
 		return sorted.slice(start, start + pageSize);
 	}, [sorted, pageIndex, pageSize]);
 
-	// selection helpers
+	// Selection
 	const pageIds = paged.map(getRowId);
-	const allOnPageSelected =
-		pageIds.length > 0 && pageIds.every((id) => !!selected[id]);
-	const someOnPageSelected =
-		pageIds.some((id) => !!selected[id]) && !allOnPageSelected;
+	const allSelected = pageIds.every((id) => selected[id]);
+	const someSelected = pageIds.some((id) => selected[id]) && !allSelected;
 
-	function toggleSelectAllOnPage() {
+	function toggleSelectAll() {
 		setSelected((prev) => {
 			const next = { ...prev };
-			if (allOnPageSelected) {
-				for (const id of pageIds) delete next[id];
+			if (allSelected) {
+				pageIds.forEach((id) => delete next[id]);
 			} else {
-				for (const id of pageIds) next[id] = true;
+				pageIds.forEach((id) => (next[id] = true));
 			}
 			return next;
 		});
@@ -123,90 +97,61 @@ export default function Table<T>({
 	function toggleRow(id: RowId) {
 		setSelected((prev) => {
 			const next = { ...prev };
-			if (next[id]) delete next[id];
-			else next[id] = true;
+			next[id] = !next[id];
 			return next;
 		});
 	}
 
 	async function handleBulkDelete() {
-		if (!onBulkDelete) return;
-		const ids = Object.keys(selected).filter((k) => selected[k]) as RowId[];
-		await onBulkDelete(ids);
-		setSelected({});
+		if (onBulkDelete) {
+			const ids = Object.keys(selected).filter((k) => selected[k]) as RowId[];
+			await onBulkDelete(ids);
+			setSelected({});
+		}
 	}
 
-	function toggleSort(columnId: string, sortable?: boolean) {
-		if (!sortable) return;
-		setSort((s) => {
-			if (s.id !== columnId) return { id: columnId, direction: "asc" };
-			if (s.direction === "asc") return { id: columnId, direction: "desc" };
-			return { id: null, direction: null };
-		});
-	}
-
-	// For indeterminate master checkbox
-	const masterRef = useRef<HTMLInputElement | null>(null);
+	const masterRef = useRef<HTMLInputElement>(null);
 	useEffect(() => {
-		if (masterRef.current) masterRef.current.indeterminate = someOnPageSelected;
-	}, [someOnPageSelected]);
+		if (masterRef.current) masterRef.current.indeterminate = someSelected;
+	}, [someSelected]);
 
 	return (
-		<div className="tableRoot" role="region" aria-label="Data table">
-			<div className="tableContainer">
-				<div className="tableContent">
+		<div className="table-root" role="region" aria-label="Data table">
+			<div className="table-container">
+				<div className="table-content">
 					<TableHeader
 						pageSize={pageSize}
 						pageSizeOptions={pageSizeOptions}
-						onPageSizeChange={(n) => {
-							setPageSize(n);
-							setPageIndex(0);
-						}}
-						onSearch={(q) => {
-							setQuery(q);
-							setPageIndex(0);
-						}}
-						searchValue={query}
+						onPageSizeChange={setPageSize}
+						onSearch={setQuery}
 						onAdd={onAdd}
 						onBulkDelete={handleBulkDelete}
 						anySelected={Object.values(selected).some(Boolean)}
 						selectedCount={
 							Object.keys(selected).filter((k) => selected[k]).length
 						}
-						onClearSearch={() => setQuery("")}
 						searchPlaceholder={searchPlaceholder}
 					/>
 
-					{/* semantic table */}
-					<table
-						className="tableBody_tbody"
-						role="table"
-						aria-label="table-data"
-					>
-						<thead className="tableBody_thead" role="rowgroup">
-							<tr role="row" className="tableBody_thead-row">
-								<th
-									className="tableBody_thead-cell-checkbox"
-									role="columnheader"
-								>
+					<table className="table-body" role="table">
+						<thead className="table-head" role="rowgroup">
+							<tr role="row" className="table-head__row">
+								<th className="table-head__cell--checkbox">
 									<input
 										ref={masterRef}
 										type="checkbox"
-										aria-label="Select all rows on this page"
-										checked={allOnPageSelected}
-										onChange={toggleSelectAllOnPage}
+										aria-label="Select all"
+										checked={allSelected}
+										onChange={toggleSelectAll}
 									/>
 								</th>
-
 								{columns.map((col) => {
 									const isSorted = sort.id === col.id;
 									return (
 										<th
 											key={col.id}
+											className="table-head__cell"
 											scope="col"
-											role="columnheader"
-											className="tableBody_thead-cell"
-											style={{ width: col.width }}
 											aria-sort={
 												isSorted
 													? sort.direction === "asc"
@@ -216,18 +161,20 @@ export default function Table<T>({
 											}
 										>
 											<button
-												type="button"
-												className="tableBody_thead-cell-sortable"
-												onClick={() => toggleSort(col.id, col.sortable)}
-												aria-label={
-													col.sortable ? `${col.header} sortable` : col.header
+												className="table-head__cell--sortable"
+												onClick={() =>
+													setSort((s) =>
+														s.id !== col.id
+															? { id: col.id, direction: "asc" }
+															: s.direction === "asc"
+																? { id: col.id, direction: "desc" }
+																: { id: null, direction: null }
+													)
 												}
 											>
-												<span>{col.header}</span>
+												{col.header}
 												<span
-													className={`sort-indicator ${
-														isSorted ? "active" : ""
-													}`}
+													className={`sort-indicator ${isSorted ? "active" : ""}`}
 												>
 													{isSorted
 														? sort.direction === "asc"
@@ -239,13 +186,7 @@ export default function Table<T>({
 										</th>
 									);
 								})}
-
-								<th
-									className="tableBody_thead-cell-actions"
-									role="columnheader"
-								>
-									Action
-								</th>
+								<th className="table-head__cell">Actions</th>
 							</tr>
 						</thead>
 
@@ -263,8 +204,8 @@ export default function Table<T>({
 						totalItems={sorted.length}
 						pageIndex={pageIndex}
 						pageSize={pageSize}
-						onPageChange={(idx) => setPageIndex(idx)}
 						pageCount={pageCount}
+						onPageChange={setPageIndex}
 					/>
 				</div>
 			</div>

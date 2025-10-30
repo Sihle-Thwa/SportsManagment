@@ -1,35 +1,38 @@
 import TablePagination from "./TablePagination";
-import "./table.css";
+import "../../styles/components/table.css";
 
-type Props = {
+export type TableFooterProps = {
 	totalItems: number;
 	pageIndex: number;
 	pageSize: number;
-	onPageChange: (idx: number) => void;
 	pageCount: number;
+	onPageChange: (index: number) => void;
 };
 
 export default function TableFooter({
 	totalItems,
 	pageIndex,
 	pageSize,
-	onPageChange,
 	pageCount,
-}: Props) {
+	onPageChange,
+}: TableFooterProps) {
+	const start = totalItems === 0 ? 0 : pageIndex * pageSize + 1;
+	const end = Math.min(totalItems, (pageIndex + 1) * pageSize);
+
 	return (
-		<div className="table-footer" role="contentinfo" aria-label="Table footer">
-			<div className="table-footer__left">
-				Showing {totalItems === 0 ? 0 : pageIndex * pageSize + 1} -{" "}
-				{Math.min((pageIndex + 1) * pageSize, totalItems)} of {totalItems}
+		<footer className="table-footer" role="contentinfo" aria-label="Table footer">
+			<div className="table-footer__left" aria-live="polite">
+				Showing <strong>{start}</strong>–<strong>{end}</strong> of{" "}
+				<strong>{totalItems}</strong>
 			</div>
 
 			<div className="table-footer__center">
 				<TablePagination
 					pageIndex={pageIndex}
-					pageCount={pageCount}
+					pageCount={Math.max(1, pageCount)}
 					onPageChange={onPageChange}
 				/>
 			</div>
-		</div>
+		</footer>
 	);
 }

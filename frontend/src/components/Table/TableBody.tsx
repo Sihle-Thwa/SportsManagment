@@ -1,6 +1,7 @@
-import type { ColumnDef, RowId } from "./types";
-import "./table.css";
 import { Edit, Delete } from "lucide-react";
+import type { ColumnDef, RowId } from "./types";
+import "../../styles/components/table.css";
+
 type Props<T> = {
 	columns: ColumnDef<T>[];
 	rows: T[];
@@ -20,23 +21,14 @@ export default function TableBody<T>({
 }: Props<T>) {
 	if (loading) {
 		return (
-			<tbody className="tableBody_tbody" role="rowgroup" aria-busy="true">
+			<tbody className="table-body" role="rowgroup" aria-busy="true">
 				{Array.from({ length: 6 }).map((_, i) => (
-					<tr className="tableBody_tbody-row" role="row" key={i}>
-						<td className="tableBody_tbody-cell-checkbox" role="cell">
-							<div
-								className="shimmer"
-								style={{ width: 16, height: 16, borderRadius: 4 }}
-							/>
-						</td>
-						{columns.map((col) => (
-							<td key={col.id} className="tableBody_tbody-cell" role="cell">
-								<div className="shimmer" style={{ width: 120, height: 16 }} />
-							</td>
+					<tr key={i} className="table-row shimmer">
+						<td className="table-cell--checkbox shimmer" />
+						{columns.map((c) => (
+							<td key={c.id} className="table-cell shimmer" />
 						))}
-						<td className="tableBody_tbody-cell-actions" role="cell">
-							<div className="shimmer" style={{ width: 80, height: 28 }} />
-						</td>
+						<td className="table-cell--actions shimmer" />
 					</tr>
 				))}
 			</tbody>
@@ -44,84 +36,50 @@ export default function TableBody<T>({
 	}
 
 	return (
-		<tbody className="tableBody_tbody" role="rowgroup">
+		<tbody className="table-body" role="rowgroup">
 			{rows.map((row) => {
 				const id = getRowId(row);
 				const checked = !!selected[id];
 				return (
 					<tr
 						key={String(id)}
-						className="tableBody_tbody-row"
-						role="row"
+						className={`table-row ${checked ? "is-selected" : ""}`}
 						aria-selected={checked}
-						tabIndex={0}
 					>
-						<td className="tableBody_tbody-cell-checkbox" role="cell">
+						<td className="table-cell--checkbox">
 							<input
-								aria-label={`Select ${String(id)}`}
 								type="checkbox"
 								checked={checked}
+								aria-label={`Select row ${String(id)}`}
 								onChange={() => onToggleRow(id)}
 							/>
 						</td>
-
 						{columns.map((col) => (
-							<td
-								key={col.id}
-								className="tableBody_tbody-cell"
-								role="cell"
-								data-label={col.header}
-							>
-								{col.cell ? (
-									col.cell(row)
-								) : (
-									<div className="tableBody_tbody-data">
-										{String(col.accessor?.(row) ?? "")}
-									</div>
-								)}
+							<td key={col.id} className="table-cell">
+								{col.cell ? col.cell(row) : String(col.accessor?.(row) ?? "")}
 							</td>
 						))}
-
-						<td className="tableBody_tbody-cell-actions" role="cell">
+						<td className="table-cell--actions">
 							<button
-								aria-label={`Edit ${String(id)}`}
-								title="Edit"
-								className="tableBody_tbody-cell-actions-button-edit"
-								onClick={() => {
-									const e = new CustomEvent("table:edit", {
-										detail: { id },
-									});
-									window.dispatchEvent(e);
-								}}
+								className="table-action table-action--edit"
+								aria-label={`Edit ${id}`}
 							>
-								<Edit className="tableBody_tbody-cell-actions-button-edit" />
+								<Edit />
 							</button>
 							<button
-								aria-label={`Delete ${String(id)}`}
-								title="Delete"
-								className="tableBody_tbody-cell-actions-button-delete"
-								onClick={() => {
-									const e = new CustomEvent("table:delete", {
-										detail: { id },
-									});
-									window.dispatchEvent(e);
-								}}
+								className="table-action table-action--delete"
+								aria-label={`Delete ${id}`}
 							>
-								<Delete className="tableBody_tbody-cell-actions-button-delete" />
+								<Delete />
 							</button>
 						</td>
 					</tr>
 				);
 			})}
-
 			{rows.length === 0 && (
-				<tr className="table-empty" role="row">
-					<td
-						role="cell"
-						colSpan={columns.length + 2}
-						className="table-empty__content"
-					>
-						No results found
+				<tr className="table-empty">
+					<td colSpan={columns.length + 2} className="table-empty__content">
+						No records found
 					</td>
 				</tr>
 			)}
