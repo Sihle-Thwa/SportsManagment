@@ -61,13 +61,13 @@ export default function TableBody<T>({
 						))}
 						<td className="table-cell--actions">
 							<button
-								className="table-action table-action--edit"
+								className=" table-action--edit"
 								aria-label={`Edit ${id}`}
 							>
 								<Edit />
 							</button>
 							<button
-								className="table-action table-action--delete"
+								className="table-action--delete"
 								aria-label={`Delete ${id}`}
 							>
 								<Delete />

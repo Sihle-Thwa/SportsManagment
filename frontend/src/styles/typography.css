@@ -47,6 +47,12 @@
 	--body-size-default: 16px;
 	--body-size-sm: 14px;
 
+	/*Table Sizes*/
+	--table-size-lg: 16px;
+	--table-size-md: 14px;
+	--table-size-default: 14px;
+	--table-size-sm: 12px;
+
 	/* Caption Sizes */
 	--caption-size-lg: 14px;
 	--caption-size-md: 12px;

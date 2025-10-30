@@ -32,7 +32,7 @@ type Props = {
 
 export default function UsersTable({ data }: Props) {
 	return (
-		<table className="w-full">
+		<table className="">
 			<thead>
 				<tr>
 					<th className="p-2 text-center">

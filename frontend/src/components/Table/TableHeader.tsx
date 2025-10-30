@@ -18,7 +18,7 @@ export type TableHeaderProps = {
 
 export default function TableHeader({
 	pageSize,
-	pageSizeOptions = [10, 25, 50],
+	pageSizeOptions = [10, 20, 30],
 	onPageSizeChange,
 	onSearch,
 	onAdd,
@@ -41,7 +41,8 @@ export default function TableHeader({
 
 	return (
 		<div className="table-header" role="toolbar" aria-label="Table controls">
-			{/* -------- LEFT CONTROLS -------- */}
+			<div className="table-header-container">
+{/* -------- LEFT CONTROLS -------- */}
 			<div className="table-header__left">
 				{/* Entries selector */}
 				<div
@@ -49,27 +50,26 @@ export default function TableHeader({
 					role="group"
 					aria-label="Rows per page"
 				>
-					<label htmlFor="table-pagesize" className="sr-only">
-						Rows per page
-					</label>
+					<div className="table-header__select-label">
+						Show
+					</div>
 					<select
 						id="table-pagesize"
 						value={pageSize}
 						onChange={(e) => onPageSizeChange?.(Number(e.target.value))}
-						className="table-header__select"
+						className="table-header__select-option"
 						aria-label="Rows per page"
-						style={{
-							appearance: "none",
-							border: "none",
-							background: "transparent",
-						}}
+						
 					>
 						{pageSizeOptions.map((opt) => (
 							<option key={opt} value={opt}>
-								{opt} / page
+								{opt} 
 							</option>
 						))}
 					</select>
+					<div className="table-header__select-label">
+						entries
+					</div>
 				</div>
 
 				{/* Bulk actions */}
@@ -89,18 +89,16 @@ export default function TableHeader({
 
 			{/* -------- CENTER: SEARCH -------- */}
 			<div className="table-header__center" role="search">
-				<div className="search-input" style={{ width: "100%", maxWidth: 420 }}>
-					<div className="search-input__wrap">
-						<Search className="search-input__icon" aria-hidden />
+				<div className="table-header__search-input" >
+						<Search className="table-header__search-icon" aria-hidden />
 						<input
-							className="search-input__control"
+							className="table-header__search-control"
 							type="search"
 							value={searchTerm}
 							placeholder={searchPlaceholder}
 							onChange={(e) => setSearchTerm(e.target.value)}
 							aria-label="Search table"
 						/>
-					</div>
 				</div>
 			</div>
 
@@ -112,19 +110,12 @@ export default function TableHeader({
 					onClick={() => onAdd?.()}
 					aria-label="Add new item"
 				>
-					Add new
+					Add member
 				</button>
 
-				<button
-					type="button"
-					className="table-header__button table-header__button--secondary"
-					onClick={() => console.log("Export triggered")}
-					aria-label="Export table"
-					title="Export"
-				>
-					Export
-				</button>
 			</div>
+			</div>
+			
 		</div>
 	);
 }

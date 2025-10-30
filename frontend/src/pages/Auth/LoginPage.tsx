@@ -130,14 +130,15 @@ export default function LoginPage() {
                 rules={{ required: "Password is required" }}
               />
               {error && <div className="formError">{error}</div>}
-              <button
-                type="submit"
-                className="loginPageForm_submitButton"
-                disabled={loading}
+              <div
+                className="loginPageForm_rememberMe"
+                id="remember-me-checkbox"
               >
-                {loading ? "Loading..." : "Sign In"}
-              </button>
-
+                <div className="loginPageForm_rememberMe_cta">
+                  <input type="checkbox" {...register("remember")} />
+                  Show Password
+                </div>
+              </div>
               <div
                 className="loginPageForm_rememberMe"
                 id="remember-me-checkbox"
@@ -147,6 +148,15 @@ export default function LoginPage() {
                   Remember Me
                 </div>
               </div>
+              <button
+                type="submit"
+                className="loginPageForm_submitButton"
+                disabled={loading}
+              >
+                {loading ? "Loading..." : "Sign In"}
+              </button>
+
+              
 
               <div
                 className="loginPageForm_forgotPassword"

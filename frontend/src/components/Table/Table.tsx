@@ -186,7 +186,7 @@ export default function Table<T>({
 										</th>
 									);
 								})}
-								<th className="table-head__cell">Actions</th>
+								<th className="table-head__cell-action">Actions</th>
 							</tr>
 						</thead>
 
@@ -197,6 +197,7 @@ export default function Table<T>({
 							selected={selected}
 							onToggleRow={toggleRow}
 							loading={loading}
+
 						/>
 					</table>
 

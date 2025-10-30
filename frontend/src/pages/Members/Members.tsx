@@ -17,11 +17,11 @@ export default function Members() {
 				</div>
 			</div>
 
-			<section className="membersContainer" aria-label="Members editor">
+			<div className="membersContainer" aria-label="Members editor">
 				<div className="membersContent">
 					<MembersTable data={members} />
 				</div>
-			</section>
+			</div>
 		</div>
 	);
 }
