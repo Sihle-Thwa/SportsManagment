@@ -5,6 +5,7 @@ import TextField from "../../components/Form/Fields/TextField";
 import { LogIn as GoogleIcon } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
+import Logomd from "../../assets/brand/logoMed.svg";
 import "./loginpage.css";
 
 
@@ -61,6 +62,7 @@ export default function LoginPage() {
 			<div className="loginPageHeader">
 				<div className="loginPageHeaderContainer">
 					<div className="loginPageHeaderContainer_brand">
+						<Logomd  />
 						u-organise
 					</div>
 					<div className="loginPageHeaderContainer_cta">
