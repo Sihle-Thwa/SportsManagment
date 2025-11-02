@@ -299,48 +299,49 @@
   display: flex;
   width: 100%;
   height: 48px;
-  padding: 12px 16px;
+  padding: 8px 12px;
   border-top: 1px solid;
   border-color: var(--border-default);
   justify-content: center;
   align-items: center;
 }
 
-.table-footer__left {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  height: 100%;
-}
 
 .table-footer__center {
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: 100%;
-  flex: 1 1 auto;
+  align-items: center;
+  width: 100%;
 }
 
 /* PAGINATION */
 .pager {
   display: flex;
-  flex-direction: row;
   width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.pager-controls {
+  display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 16px;
+
 }
 
 .pager-link_prev,
 .pager-link-next {
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   padding: 8px 12px;
   cursor: pointer;
-  color: var(--colour-primary);
   font-size: var(--button-size-sm);
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-regular);
 }
 
 .pager-pages {
@@ -348,35 +349,33 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 8px;
 }
 
 .pager-page {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 8px 12px;
-  cursor: pointer;
-  border: 1px solid;
-  border-radius: 12px;
+  padding: 6px 10px;
   font-size: var(--button-size-sm);
   font-weight: var(--font-weight-regular);
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 12px;
 }
 
 .pager-page:hover {
-  background: var(--interactive-tertiary-hover);
+  background: var(--surface-hover);
 }
 
 .pager-page.active {
   background: var(--colour-accent-500);
   color: var(--text-on-primary);
+  font-weight: var(--font-weight-semibold);
 }
 
 .pager-page:hover:not(.active) {
-  border-color: var(--colour-accent-500);
-  border: 1px solid var(--colour-accent-500);
-  border-radius: 12px;
+  border-color: var(--border-default);
 }
 
 /* BULK ACTION BAR / MULTI-SELECT */
