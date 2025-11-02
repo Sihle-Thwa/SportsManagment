@@ -1,121 +1,121 @@
 /*  Light / default theme  */
 
-	:root {
-		--background-canvas-gradient: radial-gradient(
-			at bottom right,
-			#fef08a 0%,
-			rgba(255, 240, 163, 0.25) 25%,
-			rgba(255, 240, 163, 0.08) 50%,
-			rgba(255, 255, 255, 1) 100%
-		);
+:root {
+  --background-canvas-gradient: radial-gradient(
+    at bottom right,
+    #fef08a 0%,
+    rgba(255, 240, 163, 0.25) 25%,
+    rgba(255, 240, 163, 0.08) 50%,
+    rgba(255, 255, 255, 1) 100%
+  );
 
-		/* Primary colour Scale */
-		--colour-primary: hsl(220, 100%, 10%);
-		--colour-primary-500: hsl(220, 55%, 45%);
-		--colour-primary-600: hsl(220, 65%, 35%);
-		--colour-primary-700: hsl(220, 75%, 25%);
-		--colour-primary-800: hsl(220, 85%, 15%);
-		--colour-primary-900: hsl(220, 100%, 5%);
-		--colour-primary-300: hsl(220, 45%, 65%); /* Added for semantic usage */
+  /* Primary colour Scale */
+  --colour-primary: hsl(220, 100%, 10%);
+  --colour-primary-500: hsl(220, 55%, 45%);
+  --colour-primary-600: hsl(220, 65%, 35%);
+  --colour-primary-700: hsl(220, 75%, 25%);
+  --colour-primary-800: hsl(220, 85%, 15%);
+  --colour-primary-900: hsl(220, 100%, 5%);
+  --colour-primary-300: hsl(220, 45%, 65%); /* Added for semantic usage */
 
-		/* Secondary colour Scale */
-		--colour-secondary: hsl(220, 40%, 25%);
-		--colour-secondary-100: hsl(220, 20%, 85%);
-		--colour-secondary-300: hsl(220, 25%, 70%);
-		--colour-secondary-700: hsl(220, 35%, 35%);
-		--colour-secondary-800: hsl(220, 38%, 30%);
-		--colour-secondary-900: hsl(220, 40%, 25%);
+  /* Secondary colour Scale */
+  --colour-secondary: hsl(220, 40%, 25%);
+  --colour-secondary-100: hsl(220, 20%, 85%);
+  --colour-secondary-300: hsl(220, 25%, 70%);
+  --colour-secondary-700: hsl(220, 35%, 35%);
+  --colour-secondary-800: hsl(220, 38%, 30%);
+  --colour-secondary-900: hsl(220, 40%, 25%);
 
-		/* Tertiary colour Scale (teal-ish) */
-		/* Tertiary colour Scale (teal-ish) */
-		--colour-tertiary: hsl(195, 85%, 25%);
-		--colour-tertiary-100: hsl(195, 45%, 85%);
-		--colour-tertiary-300: hsl(195, 55%, 70%);
-		--colour-tertiary-500: hsl(195, 65%, 50%);
-		--colour-tertiary-700: hsl(195, 75%, 35%);
-		--colour-tertiary-900: hsl(195, 85%, 25%);
-		/* Accent (warm / amber) */
-		--colour-accent: hsl(36, 65%, 40%);
-		--colour-accent-100: hsl(36, 40%, 90%);
-		--colour-accent-300: hsl(36, 50%, 70%);
-		--colour-accent-500: hsl(36, 60%, 50%);
-		--colour-accent-700: hsl(36, 70%, 35%);
-		--colour-accent-900: hsl(36, 80%, 25%);
-		--colour-tertiary-700: hsl(195, 75%, 35%);
-		--colour-tertiary-900: hsl(195, 85%, 25%);
+  /* Tertiary colour Scale (teal-ish) */
+  /* Tertiary colour Scale (teal-ish) */
+  --colour-tertiary: hsl(195, 85%, 25%);
+  --colour-tertiary-100: hsl(195, 45%, 85%);
+  --colour-tertiary-300: hsl(195, 55%, 70%);
+  --colour-tertiary-500: hsl(195, 65%, 50%);
+  --colour-tertiary-700: hsl(195, 75%, 35%);
+  --colour-tertiary-900: hsl(195, 85%, 25%);
+  /* Accent (warm / amber) */
+  --colour-accent: hsl(36, 65%, 40%);
+  --colour-accent-100: hsl(36, 40%, 90%);
+  --colour-accent-300: hsl(36, 50%, 70%);
+  --colour-accent-500: hsl(36, 60%, 50%);
+  --colour-accent-700: hsl(36, 70%, 35%);
+  --colour-accent-900: hsl(36, 80%, 25%);
+  --colour-tertiary-700: hsl(195, 75%, 35%);
+  --colour-tertiary-900: hsl(195, 85%, 25%);
 
-		/* Accent (warm / amber) */
-		--colour-accent: hsl(36, 65%, 40%);
-		--colour-accent-100: hsl(36, 40%, 90%);
-		--colour-accent-300: hsl(36, 50%, 70%);
-		--colour-accent-500: hsl(36, 60%, 50%);
-		--colour-accent-700: hsl(36, 70%, 35%);
-		--colour-accent-900: hsl(36, 80%, 25%);
+  /* Accent (warm / amber) */
+  --colour-accent: hsl(36, 65%, 40%);
+  --colour-accent-100: hsl(36, 40%, 90%);
+  --colour-accent-300: hsl(36, 50%, 70%);
+  --colour-accent-500: hsl(36, 60%, 50%);
+  --colour-accent-700: hsl(36, 70%, 35%);
+  --colour-accent-900: hsl(36, 80%, 25%);
 
-		/* Neutral scale (light theme) */
-		--colour-neutral: hsl(220, 10%, 25%);
-		--colour-neutral-100: hsl(220, 6%, 95%);
-		--colour-neutral-300: hsl(220, 8%, 75%);
-		--colour-neutral-500: hsl(220, 10%, 55%);
-		--colour-neutral-700: hsl(220, 12%, 35%);
-		--colour-neutral-900: hsl(220, 15%, 15%);
+  /* Neutral scale (light theme) */
+  --colour-neutral: hsl(220, 10%, 25%);
+  --colour-neutral-100: hsl(220, 6%, 95%);
+  --colour-neutral-300: hsl(220, 8%, 75%);
+  --colour-neutral-500: hsl(220, 10%, 55%);
+  --colour-neutral-700: hsl(220, 12%, 35%);
+  --colour-neutral-900: hsl(220, 15%, 15%);
 
-		/* Status colours */
-		--colour-success: hsl(160, 84%, 39%);
-		--colour-success-100: hsl(160, 84%, 95%);
-		--colour-success-300: hsl(160, 84%, 90%);
-		--colour-success-500: hsl(160, 84%, 34%);
-		--colour-success-700: hsl(160, 84%, 32%);
-		--colour-success-900: hsl(160, 84%, 20%);
+  /* Status colours */
+  --colour-success: hsl(160, 84%, 39%);
+  --colour-success-100: hsl(160, 84%, 95%);
+  --colour-success-300: hsl(160, 84%, 90%);
+  --colour-success-500: hsl(160, 84%, 34%);
+  --colour-success-700: hsl(160, 84%, 32%);
+  --colour-success-900: hsl(160, 84%, 20%);
 
-		--colour-warning: hsl(42, 100%, 50%);
-		--colour-warning-100: hsl(42, 100%, 95%);
-		--colour-warning-300: hsl(42, 100%, 85%);
-		--colour-warning-500: hsl(42, 100%, 55%);
-		--colour-warning-700: hsl(42, 100%, 40%);
-		--colour-warning-900: hsl(42, 100%, 30%);
+  --colour-warning: hsl(42, 100%, 50%);
+  --colour-warning-100: hsl(42, 100%, 95%);
+  --colour-warning-300: hsl(42, 100%, 85%);
+  --colour-warning-500: hsl(42, 100%, 55%);
+  --colour-warning-700: hsl(42, 100%, 40%);
+  --colour-warning-900: hsl(42, 100%, 30%);
 
-		--colour-error: hsl(0, 78%, 48%);
-		--colour-error-100: hsl(0, 78%, 95%);
-		--colour-error-300: hsl(0, 78%, 85%);
-		--colour-error-500: hsl(0, 78%, 50%);
-		--colour-error-700: hsl(0, 78%, 35%);
-		--colour-error-900: hsl(0, 78%, 25%);
+  --colour-error: hsl(0, 78%, 48%);
+  --colour-error-100: hsl(0, 78%, 95%);
+  --colour-error-300: hsl(0, 78%, 85%);
+  --colour-error-500: hsl(0, 78%, 50%);
+  --colour-error-700: hsl(0, 78%, 35%);
+  --colour-error-900: hsl(0, 78%, 25%);
 
-		/* Semantic tokens (used across components) - Light theme */
-		--background-canvas: var(--background-canvas-gradient);
-		--background-surface: var(--colour-neutral-100);
-		--background-surface-secondary: var(--colour-secondary-100);
-		--background-surface-hover: var(--colour-primary-500);
-		--background-surface-pressed: var(--colour-primary-100);
-		--background-surface-active: var(--colour-primary-300);
+  /* Semantic tokens (used across components) - Light theme */
+  --background-canvas: var(--background-canvas-gradient);
+  --background-surface: var(--colour-neutral-100);
+  --background-surface-secondary: var(--colour-secondary-100);
+  --background-surface-hover: var(--colour-primary-500);
+  --background-surface-pressed: var(--colour-primary-100);
+  --background-surface-active: var(--colour-primary-300);
 
-		--text-primary: var(--colour-primary);
-		--text-secondary: var(--colour-secondary);
-		--text-placeholder: var(--colour-neutral-700);
-		--text-disabled: var(--colour-neutral-300);
-		--text-on-background: var(--colour-neutral-900);
+  --text-primary: var(--colour-primary);
+  --text-secondary: var(--colour-secondary);
+  --text-placeholder: var(--colour-neutral-700);
+  --text-disabled: var(--colour-neutral-300);
+  --text-on-background: var(--colour-neutral-900);
 
-		--border-default: hsl(220, 8%, 85%); /* subtle light border */
-		--border-muted: hsl(220, 10%, 80%);
-		--ring: var(--colour-primary-500);
+  --border-default: hsl(220, 8%, 85%); /* subtle light border */
+  --border-muted: hsl(220, 10%, 80%);
+  --ring: var(--colour-primary-500);
 
-		/* component specific */
-		--sidebar-background: var(--colour-neutral-100);
-		--sidebar-text: var(--text-primary);
-		--card-background: var(--colour-neutral-100);
-		--card-border: var(--border-default);
-		--input-background: hsl(0 0% 100%);
-		--input-disabled-background: hsl(220 6% 96%);
-		--input-border: var(--border-default);
-		--icon-primary: hsl(220 8% 55%);
-		--icon-on-primary: #fff;
+  /* component specific */
+  --sidebar-background: var(--colour-neutral-100);
+  --sidebar-text: var(--text-primary);
+  --card-background: var(--colour-neutral-100);
+  --card-border: var(--border-default);
+  --input-background: hsl(0 0% 100%);
+  --input-disabled-background: hsl(220 6% 96%);
+  --input-border: var(--border-default);
+  --icon-primary: hsl(220 8% 55%);
+  --icon-on-primary: #fff;
 
-		/* shadows / radii (kept neutral) */
-		--shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04);
-		--shadow-md: 0 6px 20px rgba(16, 24, 40, 0.06);
-		--radius-sm: 6px;
-		--radius-md: 10px;
-		--radius-lg: 14px;
-		--radius-full: 9999px;
-	}
+  /* shadows / radii (kept neutral) */
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.04);
+  --shadow-md: 0 6px 20px rgba(16, 24, 40, 0.06);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+}
