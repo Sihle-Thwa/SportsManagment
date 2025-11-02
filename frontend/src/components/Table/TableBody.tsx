@@ -59,46 +59,34 @@ export default function TableBody<T>({
           const checked = !!selected[key];
 
           return (
-            <div className="table-body-row_wrap">
-              <tr
-                key={key}
-                className={`table-body-row ${checked ? "is-selected" : ""}`}
-                aria-selected={checked}
-              >
-                <td className="table-body-cell">
-                  <input
-                    type="checkbox"
-                    checked={checked}
-                    aria-label={`Select row ${key}`}
-                    onChange={() => onToggleRow(id)}
-					className="table-body-cell--checkbox"
-                  />
-                </td>
+            <tr
+              key={key}
+              className={`table-body-row ${checked ? "is-selected" : ""}`}
+              aria-selected={checked}
+            >
+              <td className="table-body-cell--checkbox" key={`${key}-checkbox`}>
+                <input
+                  type="checkbox"
+                  checked={checked}
+                  aria-label={`Select row ${key}`}
+                  onChange={() => onToggleRow(id)}
+                />
+              </td>
 
-                {columns.map((col) => (
-                  
-                    <td key={col.id} className="table-body-cell">
-                      {col.cell
-                        ? col.cell(row)
-                        : String(col.accessor?.(row) ?? "")}
-                    </td>
-                  
-                ))}
-                <td className="table-body-cell--actions">
-                  <button
-                    
-                    aria-label={`Edit row ${key}`}
-                  >
-                    <Edit className="table-body-cell--edit__icon" />
-                  </button>
-                  <button
-                    aria-label={`Delete row ${key}`}
-                  >
-                    <Delete className="table-body-cell--delete__icon" />
-                  </button>
+              {columns.map((col) => (
+                <td key={col.id} className="table-body-cell">
+                  {col.cell ? col.cell(row) : String(col.accessor?.(row) ?? "")}
                 </td>
-              </tr>
-            </div>
+              ))}
+              <td className="table-body-cell--actions">
+                <button aria-label={`Edit row ${key}`}>
+                  <Edit className="table-body-cell--edit__icon" />
+                </button>
+                <button aria-label={`Delete row ${key}`}>
+                  <Delete className="table-body-cell--delete__icon" />
+                </button>
+              </td>
+            </tr>
           );
         })
       )}

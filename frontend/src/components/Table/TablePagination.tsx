@@ -1,105 +1,124 @@
-// TablePagination.tsx
+import React from "react";
 import "../../styles/components/table.css";
+import clsx from "clsx";
 
 export type TablePaginationProps = {
-	pageIndex: number;
-	pageCount: number;
-	onPageChange: (newIndex: number) => void;
-	ariaLabel?: string;
-	siblingCount?: number; // pages shown around current
+  pageIndex: number;
+  pageCount: number;
+  pageSize: number;
+  totalItems: number;
+  onPageChange: (pageIndex: number) => void;
 };
 
-function pageRange(current: number, total: number, sib = 1) {
-	const start = Math.max(0, current - sib);
-	const end = Math.min(total - 1, current + sib);
-	const arr: number[] = [];
-	for (let i = start; i <= end; i++) arr.push(i);
-	return arr;
+function getPageRange(current: number, total: number, sib = 1) {
+  const start = Math.max(0, current - sib);
+  const end = Math.min(total - 1, current + sib);
+  const arr: number[] = [];
+  for (let i = start; i <= end; i++) arr.push(i);
+  return arr;
 }
 
 export default function TablePagination({
-	pageIndex,
-	pageCount,
-	onPageChange,
-	ariaLabel = "Table pagination",
-	siblingCount = 1,
-}: TablePaginationProps) {
-	const prevDisabled = pageIndex <= 0;
-	const nextDisabled = pageIndex >= pageCount - 1;
-	const pages = pageRange(pageIndex, pageCount, siblingCount);
+  pageIndex,
+  pageCount,
+  pageSize,
+  totalItems,
+  onPageChange,
+}: TablePaginationProps): React.JSX.Element {
+  const siblingCount = 1;
 
-	return (
-		<nav
-			className="pager"
-			role="navigation"
-			aria-label={ariaLabel}
-			aria-live="polite"
-		>
-			<button
-				type="button"
-				className="pager-link"
-				onClick={() => onPageChange(Math.max(0, pageIndex - 1))}
-				aria-label="Previous page"
-				disabled={prevDisabled}
-			>
-				◀
-			</button>
+  // Calculate pagination display
+  const pages = getPageRange(pageIndex, pageCount, siblingCount);
+  const prevDisabled = pageIndex <= 0;
+  const nextDisabled = pageIndex >= pageCount - 1;
 
-			<div className="pager-pages" role="list">
-				{/* first page shortcut */}
-				{pageIndex - siblingCount > 1 && (
-					<>
-						<button
-							type="button"
-							className="pager-page"
-							onClick={() => onPageChange(0)}
-							aria-label={`Go to page 1`}
-						>
-							1
-						</button>
-						<span aria-hidden>…</span>
-					</>
-				)}
+  // Calculate showing range
+  const startItem = pageIndex * pageSize + 1;
+  const endItem = Math.min((pageIndex + 1) * pageSize, totalItems);
 
-				{pages.map((p) => (
-					<button
-						key={p}
-						type="button"
-						role="listitem"
-						className={`pager-page ${p === pageIndex ? "active" : ""}`}
-						onClick={() => onPageChange(p)}
-						aria-current={p === pageIndex ? "page" : undefined}
-						aria-label={`Go to page ${p + 1}`}
-					>
-						{p + 1}
-					</button>
-				))}
+  if (pageCount <= 1) {
+    return (
+      <div className="pager" role="navigation" aria-label="Table pagination">
+        <span className="pager-info">
+          Showing {totalItems > 0 ? startItem : 0} to {endItem} of {totalItems}{" "}
+          entries
+        </span>
+      </div>
+    );
+  }
 
-				{/* last page shortcut */}
-				{pageIndex + siblingCount < pageCount - 2 && (
-					<>
-						<span aria-hidden>…</span>
-						<button
-							type="button"
-							className="pager-page"
-							onClick={() => onPageChange(pageCount - 1)}
-							aria-label={`Go to page ${pageCount}`}
-						>
-							{pageCount}
-						</button>
-					</>
-				)}
-			</div>
+  return (
+    <nav
+      className="pager"
+      role="navigation"
+      aria-label="Table pagination"
+      aria-live="polite"
+    >
+      <div className="pager-controls">
+        <button
+          type="button"
+          className="pager-link_prev"
+          onClick={() => onPageChange(pageIndex - 1)}
+          aria-label="Previous page"
+          disabled={prevDisabled}
+        >
+          Prev
+        </button>
 
-			<button
-				type="button"
-				className="pager-link"
-				onClick={() => onPageChange(Math.min(pageCount - 1, pageIndex + 1))}
-				aria-label="Next page"
-				disabled={nextDisabled}
-			>
-				▶
-			</button>
-		</nav>
-	);
+        <div className="pager-pages" role="list">
+          {pageIndex - siblingCount > 1 && (
+            <>
+              <button
+                type="button"
+                className="pager-page"
+                onClick={() => onPageChange(0)}
+                aria-label={`Go to page 1`}
+              >
+                1
+              </button>
+              <span aria-hidden>…</span>
+            </>
+          )}
+
+          {pages.map((p) => (
+            <button
+              key={p}
+              type="button"
+              role="listitem"
+              className={clsx("pager-page", { active: p === pageIndex })}
+              onClick={() => onPageChange(p)}
+              aria-current={p === pageIndex ? "page" : undefined}
+              aria-label={`Go to page ${p + 1}`}
+            >
+              {p + 1}
+            </button>
+          ))}
+
+          {pageIndex + siblingCount < pageCount - 2 && (
+            <>
+              <span aria-hidden>…</span>
+              <button
+                type="button"
+                className="pager-page"
+                onClick={() => onPageChange(pageCount - 1)}
+                aria-label={`Go to page ${pageCount}`}
+              >
+                {pageCount}
+              </button>
+            </>
+          )}
+        </div>
+
+        <button
+          type="button"
+          className="pager-link-next"
+          onClick={() => onPageChange(pageIndex + 1)}
+          aria-label="Next page"
+          disabled={nextDisabled}
+        >
+          Next
+        </button>
+      </div>
+    </nav>
+  );
 }

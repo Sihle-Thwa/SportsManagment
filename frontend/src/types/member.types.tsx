@@ -1,8 +1,8 @@
 export type Member = {
-	id: string;
-	firstName: string;
-	lastName: string;
-	email: string;
-	role?: string;
-	contact?: string;
+  id: string;
+  firstName: string;
+  lastName: string;
+  role?: string;
+  email: string;
+  contact?: string;
 };

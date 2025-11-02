@@ -24,7 +24,7 @@ export default function Table<T>({
 	data,
 	getRowId,
 	initialPageSize = 10,
-	pageSizeOptions = [10, 25, 50],
+	pageSizeOptions = [10, 20, 30],
 	loading = false,
 	onAdd,
 	onBulkDelete,
@@ -71,11 +71,25 @@ export default function Table<T>({
 	}, [filtered, sort, columns]);
 
 	// Pagination
-	const pageCount = Math.max(1, Math.ceil(sorted.length / pageSize));
+	const pageCount = Math.ceil(sorted.length / pageSize);
 	const paged = useMemo(() => {
 		const start = pageIndex * pageSize;
 		return sorted.slice(start, start + pageSize);
 	}, [sorted, pageIndex, pageSize]);
+
+	// Reset page index when filtered data changes
+	useEffect(() => {
+		setPageIndex(0);
+	}, [sorted.length, pageSize]);
+
+	function handlePageChange(newPageIndex: number) {
+		setPageIndex(Math.max(0, Math.min(pageCount - 1, newPageIndex)));
+	}
+
+	function handlePageSizeChange(newPageSize: number) {
+		setPageSize(newPageSize);
+		setPageIndex(0); // Reset to first page when page size changes
+	}
 
 	// Selection
 	const pageIds = paged.map(getRowId);
@@ -122,7 +136,7 @@ export default function Table<T>({
 					<TableHeader
 						pageSize={pageSize}
 						pageSizeOptions={pageSizeOptions}
-						onPageSizeChange={setPageSize}
+						onPageSizeChange={handlePageSizeChange}
 						onSearch={setQuery}
 						onAdd={onAdd}
 						onBulkDelete={handleBulkDelete}
@@ -202,11 +216,11 @@ export default function Table<T>({
 					</table>
 
 					<TableFooter
-						totalItems={sorted.length}
 						pageIndex={pageIndex}
-						pageSize={pageSize}
 						pageCount={pageCount}
-						onPageChange={setPageIndex}
+						pageSize={pageSize}
+						totalItems={sorted.length}
+						onPageChange={handlePageChange}
 					/>
 				</div>
 			</div>
