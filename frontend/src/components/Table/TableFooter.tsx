@@ -23,7 +23,7 @@ export default function TableFooter({
       role="Table-Footer"
       aria-label="Table footer"
     >
-      <div className="table-footer__center">
+      <div className="table-footer__container">
         <TablePagination
           pageIndex={pageIndex}
           pageCount={pageCount}
