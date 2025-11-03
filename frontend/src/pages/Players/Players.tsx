@@ -19,15 +19,11 @@ export default function Players() {
 
 			<section className="playersContainer" aria-label="players editor">
 				<div className="playersContent">
-					<div className="playersContent_table" aria-live="polite">
 						<PlayersPageTable
 							onSelect={setSelectedPlayerId}
 							selectedId={selectedPlayerId}
 						/>
-					</div>
-					<div className="playersContent_form">
 						<PlayersPageForm selectedId={selectedPlayerId} />
-					</div>
 				</div>
 			</section>
 		</div>

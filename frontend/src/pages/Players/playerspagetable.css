@@ -1,133 +1,190 @@
-
 .playersPageTableWrapper {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	min-width: 320px;
-	align-items: center;
-	box-shadow: var(--card-shadow);
-	border-radius: 12px;
-	background-color: var(--table-background);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+	height: 520px;
+  align-items: center;
+  box-shadow: var(--card-shadow), var(--shadow-md);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  background-color: var(--table-background);
 }
 
 .playersPageTable {
-	width: 100%;
-	overflow: hidden;
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 /* Header */
 .playersPageTable_tableHeader {
-	display: inline-flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: flex-start;
-	width: 100%;
-	padding: 8px 12px;
-	border-bottom: 2px solid var(--border-default);
-	font-weight: var(--font-weight-semibold);
-	color: var(--text-on-background);
-	font-size: 16px;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 8px 12px;
+  border-bottom: 2px solid;
+  border-color: #f2c94c;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-on-background);
+  font-size: 16px;
 }
 
 /* Header row / cell */
 .playersPageTable_tableHeader-row {
-	display: inline-flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: flex-start;
-	gap: 8px;
-	width: 100%;
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  width: 100%;
 }
 
 .playersPageTable_tableHeader-cell {
-	flex: 1 1 100px;
-	min-width: 100px;
-	width: 100%;
-	display: flex;
-	align-items: center;
+  flex: 1 1 100px;
+  min-width: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 /* Body */
 .playersPageTable_tableBody {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: flex-start;
-	width: 100%;
-	height: 100%;
-	overflow: auto;
-
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .playersPageTable_tableBody-row {
-	display: inline-flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: flex-start;
-	width: 100%;
-	padding: 8px 12px;
-	color: var(--text-on-primary);
-	border-bottom: 1px solid var(--border-default);
-	cursor: pointer;
-	font-size: 14px;
-	color: var(--text-on-background-primary);
-	
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--table-row-border);
 }
 
 /* Cells */
 .playersPageTable_tableBody-cell {
-	flex: 1 1 80px;
-	min-width: 80px;
-	width: 100%;
-	display: inline-flex;
-	align-items: center;
-	overflow: hidden;
+  flex: 1 1 100px;
+  min-width: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 /* Selected row visual: scoped to component only */
 .playersPageTable_tableBody-row.is-selected {
-	background: var(
-		--table-row-selected-bg,
-		color-mix(in srgb, var(--interactive-primary) 4%, white)
-	);
-
-	box-shadow: 0 0 0 2px var(--interactive-primary);
+  background: var(--table-row-selected-background);
+  color: var(--colour-accent-700);
 
 }
 
 /* Hover state (scoped; avoid global :hover) */
 .playersPageTable_tableBody-row:hover {
-	background: var( --table-row-hover);
-	transform: translateY(-1px);
+  background: var(--table-row-hover);
+  transform: translateY(-1px);
 }
 
-/* Ensure selected rows have readable content (scoped) */
-.playersPageTable_tableBody-row.is-selected {
-	color: var(--text-on-secondary, var(--text-on-background));
+
+/* Pagination Styles */
+.playersPageTable_pagination {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+	height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
 }
 
-/* live selection region (matches .selection-live in PlayersPageTable.tsx) */
-.selection-live {
-	width: 100%;
-	max-width: 420px;
-	padding: 8px 12px;
-	font-size: var(--type-scale-0, 14px);
-	color: var(--text-secondary, rgba(0, 0, 0, 0.65));
-	text-align: center;
-	min-height: 1.5em; /* keeps layout stable when text changes */
+.pagination-info {
+  display: flex;
+  font-size: 14px;
+  color: var(--text-secondary, rgba(0, 0, 0, 0.65));
+  min-width: 120px;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Transition / reduced motion */
-@media (prefers-reduced-motion: reduce) {
-	.playersPageTable_tableBody-row,
-	__row,
-	.playersPageTable__row,
-	.playersPageTable_tableBody-row.is-selected,
-	__row.is-selected,
-	.playersPageTable__row.is-selected {
-		transition: none !important;
-	}
+.pagination-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
 }
+
+.pagination-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  font-size: var(--button-size-md);
+  font-weight: var(--font-weight-regular);
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 12px;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: var(--table-row-hover);
+  border-color: var(--interactive-primary);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--background-disabled, #f5f5f5);
+  color: var(--text-disabled, #999);
+}
+
+.pagination-pages {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.pagination-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  font-size: var(--button-size-sm);
+  font-weight: var(--font-weight-regular);
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 12px;
+}
+
+.pagination-page:hover:not(.active) {
+  background-color: var(--table-row-hover);
+  border-color: var(--interactive-primary);
+}
+
+.pagination-page.active {
+  background: var(--colour-accent-500);
+  color: var(--text-on-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.pagination-page.active:hover {
+  background-color: var(
+    --interactive-primary-hover,
+    var(--interactive-primary)
+  );
+}
+
+.pagination-ellipsis {
+  padding: 6px 10px;
+  font-size: var(--button-size-sm);
+  color: var(--text-secondary, rgba(0, 0, 0, 0.65));
+}
+
+/* Responsive pagination for smaller screens */
 

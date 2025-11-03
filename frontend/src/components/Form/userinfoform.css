@@ -11,7 +11,6 @@
   width: 750px;
 }
 
-/* Header */
 .cardHeader_userInfo {
   display: flex;
   align-items: center;
@@ -27,43 +26,40 @@
   font-size: var(--title-size-default);
   font-weight: var(--font-weight-semibold);
   color: var(--text-primary);
-  margin-top: -1px; /* slight visual tweak to align with icon */
+  margin-top: -1px; 
   position: relative;
   white-space: nowrap;
   width: fit-content;
-  z-index: 1; /* ensure title is above accent line */
+  z-index: 1; 
 }
 
 /* Accent line under the title — gold in your Figma */
 .accentLine_userInfo {
   height: 2px;
-  top: 36px; /* position just below the header */
+  top: 36px; 
   position: absolute;
   width: 700px;
   margin-top: 4px;
   border-radius: 2px;
-  background: linear-gradient(90deg, #f2c94c, #f2994a); /* warm accent similar to figma */
+  background: linear-gradient(90deg, #f2c94c, #f2994a); 
 }
 
-/* Card body / form grid */
 .cardBody_userInfo {
-  /* Card body is a container for the form grid */
   align-items: flex-start;
   display: inline-flex;
   flex-direction: column;
   gap: 12px;
-  padding: 64px 24px 24px 24px; /* top padding to avoid header overlap */
+  padding: 64px 24px 24px 24px; 
   position: relative;
   width: 100%;
 }
 
-/* Make formColumns_userInfo a grid with two columns */
 .formColumns_userInfo {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* two columns side by side */
-  grid-auto-flow: column; /* fill by columns */
+  grid-template-columns: 1fr 1fr; 
+  grid-auto-flow: column;
   align-items: center;
-  gap: 12px 24px; /* vertical and horizontal gaps */
+  gap: 12px 24px; 
   width: 100%;
 }
 
