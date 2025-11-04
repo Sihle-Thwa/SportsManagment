@@ -19,7 +19,7 @@ export default function DashboardPage() {
             <CalendarObject />
           </div>
 
-          <div className=" statsContent">
+          <div className="statsContent">
             <CardStatistics />
           </div>
 

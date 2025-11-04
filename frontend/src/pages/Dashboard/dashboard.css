@@ -57,7 +57,7 @@
 }
 
 /* Tablet / small desktop: two columns */
-@media (min-width: 720px) {
+@media (min-width: 680px) {
   .dashboardContent {
     grid-template-columns: 1fr 1fr;
     grid-auto-rows: minmax(120px, auto);
@@ -81,7 +81,5 @@
     gap: 12px;
   }
 
-  .calendarContent {
-    align-self: stretch;
-  }
+  
 }

@@ -3,13 +3,8 @@
 /* Stats */
 .statsContainer {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-@media (min-width: 768px) {
-  .statsContainer {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
 }
 
 .cardStats-Container {
@@ -21,8 +16,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100%;
-}
+  align-items: flex-start;
+  width: 100%;}
 
 .cardStats-Content {
   display: flex;
