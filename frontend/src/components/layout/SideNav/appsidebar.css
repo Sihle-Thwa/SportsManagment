@@ -1,92 +1,80 @@
 @import "tailwindcss";
 
 :root {
-	--sidebar-width: 250px;
-	--sidebar-width-collapsed: 72px;
-	--sidebar-topbar: 72px;
-	
+  --sidebar-width: 250px;
+  --sidebar-width-collapsed: 72px;
+  --sidebar-topbar: 72px;
 }
 
 /* root wrapper */
 .appSidebar {
-	display: flex;
-	flex-direction: column;
-	height: 100vh;
-	width: 100%;
-	background: var(--sidebar-background);
-	color: var(--text-primary);
-	border-right: 1px solid var(--border-default);
-	
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  background: var(--sidebar-background);
+  color: var(--text-primary);
+  border-right: 1px solid var(--border-default);
 }
 
 .appSidebarInner {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	width: 100%;
-	align-items: stretch;
-	justify-content: center;
-	overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
 /* header / brand */
 .appSidebarHeader {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	height: var(--sidebar-topbar);
-	border-bottom: 1px solid var(--border-default);
-	
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: var(--sidebar-topbar);
+  border-bottom: 1px solid var(--border-default);
+  background-color: var(--card-header-background);
 }
 
 .appSidebarBrand {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .appSidebarBrandIcon {
-	width: var(--icon-size-md);
-	height: var(--icon-size-md);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
 
 .appSidebarBrandText {
-	width: auto;
-	margin-left: 8px;
-	font-size: var(--title-size-md);
-	font-weight: var(--font-weight-bold);
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--title-size-md);
+  font-weight: var(--font-weight-bold);
 }
 
-
 .appSidebarContent {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	height: 100%;
-	overflow-y: hidden;
-	padding: 0;
-	margin: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow-y: hidden;
+  padding: 0;
+  margin: 0;
 }
 
 /* footer */
 .appSidebarFooter {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	width: 100%;
-	height: var(--sidebar-topbar);
-	border-top: 1px solid var(--border-default);
-	background-color: var(--card-footer-background);
-	
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: var(--sidebar-topbar);
+  border-top: 1px solid var(--border-default);
+  background-color: var(--card-footer-background);
 }
