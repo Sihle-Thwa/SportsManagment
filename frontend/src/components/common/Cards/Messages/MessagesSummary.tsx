@@ -69,21 +69,23 @@ export const MessagesSummary: React.FC<{
                   aria-pressed={selectedConversation === msg.id}
                   onClick={() => setSelectedConversation(msg.id)}
                 >
-				  <div className="cardMessages-Body__ListItemAvatar">
-					<img src={msg.sender.avatar} alt="" />
-				  </div>
-				  <div className="cardMessages-Body__ListItemDetails">
-					<div className="cardMessages-Body__ListItemTop">
-					  <div className="cardMessages-Body__ListItemSender">
-						{msg.sender.name}</div>
-					  <div className="cardMessages-Body__ListItemTime">
-						{msg.timestamp}</div>
-					</div>
-					<div className="cardMessages-Body__ListItemMessage">
-					  {msg.message}
-					</div>
-				  </div>
-				</div>
+                  <div className="cardMessages-Body__ListItemAvatar">
+                    <img src={msg.sender.avatar} alt="" />
+                  </div>
+                  <div className="cardMessages-Body__ListItemDetails">
+                    <div className="cardMessages-Body__ListItemTop">
+                      <div className="cardMessages-Body__ListItemSender">
+                        {msg.sender.name}
+                      </div>
+                      <div className="cardMessages-Body__ListItemTime">
+                        {msg.timestamp}
+                      </div>
+                    </div>
+                    <div className="cardMessages-Body__ListItemMessage">
+                      {msg.message}
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>

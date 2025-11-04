@@ -4,23 +4,23 @@ import { ChartBar } from "../../Charts/ChartBar";
 import "./cardplayersummary.css";
 
 export const CardPlayerSummary = () => {
-	return (
-		<div className="card-player">
-			<div className="card-player-header">
-				<div className="card-player-header-title">Players </div>
-				<div className="card-player-header-actions">
-					<button
-						className="button button-ghost button-icon-only"
-						aria-label="More options"
-					>
-						<MoreVertical />
-					</button>
-				</div>
-			</div>
-			<div className="card-player-body chart-body">
-				<ChartBar />
-			</div>
-			{/* Add Options to add a new player in the vertical button as a modal */}
-		</div>
-	);
+  return (
+    <div className="cardPlayers" aria-labelledby="players-heading">
+      <div className="cardPlayers-Container">
+        <div className="cardPlayers-Content">
+          <div className="cardPlayers-Header">
+            <div className="cardPlayers-Header__Heading">Players</div>
+            <div className="cardPlayers-Header__Actions">
+              <button className="cardPlayers-Action">
+                <MoreVertical />
+              </button>
+            </div>
+          </div>
+          <div className="cardPlayers-Body">
+            <ChartBar />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };

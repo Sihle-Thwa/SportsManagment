@@ -31,7 +31,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 16px;
+  padding: 12px;
   border-bottom: 1px solid var(--card-border);
 }
 
