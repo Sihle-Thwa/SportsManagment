@@ -154,9 +154,9 @@
     --navbar-icon-disabled: var(--colour-neutral-300);
 
     /* Card Components */
-    --card-background: var(--colour-neutral-100);
+    --card-background: #FFF;
     --card-border: var(--border-subtle);
-    --card-shadow: 0 1px 3px hsla(220, 15%, 15%, 0.1);
+    --card-shadow: 0 1px 2px hsla(220, 15%, 15%, 0.1);
     --card-shadow-hover: 0 4px 12px hsla(220, 15%, 15%, 0.15);
     --card-header-background: var(--colour-neutral-200);
     --card-header-border: var(--border-muted);

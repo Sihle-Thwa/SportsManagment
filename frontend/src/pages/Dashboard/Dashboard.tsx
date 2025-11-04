@@ -8,32 +8,34 @@ import { CardPlayerSummary } from "../../components/common/Cards/Users/CardPlaye
 import "./dashboard.css";
 
 export default function DashboardPage() {
-	return (
-		<div className="dashboard">
-			<div className="dashboard-grid">
-				<div className=" greeting-col">
-					<CardGreeting />
-				</div>
-				<div className=" calendar-col">
-					<CalendarObject />
-				</div>
+  return (
+    <div className="dashboardRoot">
+      <div className="dashboardContainer">
+        <div className="dashboardContent">
+          <div className=" greetingContent">
+            <CardGreeting />
+          </div>
+          <div className=" calendarContent">
+            <CalendarObject />
+          </div>
 
-				<div className=" stats-col">
-					<CardStatistics />
-				</div>
+          <div className=" statsContent">
+            <CardStatistics />
+          </div>
 
-				<div className=" messages-col">
-					<MessagesSummary />
-				</div>
+          <div className=" messagesContent">
+            <MessagesSummary />
+          </div>
 
-				<div className=" players-col">
-					<CardPlayerSummary />
-				</div>
+          <div className=" playersContent">
+            <CardPlayerSummary />
+          </div>
 
-				<div className=" notices-col">
-					<CardNotices />
-				</div>
-			</div>
-		</div>
-	);
+          <div className=" noticesContent">
+            <CardNotices />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

@@ -1,80 +1,87 @@
 @import "tailwindcss";
 
-@layer components {
-	
-	.dashboard {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		width: 100%;
-		height: 100%;
-		padding: 12px;
-		background-image: var(--background-canvas-gradient);
-		background-size: cover;
-		background-position: center;
-	}
+/* Root/container */
+.dashboardRoot {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: var(--background-canvas-gradient);
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  padding: 16px;
+}
 
-	.dashboard-grid {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		align-items: center;
-		justify-content: center;
-		gap: 12px;
-		width: 100%;
-		
-	}
+.dashboardContainer {
+  width: 100%;
+  min-height: 100%;
+}
 
-	@media (max-width: 640px) {
-		.dashboard-grid {
-			grid-template-columns: 1fr 1fr;
-			gap: 12px;
-		}
-		.greeting-col {
-			grid-column: 1 / span 2;
-		}
-		.calendar-col {
-			grid-column: 3 / span 1;
-		}
-		.stats-col {
-			grid-column: 1 / span 2;
-		}
-		.messages-col {
-			grid-column: 1 / span 1;
-		}
-		.players-col {
-			grid-column: 2 / span 1;
-		}
-		.notices-col {
-			grid-column: 1 / span 2;
-		}
-		
-	}
+/* Mobile-first: simple single column */
+.dashboardContent {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: minmax(80px, auto);
+  gap: 12px;
+  width: 100%;
 
-	@media (min-width: 768px) {
-		.dashboard-grid {
-			grid-template-columns: repeat(4, 1fr);
-			gap: 12px;
-		}
-		.greeting-col {
-			grid-column: 1 / span 3;
-		}
-		.calendar-col {
-			grid-column: 4 / span 1;
-		}
-		
-		.stats-col {
-			grid-column: 1 / span 4;
-		}
-		.players-col {
-			grid-column: 3 / span 2;
-		}
-		.messages-col {
-			grid-column: 1 / span 2;
-		}
+  /* define named areas for readability */
+  grid-template-areas:
+    "greeting"
+    "calendar"
+    "stats"
+    "messages"
+    "player"
+    "notice";
+}
 
-		.notices-col {
-			grid-column: 1 / span 4;
-		}
-	}
+/* Assign areas to each panel */
+.greetingContent {
+  grid-area: greeting;
+}
+.calendarContent {
+  grid-area: calendar;
+}
+.statsContent {
+  grid-area: stats;
+}
+.messagesContent {
+  grid-area: messages;
+}
+.playerContent {
+  grid-area: player;
+}
+.noticeContent {
+  grid-area: notice;
+}
+
+/* Tablet / small desktop: two columns */
+@media (min-width: 720px) {
+  .dashboardContent {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: minmax(120px, auto);
+    grid-template-areas:
+      "greeting  greeting"
+      "stats	stats"
+      "calendar	player"
+      "messages	notice";
+  }
+}
+
+/* Large desktop: three-column layout */
+@media (min-width: 1100px) {
+  .dashboardContent {
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-auto-rows: minmax(140px, auto);
+    grid-template-areas:
+      "greeting	greeting	calendar"
+      "stats	stats	stats"
+      "player	messages	notice";
+    gap: 12px;
+  }
+
+  .calendarContent {
+    align-self: stretch;
+  }
 }
