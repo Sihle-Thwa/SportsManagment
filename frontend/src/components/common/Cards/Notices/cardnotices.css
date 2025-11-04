@@ -2,66 +2,71 @@
 
 /* Basic card styling (scoped to module) */
 
-@layer components {
-	.card-notices {
-		display: flex;
-		flex-direction: column;
-		gap: 8px;
-		max-height: 320px;
-		padding: 0;
-		overflow: hidden;
-		border: 1px solid var(--border-default);
-		border-radius: var(--radius-lg);
-		box-shadow: var(--shadow-md);
-        background: var(--background-surface);
-	}
-	.card-notices-header {
-		padding: 8px 12px;
-		border-bottom: 1px solid var(--border-default);
-		display: flex;
-		align-items: center;
-	}
-	.card-notices-header-title {
-		font-size: var(--title-size-default);
-		font-weight: var(--font-weight-semibold);
-		color: var(--card-foreground, var(--colour-neutral-900));
-	}
-    .card-notices-body {
-        display: flex;
-        flex-direction: column;
-        padding: 8px;
-        overflow: auto;
-    }
-    .notice-item {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: 12px;
-        border-radius: var(--radius-sm);
-        background: transparent;
-        cursor: pointer;
-        transition: var(--transition-fast);
-    }
-    .notice-item:hover {
-        background: var(--background-surface-hover);
-    }
-    .notice-item.selected {
-        background: var(--interactive-primary);
-        color: var(--sidebar-text-active);
-    }
+.cardNotices {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 320px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  background: var(--card-background);
+}
+.cardNotices-Header {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+}
+.cardNotices-Header__Title {
+  font-size: var(--title-size-default);
+  font-weight: var(--font-weight-semibold);
+  color: var(--card-foreground, var(--colour-neutral-900));
+}
+.cardNotices-Body {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  overflow: auto;
+}
+.cardNotices-Lists {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
 
-    .notice-title {
-        font-weight: var(--font-weight-semibold);
-        margin-bottom: 8px;
-    }
-    .notice-time {
-        font-size: var(--text-size-sm);
-        color: var(--text-muted);
-        margin-bottom: 8px;
-    }
+.cardNotices-ListItem {
+  margin-bottom: 16px;
+}
 
-    .notice-content {
-        font-size: var(--text-size-default);
-        color: var(--card-foreground-secondary);
-    }
+.cardNotices-Meta {
+  margin-bottom: 8px;
+}
+
+.cardNotice-ListItem__Title {
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 8px;
+}
+.cardNotice-ListItem__Time {
+  font-size: var(--text-size-sm);
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.cardNotice-ListItem__Text {
+  font-size: var(--text-size-default);
+  color: var(--card-foreground-secondary);
+}
+.empty {
+  font-size: var(--text-size-default);
+  color: var(--text-muted);
+  text-align: center;
+  padding: 32px 0;
 }
