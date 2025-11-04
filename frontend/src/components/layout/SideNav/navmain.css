@@ -1,68 +1,61 @@
 @import "tailwindcss";
 
 .navMainRoot {
-	display: flex;
-	flex-direction: column;
-	padding: 8px 0;
-	margin: 0;
-	gap: 8px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 .navMainMenu {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	display: flex;
-	flex-direction: column;
-	gap: 4px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
 }
 
 .navMainItem {
-	margin: 0;
-	padding: 0;
+  margin-bottom: 4px;
 }
 
 /* link base */
 .navMainLink {
-	display: flex;
-	align-items: center;
-	gap: 8px;
-	text-decoration: none;
-	padding: 8px 12px;
-	border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--sidebar-item-text);
+  background: var(--sidebar-item-background);
 }
 
 .navMainLink:hover {
-	background: var(--sidebar-item-background-hover);
-	color: var(--sidebar-item-text-hover);
-
-	
+  background: var(--sidebar-item-background-hover);
+  color: var(--sidebar-item-text-hover);
 }
 
-.navMainLink.active{
-	background: var(
-		--sidebar-item-background-active
-	);
-	color: var(--text-on-primary);
-	font-weight: var(--font-weight-semibold);
+.navMainLink.active {
+  background: var(--colour-primary-800);
+  color: var(--text-on-primary);
+  font-weight: var(--font-weight-semibold);
 }
-
 
 /* icon + label */
 .navMainLinkIcon {
-	width: var(--icon-size-default);
-	height: var(--icon-size-default);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: inherit;
-
+  width: var(--icon-size-default);
+  height: var(--icon-size-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
 }
 
 /* collapsed variants */
 .navMainLink.collapsed {
-	justify-content: center;
-
+  justify-content: center;
 }
 .navMainLink.collapsed .navMainLinkLabel {
-	display: none;
+  display: none;
 }

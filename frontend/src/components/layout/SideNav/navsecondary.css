@@ -1,87 +1,74 @@
 @import "tailwindcss";
 
 .navSecondaryRoot {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 0 12px;
-	margin-top: auto;
-	width: 100%;
-	overflow: hidden;
-
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  width: 100%;
 }
 .navSecondaryMenu {
-	padding-top: 8px;
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	overflow: hidden;
-
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
 }
 .navSecondaryItem {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	overflow: hidden;
+  margin-bottom: 4px;
 }
 
 .navSecondaryLink {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	gap: 8px;
-	width: 100%;
-	padding: 8px;
-	text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--sidebar-item-text);
+  background: var(--sidebar-item-background);
 }
-.navSecondaryLink:hover {
-	background: var(--sidebar-item-background-hover);
-	color: var(--sidebar-item-text-hover);
-	border-radius: var(--radius-md);
-	
-}
-.navSecondaryLink.active {
 
-	background: var(--sidebar-item-background-active);
-	color: var(--sidebar-item-text-active);
-	border-radius: var(--radius-md);
-	font-weight: var(--body-weight-semibold);
-	
+.navSecondaryLink:hover {
+  background: var(--sidebar-item-background-hover);
+  color: var(--sidebar-item-text-hover);
+}
+
+.navSecondaryLink.active {
+  background: var(--colour-primary-800);
+  color: var(--text-on-primary);
+  font-weight: var(--font-weight-semibold);
 }
 
 .navSecondaryLinkItem {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	gap: 8px;
+  width: var(--icon-size-default);
+  height: var(--icon-size-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
 }
 
 .navSecondaryIcon {
-	width: var(--icon-size-sm);
-	height: var(--icon-size-sm);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 8px;
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 .navSecondaryLabel {
-	flex: 1 1 auto;
-	font-size: var(--body-size-md);
-	font-weight: var(--body-weight-normal);
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  font-size: var(--body-size-md);
+  font-weight: var(--body-weight-normal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
 }
 
 .navSecondaryIcon.collapsed {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 8px;
+  justify-content: center;
 }
 .navSecondaryIcon.collapsed .navSecondaryLabel {
-	display: none;
+  display: none;
 }
