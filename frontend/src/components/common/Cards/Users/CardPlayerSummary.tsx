@@ -1,7 +1,14 @@
 "use client";
 import { MoreVertical } from "lucide-react";
-import { ChartBar } from "../../Charts/ChartBar";
+import EventOverviewChart from "../../Charts/EventOverviewChart";
 import "./cardplayersummary.css";
+
+function formatMonthRange(startMonth = "January") {
+  const now = new Date();
+  const endMonth = now.toLocaleString(undefined, { month: "long" });
+  const year = now.getFullYear();
+  return `${startMonth} ${year} - ${endMonth} ${year}`;
+}
 
 export const CardPlayerSummary = () => {
   return (
@@ -9,7 +16,7 @@ export const CardPlayerSummary = () => {
       <div className="cardPlayers-Container">
         <div className="cardPlayers-Content">
           <div className="cardPlayers-Header">
-            <div className="cardPlayers-Header__Heading">Players</div>
+            <div className="cardPlayers-Header__Heading">Events Overview</div>
             <div className="cardPlayers-Header__Actions">
               <button className="cardPlayers-Action">
                 <MoreVertical />
@@ -17,7 +24,15 @@ export const CardPlayerSummary = () => {
             </div>
           </div>
           <div className="cardPlayers-Body">
-            <ChartBar />
+            <div className="cardPlayers-Body__Header">
+              <div className="cardPlayers-Body__Heading">Events and Games</div>
+              <div className="cardPlayers-Body__Subheading">
+                {formatMonthRange()}
+              </div>
+            </div>
+            <div className="cardPlayers-Body-Content">
+            <EventOverviewChart />
+            </div>
           </div>
         </div>
       </div>

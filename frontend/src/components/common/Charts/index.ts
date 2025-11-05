@@ -1,1 +1,1 @@
-import "./ChartBar";
+import "./EventOverviewChart";
