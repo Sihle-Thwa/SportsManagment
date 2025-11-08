@@ -3,13 +3,6 @@ import { MoreVertical } from "lucide-react";
 import EventOverviewChart from "../../Charts/EventOverviewChart";
 import "./cardplayersummary.css";
 
-function formatMonthRange(startMonth = "January") {
-  const now = new Date();
-  const endMonth = now.toLocaleString(undefined, { month: "long" });
-  const year = now.getFullYear();
-  return `${startMonth} ${year} - ${endMonth} ${year}`;
-}
-
 export const CardPlayerSummary = () => {
   return (
     <div className="cardPlayers" aria-labelledby="players-heading">
@@ -24,15 +17,7 @@ export const CardPlayerSummary = () => {
             </div>
           </div>
           <div className="cardPlayers-Body">
-            <div className="cardPlayers-Body__Header">
-              <div className="cardPlayers-Body__Heading">Events and Games</div>
-              <div className="cardPlayers-Body__Subheading">
-                {formatMonthRange()}
-              </div>
-            </div>
-            <div className="cardPlayers-Body-Content">
-            <EventOverviewChart />
-            </div>
+              <EventOverviewChart />
           </div>
         </div>
       </div>
