@@ -135,14 +135,14 @@ export default function EventOverviewChart(): React.JSX.Element {
                 startAngle={0}
                 endAngle={360}
                 animationBegin={0}
-                animationDuration={800}
-                animationEasing="ease-out"
+                animationDuration={1500}
+                animationEasing="ease-in-out"
               >
                 {dataWithPercentages.map((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
                     fill={entry.fill}
-                    stroke="var(--chart-background)"
+                    stroke= "#ffffff"
                     strokeWidth={2}
                   />
                 ))}
