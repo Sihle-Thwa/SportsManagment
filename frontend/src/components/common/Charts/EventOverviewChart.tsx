@@ -123,6 +123,7 @@ export default function EventOverviewChart(): React.JSX.Element {
                 content={<ChartTooltipContent hideLabel />}
               />
               <Pie
+                className="event-chart__pie"
                 data={dataWithPercentages}
                 dataKey="Games"
                 nameKey="month"
