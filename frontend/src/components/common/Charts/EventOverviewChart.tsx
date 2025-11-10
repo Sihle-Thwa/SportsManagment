@@ -1,6 +1,6 @@
 "use client";
 import { useMemo } from "react";
-import { PieChart, Pie, Cell, Legend, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import {
   ChartContainer,
   ChartTooltip,
@@ -10,19 +10,20 @@ import "./eventoverviewchart.css";
 
 export const title = "Events Played This Year";
 
+// Enhanced color palette using primary, tertiary, and accent colors for visual appeal
 const CHART_FULL_DATA = [
-  { month: "January", Games: 5, fill: "var(--colour-primary)" },
-  { month: "February", Games: 3, fill: "var(--colour-primary-300)" },
-  { month: "March", Games: 2, fill: "var(--colour-primary-500)" },
-  { month: "April", Games: 7, fill: "var(--colour-primary-600)" },
-  { month: "May", Games: 2, fill: "var(--colour-primary-700)" },
-  { month: "June", Games: 2, fill: "var(--colour-primary-800)" },
-  { month: "July", Games: 5, fill: "var(--colour-primary-900)" },
-  { month: "August", Games: 1, fill: "var(--colour-secondary-100)" },
-  { month: "September", Games: 8, fill: "var(--colour-secondary-300)" },
-  { month: "October", Games: 6, fill: "var(--colour-secondary-700)" },
-  { month: "November", Games: 3, fill: "var(--colour-secondary-800)" },
-  { month: "December", Games: 2, fill: "var(--colour-secondary-900)" },
+  { month: "January", Games: 5, fill: "var(--colour-primary)", label: "Jan" },
+  { month: "February", Games: 3, fill: "var(--colour-primary-500)", label: "Feb" },
+  { month: "March", Games: 2, fill: "var(--colour-primary-700)", label: "Mar" },
+  { month: "April", Games: 7, fill: "var(--colour-tertiary)", label: "Apr" },
+  { month: "May", Games: 2, fill: "var(--colour-tertiary-500)", label: "May" },
+  { month: "June", Games: 2, fill: "var(--colour-tertiary-700)", label: "Jun" },
+  { month: "July", Games: 5, fill: "var(--colour-accent)", label: "Jul" },
+  { month: "August", Games: 1, fill: "var(--colour-accent-500)", label: "Aug" },
+  { month: "September", Games: 8, fill: "var(--colour-accent-700)", label: "Sep" },
+  { month: "October", Games: 6, fill: "var(--colour-primary-300)", label: "Oct" },
+  { month: "November", Games: 3, fill: "var(--colour-tertiary-300)", label: "Nov" },
+  { month: "December", Games: 2, fill: "var(--colour-accent-300)", label: "Dec" },
 ];
 
 const MONTH_LABELS = {
@@ -62,70 +63,117 @@ export default function EventOverviewChart(): React.JSX.Element {
     [visibleData]
   );
 
-  return (
-    <div className="radialBarChart-Root" role="region" aria-label={title}>
-      <div className="radialBarChart-Header">
-        <div className="radialBarChart-Header__Heading">{title}</div>
-        <div className="radialBarChart-Header__Subheading">
-          {formatMonthRange("January")}
-        </div>
-      </div>
-      <div className="radialBarChart-Content">
-        <ChartContainer
-          className="radialBarChart-Container"
-          config={MONTH_LABELS}
-        >
-          <ResponsiveContainer width="100%" height={320}>
-            <PieChart>
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent hideLabel />}
-              />
-              <Pie
-                data={visibleData}
-                dataKey="Games"
-                nameKey="month"
-                cx="50%"
-                cy="50%"
-                innerRadius="70%"
-                outerRadius="100%"
-                paddingAngle={2}
-                isAnimationActive={true}
-                labelLine={false}
-                // labels are omitted — legend + center text provide info
-              >
-                {visibleData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={entry.fill} />
-                ))}
-              </Pie>
-              <text
-                x="40%"
-                y="50%"
-                textAnchor="middle"
-                dominantBaseline="middle"
-                className="radialBarChart-CenterLabel__Text"
-              >
-                <tspan className="radialBarChart-CenterLabel__Value">
-                  {totalGames}
-                </tspan>
-                <tspan
-                  className="radialBarChart-CenterLabel__Unit"
-                  x="50%"
-                  dy="22px"
-                >
-                  Games
-                </tspan>
-              </text>
+  // Calculate percentage for each month
+  const dataWithPercentages = useMemo(
+    () => visibleData.map(item => ({
+      ...item,
+      percentage: totalGames > 0 ? ((item.Games / totalGames) * 100).toFixed(1) : '0'
+    })),
+    [visibleData, totalGames]
+  );
 
-              <Legend
-                verticalAlign="middle"
-                align="right"
-                layout="vertical"
-                wrapperStyle={{ right: 0, top: 0, lineHeight: "24px" }}
-              />
-            </PieChart>
-          </ResponsiveContainer>
-        </ChartContainer>
+  return (
+    <div className="event-chart" role="region" aria-label={title}>
+      <div className="event-chart__header">
+        <h2 className="event-chart__title">{title}</h2>
+        <p className="event-chart__subtitle">
+          {formatMonthRange("January")}
+        </p>
+      </div>
+      
+      <div className="event-chart__content">
+        <div className="event-chart__chart-container">
+          <ChartContainer
+            className="event-chart__chart"
+            config={MONTH_LABELS}
+          >
+            <ResponsiveContainer
+              width="100%"
+              height="100%"
+              minHeight={240}
+              aspect={1}
+            >
+              <PieChart margin={{ top: 12, right: 12, bottom: 12, left: 12 }}>
+                <ChartTooltip
+                  cursor={false}
+                  content={<ChartTooltipContent hideLabel />}
+                />
+                <Pie
+                  data={dataWithPercentages}
+                  dataKey="Games"
+                  nameKey="month"
+                  cx="50%"
+                  cy="50%"
+                  innerRadius="45%"
+                  outerRadius="75%"
+                  paddingAngle={2}
+                  startAngle={0}
+                  endAngle={360}
+                  animationBegin={0}
+                  animationDuration={800}
+                >
+                  {dataWithPercentages.map((entry, index) => (
+                    <Cell 
+                      key={`cell-${index}`} 
+                      fill={entry.fill}
+                      stroke="var(--chart-background)"
+                      strokeWidth={2}
+                    />
+                  ))}
+                </Pie>
+                
+                {/* Center label */}
+                <text 
+                  className="event-chart__center-text"
+                  x="50%" 
+                  y="50%" 
+                  textAnchor="middle" 
+                  dominantBaseline="middle"
+                >
+                  <tspan
+                    className="event-chart__center-value"
+                    x="50%"
+                    y="50%"
+                    dy="-8px"
+                  >
+                    {totalGames}
+                  </tspan>
+                  <tspan
+                    className="event-chart__center-label"
+                    x="50%"
+                    y="50%"
+                    dy="16px"
+                  >
+                    Games
+                  </tspan>
+                </text>
+              </PieChart>
+            </ResponsiveContainer>
+          </ChartContainer>
+        </div>
+        
+        {/* Custom Legend */}
+        <div className="event-chart__legend">
+          <div className="event-chart__legend-items">
+            {dataWithPercentages.map((entry) => (
+              <div 
+                key={entry.month} 
+                className="event-chart__legend-item"
+                role="button"
+                tabIndex={0}
+                aria-label={`${entry.month}: ${entry.Games} games (${entry.percentage}%)`}
+              >
+                <div 
+                  className="event-chart__legend-color" 
+                  style={{ backgroundColor: entry.fill }}
+                />
+                <span className="event-chart__legend-text">
+                  {entry.label}: {entry.Games} ({entry.percentage}%)
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
