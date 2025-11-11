@@ -1,98 +1,93 @@
-/* profile.css */
 @import "tailwindcss";
 
 .profileRoot {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	background-image: var(--background-canvas-gradient);
-	background-size: cover;
-	background-position: center;
-	width: 100%;
-	height: 100%;
-	
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: var(--background-canvas-gradient);
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
 }
 
 .profileHeader {
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: flex-start;
-	box-shadow: var(--shadow-base);
-	width: 100%;
-	position: sticky;
-	top: 0;
-	padding: 12px;
-	background-color: var(--header-background);
-	border-bottom: 1px solid var(--header-border);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  box-shadow: var(--shadow-base);
+  width: 100%;
+  height: 100%;
+  position: sticky;
+  top: 0;
+  padding: 12px;
+  background-color: var(--card-background);
+  border-bottom: 1px solid var(--card-border);
 }
 
 .profileTitle {
-	display: flex;
-	flex-direction: column;
-	font-size: var(--title-size-lg);
-	font-weight: var(--font-weight-bold);
-	color: var(--card-foreground);
-	letter-spacing: var(--letter-spacing-normal);
+  display: flex;
+  flex-direction: column;
+  font-size: var(--title-size-default);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-normal);
+  color: var(--card-foreground-primary);
 }
 
 .profileSubtitle {
-	display: flex;
-	flex-direction: column;
-	margin-top: 4px;
-	margin-bottom: 8px;
-	color: var(--card-foreground-secondary);
-	font-size: var(--font-size-subtitle);
-	font-weight: var(--font-weight-normal);
+  display: flex;
+  flex-direction: column;
+  color: var(--card-foreground-secondary);
+  font-size: var(--subtitle-size-md);
+  font-weight: var(--font-weight-light);
 }
 
 /* Container */
 .profileContainer {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	max-width: 1280px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  max-width: 1280px;
+  width: 100%;
+  min-width: 360px;
 }
 
 .profileContent {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	padding: 16px;
-	gap: 24px;
-	width: 100%;
-
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-gap: 16px;
+  width: 100%;
+  padding: 16px;
 }
+
 .uploadCol {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: flex-start;
-	width: 100%;
-	
-}
-.formCol {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	justify-content: flex-start;
-	width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
 }
 
-/* Accessibility: Add focus styles for interactive elements */
-.profileHeader:focus-within,
-.profileTitle:focus,
-.profileSubtitle:focus {
-	outline: 2px solid var(--focus-outline);
-	outline-offset: 2px;
+.formCol {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
 }
 
 /* Responsive adjustments */
-@media (max-width: 767px) {
-	.profileContent {
-		grid-template-columns: 1fr;
-	}
-}
+@media (max-width: 1024px) {
+  .profileContent {
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 12px;
 
+  }
+}
+@media (max-width: 768px) {
+  .profileContent {
+    grid-template-columns: 1fr;
+    grid-gap: 12px;
+  }
+}

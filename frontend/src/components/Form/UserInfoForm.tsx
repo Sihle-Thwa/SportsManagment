@@ -47,7 +47,7 @@ export function UserInfoForm({
     <FormProvider {...methods}>
       <div className="cardBase_userInfo" aria-labelledby="user-info-title">
         <div className="cardHeader_userInfo">
-          <div id="user-info-title" className="cardTitle_userInfo">
+          <div  className="cardTitle_userInfo" id="user-info-title">
             {formTitle}
           </div>
           <div className="accentLine_userInfo" aria-hidden />
@@ -133,23 +133,22 @@ export function UserInfoForm({
             </div>
           </div>
         </form>
-        <div className="cardFooter_userInfo" aria-hidden>
-          <div className="footerActions_userInfo">
-            <button
-              type="submit"
-              className="button-primary button-lg buttonPrimary_userInfo"
-              disabled={isSubmitting}
-            >
-              Save
-            </button>
-            <button
-              type="button"
-              className="button-secondary button-lg buttonSecondary_userInfo"
-              onClick={() => reset(defaultValues)}
-            >
-              Reset
-            </button>
-          </div>
+
+        <div className="footerActions_userInfo">
+          <button
+            type="submit"
+            className="buttonSave_userInfo"
+            disabled={isSubmitting}
+          >
+            Save
+          </button>
+          <button
+            type="button"
+            className="buttonReset_userInfo"
+            onClick={() => reset(defaultValues)}
+          >
+            Reset
+          </button>
         </div>
       </div>
     </FormProvider>

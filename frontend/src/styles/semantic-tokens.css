@@ -75,11 +75,15 @@
   --border-disabled: var(--colour-neutral-100);
 
   /* Primary Interactive States */
-  --interactive-primary-hover: var(--colour-primary-500);
+  --interactive-primary: var(--colour-primary-100);
+  --interactive-primary-background: var(--colour-primary-500);
+  --interactive-primary-border: var(--colour-primary-700);
+  --interactive-primary-hover: var(--colour-primary-100);
+  --interactive-primary-background-hover: var(--colour-primary-700);
+  --interactive-primary-border-hover: var(--colour-primary-900);
   --interactive-primary-pressed: var(--colour-primary-700);
-  --interactive-primary-active: var(--colour-primary-900);
-  --interactive-primary-disabled: var(--colour-neutral-300);
-  --interactive-primary-focus: var(--colour-primary);
+  --interactive-primary-background-pressed: var(--colour-primary-300);
+  --interactive-primary-border-pressed: var(--colour-primary-500);
 
   /* Secondary Interactive States */
   --interactive-secondary-hover: var(--colour-secondary-500);
@@ -95,32 +99,49 @@
   --interactive-tertiary-disabled: var(--colour-neutral-300);
   --interactive-tertiary-focus: var(--colour-tertiary-200);
 
-  /* Status Colours - Adapted for CRM colour Palette */
-  --status-success: var(--colour-success-500);
-  --status-success-background: var(--colour-success-100);
-  --status-success-border: var(--colour-success-300);
-  --status-success-border: var(--colour-success-300);
-  --status-success-border: var(--colour-success-300);
+  /* Success Status */
+  --status-success: var(--colour-success-100);
+  --status-success-background: var(--colour-success-500);
+  --status-success-border: var(--colour-success-700);
+  --status-success-hover: var(--colour-success-100);
+  --status-success-background-hover: var(--colour-success-700);
+  --status-success-border-hover: var(--colour-success-900);
+  --status-success-pressed: var(--colour-success-700);
+  --status-success-background-pressed: var(--colour-success-300);
+  --status-success-border-pressed: var(--colour-success-500);
 
   /* Warning Status */
   --status-warning: var(--colour-warning-500);
   --status-warning-background: var(--colour-warning-100);
   --status-warning-border: var(--colour-warning-300);
+  --status-warning-hover: var(--colour-warning-600);
+  --status-warning-background-hover: var(--colour-warning-200);
+  --status-warning-border-hover: var(--colour-warning-400);
+  --status-warning-pressed: var(--colour-warning-700);
+  --status-warning-background-pressed: var(--colour-warning-300);
+  --status-warning-border-pressed: var(--colour-warning-500);
 
   /* Error Status */
-  --status-error: var(--colour-error-500);
-  --status-error-background: var(--colour-error-100);
-  --status-error-border: var(--colour-error-300);
-
-  /* Error Status */
-  --status-error: var(--colour-error-500);
-  --status-error-background: var(--colour-error-100);
-  --status-error-border: var(--colour-error-300);
+  --status-error: var(--colour-error-100);
+  --status-error-background: var(--colour-error-500);
+  --status-error-border: var(--colour-error-700);
+  --status-error-hover: var(--colour-error-100);
+  --status-error-background-hover: var(--colour-error-700);
+  --status-error-border-hover: var(--colour-error-900);
+  --status-error-pressed: var(--colour-error-700);
+  --status-error-background-pressed: var(--colour-error-300);
+  --status-error-border-pressed: var(--colour-error-500);
 
   /* Info Status (using Tertiary/Teal colours) */
   --status-info: var(--colour-tertiary-500);
   --status-info-background: var(--colour-tertiary-100);
   --status-info-border: var(--colour-tertiary-300);
+  --status-info-hover: var(--colour-tertiary-600);
+  --status-info-background-hover: var(--colour-tertiary-200);
+  --status-info-border-hover: var(--colour-tertiary-400);
+  --status-info-pressed: var(--colour-tertiary-700);
+  --status-info-background-pressed: var(--colour-tertiary-300);
+  --status-info-border-pressed: var(--colour-tertiary-500);
 
   /* Layout Components */
   --layout-background: var(--colour-neutral-100);
@@ -166,6 +187,7 @@
   --input-background: var(--color-white);
   --input-text: var(--text-primary);
   --input-border: var(--border-default);
+  --input-background-hover: var(--colour-neutral-100);
   --input-border-focus: var(--colour-primary-500);
   --input-border-error: var(--colour-error-500);
   --input-background-disabled: var(--colour-neutral-300);

@@ -1,55 +1,83 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-/* Semantic tokens expected to be loaded globally (semantic-tokens.css) */
-:root{
-  --ff-bg: var(--card-background, var(--colour-neutral-100));
-  --ff-border: var(--card-border, var(--colour-neutral-200));
-  --ff-foreground: var(--card-foreground, var(--colour-neutral-900));
-  --ff-muted: var(--card-foreground-secondary, var(--colour-neutral-500));
-  --ff-accent: var(--interactive-primary, var(--colour-primary-500));
-  --radius: 10px;
-  --field-height: 40px;
-}
-
-/* Field wrapper */
 .field {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 8px;
-  width: 100%;
-  margin: 0;
 }
 
 /* Label */
 .field__label {
-  font-size: var(--body-size-default);
+  font-size: var(--label-size-lg);
   font-weight: var(--font-weight-semibold);
   color: var(--text-primary);
 }
 
 /* Description text */
 .field__desc {
-  font-size: var(--body-size-small);
+  font-size: var(--body-size-sm);
   color: var(--text-tertiary);
+}
+
+.field__select-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--input-border);
+  background: var(--input-background);
+  color: var(--input-text);
+  font-size: var(--body-size-default);
+  transition:
+    var(--transition-fast),
+    var(--transition-fast) ease;
+}
+
+.field__select-value {
+  flex: 1;
+  text-align: left;
+  color: var(--text-primary);
+  padding: 8px 12px;
+  
+}
+
+.field__select-content {
+  max-height: 180px;
+  height: 100%;
+  overflow-y: auto;
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-md);
+  background: var(--input-background);
+}
+
+.field__select-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  font-size: var(--body-size-default);
+  color: var(--text-primary);
+  cursor: pointer;
 }
 
 /* Base input */
 .field__input,
 .field__select-trigger,
-.field__date-trigger {
-  display: inline-flex;
+.field__date-trigger{
+  display: flex;
   align-items: center;
   gap: 8px;
-  height: var(--field-height);
   width: 100%;
-  padding: 0 12px;
+  padding: 8px 12px;
   border-radius: var(--radius-md);
-  border: 1px solid var(--border-default, var(--colour-neutral-300));
-  background: var(--input-background, var(--colour-neutral-100));
+  border: 1px solid var(--input-border);
+  background: var(--input-background);
   color: var(--input-text);
   font-size: var(--body-size-default);
-  transition: var(--transition-fast), var(--transition-fast) ease;
+  transition:
+    var(--transition-fast),
+    var(--transition-fast) ease;
 }
 
 /* Focus state */
@@ -58,9 +86,8 @@
 .field__date-trigger:focus,
 .field__input:focus-within {
   outline: none;
-  border-color: var(--input-border-focus, var(--colour-primary-500));
-    box-shadow: var(--shadow-base);
-
+  border-color: var(--input-border-focus);
+  box-shadow: var(--shadow-md);
 }
 
 /* Disabled */
@@ -68,16 +95,16 @@
 .field__select-trigger[aria-disabled="true"] {
   opacity: 0.6;
   cursor: not-allowed;
-  background: var(--input-background-disabled, var(--colour-neutral-100));
-  color: var(--input-text-disabled, var(--colour-neutral-500));
+  background: var(--input-background-disabled);
+  color: var(--input-text-disabled);
 }
 
 /* Error state */
 .field__input.error,
 .field__select-trigger.error,
 .field__date-trigger.error {
-  border-color: var(--input-border-error, var(--colour-error-500));
-  box-shadow: var(--shadow-base);
+  border-color: var(--status-border-error);
+  box-shadow: var(--shadow-md);
 }
 
 /* small inline icon (left) */
@@ -85,7 +112,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--ff-muted);
+  color: var(--icon-primary);
+}
+
+.field__error {
+  margin-top: 4px;
+  color: var(--input-text-error);
+  font-size: var(--small-print-size-default); 
 }
 
 /* date text placeholder */
@@ -101,7 +134,9 @@
   gap: 8px;
   align-items: center;
   flex-wrap: wrap;
+  padding: 8px 12px;
 }
+
 .radioItem {
   display: inline-flex;
   align-items: center;
@@ -109,30 +144,24 @@
   cursor: pointer;
   color: var(--text-primary);
 }
+
 .radioItem input[type="radio"] {
-  width: var(--);
-  height: var(--body-size-default);
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  accent-color: var(--colour-primary);
 }
 
 /* error message */
 .field__error {
-  margin-top: 6px;
-  color: var(--input-text-error, var(--colour-error-500));
+  margin-top: 8px;
+  color: var(--input-text-error);
   font-size: var(--small-print-size-default);
 }
 
 /* small helper text */
 .field__helper {
-  margin-top: 6px;
+  margin-top: 8px;
   font-size: var(--small-print-size-default);
   color: var(--text-tertiary);
-}
-
-/* responsive grid helpers (used by form) */
-@media (min-width: 768px) {
-  .grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
 }

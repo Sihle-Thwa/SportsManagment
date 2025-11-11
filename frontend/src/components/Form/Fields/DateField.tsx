@@ -7,88 +7,92 @@ import "../formfield.css";
 import { cn } from "../../../lib/utils";
 
 export interface DateFieldProps {
-	name: string;
-	label?: string;
-	placeholder?: string;
-	className?: string;
-	defaultValue?: Date | string | null;
+  name: string;
+  label?: string;
+  placeholder?: string;
+  className?: string;
+  defaultValue?: Date | string | null;
 }
 
 export const DateField: React.FC<DateFieldProps> = ({
-	name,
-	label,
-	placeholder = "Select date",
-	className,
-	defaultValue = null,
+  name,
+  label,
+  placeholder = "Select date",
+  className,
+  defaultValue = Date.now(),
 }) => {
-	const { control, formState } = useFormContext();
-	const err = formState.errors[name];
+  const { control, formState } = useFormContext();
+  const err = formState.errors[name];
 
-	return (
-		<div className={cn("field", className)} data-field-name={name}>
-			{label && (
-				<label className="field__label" htmlFor={name}>
-					{label}
-				</label>
-			)}
+  return (
+    <div className={cn("field", className)} data-field-name={name}>
+      {label && (
+        <label className="field__label" htmlFor={name}>
+          {label}
+        </label>
+      )}
 
-			<Controller
-				name={name}
-				control={control}
-				defaultValue={defaultValue}
-				render={({ field, fieldState }) => {
-					const displayText = (() => {
-						const v = field.value;
-						if (!v) return placeholder;
-						const d = v instanceof Date ? v : new Date(v);
-						if (isNaN(d.getTime())) return placeholder;
-						return d.toLocaleDateString();
-					})();
+      <Controller
+        name={name}
+        control={control}
+        defaultValue={defaultValue}
+        render={({ field, fieldState }) => {
+          const displayText = (() => {
+            const v = field.value;
+            if (!v) return placeholder;
+            const d = v instanceof Date ? v : new Date(v);
+            if (isNaN(d.getTime())) return placeholder;
+            return d.toLocaleDateString();
+          })();
 
-					return (
-						<>
-							<Popover>
-								<PopoverTrigger asChild>
-									<button
-										id={name}
-										type="button"
-										aria-invalid={!!fieldState.error}
-										aria-describedby={
-											fieldState.error ? `${err}-err` : undefined
-										}
-										className={cn(
-											"field__date-trigger",
-											fieldState.error && "error",
-										)}
-									>
-										<span className="field__icon-left">
-											<CalendarIcon />
-										</span>
-										<span className="field__date-text">{displayText}</span>
-										<ChevronDown />
-									</button>
-								</PopoverTrigger>
+          return (
+            <>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <button
+                    id={name}
+                    type="button"
+                    aria-invalid={!!fieldState.error}
+                    aria-describedby={
+                      fieldState.error ? `${err}-err` : undefined
+                    }
+                    className={cn(
+                      "field__date-trigger",
+                      fieldState.error && "error"
+                    )}
+                  >
+                    <CalendarIcon className="field__icon-left" />
+                    <div className="field__date-text">{displayText}</div>
+                    <ChevronDown
+                      style={{
+                        width: 16,
+                        height: 16,
+                        color: "var(--colour-secondary)",
+                      }}
+                    />
+                  </button>
+                </PopoverTrigger>
 
-								<PopoverContent className="popoverContent" align="start">
-									<Calendar
-										mode="single"
-										selected={field.value ?? undefined}
-										onSelect={(d: Date | undefined) => field.onChange(d)}
-									/>
-								</PopoverContent>
-							</Popover>
+                <PopoverContent className="popoverContent" align="start">
+                  <Calendar
+                    mode="single"
+                    selected={field.value ?? undefined}
+                    onSelect={(d: Date | undefined) => field.onChange(d)}
+                  />
+                </PopoverContent>
+              </Popover>
 
-							{fieldState.error && (
-								<div id={`${err}-err`} role="alert" className="field__error">
-									{String(fieldState.error.message ?? "Invalid date")}
-								</div>
-							)}
-						</>
-					);
-				}}
-			/>
-		</div>
-	);
+              {fieldState.error && (
+                <div id={`${err}-err`} role="alert" className="field__error">
+                  {String(fieldState.error.message ?? "Invalid date")}
+                </div>
+              )}
+            </>
+          );
+        }}
+      />
+    </div>
+  );
 };
 
 export default DateField;

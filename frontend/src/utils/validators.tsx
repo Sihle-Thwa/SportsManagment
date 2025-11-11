@@ -9,7 +9,7 @@ export const userInfoValidation = {
     return emailRegex.test(value) ? '' : 'Invalid email address';
   },
   addressLine1: (value: string) => value ? '' : 'Address Line 1 is required',
-  addressLine2: (value: string) => value? '': 'Address Line 2 is required', // Optional field
+  addressLine2: (value: string) => value? '': 'Address Line 2 is required', 
   city: (value: string) => value ? '' : 'City is required',
   province: (value: string) => value ? '' : 'Province is required',
   postCode: (value: string) => value ? '' : 'Post code is required',

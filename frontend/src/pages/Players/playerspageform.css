@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 .cardBase_playersPageForm {
-  background-color: var(--card-background, var(--colour-neutral-100));
-  border: 1px solid var(--card-border, var(--colour-neutral-300));
-  border-radius: var(--card-radius, 8px);
-  box-shadow: var(--card-shadow, var(--shadow-base));
+  background-color: var(--card-background);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
   display: flex;
   flex-direction: column;
   width: 100%;
