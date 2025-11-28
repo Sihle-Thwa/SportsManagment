@@ -159,12 +159,6 @@ const UploadAttachment: React.FC<UploadAttachmentProps> = ({
               >
                 Add Photo
               </button>
-              <button
-                className="buttonRemove_fileUpload"
-                onClick={handleRemove}
-              >
-                Remove
-              </button>
             </div>
           </>
         ) : (
