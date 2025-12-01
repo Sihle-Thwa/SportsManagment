@@ -1,0 +1,443 @@
+@import "tailwindcss";
+
+.plannerRoot {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  gap: 12px;
+}
+
+.plannerHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  box-shadow: var(--shadow-base);
+  width: 100%;
+  position: sticky;
+  top: 0;
+  padding: 12px;
+  background-color: var(--header-background);
+  border-bottom: 1px solid var(--header-border);
+}
+
+.plannerTitle {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--title-size-default);
+  font-weight: var(--font-weight-bold);
+  color: var(--card-foreground);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+.plannerSubtitle {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  color: var(--card-foreground-secondary);
+  font-size: var(--font-size-subtitle);
+  font-weight: var(--font-weight-normal);
+}
+
+.plannerContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+}
+
+.plannerContent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.plannerSidebar {
+  display: flex;
+  max-width: 250px;
+  width: 100%;
+  height: 100%;
+  max-height: 640px;
+  padding: 12px 0;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  align-self: stretch;
+  aspect-ratio: 125/414;
+  background: var(--card-background);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow), var(--shadow-md);
+}
+
+.plannerMain {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  background: var(--card-background);
+}
+
+.sidebarCalendar {
+  width: 100%;
+  margin: 0 auto;
+}
+.sidebarCalendarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-default);
+  margin-bottom: 8px;
+}
+
+.sidebarCalendarMonth {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-on-background);
+}
+
+.miniCalendar {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.miniCalendar th {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-on-background-secondary);
+  padding: 4px 0;
+}
+
+.miniCalendarDayCell {
+  padding: 2px;
+}
+
+.miniCalendarDayBtn {
+  position: relative;
+  width: 100%;
+  padding: 6px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-on-background);
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.miniCalendarDayBtn.is-dimmed {
+  color: var(--text-on-background-secondary);
+}
+
+.miniCalendarDayBtn.is-today {
+  border: 2px solid var(--interactive-accent);
+}
+
+.miniCalendarDayNumber {
+  font-size: 14px;
+}
+
+.miniCalendarDot {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--interactive-primary);
+}
+
+.sidebarUpcoming {
+  width: 100%;
+  margin-top: 16px;
+  padding: 0 12px 12px 12px;
+  border-top: 1px solid var(--border-default);
+}
+
+.sidebarUpcomingTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-on-background);
+  margin-bottom: 12px;
+}
+
+.sidebarUpcomingEmpty {
+  font-size: 14px;
+  color: var(--text-on-background-secondary);
+  text-align: center;
+}
+
+.sidebarUpcomingList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebarUpcomingItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebarUpcomingItemDate {
+  font-size: 12px;
+  color: var(--text-on-background-secondary);
+}
+
+.sidebarUpcomingItemTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-on-background);
+}
+
+.sidebarUpcomingItemTime {
+  font-size: 12px;
+  color: var(--text-on-background-secondary);
+}
+
+.calendarViewTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  background: var(--card-background);
+}
+
+.calendarControlsLeft {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.ctrlBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--surface-secondary);
+  border: 1px solid var(--border-default);
+  color: var(--text-on-surface);
+  cursor: pointer;
+}
+
+.calendarTitle {
+  font-size: var(--heading-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-on-background);
+  margin: 0 12px;
+}
+
+.calendarControlsRight {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.viewSelect {
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: var(--surface-secondary);
+  border: 1px solid var(--border-default);
+  color: var(--text-on-surface);
+  cursor: pointer;
+}
+
+.addEventBtn {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: var(--colour-accent-500);
+  color: var(--text-on-primary);
+  border: none;
+  cursor: pointer;
+}
+
+.addEventText {
+  font-size: var(--button-size-md);
+  font-weight: var(--font-weight-semibold);
+}
+
+.calendarViewRoot {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.calendarViewBody {
+  flex: 1;
+  overflow: auto;
+}
+
+.dayViewGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hourRow {
+  display: flex;
+  border-top: 1px solid var(--border-default);
+  min-height: 32px;
+  padding: 4px 0;
+}
+
+.hourLabel {
+  width: 60px;
+  text-align: right;
+  padding-right: 8px;
+  font-size: 12px;
+  color: var(--text-on-background-secondary);
+}
+
+.hourContent {
+  flex: 1;
+  border-left: 1px solid var(--border-default);
+  position: relative;
+}
+
+.eventChip {
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  padding: 4px 8px;
+  background: var(--colour-accent-500);
+  color: var(--text-on-primary);
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.monthView {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+}
+
+.monthGridHeader {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 8px;
+  width: 100%;
+  border-top: 1px solid var(--card-border);
+}
+
+.monthGridHeaderCell {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-on-background-secondary);
+  text-align: center;
+}
+
+.monthGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
+}
+
+.monthDay {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--card-border);
+  padding: 6px;
+  width: 100%;
+  height: 100%;
+  background: var(--surface-primary);
+  gap: 4px;
+  cursor: pointer;
+}
+
+.monthDay.is-dimmed {
+  background: var(--surface-secondary);
+}
+
+.monthDayNum {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-on-background);
+}
+
+.monthEvent {
+  background: var(--colour-accent-500);
+  color: var(--text-on-primary);
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.moreTag {
+  font-size: 12px;
+  color: var(--text-on-background-secondary);
+}
+
+.yearView {
+  padding: 8px;
+}
+
+.yearGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+}
+
+.miniMonth {
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 8px;
+  background: var(--surface-primary);
+}
+
+.miniMonthTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-on-background);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.miniMonthGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.ctrlBtn:focus,
+.addEventBtn:focus,
+.miniCalendarDayBtn:focus,
+.monthDay:focus {
+  outline: 2px solid var(--interactive-primary);
+  outline-offset: 2px;
+}
