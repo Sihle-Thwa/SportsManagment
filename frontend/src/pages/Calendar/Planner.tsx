@@ -23,7 +23,6 @@ export default function Planner() {
   }
 
   function handleAddEvent() {
-    // quick demo event added to currentDate
     const newEvent = {
       id: `evt-${Date.now()}`,
       title: "New Event",
@@ -36,7 +35,9 @@ export default function Planner() {
 
   return (
     <div className="plannerRoot" role="application" aria-label="Planner">
-      <div className="plannerSidebar" aria-label="Calendar navigation">
+      <div className="plannerContainer">
+        <div className="plannerContent">
+     <div className="plannerSidebar" aria-label="Calendar navigation">
         <SidebarCalendar
           currentDate={currentDate}
           onChangeDate={(d) => setCurrentDate(d)}
@@ -56,6 +57,9 @@ export default function Planner() {
           onSelectDate={(d) => setCurrentDate(d)}
         />
       </section>
+        </div>
+      </div>
+     
     </div>
   );
 }

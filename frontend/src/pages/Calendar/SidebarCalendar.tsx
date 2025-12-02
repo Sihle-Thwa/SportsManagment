@@ -50,15 +50,15 @@ export default function SidebarCalendar({
 
   return (
     <div className="sidebarCalendar">
-      <header className="sidebarCalendarHeader">
+      <div className="sidebarCalendarHeader">
         <div className="sidebarCalendarMonth">
           {format(monthStart, "MMMM yyyy")}
         </div>
-      </header>
+      </div>
 
       <table className="miniCalendar" aria-label="Month calendar">
-        <thead>
-          <tr>
+        <thead className="miniCalendarHeadRow">
+          <tr className="miniCalendarRow">
             {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d) => (
               <th key={d} scope="col" className="miniCalendarHead">
                 {d}
@@ -67,7 +67,7 @@ export default function SidebarCalendar({
           </tr>
         </thead>
 
-        <tbody>
+        <tbody className="miniCalendarBody">
           {rows.map((week, wi) => (
             <tr key={wi} className="miniCalendarWeek">
               {week.map((d) => {

@@ -3,10 +3,13 @@
 .plannerRoot {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-image: var(--background-canvas-gradient);
+  background-size: cover;
+  background-position: center;
   width: 100%;
   height: 100%;
-  padding: 12px;
-  gap: 12px;
 }
 
 .plannerHeader {
@@ -53,72 +56,87 @@
 }
 
 .plannerContent {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
 }
 
 .plannerSidebar {
   display: flex;
-  max-width: 250px;
+  flex-direction: column;
   width: 100%;
+  max-width: 280px;
   height: 100%;
   max-height: 640px;
-  padding: 12px 0;
-  flex-direction: column;
-  align-items: center;
-  flex-shrink: 0;
-  align-self: stretch;
-  aspect-ratio: 125/414;
-  background: var(--card-background);
-  border: 1px solid var(--card-border);
+  background-color: var(--card-background);
   border-radius: 12px;
   box-shadow: var(--card-shadow), var(--shadow-md);
+  
 }
 
 .plannerMain {
   display: flex;
+  flex: 1;
   flex-direction: column;
-  padding: 16px;
-  gap: 12px;
-  width: 100%;
   height: 100%;
-  background: var(--card-background);
+  width: 100%;
 }
 
 .sidebarCalendar {
   width: 100%;
-  margin: 0 auto;
+  padding: 12px;
+  box-sizing: border-box;
+
 }
+
 .sidebarCalendarHeader {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--border-default);
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .sidebarCalendarMonth {
   font-size: 16px;
   font-weight: 700;
-  color: var(--text-on-background);
+  color: var(--text-primary);
 }
 
 .miniCalendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: 32px;
+  gap: 4px;
   width: 100%;
-  border-collapse: collapse;
+  height: auto;
 }
 
-.miniCalendar th {
+.miniCalendarHeadRow {
+  display: contents;
+
+}
+
+.miniCalendarRow {
+  display: contents;
+
+}
+
+.miniCalendarHead {
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 300;
   color: var(--text-on-background-secondary);
-  padding: 4px 0;
+  text-align: center;
+}
+
+.miniCalendarBody {
+  display: contents;
+}
+
+.miniCalendarWeek {
+  display: contents;
+  
 }
 
 .miniCalendarDayCell {
@@ -128,12 +146,11 @@
 .miniCalendarDayBtn {
   position: relative;
   width: 100%;
-  padding: 6px;
-  border: none;
-  border-radius: 8px;
-  background: transparent;
-  color: var(--text-on-background);
-  font-weight: 600;
+  height: 100%;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   transition:
     background-color 0.2s ease,
@@ -141,52 +158,55 @@
 }
 
 .miniCalendarDayBtn.is-dimmed {
-  color: var(--text-on-background-secondary);
+  color: var(--colour-secondary);
+
+
 }
 
 .miniCalendarDayBtn.is-today {
   border: 2px solid var(--interactive-accent);
+  
 }
 
 .miniCalendarDayNumber {
   font-size: 14px;
+  font-weight: 500;
 }
 
 .miniCalendarDot {
   position: absolute;
-  bottom: 4px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--interactive-primary);
+  bottom: 2px;
+  width: 8px;
+  height: 2px;
+  background-color: var(--colour-accent-500);
+  border-radius: 1px;
 }
 
 .sidebarUpcoming {
   width: 100%;
-  margin-top: 16px;
-  padding: 0 12px 12px 12px;
-  border-top: 1px solid var(--border-default);
+  padding: 12px;
+  box-sizing: border-box;
+  border-top: 1px solid var(--card-border);
 }
 
 .sidebarUpcomingTitle {
   font-size: 16px;
   font-weight: 700;
-  color: var(--text-on-background);
-  margin-bottom: 12px;
+  color: var(--text-primary);
+  margin-bottom: 8px;
 }
 
 .sidebarUpcomingEmpty {
   font-size: 14px;
-  color: var(--text-on-background-secondary);
+  color: var(--colour-secondary);
   text-align: center;
+
 }
 
 .sidebarUpcomingList {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 }
 
 .sidebarUpcomingItem {
@@ -197,26 +217,76 @@
 
 .sidebarUpcomingItemDate {
   font-size: 12px;
-  color: var(--text-on-background-secondary);
+  font-weight: 500;
+  color: var(--colour-secondary-700);
+}
+
+.sidebarUpcomingItemContent {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  background-color: var(--surface-primary);
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
 }
 
 .sidebarUpcomingItemTitle {
   font-size: 14px;
   font-weight: 600;
-  color: var(--text-on-background);
+  color: var(--text-primary);
 }
 
 .sidebarUpcomingItemTime {
   font-size: 12px;
   color: var(--text-on-background-secondary);
+  
 }
 
+.calendarViewRoot {
+  display: flex;
+  flex-direction: column;
+  max-height: 640px;
+  height: 100%;
+  background: var(--card-background);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow), var(--shadow-md);
+}
 .calendarViewTop {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
-  background: var(--card-background);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+.calendarTitle {
+  font-size: var(--heading-size-default);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-on-background);
+}
+
+.ctrlBtn {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 12px;
+  background: var(--colour-primary-800);
+  color: var(--text-on-primary);
+  cursor: pointer;
+}
+
+.viewSelect {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 12px;
+  background: var(--colour-primary-800);
+  color: var(--text-on-primary);
+  cursor: pointer;
 }
 
 .calendarControlsLeft {
@@ -225,50 +295,20 @@
   align-items: center;
 }
 
-.ctrlBtn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: var(--surface-secondary);
-  border: 1px solid var(--border-default);
-  color: var(--text-on-surface);
-  cursor: pointer;
-}
-
-.calendarTitle {
-  font-size: var(--heading-size-md);
-  font-weight: var(--font-weight-bold);
-  color: var(--text-on-background);
-  margin: 0 12px;
-}
-
 .calendarControlsRight {
   display: flex;
   gap: 8px;
   align-items: center;
 }
 
-.viewSelect {
-  padding: 6px 12px;
-  border-radius: 8px;
-  background: var(--surface-secondary);
-  border: 1px solid var(--border-default);
-  color: var(--text-on-surface);
-  cursor: pointer;
-}
-
 .addEventBtn {
   display: inline-flex;
   gap: 8px;
   align-items: center;
-  padding: 8px 12px;
-  border-radius: 8px;
-  background: var(--colour-accent-500);
+  padding: 6px 12px;
+  border-radius: 12px;
+  background: var(--colour-primary-800);
   color: var(--text-on-primary);
-  border: none;
   cursor: pointer;
 }
 
@@ -277,46 +317,54 @@
   font-weight: var(--font-weight-semibold);
 }
 
-.calendarViewRoot {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
 .calendarViewBody {
   flex: 1;
   overflow: auto;
 }
 
+.dayView {
+  width: 100%;
+  height: 100%;
+}
+
 .dayViewGrid {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  width: 100%;
+  height: 100%;
 }
 
 .hourRow {
   display: flex;
-  border-top: 1px solid var(--border-default);
-  min-height: 32px;
-  padding: 4px 0;
+  width: 100%;
+  height: 60px;
+  border-bottom: 1px solid var(--border-default);
 }
 
 .hourLabel {
   width: 60px;
-  text-align: right;
-  padding-right: 8px;
+  padding: 4px 8px;
   font-size: 12px;
-  color: var(--text-on-background-secondary);
+  color: var(--colour-secondary-700);
+  text-align: left;
 }
 
 .hourContent {
+  position: relative;
   flex: 1;
   border-left: 1px solid var(--border-default);
-  position: relative;
+  background: var(--surface-primary);
+  overflow: hidden;
+}
+
+.hourEmpty {
+  width: 100%;
+  height: 100%;
 }
 
 .eventChip {
   position: absolute;
+  top: 2px;
   left: 4px;
   right: 4px;
   padding: 4px 8px;
@@ -325,72 +373,112 @@
   border-radius: 6px;
   font-size: 12px;
   font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  cursor: pointer;
+}
+
+.eventChipTitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-on-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.eventChipTime {
+  font-size: 10px;
+  color: var(--text-on-primary-secondary);
 }
 
 .monthView {
-  display: flex;
-  flex-direction: column;
+  padding: 8px;
   width: 100%;
   height: 100%;
-  padding: 8px;
 }
 
 .monthGridHeader {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  margin-bottom: 8px;
+  gap: 0px;
   width: 100%;
-  border-top: 1px solid var(--card-border);
+  margin-bottom: 4px;
 }
 
 .monthGridHeaderCell {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--text-on-background-secondary);
   text-align: center;
+  padding: 4px 0;
 }
 
 .monthGrid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  align-items: stretch;
+  grid-auto-rows: 100px;
+  gap: 4px;
   width: 100%;
   height: 100%;
+}
+
+.monthGridRow {
+  display: contents;
+}
+
+.monthGridCell {
+  width: 100%;
+  height: 100%;
+}
+
+.monthGridCell.is-dimmed {
+  background: var(--surface-secondary);
+  color: var(--text-on-background-secondary);
 }
 
 .monthDay {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--card-border);
+  gap: 4px;
   padding: 6px;
   width: 100%;
   height: 100%;
-  background: var(--surface-primary);
-  gap: 4px;
+  border-radius: 8px;
   cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
-.monthDay.is-dimmed {
-  background: var(--surface-secondary);
+.monthDay.is-selected {
+  background-color: var(--interactive-accent);
+  color: var(--text-on-accent);
+  box-shadow: var(--shadow-sm);
 }
 
 .monthDayNum {
   font-size: 14px;
   font-weight: 700;
-  color: var(--text-on-background);
 }
 
+.monthDayEvents {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+  flex: 1;
+}
 .monthEvent {
-  background: var(--colour-accent-500);
-  color: var(--text-on-primary);
-  border-radius: 6px;
-  padding: 2px 6px;
   font-size: 12px;
   font-weight: 600;
+  background: var(--colour-accent-500);
+  color: var(--text-on-primary);
+  border-radius: 4px;
+  padding: 2px 4px;
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -403,21 +491,27 @@
 
 .yearView {
   padding: 8px;
+  width: 100%;
+  height: 100%;
 }
 
 .yearGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
+  grid-auto-rows: 1fr;
   width: 100%;
   height: 100%;
 }
 
 .miniMonth {
-  border: 1px solid var(--card-border);
-  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
   padding: 8px;
   background: var(--surface-primary);
+  border: 1px solid var(--border-default);
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+  height: 100%;
 }
 
 .miniMonthTitle {
@@ -428,16 +522,50 @@
   margin-bottom: 8px;
 }
 
+.eventIndicator {
+  font-size: 16px;
+  color: var(--colour-accent, #f59e0b);
+  line-height: 1;
+  animation: pulse 2s ease-in-out infinite;
+}
+
 .miniMonthGrid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
+  grid-auto-rows: 24px;
+  gap: 2px;
 }
 
-.ctrlBtn:focus,
-.addEventBtn:focus,
-.miniCalendarDayBtn:focus,
-.monthDay:focus {
-  outline: 2px solid var(--interactive-primary);
-  outline-offset: 2px;
+.miniMonthCell {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-on-background);
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.miniMonthCell.is-dimmed {
+  color: var(--colour-secondary);
+}
+
+.miniMonthCell.has-events {
+  background-color: var(--colour-accent-500);
+  cursor: pointer;
+  color: var(--text-on-primary);
+}
+
+.miniMonthCell.has-events:hover {
+  background-color: var(--colour-accent-600);
+  box-shadow: var(--shadow-sm);
+}
+.miniMonthCell.is-today {
+  border: 2px solid var(--interactive-accent);
 }
