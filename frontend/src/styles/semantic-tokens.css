@@ -5,10 +5,12 @@
 
 :root {
   /* Background */
-  --background-canvas-gradient: linear-gradient(
-    135deg,
-    var(--colour-primary-100),
-    var(--colour-secondary-500)
+  --background-canvas-gradient: 
+    linear-gradient(
+      135deg,
+      #fff 0%,
+      var(--colour-primary-100) 70%,
+      var(--colour-accent-500) 100%
   );
 
   --background-canvas: var(--background-canvas-gradient);
