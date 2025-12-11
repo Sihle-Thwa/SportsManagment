@@ -12,7 +12,7 @@
   flex-direction: column;
   height: 100vh;
   width: 100%;
-  background: var(--sidebar-background);
+  background: var(--card-background);
   color: var(--text-primary);
   border-right: 1px solid var(--border-default);
 }
@@ -33,7 +33,7 @@
   width: 100%;
   height: var(--sidebar-topbar);
   border-bottom: 1px solid var(--border-default);
-  background-color: var(--card-header-background);
+  background-color: var(--card-background);
 }
 
 .appSidebarBrand {
@@ -75,6 +75,7 @@
   align-items: center;
   width: 100%;
   height: var(--sidebar-topbar);
+  max-height: 100%;
   border-top: 1px solid var(--border-default);
-  background-color: var(--card-footer-background);
+  background-color: var(--card-background);
 }

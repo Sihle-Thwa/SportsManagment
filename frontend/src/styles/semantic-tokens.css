@@ -5,11 +5,10 @@
 
 :root {
   /* Background */
-  --background-canvas-gradient: radial-gradient(
-    at bottom right,
-    #ffd700 0%,
-    rgba(255, 240, 163, 0.4) 50%,
-    rgba(255, 255, 255, 1) 100%
+  --background-canvas-gradient: linear-gradient(
+    135deg,
+    var(--colour-primary-100),
+    var(--colour-secondary-500)
   );
 
   --background-canvas: var(--background-canvas-gradient);
