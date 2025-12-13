@@ -11,7 +11,6 @@ import Facilities from "../pages/Facilities/Facilities";
 import Members from "../pages/Members/Members";
 import Players from "../pages/Players/Players";
 import Profile from "../pages/Profile/Profile";
-import Report from "../pages/Reports/Report";
 import { ProtectedRoute } from "../components/ProtectedRoute";
 
 // Icons
@@ -21,7 +20,6 @@ import {
 	Users,
 	LandPlot,
 	Calendar,
-	ClipboardList,
 } from "lucide-react";
 
 export const routes = [
@@ -67,13 +65,7 @@ export const routes = [
 		element: <Planner />,
 		icon: <Calendar />,
 	},
-	{
-		id: "reports",
-		path: "/reports",
-		title: "Reports",
-		element: <Report />,
-		icon: <ClipboardList />,
-	},
+
 ];
 
 const router = createBrowserRouter([
@@ -130,10 +122,6 @@ const router = createBrowserRouter([
 			{
 				path: "planner",
 				element: <Planner />,
-			},
-			{
-				path: "reports",
-				element: <Report />,
 			},
 		],
 	},
